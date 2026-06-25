@@ -5,7 +5,7 @@ Thank you for considering contributing to PaperForge! This page explains how to 
 ## Development Setup
 
 ```bash
-git clone https://github.com/bharatdangi/paperforge
+git clone https://github.com/Bharat940/paperforge
 cd paperforge
 
 pip install -e ./paperforge -e ./paperforge_diagrams -e ./paperforge_notes[dev]
@@ -80,7 +80,7 @@ For new concepts or significant changes, please open an issue first.
 
 PaperForge follows semantic versioning. Maintainers will handle release tagging.
 
-For announcements, follow the [GitHub releases page](https://github.com/bharatdangi/paperforge/releases).
+For announcements, follow the [GitHub releases page](https://github.com/Bharat940/paperforge/releases).
 
 ## License
 

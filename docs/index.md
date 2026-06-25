@@ -12,7 +12,7 @@ description: Generate beautiful PDFs, notes, diagrams, slides, and flashcards fr
 
 [Get Started](getting-started.md){ .md-button .md-button--primary }
 [Browse Gallery](gallery/index.md){ .md-button }
-[:material-github: GitHub](https://github.com/bharatdangi/paperforge){ .md-button }
+[:material-github: GitHub](https://github.com/Bharat940/paperforge){ .md-button }
 
 </div>
 
@@ -128,4 +128,4 @@ For an index of all available documentation, see [llms.txt](llms.txt).
 
 ## License
 
-MIT — see [LICENSE](https://github.com/bharatdangi/paperforge/blob/main/LICENSE).
+MIT — see [LICENSE](https://github.com/Bharat940/paperforge/blob/main/LICENSE).

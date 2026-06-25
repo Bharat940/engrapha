@@ -119,13 +119,13 @@ PaperForge acts as a true **Publishing Framework**. It ships with screenshot-wor
 
 Full documentation, gallery, and API reference:
 
-**[docs.paperforge.dev](https://docs.paperforge.dev)**
+**[PaperForge Docs](https://bharat940.github.io/paperforge)**
 
-- [Getting Started](https://docs.paperforge.dev/getting-started)
-- [Notes Guide](https://docs.paperforge.dev/notes/basics)
-- [Diagrams Guide](https://docs.paperforge.dev/diagrams/overview)
-- [Gallery](https://docs.paperforge.dev/gallery/index)
-- [API Reference](https://docs.paperforge.dev/api/notes)
+- [Getting Started](https://bharat940.github.io/paperforge/getting-started)
+- [Notes Guide](https://bharat940.github.io/paperforge/notes/basics)
+- [Diagrams Guide](https://bharat940.github.io/paperforge/diagrams/overview)
+- [Gallery](https://bharat940.github.io/paperforge/gallery/index)
+- [API Reference](https://bharat940.github.io/paperforge/api/notes)
 
 ## Markdown Compiler
 
