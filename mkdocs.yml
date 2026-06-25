@@ -1,12 +1,12 @@
 site_name: PaperForge
-site_url: https://bharatdangi.github.io/paperforge
-repo_url: https://github.com/bharatdangi/paperforge
+site_url: https://bharat940.github.io/paperforge
+repo_url: https://github.com/Bharat940/paperforge
 edit_uri: blob/main/docs/
 
 extra:
   social:
     - icon: material/github
-      link: https://github.com/bharatdangi/paperforge
+      link: https://github.com/Bharat940/paperforge
   generator: false
 
 theme:
