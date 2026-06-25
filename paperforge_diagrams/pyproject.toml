@@ -8,13 +8,12 @@ version = "0.1.0"
 description = "Vector-native PDF diagram toolkit for ReportLab Platypus"
 readme = "README.md"
 requires-python = ">=3.11"
-license = {file = "../LICENSE"}
+license = "MIT"
 authors = [
     {name = "Bharat Dangi"}
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 dependencies = [
@@ -31,7 +30,6 @@ dev = [
 ]
 
 [tool.setuptools]
-license-files = ["../LICENSE"]
 
 [tool.setuptools.packages.find]
 where = ["."]

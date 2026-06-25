@@ -8,13 +8,12 @@ version = "0.1.0"
 description = "Themed ReportLab notes toolkit with markdown, HTML, PPTX, and flashcard exports"
 readme = "README.md"
 requires-python = ">=3.11"
-license = {file = "../LICENSE"}
+license = "MIT"
 authors = [
     {name = "Bharat Dangi"}
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 dependencies = [
@@ -40,7 +39,6 @@ paperforge = "paperforge_notes.cli:main"
 pdfnotes = "paperforge_notes.cli:main"
 
 [tool.setuptools]
-license-files = ["../LICENSE"]
 
 [tool.setuptools.packages.find]
 where = ["."]
