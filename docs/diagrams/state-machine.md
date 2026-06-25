@@ -1,0 +1,83 @@
+# Diagram: State Machine
+
+State machines are suitable for DFAs, process states, and life-cycle flows. States are circles (double-circles for accepting states). Transitions are arrows, optionally curved to avoid overlaps.
+
+## Minimal example
+
+```python
+import paperforge_notes as pn
+import paperforge_diagrams as pd
+
+sm = pd.StateMachine(width=380, height=180,
+                      caption="Fig 6: Connection States")
+
+sm.state("closed", "CLOSED", initial=True)
+sm.state("listen", "LISTEN")
+sm.state("estab", "ESTABLISHED", accepting=True)
+
+sm.transition("closed", "listen", label="passive open")
+sm.transition("listen", "estab",  label="receive SYN")
+sm.transition("estab",  "closed", label="RST received")
+sm.transition("listen", "listen", label="retransmit")
+
+pn.add(sm.as_flowable())
+pn.build_doc("state.pdf")
+```
+
+## Curved transitions
+
+Offset bidirectional edges so they do not overlap:
+
+```python
+sm.transition("A", "B", label="event1")
+sm.transition("B", "A", label="event2")  # auto-offsets both
+```
+
+Provide an explicit `offset` to control curvature:
+
+```python
+sm.transition("A", "C", label="detour", offset=80.0)
+```
+
+Positive offsets bend one way, negative offsets the other.
+
+## Self loops
+
+A transition where `from_id == to_id` draws an arc loop:
+
+```python
+sm.transition("A", "A", label="loop")
+```
+
+## Pills
+
+Enable pill-shaped label bubbles on transitions:
+
+```python
+sm.transition("A", "B", label="START", pill=True)
+```
+
+## Initial / accepting
+
+```python
+sm.state("s0", "Start", initial=True)     # Filled dot + arrow
+sm.state("s3", "End",  accepting=True)    # Double ring
+```
+
+## Auto layout
+
+auto_layout() tries to fit transitions without overlap and switches to vertical mode when horizontal fits poorly.
+
+## Parameters reference
+
+| Parameter | Default | Purpose |
+| --------- | ------- | ------- |
+| `direction` | `"LR"` (auto-switches to `"TB"`) | `"TB"` or `"LR"` |
+| `state_r` | `22.0` | Default state circle radius |
+| `state_label_max_width` | `82.0` | Text width cap |
+| `transition_label_max_width` | `96.0` | Label width cap |
+
+## Next
+
+- [Network](network.md)
+- [Timing](timing.md)

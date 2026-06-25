@@ -1,0 +1,29 @@
+[tool.pytest.ini_options]
+testpaths = [
+    "paperforge_diagrams/tests",
+    "paperforge_notes/tests",
+]
+python_files = ["test_*.py"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = [
+    "study_notes",
+    ".venv",
+    "build",
+    "dist",
+]
+
+[tool.mypy]
+python_version = "3.12"
+warn_unused_configs = true
+ignore_missing_imports = true
+files = [
+    "paperforge_notes",
+    "paperforge_diagrams",
+]
+
+[[tool.mypy.overrides]]
+module = "numpy.*"
+ignore_errors = true

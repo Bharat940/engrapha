@@ -1,0 +1,152 @@
+site_name: PaperForge
+site_url: https://bharatdangi.github.io/paperforge
+repo_url: https://github.com/bharatdangi/paperforge
+edit_uri: blob/main/docs/
+
+extra:
+  social:
+    - icon: material/github
+      link: https://github.com/bharatdangi/paperforge
+  generator: false
+
+theme:
+  name: material
+  logo: assets/paperforge_icon.svg
+  favicon: assets/paperforge_icon.svg
+  palette:
+    # Dark mode (default on first visit)
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      toggle:
+        icon: material/brightness-7
+        name: Switch to light mode
+      primary: custom
+      accent: cyan
+
+    # Light mode
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
+      primary: custom
+      accent: cyan
+
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.path
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+    - content.footnote.tooltips
+
+  icon:
+    previous: material/arrow-left
+    next: material/arrow-right
+    menu: material/menu
+    search: material/magnify
+    close: material/close
+
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 4
+
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=\p{{Lu}})'
+  - meta:
+      meta_file: ./.meta.yml
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - assets/copy-page-button.js
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - getting-started.md
+      - why-paperforge.md
+  - Notes:
+      - notes/basics.md
+      - notes/callouts.md
+      - notes/study.md
+      - notes/advanced.md
+      - notes/templates.md
+      - notes/export.md
+  - Diagrams:
+      - diagrams/overview.md
+      - diagrams/flowchart.md
+      - diagrams/sequence.md
+      - diagrams/er.md
+      - diagrams/schema.md
+      - diagrams/class.md
+      - diagrams/state-machine.md
+      - diagrams/network.md
+      - diagrams/architecture.md
+      - diagrams/c4.md
+      - diagrams/cloud.md
+      - diagrams/stack.md
+      - diagrams/timing.md
+      - diagrams/git.md
+  - Gallery:
+      - gallery/index.md
+      - gallery/flowcharts.md
+      - gallery/er-diagrams.md
+      - gallery/sequence-diagrams.md
+      - gallery/network-diagrams.md
+      - gallery/architectures.md
+      - gallery/themes.md
+      - gallery/notes-pages.md
+  - Examples:
+      - examples/engineering-notes.md
+      - examples/resume.md
+      - examples/assignment.md
+      - examples/thesis.md
+      - examples/networking-notes.md
+  - API Reference:
+      - api/notes.md
+      - api/diagrams.md
+  - Themes: themes.md
+  - Markdown: markdown.md
+  - Changelog: changelog.md
+  - Contributing: contributing.md
+  - Sitemap: sitemap.md
+  - LLMs Index: llms.txt

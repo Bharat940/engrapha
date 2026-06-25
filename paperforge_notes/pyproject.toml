@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=75.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paperforge-notes"
+version = "0.1.0"
+description = "Themed ReportLab notes toolkit with markdown, HTML, PPTX, and flashcard exports"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "../LICENSE"}
+authors = [
+    {name = "Bharat Dangi"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "reportlab>=4.5.1",
+    "pygments>=2.20.0",
+    "paperforge-diagrams>=0.1.0",
+]
+
+[project.optional-dependencies]
+full = [
+    "pymupdf>=1.25.0",
+    "genanki>=0.13.1",
+]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-cov>=6.0",
+    "ruff>=0.9.0",
+    "mypy>=1.11.0",
+]
+
+[project.scripts]
+paperforge = "paperforge_notes.cli:main"
+pdfnotes = "paperforge_notes.cli:main"
+
+[tool.setuptools]
+license-files = ["../LICENSE"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["paperforge_notes*"]
+exclude = ["paperforge_notes.tests*"]

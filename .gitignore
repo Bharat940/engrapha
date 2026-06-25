@@ -1,0 +1,40 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Python Caches & Build Files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+
+# PaperForge Local Cache
+.paperforge_cache/
+
+# Documentation Output
+site/
+
+# Exclude generated PDFs from the root or demos
+/demo_*.pdf
+/demo_*.apkg
+/quickstart.pdf
+
+# Generated artifacts
+*.csv
+*.json
+*.txt
+generated/
+*.pptx
+*_html/
+*.apkg
+demo_*_flashcards.csv
+demo_*_flashcards.json
+engineering_notes_flashcards.csv
+engineering_notes_flashcards.json
+!requirements.txt

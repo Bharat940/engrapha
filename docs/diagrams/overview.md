@@ -1,0 +1,118 @@
+# Diagrams: Overview
+
+PaperForge ships with 13 vector-native diagram types. This page helps you pick the right one.
+
+## Quick selection table
+
+| Goal | Use |
+| ---- | --- |
+| Algorithm flow, loops, decisions | `Flowchart` |
+| Time-ordered message flow | `SequenceDiagram` |
+| Entity-relationship model | `ERDiagram` |
+| Database table structures | `SchemaDiagram` |
+| Object model, inheritance | `ClassDiagram` |
+| State transitions, DFA | `StateMachine` |
+| Digital waveforms | `TimingDiagram` |
+| OSI/TCP stacks, memory layers | `LayeredStack` |
+| Network topologies | `NetworkDiagram` |
+| High-level system layout | `ArchitectureDiagram` |
+| C4 model System/Container view | `C4ContainerDiagram` |
+| AWS cloud resources | `AWSDiagram` |
+| Git branching / merge history | `GitDiagram` |
+
+## Common concepts
+
+All diagrams:
+
+- Accept a `theme` kwarg. Use `pd.DiagramTheme.from_notes_theme(pn.get_theme())` to auto-match.
+- Render as ReportLab `Drawing` → `ResponsiveDrawingFlowable` when embedded in PDFs.
+- Support standalone `save("output.pdf")` for raster/vector export.
+
+## Theme matching
+
+```python
+import paperforge_notes as pn
+import paperforge_diagrams as pd
+
+pn.set_theme(pn.OCEAN_DARK)
+t = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+
+fc = pd.Flowchart(width=pn.CW, height=180, theme=t)
+```
+
+## Diagram sizes
+
+| Diagram | Default width | Default height | Notes |
+| -------- | -------- | -------- | ----- |
+| Flowchart | 300 | 300 | Scale with `scale_factor` |
+| Sequence | 400 | 220 | Stacked vertically |
+| ER | 450 | 220 | Auto-layout grows canvas |
+| Class | 420 | 200 | Fixed box sizes |
+| Network | 400 | 160 | Auto-layout |
+| Architecture | 450 | 220 | Horizontal / vertical |
+| AWS | 450 | 220 | Same as Architecture |
+| Git | 400 | 150 | Grows left-to-right |
+| Stack | 340 | 260 | Fixed height |
+| State Machine | 380 | 180 | Auto switches TB/LR |
+| Timing | 400 | 150 | Stacked signals |
+
+Use your document's `pn.CW` for a flush layout with notes content.
+
+## Layout integration
+
+The pattern is the same everywhere:
+
+```python
+diagram = pd.<Diagram>(width=pn.CW, height=180, theme=<theme>)
+# ... add nodes / edges / messages ...
+pn.add(diagram.as_flowable())
+```
+
+For side-by-side rendering in a table, use the raw drawing:
+
+```python
+from paperforge_diagrams import ResponsiveDrawingFlowable
+pn.add(Table([[ResponsiveDrawingFlowable(diagram.drawing)]]))
+```
+
+## Customizing themes
+
+Modify any theme parameters dynamically by creating a copy of the theme with override updates (using Pydantic's `model_copy`):
+
+```python
+# Create a print-optimized black-and-white theme
+bw_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme()).model_copy(
+    update={
+        "bg": "#ffffff",
+        "text": "#000000",
+        "node_fill": "#ffffff",
+        "node_stroke": "#000000",
+        "node_text": "#000000",
+        "font_name": "Times-Roman",
+    }
+)
+# Apply custom theme to diagram
+stack = pd.LayeredStack(width=300, height=180, theme=bw_theme)
+```
+
+## Standalone export
+
+Export diagrams directly to vector or raster formats without embedding them in a notes document:
+
+```python
+diagram = pd.Flowchart(width=300, height=200)
+diagram.terminal("s", "START").terminal("e", "END").edge("s", "e")
+
+# Export to PDF (Vector)
+diagram.save("output.pdf")
+
+# Export to SVG (Vector)
+diagram.save("output.svg")
+
+# Export to PNG (Raster)
+diagram.save("output.png")
+```
+
+## Next
+
+[Flowchart](flowchart.md) · [Sequence](sequence.md) · [ER Diagram](er.md) · [Schema](schema.md) · [Network](network.md) · [Architecture](architecture.md) · [C4 Container](c4.md) · [AWS Cloud](cloud.md) · [Stack](stack.md) · [Git](git.md)

@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=75.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paperforge-diagrams"
+version = "0.1.0"
+description = "Vector-native PDF diagram toolkit for ReportLab Platypus"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "../LICENSE"}
+authors = [
+    {name = "Bharat Dangi"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "reportlab>=4.5.1",
+    "pydantic>=2.13.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-cov>=6.0",
+    "ruff>=0.9.0",
+    "mypy>=1.11.0",
+]
+
+[tool.setuptools]
+license-files = ["../LICENSE"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["paperforge_diagrams*"]
+exclude = ["paperforge_diagrams.tests*"]

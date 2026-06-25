@@ -1,0 +1,210 @@
+/* PaperForge brand overrides for Material for MkDocs */
+
+/* ── Dark slate scheme (default) ── */
+[data-md-color-scheme="slate"] {
+  /* Primary brand colour – PaperForge cyan */
+  --md-primary-fg-color: #79c0ff;
+  --md-primary-fg-color--light: #9dd5f7;
+  --md-primary-fg-color--dark: #2a8ab5;
+
+  /* Accent – slightly warmer cyan for hover/interactive */
+  --md-accent-fg-color: #22d3ee;
+  --md-accent-fg-color--light: #67e8f9;
+  --md-accent-fg-color--dark: #0891b2;
+
+  /* Background tones pulled from paperforge_notes palette */
+  --md-default-bg-color: #0d1117;
+  --md-default-fg-color: #f0f6fc;
+  --md-default-fg-color--light: #c9d1d9;
+  --md-default-fg-color--dark: #8b949e;
+
+  --md-code-bg-color: #161b22;
+  --md-code-fg-color: #f0f6fc;
+
+  /* Sidebar / navigation */
+  --md-sidebar-bg-color: #01080f;
+  --md-typeset-a-color: #79c0ff;
+
+  /* Table colours */
+  --md-table-bg-color: #161b22;
+  --md-table-bg-color--even: #1c2333;
+  --md-table-border-color: #30363d;
+  --md-table-head-bg-color: #1f6feb;
+  --md-table-head-text-color: #f0f6fc;
+
+  /* Admonition colours */
+  --md-admonition-fg-color: #79c0ff;
+  --md-admonition-bg-color: #11182000;
+
+  --md-alert-fg-color: #f0f6fc;
+  --md-alert-bg-color: #161b22;
+
+  --md-alert-note-fg-color: #79c0ff;
+  --md-alert-note-bg-color: #0d1117;
+  --md-alert-tip-fg-color: #3fb950;
+  --md-alert-tip-bg-color: #0d2119;
+  --md-alert-warning-fg-color: #d29922;
+  --md-alert-warning-bg-color: #1f1a0a;
+  --md-alert-danger-fg-color: #f85149;
+  --md-alert-danger-bg-color: #1e0d0d;
+  --md-alert-important-fg-color: #bc8cff;
+  --md-alert-important-bg-color: #180d2b;
+
+  /* Scrollbar */
+  --md-scrollbar-bg-color: #161b22;
+  --md-scrollbar-fg-color: #30363d;
+
+  /* Selection highlight */
+  --md-selection-bg-color: rgba(121, 192, 255, 0.25);
+}
+
+/* ── Light scheme (paperforge light) ── */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #2563eb;
+  --md-primary-fg-color--light: #60a5fa;
+  --md-primary-fg-color--dark: #1e40af;
+
+  --md-accent-fg-color: #0891b2;
+  --md-accent-fg-color--light: #22d3ee;
+  --md-accent-fg-color--dark: #0e7490;
+
+  --md-default-bg-color: #f8fafc;
+  --md-default-fg-color: #111827;
+  --md-default-fg-color--light: #374151;
+  --md-default-fg-color--dark: #111827;
+
+  --md-code-bg-color: #f1f5f9;
+  --md-code-fg-color: #111827;
+
+  --md-sidebar-bg-color: #f1f5f9;
+
+  /* Match dark-theme header color so the icon pops */
+  --md-header-bg-color: #1f2937;
+  --md-header-fg-color: #f9fafb;
+
+  --md-typeset-a-color: #2563eb;
+
+  --md-table-bg-color: #ffffff;
+  --md-table-bg-color--even: #f8fafc;
+  --md-table-border-color: #cbd5e1;
+  --md-table-head-bg-color: #1f6feb;
+  --md-table-head-text-color: #ffffff;
+
+  --md-admonition-bg-color: #ffffff00;
+  --md-alert-bg-color: #f8fafc;
+  --md-alert-fg-color: #111827;
+
+  --md-alert-note-fg-color: #2563eb;
+  --md-alert-note-bg-color: #eff6ff;
+  --md-alert-tip-fg-color: #15803d;
+  --md-alert-tip-bg-color: #f0fdf4;
+  --md-alert-warning-fg-color: #a16207;
+  --md-alert-warning-bg-color: #fffbeb;
+  --md-alert-danger-fg-color: #dc2626;
+  --md-alert-danger-bg-color: #fef2f2;
+  --md-alert-important-fg-color: #7c3aed;
+  --md-alert-important-bg-color: #f5f3ff;
+
+  --md-scrollbar-bg-color: #f1f5f9;
+  --md-scrollbar-fg-color: #cbd5e1;
+
+  --md-selection-bg-color: rgba(37, 99, 235, 0.18);
+}
+
+/* ── Hero improvements ── */
+.md-hero {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+/* ── Header logo size (both themes) ── */
+.md-header .md-logo,
+.md-header img[alt="logo"] {
+  height: 2rem !important;
+  width: auto !important;
+  vertical-align: middle !important;
+}
+
+.md-header__button.md-logo {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+/* Force darker strip on both dark and light mode headers */
+[data-md-color-scheme="slate"] .md-header,
+[data-md-color-scheme="slate"] .md-toolbar,
+[data-md-color-scheme="default"] .md-header,
+[data-md-color-scheme="default"] .md-toolbar {
+  background-color: #0d1117 !important;
+}
+[data-md-color-scheme="slate"] .md-header__title,
+[data-md-color-scheme="slate"] .md-header__topic,
+[data-md-color-scheme="default"] .md-header__title,
+[data-md-color-scheme="default"] .md-header__topic {
+  color: #f3f4f6 !important;
+}
+
+/* Hero/homepage logo swap */
+.logo-dark, .logo-light { display: none; }
+[data-md-color-scheme="slate"] .logo-dark { display: block; }
+[data-md-color-scheme="default"] .logo-light { display: block; }
+
+/* ── Code block polish ── */
+.md-typeset code {
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+
+.md-typeset pre {
+  border-radius: 8px;
+  border: 1px solid var(--md-code-fg-color--lightest, #30363d);
+}
+
+/* ── Table polish ── */
+.md-typeset table:not([class]) {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* ── Copy-page button (aligned inside page <h1>) ── */
+h1.has-copy-page-btn {
+  position: relative;
+  padding-right: 6.5rem; /* Reserve space on the right */
+}
+h1.has-copy-page-btn.copy-page-btn-centered {
+  padding-left: 6.5rem; /* Symmetric padding to maintain center alignment */
+}
+.copy-page-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--md-primary-bg-color) !important;
+  background: var(--md-primary-fg-color) !important;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+  white-space: nowrap;
+  min-width: 96px; /* Prevents button size shift/jitter during text change */
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.copy-page-btn:hover {
+  opacity: 0.85;
+}
+.copy-page-btn--disabled {
+  pointer-events: none !important;
+  opacity: 0.75;
+  cursor: default;
+}
