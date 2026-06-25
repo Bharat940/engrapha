@@ -17,6 +17,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import cm
 from reportlab.pdfgen.canvas import Canvas
+from reportlab.platypus.tableofcontents import TableOfContents
 from reportlab.platypus import (
     BaseDocTemplate,
     Flowable,
@@ -31,6 +32,7 @@ from reportlab.platypus import (
 )
 
 import paperforge_diagrams as pd
+from paperforge_diagrams.network import NodeKind
 
 PAGE_W, PAGE_H = A4
 PM = 1.8 * cm
@@ -925,7 +927,7 @@ tree_struct = {
     "dist1": ["acc1", "acc2"],
     "dist2": ["acc3", "acc4"],
 }
-tree_kinds: dict[str, pd.NodeKind] = {
+tree_kinds: dict[str, NodeKind] = {
     "core": "switch",
     "dist1": "switch",
     "dist2": "switch",

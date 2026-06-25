@@ -239,7 +239,8 @@ ASCII_ST = S(
     leading=13,
 )
 
-story = []
+from typing import Any
+story: list[Any] = []
 
 
 def add(x):

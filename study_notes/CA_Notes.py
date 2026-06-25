@@ -236,7 +236,8 @@ TOC_I_ST = S(
     "TI", fontSize=10, fontName="Helvetica", leading=18, leftIndent=16, textColor=WHITE
 )
 
-story = []
+from typing import Any
+story: list[Any] = []
 
 
 def add(x):

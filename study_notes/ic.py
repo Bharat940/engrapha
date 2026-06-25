@@ -36,13 +36,13 @@ pn.cover_card(
     "INDIAN CONSTITUTION",
     "Complete Exam Notes & PYQ Answers",
 )
-pn.cover_subtitle(
-    [
-        "Subject Code: IT410  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
-        "PYQs Covered: June 2022  |  May-June 2023  |  May-June 2024  |  Nov-Dec 2024  |  June-July 2025",
-        "All 15 Syllabus Topics  |  CO1–CO5  |  3-mark, 4-mark & 10-mark Model Answers",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "Subject Code: IT410  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
+#         "PYQs Covered: June 2022  |  May-June 2023  |  May-June 2024  |  Nov-Dec 2024  |  June-July 2025",
+#         "All 15 Syllabus Topics  |  CO1–CO5  |  3-mark, 4-mark & 10-mark Model Answers",
+#     ]
+# )
 pn.sp(8)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(6)

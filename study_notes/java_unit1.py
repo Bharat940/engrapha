@@ -34,13 +34,13 @@ pn.suppress_footer(page_only=True)
 pn.sp(28)
 
 pn.cover_card("JAVA PROGRAMMING", "Unit I -- Language Fundamentals & OOP")
-pn.cover_subtitle(
-    [
-        "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
-        "Complete Exam Notes with OOP Fundamentals, Installation, Compilation, Language Elements,",
-        "Data Types, Casting, Operators, Control Statements, and Arrays",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
+#         "Complete Exam Notes with OOP Fundamentals, Installation, Compilation, Language Elements,",
+#         "Data Types, Casting, Operators, Control Statements, and Arrays",
+#     ]
+# )
 pn.sp(10)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(8)

@@ -41,13 +41,13 @@ pn.cover_card(
     "OPERATING SYSTEMS",
     "Unit IV — Virtual Memory, Paging, Segmentation & Security",
 )
-pn.cover_subtitle(
-    [
-        "Subject Code: IT412  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
-        "Paging, TLB, Page Fault, Segmentation with Paging, EAT,",
-        "Virtual Memory, Demand Paging, Page Replacement, Thrashing, Security",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "Subject Code: IT412  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
+#         "Paging, TLB, Page Fault, Segmentation with Paging, EAT,",
+#         "Virtual Memory, Demand Paging, Page Replacement, Thrashing, Security",
+#     ]
+# )
 pn.sp(10)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(8)

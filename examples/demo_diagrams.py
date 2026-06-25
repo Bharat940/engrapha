@@ -18,7 +18,7 @@ def main() -> None:
     theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
 
     pn.cover_card("PaperForge Diagrams", "Vector-native ReportLab diagram reference")
-    pn.cover_subtitle("Flowchart, sequence, class, ER, state, timing, network, and architecture examples")
+    # pn.cover_subtitle("Flowchart, sequence, class, ER, state, timing, network, and architecture examples")
     pn.br()
     pn.toc()
 

@@ -20,16 +20,16 @@ pn.cover_card(
     "Java Programming (IT-408)",
     "Mid-Semester Test -- Compiled Answers",
 )
-pn.cover_subtitle(
-    [
-        "Department of Information Technology",
-        "UIT-RGPV (Autonomous), Bhopal",
-        "",
-        "MST-I   |  March 2026  |  Max Marks: 30  |  Time: 1 Hr",
-        "MST-II  |  April 2026  |  Max Marks: 30  |  Time: 1 Hr",
-        "MST-III |  May 2026    |  Max Marks: 30  |  Time: 1 Hr",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "Department of Information Technology",
+#         "UIT-RGPV (Autonomous), Bhopal",
+#         "",
+#         "MST-I   |  March 2026  |  Max Marks: 30  |  Time: 1 Hr",
+#         "MST-II  |  April 2026  |  Max Marks: 30  |  Time: 1 Hr",
+#         "MST-III |  May 2026    |  Max Marks: 30  |  Time: 1 Hr",
+#     ]
+# )
 
 pn.sp(16)
 pn.info_table(

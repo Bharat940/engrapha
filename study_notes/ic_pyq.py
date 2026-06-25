@@ -56,13 +56,13 @@ pn.cover_card(
     "INDIAN CONSTITUTION (IT410)",
     "Previous Year Questions & Model Answers",
 )
-pn.cover_subtitle(
-    [
-        "UIT-RGPV (Autonomous) Bhopal  |  Semester IV  |  Subject Code: IT410",
-        "Exam Papers Covered: June 2022  |  May-June 2023  |  May-June 2024  |  Nov-Dec 2024  |  June-July 2025",
-        "All 5 Questions with Comprehensive Model Answers, Diagrams, and Tables",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "UIT-RGPV (Autonomous) Bhopal  |  Semester IV  |  Subject Code: IT410",
+#         "Exam Papers Covered: June 2022  |  May-June 2023  |  May-June 2024  |  Nov-Dec 2024  |  June-July 2025",
+#         "All 5 Questions with Comprehensive Model Answers, Diagrams, and Tables",
+#     ]
+# )
 pn.sp(8)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(6)

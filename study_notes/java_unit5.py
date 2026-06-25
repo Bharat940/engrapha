@@ -39,13 +39,13 @@ pn.cover_card(
     "JAVA PROGRAMMING",
     "Unit V -- Event Handling & JDBC Database Connectivity",
 )
-pn.cover_subtitle(
-    [
-        "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
-        "Complete Exam Notes: Delegation Event Model, Event Sources, Listeners,",
-        "Mouse & Key Events, JDBC Architecture, Drivers, ResultSet, and Remote DB",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
+#         "Complete Exam Notes: Delegation Event Model, Event Sources, Listeners,",
+#         "Mouse & Key Events, JDBC Architecture, Drivers, ResultSet, and Remote DB",
+#     ]
+# )
 pn.sp(10)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(8)

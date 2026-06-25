@@ -69,12 +69,12 @@ pn.suppress_header(page_only=True)
 pn.suppress_footer(page_only=True)
 pn.sp(20)
 pn.cover_card("React.js & Next.js", "Fundamentals with Tailwind CSS")
-pn.cover_subtitle(
-    [
-        "A COMPLETE DEVELOPER GUIDE  -  INDUSTRY EDITION 2026",
-        "React 19  -  Next.js 16 (App Router, Turbopack)  -  Tailwind CSS v4",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "A COMPLETE DEVELOPER GUIDE  -  INDUSTRY EDITION 2026",
+#         "React 19  -  Next.js 16 (App Router, Turbopack)  -  Tailwind CSS v4",
+#     ]
+# )
 pn.sp(20)
 pn.image(
     "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&h=300&q=80",

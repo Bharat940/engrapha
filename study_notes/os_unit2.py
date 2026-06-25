@@ -41,13 +41,13 @@ pn.cover_card(
     "OPERATING SYSTEMS",
     "Unit II — CPU Scheduling, IPC & Process Synchronization",
 )
-pn.cover_subtitle(
-    [
-        "Subject Code: IT412  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
-        "CPU Scheduling Criteria & Algorithms, Multiple Processor Scheduling,",
-        "IPC, Critical Section, Semaphores & Classical Synchronization Problems",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "Subject Code: IT412  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
+#         "CPU Scheduling Criteria & Algorithms, Multiple Processor Scheduling,",
+#         "IPC, Critical Section, Semaphores & Classical Synchronization Problems",
+#     ]
+# )
 pn.sp(10)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(8)

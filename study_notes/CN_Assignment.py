@@ -219,7 +219,8 @@ Q_ST = S(
     spaceBefore=10,
 )
 
-story = []
+from typing import Any
+story: list[Any] = []
 
 
 def add(x):

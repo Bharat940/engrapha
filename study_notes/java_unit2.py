@@ -36,13 +36,13 @@ pn.cover_card(
     "JAVA PROGRAMMING",
     "Unit II -- Classes, OOP, Packages, Exceptions & Threads",
 )
-pn.cover_subtitle(
-    [
-        "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
-        "Complete Exam Notes: Class Fundamentals, Inheritance, Packages, Interfaces,",
-        "Exception Handling, and Multithreading with Code Examples and Diagrams",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
+#         "Complete Exam Notes: Class Fundamentals, Inheritance, Packages, Interfaces,",
+#         "Exception Handling, and Multithreading with Code Examples and Diagrams",
+#     ]
+# )
 pn.sp(10)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(8)

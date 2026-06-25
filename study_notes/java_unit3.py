@@ -39,13 +39,13 @@ pn.cover_card(
     "JAVA PROGRAMMING",
     "Unit III -- The Applet Class & Applet Programming",
 )
-pn.cover_subtitle(
-    [
-        "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
-        "Complete Exam Notes: Applet Basics, Lifecycle, Architecture, HTML Tag,",
-        "Display Methods, Banner Applet, Status Window, Parameters, and Exam Questions",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
+#         "Complete Exam Notes: Applet Basics, Lifecycle, Architecture, HTML Tag,",
+#         "Display Methods, Banner Applet, Status Window, Parameters, and Exam Questions",
+#     ]
+# )
 pn.sp(10)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(8)

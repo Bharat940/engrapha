@@ -36,13 +36,13 @@ pn.cover_card(
     "JAVA PROGRAMMING (IT-408)",
     "Previous Year Questions & Model Answers",
 )
-pn.cover_subtitle(
-    [
-        "UIT-RGPV (Autonomous) Bhopal  |  Semester IV  |  Subject Code: IT-408",
-        "Exam Papers Covered: May-June 2024  |  June 2022  |  July-Dec 2024  |  May-June 2025",
-        "All 5 Questions (CO1-CO5) with Comprehensive Model Answers, Diagrams & Code",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "UIT-RGPV (Autonomous) Bhopal  |  Semester IV  |  Subject Code: IT-408",
+#         "Exam Papers Covered: May-June 2024  |  June 2022  |  July-Dec 2024  |  May-June 2025",
+#         "All 5 Questions (CO1-CO5) with Comprehensive Model Answers, Diagrams & Code",
+#     ]
+# )
 pn.sp(8)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(6)

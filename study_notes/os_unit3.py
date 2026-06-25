@@ -42,13 +42,13 @@ pn.cover_card(
     "OPERATING SYSTEMS",
     "Unit III — Deadlock & Memory Management",
 )
-pn.cover_subtitle(
-    [
-        "Subject Code: IT412  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
-        "Deadlock: Conditions, RAG, Prevention, Avoidance (Banker's Algorithm),",
-        "Detection, Recovery — Memory Management: Binding, MMU, Contiguous Allocation",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "Subject Code: IT412  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
+#         "Deadlock: Conditions, RAG, Prevention, Avoidance (Banker's Algorithm),",
+#         "Detection, Recovery — Memory Management: Binding, MMU, Contiguous Allocation",
+#     ]
+# )
 pn.sp(10)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(8)

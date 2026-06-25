@@ -43,13 +43,13 @@ pn.cover_card(
     "OPERATING SYSTEMS",
     "Unit I — Introduction, Processes, Scheduling & Threads",
 )
-pn.cover_subtitle(
-    [
-        "Subject Code: IT412  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
-        "Software Types, OS Functions & Services, Kernel, System Calls,",
-        "Process States, PCB, Schedulers, Context Switching, Threads & Multithreading",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "Subject Code: IT412  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
+#         "Software Types, OS Functions & Services, Kernel, System Calls,",
+#         "Process States, PCB, Schedulers, Context Switching, Threads & Multithreading",
+#     ]
+# )
 pn.sp(10)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(8)

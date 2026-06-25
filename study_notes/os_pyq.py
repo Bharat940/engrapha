@@ -36,13 +36,13 @@ pn.cover_card(
     "OPERATING SYSTEM (IT-508)",
     "Previous Year Questions & Model Answers",
 )
-pn.cover_subtitle(
-    [
-        "UIT-RGPV (Autonomous) Bhopal  |  Semester V  |  Subject Code: IT-508",
-        "Exam Papers Covered: May-June 2024  |  May-June 2025  |  July-Dec 2024  |  Dec 2022",
-        "All 5 Questions with Comprehensive Model Answers, Diagrams, Code & Solved Numericals",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "UIT-RGPV (Autonomous) Bhopal  |  Semester V  |  Subject Code: IT-508",
+#         "Exam Papers Covered: May-June 2024  |  May-June 2025  |  July-Dec 2024  |  Dec 2022",
+#         "All 5 Questions with Comprehensive Model Answers, Diagrams, Code & Solved Numericals",
+#     ]
+# )
 pn.sp(8)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(6)

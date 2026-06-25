@@ -39,13 +39,13 @@ pn.cover_card(
     "JAVA PROGRAMMING",
     "Unit IV -- AWT, GUI Controls, Layout Managers, Swing & Servlet",
 )
-pn.cover_subtitle(
-    [
-        "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
-        "Complete Exam Notes: AWT Hierarchy, Frame, Controls, Layouts, Menus,",
-        "Introduction to Swing Components and Java Servlets with Code Examples",
-    ]
-)
+# pn.cover_subtitle(
+#     [
+#         "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
+#         "Complete Exam Notes: AWT Hierarchy, Frame, Controls, Layouts, Menus,",
+#         "Introduction to Swing Components and Java Servlets with Code Examples",
+#     ]
+# )
 pn.sp(10)
 pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
 pn.sp(8)

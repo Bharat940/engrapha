@@ -20,9 +20,9 @@ pn.bookmark("Cover Page")
 pn.suppress_footer(page_only=True)
 pn.sp(40)
 pn.cover_card("Modular Notes Compiler", "Feature Showcase")
-pn.cover_subtitle(
-    "Compiling multiple scripts & markdown documents into one cohesive PDF"
-)
+# pn.cover_subtitle(
+#     "Compiling multiple scripts & markdown documents into one cohesive PDF"
+# )
 pn.br()
 
 # 2. Table of Contents
