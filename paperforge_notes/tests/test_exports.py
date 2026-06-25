@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import pytest
 import paperforge_notes as pn
 import paperforge_diagrams as pd
 
 def test_pptx_and_html_compilers(tmp_path) -> None:
+    pytest.importorskip("pptx")
     pn.get_story().clear()
     
     # Add various structural items to test partitioning

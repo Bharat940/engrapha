@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import os
+import pytest
 import paperforge_notes as pn
 from paperforge_notes.document import LaTeXFlowable
+
+pytest.importorskip("matplotlib")
 
 def test_inline_formula() -> None:
     # Set the theme to ensure colors are consistent

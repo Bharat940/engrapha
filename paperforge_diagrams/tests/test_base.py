@@ -43,13 +43,7 @@ class TestDiagramBaseValidation:
 
     def test_default_theme_is_dark(self) -> None:
         d = _ConcreteMinimal(width=200, height=100)
-        try:
-            import paperforge_notes as pn
-            from paperforge_diagrams.theme import DiagramTheme
-
-            assert d.theme == DiagramTheme.from_notes_theme(pn.get_theme())
-        except (ImportError, AttributeError):
-            assert d.theme is DARK
+        assert d.theme is DARK
 
     def test_caption_stored(self) -> None:
         d = _ConcreteMinimal(width=200, height=100, caption="Test caption")
