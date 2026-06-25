@@ -18,8 +18,7 @@ The icon variant adds a rounded square container for contexts that need one.
 """
 
 import os
-import re
-from reportlab.graphics.shapes import Drawing, Group, Rect, Polygon, String, Line
+from reportlab.graphics.shapes import Drawing, Group, Rect, Polygon, String
 from reportlab.graphics import renderSVG
 from reportlab.lib.colors import HexColor
 
