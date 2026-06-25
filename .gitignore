@@ -38,3 +38,4 @@ demo_*_flashcards.json
 engineering_notes_flashcards.csv
 engineering_notes_flashcards.json
 !requirements.txt
+!llms.txt
