@@ -30,7 +30,7 @@ arch.connect("svc",  "q",    "AMQP")
 en.add(arch.as_flowable())
 ```
 
-![Screenshot placeholder](../assets/screenshots/arch_horizontal.png)
+![Screenshot placeholder](../assets/screenshots/arch_h.png)
 
 ## C4 container view
 
