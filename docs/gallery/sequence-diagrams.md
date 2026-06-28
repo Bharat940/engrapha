@@ -15,7 +15,6 @@ seq = ed.SequenceDiagram(
 
 seq.actor("cl",    "Client")
 seq.actor("srv",   "Server")
-seq.actor("proxy", "LB")
 
 seq.message("cl",    "srv",   "SYN")
 seq.message("srv",   "cl",    "SYN-ACK",  arrow="dashed")
