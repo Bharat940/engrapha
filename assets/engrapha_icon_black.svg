@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="500.0" height="500.0" preserveAspectRatio="xMinYMin meet" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="nonzero" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="500.0" height="500.0"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-500)" style="clip-path: url(#clip)">
+		<g transform="">
+			<g transform="">
+				<rect x="148.0" y="114.0" width="51.0" height="272.0" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(14%,38%,92%); fill-rule: nonzero;"/>
+				<rect x="148.0" y="114.0" width="161.5" height="54.400000000000006" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(14%,38%,92%); fill-rule: nonzero;"/>
+				<rect x="148.0" y="216.0" width="110.5" height="51.0" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(14%,38%,92%); fill-rule: nonzero;"/>
+				<rect x="182.0" y="331.6" width="68.0" height="54.39999999999998" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(14%,38%,92%); fill-rule: nonzero;"/>
+				<polygon points="250 331.6, 250 386, 292.5 365.6, 292.5 352" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(90%,72%,29%); fill-rule: nonzero;"/>
+				<polygon points="292.5 352, 292.5 365.6, 305.25 358.8" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(12%,16%,21%); fill-rule: nonzero;"/>
+			</g>
+		</g>
+	</g>
+</svg>
