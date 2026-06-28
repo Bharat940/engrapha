@@ -70,7 +70,7 @@ _MAX_LABEL_W = 86.0
 class _NetNode(BaseModel):
     id: str
     label: str
-    kind: NodeKind
+    kind: str
     x: float | None = None
     y: float | None = None
     label_pos: str = "auto"

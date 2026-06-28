@@ -348,7 +348,7 @@ def main() -> None:
         ("lb", "load_balancer"),
         ("dmz_db", "database"),
     ]:
-        dmz._node_index[nid].kind = kind  # type: ignore[assignment]
+        dmz._node_index[nid].kind = kind
     add_diagram(dmz)
 
     # ── Fig 8: Web Deployment — Linear Chain ─────────────────────────────────
