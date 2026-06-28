@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import pytest
 from io import BytesIO
 import engrapha_notes as en
 
@@ -64,6 +65,7 @@ def test_latex_features() -> None:
     assert len(pdf_data) > 1000
 
 def test_modular_compilation_and_splitting(tmp_path) -> None:
+    pytest.importorskip("fitz")
     # 1. Create temporary py and md files
     py_file = tmp_path / "chapter1.py"
     py_file.write_text("import engrapha_notes as en\nen.chap_box('Chapter 1 Title')\nen.body('Chapter 1 content')", encoding="utf-8")

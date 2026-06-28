@@ -41,6 +41,8 @@ def test_pptx_and_html_compilers(tmp_path) -> None:
     assert "Start" in html_content
 
 def test_anki_flashcard_exporter(tmp_path) -> None:
+    pytest.importorskip("genanki")
+    pytest.importorskip("genanki")
     en.get_story().clear()
     
     # Register some study cards
