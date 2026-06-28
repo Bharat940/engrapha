@@ -5,10 +5,10 @@ Timing diagrams render digital waveforms side-by-side, perfect for busses, SPI, 
 ## Minimal example
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-td = pd.TimingDiagram(
+td = ed.TimingDiagram(
     width=400, height=150, caption="Fig 13: SPI Timing"
 )
 
@@ -21,7 +21,7 @@ td.signal(
     transitions=[(0, 0), (10, 1), (30, 0), (50, 1), (70, 0)]
 )
 
-pn.add(td.as_flowable())
+en.add(td.as_flowable())
 ```
 
 ## Clock parameters
@@ -55,7 +55,7 @@ Transition time values should be non-decreasing. Levels must be `0` or `1`.
 Grid is enabled by default. Disable it:
 
 ```python
-td = pd.TimingDiagram(width=400, height=150, grid=False)
+td = ed.TimingDiagram(width=400, height=150, grid=False)
 ```
 
 ## Height
@@ -76,3 +76,4 @@ The active theme maps:
 
 - [Git](git.md)
 - [Gallery](../gallery/index.md)
+

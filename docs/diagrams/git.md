@@ -5,10 +5,10 @@ Git diagrams visualize branches, commits, and merge commits on horizontal or ver
 ## Minimal example
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-git = pd.GitDiagram(
+git = ed.GitDiagram(
     width=400, height=150, caption="Fig 14: Git Flow"
 )
 
@@ -18,7 +18,7 @@ git.commit("feature",   "c2: Add login form")
 git.commit("main",      "c3: Hotfix typo")
 git.merge("feature",    "main", "c4: Merge feature/login")
 
-pn.add(git.as_flowable())
+en.add(git.as_flowable())
 ```
 
 ## Commits
@@ -52,7 +52,7 @@ Branch colors are assigned automatically from a palette. Override manually by ed
 ## Commit spacing
 
 ```python
-git = pd.GitDiagram(
+git = ed.GitDiagram(
     width=400, height=150,
     commit_spacing=65.0,   # pixels between commit points
 )
@@ -66,3 +66,4 @@ If two commits land on the same branch consecutively, labels alternate up / down
 
 - [Gallery](../gallery/index.md)
 - [Examples](../examples/engineering-notes.md)
+

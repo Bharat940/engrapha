@@ -8,46 +8,46 @@ Output: Java_PYQ_Answers.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
 # =============================================================================
 #  THEME & GLOBAL FOOTER SETUP
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.DARK)
+en.set_story([])
+en.set_theme(en.DARK)
 
-pn.set_global_footer(
+en.set_global_footer(
     left="Java Programming (IT-408) -- PYQ Answers",
     right="UIT-RGPV (Autonomous) Bhopal",
     show_page_num=True,
 )
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(22)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(22)
 
-pn.cover_card(
+en.cover_card(
     "JAVA PROGRAMMING (IT-408)",
     "Previous Year Questions & Model Answers",
 )
-# pn.cover_subtitle(
+# en.cover_subtitle(
 #     [
 #         "UIT-RGPV (Autonomous) Bhopal  |  Semester IV  |  Subject Code: IT-408",
 #         "Exam Papers Covered: May-June 2024  |  June 2022  |  July-Dec 2024  |  May-June 2025",
 #         "All 5 Questions (CO1-CO5) with Comprehensive Model Answers, Diagrams & Code",
 #     ]
 # )
-pn.sp(8)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(6)
+en.sp(8)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(6)
 
-pn.info_table(
+en.info_table(
     ["Question / CO", "Topic Area", "Sub-Parts Covered"],
     [
         [
@@ -84,42 +84,42 @@ pn.info_table(
     col_widths=["18%", "30%", "52%"],
 )
 
-pn.sp(6)
-pn.note(
+en.sp(6)
+en.note(
     "Mark scheme: Part (a) = 3 marks | Part (b) = 4 marks | Part (c) = 4 marks | "
     "Part (d) = 10 marks | Part (e) = 10 marks (alternative). "
     "When the same question appeared in multiple years, ONE comprehensive answer is "
     "provided with all year references noted in the header."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  TABLE OF CONTENTS
 # =============================================================================
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # #############################################################################
 #  QUESTION 1 -- CO1: JAVA FUNDAMENTALS
 # #############################################################################
-pn.part_box("QUESTION 1 -- CO1: JAVA FUNDAMENTALS")
+en.part_box("QUESTION 1 -- CO1: JAVA FUNDAMENTALS")
 
 # -----------------------------------------------------------------------------
 #  Q1(a) -- 3 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q1(a) [3 Marks] -- javac Command | JVM | Java as OOP & Platform-Independent Language\n"
     "(May-June 2025 | June 2022 | May-June 2024 | July-Dec 2024)"
 )
 
-pn.section("The javac Command & Java Compilation Process")
-pn.definition(
+en.section("The javac Command & Java Compilation Process")
+en.definition(
     "<b>javac</b> is the Java compiler tool included in the JDK (Java Development Kit). "
     "Its primary function is to translate human-readable Java source code (.java files) "
     "into platform-neutral <b>bytecode</b> (.class files) that can be executed by any "
     "Java Virtual Machine (JVM) on any operating system."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Input:</b> Java source file(s) ending in <code>.java</code> "
         "(e.g., <code>HelloWorld.java</code>).",
@@ -133,8 +133,8 @@ pn.bullet(
     ]
 )
 
-pn.section("What is JVM?")
-pn.definition(
+en.section("What is JVM?")
+en.definition(
     "<b>JVM (Java Virtual Machine):</b> An abstract computing machine that provides the "
     "runtime execution environment for Java bytecode. The JVM reads .class bytecode files "
     "and translates them into native machine instructions for the underlying operating system. "
@@ -142,7 +142,7 @@ pn.definition(
     "and macOS), but it allows Java programs (compiled to bytecode) to be "
     "<b>platform-independent</b>."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>ClassLoader:</b> Loads .class bytecode files into memory.",
         "<b>Bytecode Verifier:</b> Checks bytecode for safety/security before execution.",
@@ -152,8 +152,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Justification: Java is Pure OOP and Platform-Independent")
-pn.info_table(
+en.section("Justification: Java is Pure OOP and Platform-Independent")
+en.info_table(
     ["Claim", "Justification"],
     [
         [
@@ -176,7 +176,7 @@ pn.info_table(
         ],
     ],
 )
-pn.tip(
+en.tip(
     "Exam tip for Q1(a): Remember the three-tier: Source (.java) -> javac -> Bytecode (.class) -> "
     "JVM -> Machine Code. JVM is platform-dependent; Java bytecode is platform-independent."
 )
@@ -184,19 +184,19 @@ pn.tip(
 # -----------------------------------------------------------------------------
 #  Q1(b) -- 4 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q1(b) [4 Marks] -- Comments in Java | Static Methods | Type Casting | Array Sum\n"
     "(May-June 2025 | June 2022 | May-June 2024 | July-Dec 2024)"
 )
 
-pn.section("Comments in Java -- Purpose and Types")
-pn.definition(
+en.section("Comments in Java -- Purpose and Types")
+en.definition(
     "<b>Comments</b> are non-executable statements in Java that are completely ignored "
     "by the compiler (javac). They are used to explain code logic, provide documentation, "
     "temporarily disable code during debugging, and improve maintainability. "
     "Java supports three types of comments."
 )
-pn.info_table(
+en.info_table(
     ["Type", "Syntax", "Purpose"],
     [
         [
@@ -218,7 +218,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block(
+en.code_block(
     """
 // Single-line comment -- quick inline note
 int age = 20;   // age in years
@@ -241,8 +241,8 @@ double circleArea(double radius) {
     lang="java",
 )
 
-pn.section("Static Method -- Definition and Example")
-pn.definition(
+en.section("Static Method -- Definition and Example")
+en.definition(
     "<b>Static method:</b> A method declared with the <code>static</code> keyword that "
     "belongs to the <b>class itself</b>, not to any individual object instance. "
     "Static methods can be called without creating an object: "
@@ -250,7 +250,7 @@ pn.definition(
     "(static fields/methods) directly."
 )
 
-pn.code_block(
+en.code_block(
     """
 // StaticMethodDemo.java
 public class MathHelper {
@@ -282,15 +282,15 @@ public class MathHelper {
     lang="java",
 )
 
-pn.section("Importance of Type Casting -- Casting Various Data Types")
-pn.definition(
+en.section("Importance of Type Casting -- Casting Various Data Types")
+en.definition(
     "<b>Type Casting:</b> The process of converting a value from one data type to another. "
     "Java supports two forms: (1) <b>Widening (Implicit/Automatic)</b> -- smaller type "
     "automatically promoted to a larger type without data loss. "
     "(2) <b>Narrowing (Explicit/Manual)</b> -- larger type explicitly cast to smaller type; "
     "possible data/precision loss."
 )
-pn.info_table(
+en.info_table(
     ["Type", "Direction", "Keyword", "Risk"],
     [
         [
@@ -308,7 +308,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block(
+en.code_block(
     """
 // TypeCastingDemo.java
 public class TypeCastingDemo {
@@ -346,13 +346,13 @@ public class TypeCastingDemo {
 # -----------------------------------------------------------------------------
 #  Q1(c) -- 4 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q1(c) [4 Marks] -- OOP Benefits | Implicit vs Explicit Type Conversion | JDK & JVM\n"
     "(May-June 2025 | July-Dec 2024 | May-June 2024)"
 )
 
-pn.section("Primary Benefits of OOP in Software Development")
-pn.bullet(
+en.section("Primary Benefits of OOP in Software Development")
+en.bullet(
     [
         "<b>Modularity (Encapsulation):</b> Code is organized into self-contained classes that "
         "bundle data and behavior. Each class can be developed, tested, and maintained "
@@ -372,8 +372,8 @@ pn.bullet(
     ]
 )
 
-pn.section("JDK and JVM -- Definitions")
-pn.info_table(
+en.section("JDK and JVM -- Definitions")
+en.info_table(
     ["Component", "Full Form", "Definition", "Contains"],
     [
         [
@@ -393,8 +393,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Implicit Type Conversion vs Explicit Type Casting")
-pn.info_table(
+en.section("Implicit Type Conversion vs Explicit Type Casting")
+en.info_table(
     ["Property", "Implicit (Widening)", "Explicit (Narrowing)"],
     [
         [
@@ -421,7 +421,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block(
+en.code_block(
     """
 // TypeConversionExample.java
 public class TypeConversion {
@@ -461,21 +461,21 @@ public class TypeConversion {
 # -----------------------------------------------------------------------------
 #  Q1(d) -- 10 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q1(d) [10 Marks] -- Control Statements in Java | Calculator | Data Types Demo\n"
     "(May-June 2025 | June 2022 | July-Dec 2024 | May-June 2024)"
 )
 
-pn.section("Control Statements in Java -- Overview")
-pn.definition(
+en.section("Control Statements in Java -- Overview")
+en.definition(
     "<b>Control Statements</b> determine the flow of execution in a Java program. "
     "Without them, code executes sequentially from top to bottom. Control statements "
     "are categorized into three groups: <b>Selection</b> (conditional branching), "
     "<b>Iteration</b> (loops), and <b>Jump</b> (break, continue, return)."
 )
 
-pn.section("1. Selection Statements -- if, if-else, nested if, switch")
-pn.code_block(
+en.section("1. Selection Statements -- if, if-else, nested if, switch")
+en.code_block(
     """
 // ControlStatementsDemo.java -- PART 1: Selection Statements
 public class ControlDemo {
@@ -515,8 +515,8 @@ public class ControlDemo {
     lang="java",
 )
 
-pn.section("2. Iteration (Loop) Statements -- while, do-while, for, enhanced for")
-pn.code_block(
+en.section("2. Iteration (Loop) Statements -- while, do-while, for, enhanced for")
+en.code_block(
     """
     // -- while loop ----------------------------------------------
     // Execute as long as condition is true; checks condition BEFORE each iteration
@@ -576,8 +576,8 @@ pn.code_block(
     lang="java",
 )
 
-pn.section("3. Jump Statements -- break, continue, return")
-pn.code_block(
+en.section("3. Jump Statements -- break, continue, return")
+en.code_block(
     """
     // -- break statement -----------------------------------------
     // Exits the nearest enclosing loop or switch
@@ -627,8 +627,8 @@ pn.code_block(
     lang="java",
 )
 
-pn.section("Java Data Types Demonstration Program")
-pn.code_block(
+en.section("Java Data Types Demonstration Program")
+en.code_block(
     """
 // DataTypesDemo.java -- Demonstrates all 8 primitive Java data types
 public class DataTypesDemo {
@@ -685,7 +685,7 @@ public class DataTypesDemo {
     lang="java",
 )
 
-pn.tip(
+en.tip(
     "Control Statement exam tip: Know the THREE categories -- Selection (if/switch), "
     "Iteration (while/do-while/for), Jump (break/continue/return). "
     "do-while executes MINIMUM ONCE even if condition is false. "
@@ -695,18 +695,18 @@ pn.tip(
 # -----------------------------------------------------------------------------
 #  Q1(e) -- 10 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q1(e) [10 Marks] -- Complete Java Program Lifecycle | final, static, this Keywords | OOP Features\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Complete Lifecycle of a Java Program (Source to Execution)")
-pn.body(
+en.section("Complete Lifecycle of a Java Program (Source to Execution)")
+en.body(
     "The journey of a Java program from the programmer's text editor to actual execution "
     "on the CPU involves five major phases, each with distinct tools and responsibilities."
 )
 
-pn.info_table(
+en.info_table(
     ["Phase", "Tool / Actor", "Input", "Output"],
     [
         [
@@ -742,8 +742,8 @@ pn.info_table(
     ],
 )
 
-net_lifecycle = pd.NetworkDiagram(
-    width=pn.CW,
+net_lifecycle = ed.NetworkDiagram(
+    width=en.CW,
     height=260,
     theme=diag_theme,
     caption="Fig 1.1: Complete Java Program Lifecycle -- Source Code to Machine Execution",
@@ -764,10 +764,10 @@ net_lifecycle.link("javac", "bc", bidirectional=False)
 net_lifecycle.link("bc", "cl", bidirectional=False, label="load")
 net_lifecycle.link("cl", "exec", bidirectional=False)
 net_lifecycle.link("exec", "out", bidirectional=False)
-pn.story.extend(net_lifecycle.as_flowable())
+en.story.extend(net_lifecycle.as_flowable())
 
-pn.section("Role of final, static, and this Keywords")
-pn.info_table(
+en.section("Role of final, static, and this Keywords")
+en.info_table(
     ["Keyword", "Role / Purpose", "Usage Context"],
     [
         [
@@ -797,7 +797,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block(
+en.code_block(
     """
 // KeywordsDemo.java -- demonstrates final, static, and this in one program
 public class BankAccount {
@@ -858,12 +858,12 @@ public class BankAccount {
     lang="java",
 )
 
-pn.section("OOP Features in Java -- Comprehensive Examples")
-pn.body(
+en.section("OOP Features in Java -- Comprehensive Examples")
+en.body(
     "Java implements all four OOP pillars. Below is a demonstration showing "
     "encapsulation, inheritance, polymorphism, and abstraction working together."
 )
-pn.code_block(
+en.code_block(
     """
 // OOPFeaturesDemo.java -- All four OOP pillars in one example
 
@@ -918,32 +918,32 @@ public class OOPFeaturesDemo {
     lang="java",
 )
 
-pn.tip(
+en.tip(
     "Q1(e) exam tip: Java Lifecycle = Write -> Compile (javac) -> Load -> Verify -> Execute. "
     "final = constant/non-overridable/non-extendable. "
     "static = class-level (shared, no object needed). "
     "this = current object reference. "
     "OOP pillars: Encapsulation + Inheritance + Polymorphism + Abstraction."
 )
-pn.br()
+en.br()
 
 # #############################################################################
 #  QUESTION 2 -- CO2: OOP, CLASSES, PACKAGES, INTERFACES, EXCEPTIONS, THREADS
 # #############################################################################
-pn.part_box(
+en.part_box(
     "QUESTION 2 -- CO2: OOP, CLASSES, PACKAGES, INTERFACES, EXCEPTIONS & THREADS"
 )
 
 # -----------------------------------------------------------------------------
 #  Q2(a) -- 3 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q2(a) [3 Marks] -- abstract Keyword | Garbage Collection | Class and Object\n"
     "(May-June 2025 | June 2022 | July-Dec 2024 | May-June 2024)"
 )
 
-pn.section("The abstract Keyword -- Cannot be Instantiated")
-pn.definition(
+en.section("The abstract Keyword -- Cannot be Instantiated")
+en.definition(
     "The keyword that declares a class that <b>cannot be instantiated</b> and may contain "
     "methods without implementation (abstract methods) is <code><b>abstract</b></code>. "
     "An <b>abstract class</b> serves as an incomplete blueprint. It can have both fully "
@@ -951,7 +951,7 @@ pn.definition(
     "extend it must provide implementations for all abstract methods, or they must also "
     "be declared abstract."
 )
-pn.code_block(
+en.code_block(
     """
 abstract class Shape {           // cannot do: new Shape()
     abstract double area();      // no body -- subclass must implement
@@ -969,15 +969,15 @@ class Circle extends Shape {
     lang="java",
 )
 
-pn.section("Garbage Collection in Java")
-pn.definition(
+en.section("Garbage Collection in Java")
+en.definition(
     "<b>Garbage Collection (GC):</b> Java's automatic memory management mechanism. "
     "The JVM's Garbage Collector runs as a background daemon thread and automatically "
     "identifies heap objects that have no active references pointing to them (unreachable "
     "objects) and reclaims their memory. This eliminates the need for manual "
     "<code>free()</code> calls (as required in C/C++)."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>When eligible:</b> Object's reference set to null, goes out of scope, or is overwritten.",
         "<b>System.gc():</b> Hints JVM to run GC -- not guaranteed to execute immediately.",
@@ -986,8 +986,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Demonstrating Class and Object in Java")
-pn.code_block(
+en.section("Demonstrating Class and Object in Java")
+en.code_block(
     """
 // ClassAndObjectDemo.java
 class Student {                    // CLASS -- blueprint/template
@@ -1026,20 +1026,20 @@ public class ClassAndObjectDemo {
 # -----------------------------------------------------------------------------
 #  Q2(b) -- 4 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q2(b) [4 Marks] -- Inheritance in Java | Packages (mypackage) | Constructors | Garbage Collection\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Core Concept of Inheritance in Java")
-pn.definition(
+en.section("Core Concept of Inheritance in Java")
+en.definition(
     "<b>Inheritance:</b> A fundamental OOP mechanism by which a new class (subclass/child class) "
     "acquires the properties (fields) and behaviors (methods) of an existing class "
     "(superclass/parent class). The <code><b>extends</b></code> keyword establishes the "
     "inheritance relationship. Inheritance promotes <b>code reusability</b> and establishes "
     "an <b>IS-A relationship</b> between classes."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Single Inheritance:</b> One subclass extends one superclass (A extends B).",
         "<b>Multilevel Inheritance:</b> Chain of inheritance (A -> B -> C).",
@@ -1051,8 +1051,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Constructors -- Definition and Need")
-pn.definition(
+en.section("Constructors -- Definition and Need")
+en.definition(
     "<b>Constructor:</b> A special block of code that is automatically invoked when an "
     "object is created using <code>new</code>. It initializes the object's state. "
     "A constructor MUST have the same name as the class and has NO return type (not even void). "
@@ -1060,8 +1060,8 @@ pn.definition(
     "and objects could not be created in a meaningful initial state."
 )
 
-pn.section("Creating Package mypackage with Classes Hello and Farewell")
-pn.code_block(
+en.section("Creating Package mypackage with Classes Hello and Farewell")
+en.code_block(
     """
 // -- File: mypackage/Hello.java ----------------------------------------------
 package mypackage;   // STEP 1: Declare the package (first statement in file)
@@ -1140,7 +1140,7 @@ public class PackageDemo {
     lang="java",
 )
 
-pn.tip(
+en.tip(
     "Package exam tips: 'package' statement MUST be the first line (before imports). "
     "Class accessing another package must import it. "
     "Directory structure must match package hierarchy. "
@@ -1150,20 +1150,20 @@ pn.tip(
 # -----------------------------------------------------------------------------
 #  Q2(c) -- 4 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q2(c) [4 Marks] -- Exception Handling Goal | Constructors Demo | Interfaces vs Classes | Packages\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Main Goal of Exception Handling")
-pn.definition(
+en.section("Main Goal of Exception Handling")
+en.definition(
     "<b>Exception Handling:</b> The main goal is to <b>maintain normal program flow</b> "
     "even when runtime errors occur, and to provide a structured mechanism to detect, "
     "report, and recover from unexpected runtime conditions (exceptions) without crashing "
     "the program. Java uses try-catch-finally blocks with throw/throws keywords to achieve "
     "robust, fault-tolerant programs."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>try block:</b> Contains code that might throw an exception.",
         "<b>catch block:</b> Handles the specific exception type thrown.",
@@ -1173,8 +1173,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Parameterized and Default Constructors -- Demonstration")
-pn.code_block(
+en.section("Parameterized and Default Constructors -- Demonstration")
+en.code_block(
     """
 // ConstructorTypesDemo.java
 class Rectangle {
@@ -1234,8 +1234,8 @@ public class ConstructorTypesDemo {
     lang="java",
 )
 
-pn.section("Four Similarities Between Interfaces and Classes")
-pn.info_table(
+en.section("Four Similarities Between Interfaces and Classes")
+en.info_table(
     ["#", "Similarity", "Description"],
     [
         [
@@ -1265,8 +1265,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Creating a Package in Java -- Step-by-Step")
-pn.bullet(
+en.section("Creating a Package in Java -- Step-by-Step")
+en.bullet(
     [
         "<b>Step 1:</b> Add <code>package packagename;</code> as the very first statement in the Java source file.",
         "<b>Step 2:</b> Create a directory with the SAME name as the package (case-sensitive).",
@@ -1280,13 +1280,13 @@ pn.bullet(
 # -----------------------------------------------------------------------------
 #  Q2(d) -- 10 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q2(d) [10 Marks] -- Advantages of Packages | Inheritance Types | Multiple Inheritance Workaround\n"
     "(May-June 2025 | June 2022 | May-June 2024 | July-Dec 2024)"
 )
 
-pn.section("Advantages of Packages in Java")
-pn.bullet(
+en.section("Advantages of Packages in Java")
+en.bullet(
     [
         "<b>Naming Conflict Prevention:</b> Two classes can have the same name in different packages. "
         "e.g., <code>java.util.Date</code> and <code>java.sql.Date</code> coexist without conflict.",
@@ -1301,7 +1301,7 @@ pn.bullet(
     ]
 )
 
-pn.code_block(
+en.code_block(
     """
 // Package organization demo -- showing how packages prevent naming conflicts
 // -------------------------------------------------------------------------
@@ -1349,10 +1349,10 @@ public class Main {
     lang="java",
 )
 
-pn.section("Types of Inheritance in Java")
+en.section("Types of Inheritance in Java")
 
-net_inh = pd.NetworkDiagram(
-    width=pn.CW,
+net_inh = ed.NetworkDiagram(
+    width=en.CW,
     height=370,
     theme=diag_theme,
     caption="Fig 2.1: Types of Inheritance supported in Java (Multiple inheritance via Interface only)",
@@ -1379,9 +1379,9 @@ net_inh.link("D", "E", label="Hierarchical")
 net_inh.link("D", "F", label="Hierarchical")
 net_inh.link("IA", "G", label="implements")
 net_inh.link("IB", "G", label="implements")
-pn.story.extend(net_inh.as_flowable())
+en.story.extend(net_inh.as_flowable())
 
-pn.info_table(
+en.info_table(
     ["Inheritance Type", "Java Support", "Description & Example"],
     [
         [
@@ -1417,8 +1417,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Why Multiple Inheritance is Excluded -- The Diamond Problem")
-pn.body(
+en.section("Why Multiple Inheritance is Excluded -- The Diamond Problem")
+en.body(
     "Java deliberately excludes multiple class inheritance to avoid the "
     "<b>Diamond Problem</b>: if class C inherits from both A and B, and both A and B "
     "override the same method from a common ancestor, the JVM cannot determine which "
@@ -1426,7 +1426,7 @@ pn.body(
     "The solution is to use <b>interfaces</b> -- a class can implement multiple interfaces."
 )
 
-pn.code_block(
+en.code_block(
     """
 // MultipleInheritanceViaInterfaces.java
 // Demonstrating Lion, Tiger, Liger example (interface-based multiple inheritance)
@@ -1481,13 +1481,13 @@ public class MultipleInheritanceDemo {
 # -----------------------------------------------------------------------------
 #  Q2(e) -- 10 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q2(e) [10 Marks] -- Student Class Design | Threads (Thread & Runnable) | Exception Handling | Polymorphism\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Student Class with Default and Parameterized Constructors")
-pn.code_block(
+en.section("Student Class with Default and Parameterized Constructors")
+en.code_block(
     """
 // Student.java -- Complete Student class with both constructor types
 public class Student {
@@ -1556,8 +1556,8 @@ public class Student {
     lang="java",
 )
 
-pn.section("Exception Handling -- Comprehensive Demonstration")
-pn.code_block(
+en.section("Exception Handling -- Comprehensive Demonstration")
+en.code_block(
     """
 // ExceptionHandlingDemo.java
 public class ExceptionHandlingDemo {
@@ -1625,8 +1625,8 @@ public class ExceptionHandlingDemo {
     lang="java",
 )
 
-pn.section("Two Threads -- Thread Class vs Runnable Interface")
-pn.code_block(
+en.section("Two Threads -- Thread Class vs Runnable Interface")
+en.code_block(
     """
 // ThreadsDemo.java -- Two threads simultaneously: one via Thread, one via Runnable
 
@@ -1687,8 +1687,8 @@ public class ThreadsDemo {
     lang="java",
 )
 
-pn.section("Polymorphism -- Types and Demonstration")
-pn.code_block(
+en.section("Polymorphism -- Types and Demonstration")
+en.code_block(
     """
 // PolymorphismDemo.java -- Compile-time (Overloading) and Runtime (Overriding)
 
@@ -1736,35 +1736,35 @@ public class PolymorphismDemo {
     lang="java",
 )
 
-pn.tip(
+en.tip(
     "Thread exam tip: Two ways to create threads -- (1) extend Thread and override run(); "
     "(2) implement Runnable and pass to Thread constructor. "
     "Runnable is preferred -- it doesn't use up Java's single inheritance slot. "
     "Call start() NOT run() to launch a thread (run() just calls the method directly)."
 )
-pn.br()
+en.br()
 
 # #############################################################################
 #  QUESTION 3 -- CO3: APPLETS
 # #############################################################################
-pn.part_box("QUESTION 3 -- CO3: JAVA APPLETS")
+en.part_box("QUESTION 3 -- CO3: JAVA APPLETS")
 
 # -----------------------------------------------------------------------------
 #  Q3(a) -- 3 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q3(a) [3 Marks] -- Applet Initialization Phase | <APPLET> Tag | Local vs Remote Applet | Applet Class\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Purpose of Applet Initialization Phase (init())")
-pn.definition(
+en.section("Purpose of Applet Initialization Phase (init())")
+en.definition(
     "<b>Applet Initialization Phase:</b> The phase triggered by the browser/appletviewer "
     "calling the <code>init()</code> method exactly <b>ONCE</b> when the applet class is "
     "first loaded into memory. It is the applet's equivalent of a constructor. "
     "Its purpose is to perform all one-time setup tasks before the applet starts running."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Initialize instance variables</b> -- set counters, strings, booleans to starting values.",
         '<b>Read HTML parameters</b> -- call <code>getParameter("name")</code> to read <code>&lt;param&gt;</code> values.',
@@ -1775,8 +1775,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Applet Class -- Description")
-pn.definition(
+en.section("Applet Class -- Description")
+en.definition(
     "<b>java.applet.Applet</b> is the base class that all Java applets must extend. "
     "It inherits from <code>java.awt.Panel -> Container -> Component -> Object</code>. "
     "This inheritance gives applets an automatic graphical panel and access to all "
@@ -1785,8 +1785,8 @@ pn.definition(
     "hook, and utility methods like <code>getParameter(), showStatus(), getImage()</code>."
 )
 
-pn.section("Local Applet vs Remote Applet")
-pn.info_table(
+en.section("Local Applet vs Remote Applet")
+en.info_table(
     ["Property", "Local Applet", "Remote Applet"],
     [
         [
@@ -1813,14 +1813,14 @@ pn.info_table(
     ],
 )
 
-pn.section("Role and Significance of the <APPLET> Tag")
-pn.definition(
+en.section("Role and Significance of the <APPLET> Tag")
+en.definition(
     "The <code>&lt;APPLET&gt;</code> HTML tag is the mechanism by which an applet is "
     "embedded into a web page and launched by the browser. When the browser encounters "
     "this tag, it downloads the specified .class file, starts the JVM plugin, "
     "instantiates the applet, and begins the lifecycle."
 )
-pn.code_block(
+en.code_block(
     """
 <!-- LocalApplet.html -->
 <html>
@@ -1846,13 +1846,13 @@ pn.code_block(
 # -----------------------------------------------------------------------------
 #  Q3(b) -- 4 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q3(b) [4 Marks] -- Events in Applet Architecture | Date/Time Applet | HTML APPLET Tag | Parameters\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Two Types of Events Used by Applet Architecture")
-pn.info_table(
+en.section("Two Types of Events Used by Applet Architecture")
+en.info_table(
     ["Event Type", "Description", "Example Methods"],
     [
         [
@@ -1871,8 +1871,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Applet Displaying Current Date and Time + HTML File")
-pn.code_block(
+en.section("Applet Displaying Current Date and Time + HTML File")
+en.code_block(
     """
 // DateTimeApplet.java
 import java.applet.Applet;
@@ -1937,7 +1937,7 @@ public class DateTimeApplet extends Applet implements Runnable {
 """,
     lang="java",
 )
-pn.code_block(
+en.code_block(
     """
 <!-- DateTimeApplet.html -->
 <html>
@@ -1958,8 +1958,8 @@ pn.code_block(
     lang="html",
 )
 
-pn.section("Passing Parameters to Applets")
-pn.code_block(
+en.section("Passing Parameters to Applets")
+en.code_block(
     """
 // ParameterizedGreetingApplet.java
 import java.applet.Applet;
@@ -2006,7 +2006,7 @@ public class ParameterizedGreetingApplet extends Applet {
 """,
     lang="java",
 )
-pn.code_block(
+en.code_block(
     """
 <!-- ParameterizedGreetingApplet.html -->
 <html>
@@ -2025,17 +2025,17 @@ pn.code_block(
 # -----------------------------------------------------------------------------
 #  Q3(c) -- 4 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q3(c) [4 Marks] -- Role of Window in Applet | Status Window | Applet vs Application | Local vs Remote\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Role of a Window in an Applet")
-pn.body(
+en.section("Role of a Window in an Applet")
+en.body(
     "In an applet, the <b>window</b> (the applet panel embedded in the browser) serves as "
     "the visible display surface. Its role includes:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Rendering Surface:</b> The window is the Graphics context on which all drawing operations "
         "(drawString, drawOval, drawImage, etc.) are performed via the paint() method.",
@@ -2048,12 +2048,12 @@ pn.bullet(
     ]
 )
 
-pn.section("Purpose of the Status Window in Applets")
-pn.body(
+en.section("Purpose of the Status Window in Applets")
+en.body(
     "The <b>Status Window</b> (or Status Bar) is the text bar at the bottom of the browser "
     "window. Applets can display informational messages in the status bar using:"
 )
-pn.code_block(
+en.code_block(
     """
 // StatusWindowDemo.java
 import java.applet.Applet;
@@ -2096,8 +2096,8 @@ public class StatusWindowDemo extends Applet implements MouseListener {
     lang="java",
 )
 
-pn.section("How Applets Differ from Application Programs")
-pn.info_table(
+en.section("How Applets Differ from Application Programs")
+en.info_table(
     ["Feature", "Java Applet", "Java Application"],
     [
         [
@@ -2137,20 +2137,20 @@ pn.info_table(
 # -----------------------------------------------------------------------------
 #  Q3(d) -- 10 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q3(d) [10 Marks] -- Applet Lifecycle with Diagram and Code\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Applet Lifecycle -- The Four Phase Methods")
-pn.definition(
+en.section("Applet Lifecycle -- The Four Phase Methods")
+en.definition(
     "<b>Applet Lifecycle:</b> The defined sequence of states and transitions that an applet "
     "passes through from the moment it is loaded by the browser until it is destroyed. "
     "The browser (or appletviewer) controls this lifecycle by calling four special "
     "lifecycle methods in a prescribed order."
 )
 
-pn.info_table(
+en.info_table(
     ["Method", "Called When", "Purpose", "Frequency"],
     [
         [
@@ -2180,10 +2180,10 @@ pn.info_table(
     ],
 )
 
-pn.section("Applet Lifecycle State Diagram")
+en.section("Applet Lifecycle State Diagram")
 
-sm = pd.StateMachine(
-    width=pn.CW,
+sm = ed.StateMachine(
+    width=en.CW,
     height=240,
     caption="Fig 3.1: Applet Lifecycle State Transitions -- init, start, stop, destroy",
     theme=diag_theme,
@@ -2199,10 +2199,10 @@ sm.transition("running", "idle", label="user leaves page\nbrowser calls stop()")
 sm.transition("idle", "running", label="user returns\nbrowser calls start()")
 sm.transition("idle", "destroyed", label="tab closed\nbrowser calls destroy()")
 sm.transition("running", "destroyed", label="direct close\nstop() + destroy()")
-pn.story.extend(sm.as_flowable())
+en.story.extend(sm.as_flowable())
 
-pn.section("Complete Lifecycle Demonstration Code")
-pn.code_block(
+en.section("Complete Lifecycle Demonstration Code")
+en.code_block(
     """
 // LifecycleDemoApplet.java -- All four lifecycle methods demonstrated
 import java.applet.Applet;
@@ -2304,7 +2304,7 @@ public class LifecycleDemoApplet extends Applet implements Runnable {
     lang="java",
 )
 
-pn.tip(
+en.tip(
     "Lifecycle order to MEMORIZE: init() -> start() -> [stop() -> start()] * -> stop() -> destroy(). "
     "init() and destroy() called EXACTLY ONCE. "
     "start() and stop() called MULTIPLE TIMES. "
@@ -2315,13 +2315,13 @@ pn.tip(
 # -----------------------------------------------------------------------------
 #  Q3(e) -- 10 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q3(e) [10 Marks] -- Banner Applet | Passing Parameters | Graphics Methods (drawOval, drawRect, drawLine)\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Scrolling Banner Applet -- 'Welcome to Java Programming'")
-pn.code_block(
+en.section("Scrolling Banner Applet -- 'Welcome to Java Programming'")
+en.code_block(
     """
 // BannerApplet.java -- Scrolling text banner applet
 import java.applet.Applet;
@@ -2406,7 +2406,7 @@ public class BannerApplet extends Applet implements Runnable {
 """,
     lang="java",
 )
-pn.code_block(
+en.code_block(
     """
 <!-- BannerApplet.html -->
 <html>
@@ -2422,8 +2422,8 @@ pn.code_block(
     lang="html",
 )
 
-pn.section("Graphics Methods -- drawOval, drawRect, drawLine, fillOval")
-pn.code_block(
+en.section("Graphics Methods -- drawOval, drawRect, drawLine, fillOval")
+en.code_block(
     """
 // GraphicsMethodsApplet.java -- demonstrates drawOval, drawRect, drawLine, fillOval
 import java.applet.Applet;
@@ -2491,8 +2491,8 @@ public class GraphicsMethodsApplet extends Applet {
     lang="java",
 )
 
-pn.section("Disadvantages of Applets")
-pn.bullet(
+en.section("Disadvantages of Applets")
+en.bullet(
     [
         "<b>Browser Plugin Required:</b> Needs Java browser plugin (NPAPI) which most modern browsers have removed.",
         "<b>Security Sandboxing:</b> Cannot access local file system or unrestricted network -- limits functionality.",
@@ -2503,28 +2503,28 @@ pn.bullet(
     ]
 )
 
-pn.tip(
+en.tip(
     "Banner applet tip: The key is 'xPos -= 2' in run(), then check 'if (xPos < -textWidth) xPos = getWidth()'. "
     "Override update() with just 'paint(g)' to prevent flickering. "
     "Always stop the thread in stop() by setting it to null."
 )
-pn.br()
+en.br()
 
 # #############################################################################
 #  QUESTION 4 -- CO4: AWT, SWING, LAYOUT MANAGERS, GUI
 # #############################################################################
-pn.part_box("QUESTION 4 -- CO4: AWT, SWING, LAYOUT MANAGERS & GUI")
+en.part_box("QUESTION 4 -- CO4: AWT, SWING, LAYOUT MANAGERS & GUI")
 
 # -----------------------------------------------------------------------------
 #  Q4(a) -- 3 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q4(a) [3 Marks] -- Frame vs Panel | AWT Classes for GUI | Event | Need for GUI\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Frame vs Panel in AWT")
-pn.info_table(
+en.section("Frame vs Panel in AWT")
+en.info_table(
     ["Property", "Frame", "Panel"],
     [
         ["Class", "java.awt.Frame", "java.awt.Panel"],
@@ -2553,8 +2553,8 @@ pn.info_table(
     ],
 )
 
-pn.section("What is an Event?")
-pn.definition(
+en.section("What is an Event?")
+en.definition(
     "<b>Event:</b> An object that encapsulates information about a user action or system "
     "notification that occurred on a GUI component. Examples include mouse clicks, key presses, "
     "button activations, window operations, and scrollbar adjustments. "
@@ -2563,8 +2563,8 @@ pn.definition(
     "<code>java.awt.AWTEvent</code>."
 )
 
-pn.section("Need for GUI-Based Applications")
-pn.bullet(
+en.section("Need for GUI-Based Applications")
+en.bullet(
     [
         "<b>User-Friendliness:</b> Graphical interfaces are intuitive -- users can interact via mouse clicks and visual elements without memorizing commands.",
         "<b>Productivity:</b> Visual tools (buttons, menus, dialogs) let users accomplish tasks faster than command-line interfaces.",
@@ -2577,13 +2577,13 @@ pn.bullet(
 # -----------------------------------------------------------------------------
 #  Q4(b) -- 4 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q4(b) [4 Marks] -- Three AWT Layout Managers | Component/Container/Panel/Frame | AWT vs Swing\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Three Layout Managers in AWT and Their Purposes")
-pn.info_table(
+en.section("Three Layout Managers in AWT and Their Purposes")
+en.info_table(
     ["Layout Manager", "Class", "How it Works", "Best Use Case"],
     [
         [
@@ -2607,8 +2607,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Difference Between Component, Container, Panel, and Frame")
-pn.info_table(
+en.section("Difference Between Component, Container, Panel, and Frame")
+en.info_table(
     ["Class", "Hierarchy Level", "Description", "Examples"],
     [
         [
@@ -2638,8 +2638,8 @@ pn.info_table(
     ],
 )
 
-pn.section("AWT vs Swing")
-pn.info_table(
+en.section("AWT vs Swing")
+en.info_table(
     ["Feature", "AWT (Abstract Window Toolkit)", "Swing"],
     [
         ["Package", "java.awt", "javax.swing"],
@@ -2680,13 +2680,13 @@ pn.info_table(
 # -----------------------------------------------------------------------------
 #  Q4(c) -- 4 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q4(c) [4 Marks] -- Event Listeners | GridLayout vs BorderLayout | AWT Controls | Container/Panel/Frame\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Event Listeners in Java -- Handling User Interactions")
-pn.info_table(
+en.section("Event Listeners in Java -- Handling User Interactions")
+en.info_table(
     ["Listener Interface", "Method(s) to Implement", "Used For"],
     [
         [
@@ -2727,8 +2727,8 @@ pn.info_table(
     ],
 )
 
-pn.section("GridLayout vs BorderLayout")
-pn.info_table(
+en.section("GridLayout vs BorderLayout")
+en.info_table(
     ["Property", "GridLayout(rows, cols)", "BorderLayout()"],
     [
         [
@@ -2761,8 +2761,8 @@ pn.info_table(
     ],
 )
 
-pn.section("AWT Controls -- Types and Usage")
-pn.info_table(
+en.section("AWT Controls -- Types and Usage")
+en.info_table(
     ["AWT Control", "Class", "Description"],
     [
         [
@@ -2816,15 +2816,15 @@ pn.info_table(
 # -----------------------------------------------------------------------------
 #  Q4(d) -- 10 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q4(d) [10 Marks] -- GridLayout Setup | AWT vs Swing Differences | AWT Event Hierarchy | AWT Windows & Buttons\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("AWT Component Class Hierarchy")
+en.section("AWT Component Class Hierarchy")
 
-stack_awt = pd.LayeredStack(
-    width=pn.CW * 0.8,
+stack_awt = ed.LayeredStack(
+    width=en.CW * 0.8,
     height=200,
     theme=diag_theme,
     caption="Fig 4.1: AWT Component Hierarchy -- inheritance chain from Object to Frame",
@@ -2846,10 +2846,10 @@ stack_awt.layer(
     "java.awt.Frame / Applet / Dialog",
     sublabel="Frame = main app window  |  Applet = browser panel  |  Dialog = modal window",
 )
-pn.story.extend(stack_awt.as_flowable())
+en.story.extend(stack_awt.as_flowable())
 
-pn.section("Setting Up a Grid Layout -- Calculator Keypad Example")
-pn.code_block(
+en.section("Setting Up a Grid Layout -- Calculator Keypad Example")
+en.code_block(
     """
 // GridLayoutCalculator.java -- Grid layout for calculator keypad
 import java.awt.*;
@@ -2945,8 +2945,8 @@ public class GridLayoutCalculator extends Frame implements ActionListener {
     lang="java",
 )
 
-pn.section("Java AWT Program -- One Window with Two Buttons")
-pn.code_block(
+en.section("Java AWT Program -- One Window with Two Buttons")
+en.code_block(
     """
 // TwoButtonsAWT.java -- AWT window with two buttons as required
 import java.awt.*;
@@ -3021,13 +3021,13 @@ public class TwoButtonsAWT extends Frame implements ActionListener {
     lang="java",
 )
 
-pn.section("AWT Event Hierarchy -- Explained")
-pn.body(
+en.section("AWT Event Hierarchy -- Explained")
+en.body(
     "The AWT event system is organized as a class hierarchy. All event objects extend "
     "<code>java.util.EventObject</code> and carry the source component reference. "
     "AWT-specific events further extend <code>java.awt.AWTEvent</code>."
 )
-pn.info_table(
+en.info_table(
     ["Event Category", "Event Class", "Fired By", "Listener Interface"],
     [
         [
@@ -3070,20 +3070,20 @@ pn.info_table(
 # -----------------------------------------------------------------------------
 #  Q4(e) -- 10 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q4(e) [10 Marks] -- Multi-Threaded Programming | Swing JFrame with Button | AWT Controls & Layouts\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Multi-Threaded Programming in Java -- Complete Example")
-pn.definition(
+en.section("Multi-Threaded Programming in Java -- Complete Example")
+en.definition(
     "<b>Multithreading:</b> The ability of a Java program to execute multiple threads "
     "(lightweight processes) concurrently within the same JVM process. Each thread has its "
     "own program counter, stack, and local variables, but shares the heap and static data "
     "with other threads. Java provides two ways to create threads: extending "
     "<code>Thread</code> or implementing <code>Runnable</code>."
 )
-pn.code_block(
+en.code_block(
     """
 // MultiThreadDemo.java -- Producer-Consumer multithreading example
 import java.util.LinkedList;
@@ -3164,8 +3164,8 @@ public class MultiThreadDemo {
     lang="java",
 )
 
-pn.section("Swing Program -- JFrame with Label and Button (Click to Update)")
-pn.code_block(
+en.section("Swing Program -- JFrame with Label and Button (Click to Update)")
+en.code_block(
     """
 // SwingLabelButtonDemo.java -- JFrame with JLabel and JButton
 // When button is clicked, label text updates
@@ -3244,30 +3244,30 @@ public class SwingLabelButtonDemo extends JFrame implements ActionListener {
     lang="java",
 )
 
-pn.tip(
+en.tip(
     "AWT vs Swing key difference: AWT uses native OS controls (heavyweight); "
     "Swing paints its own controls (lightweight, consistent appearance). "
     "Swing is preferred because it offers richer components (JTable, JTree, JTabbedPane), "
     "pluggable Look and Feel, and consistent cross-platform appearance. "
     "Always create Swing GUIs on the Event Dispatch Thread using SwingUtilities.invokeLater()."
 )
-pn.br()
+en.br()
 
 # #############################################################################
 #  QUESTION 5 -- CO5: EVENT HANDLING & JDBC
 # #############################################################################
-pn.part_box("QUESTION 5 -- CO5: EVENT HANDLING & JDBC DATABASE CONNECTIVITY")
+en.part_box("QUESTION 5 -- CO5: EVENT HANDLING & JDBC DATABASE CONNECTIVITY")
 
 # -----------------------------------------------------------------------------
 #  Q5(a) -- 3 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q5(a) [3 Marks] -- Window/AWT Event | Delegation Event Model Components | Event Handling | Two Mechanisms\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Purpose of the WindowEvent in Java")
-pn.definition(
+en.section("Purpose of the WindowEvent in Java")
+en.definition(
     "<b>WindowEvent (java.awt.event.WindowEvent):</b> Generated by a Frame or Window "
     "when a window-level operation occurs -- such as the user clicking the close button, "
     "minimizing, maximizing, or restoring the window. The most commonly handled method "
@@ -3275,7 +3275,7 @@ pn.definition(
     "Without handling this event (or setting <code>EXIT_ON_CLOSE</code> in Swing), "
     "clicking X would NOT close the application."
 )
-pn.info_table(
+en.info_table(
     ["WindowListener Method", "Purpose"],
     [
         [
@@ -3294,13 +3294,13 @@ pn.info_table(
     ],
 )
 
-pn.section("Key Components of the Delegation Event Model")
-pn.definition(
+en.section("Key Components of the Delegation Event Model")
+en.definition(
     "<b>Delegation Event Model:</b> Introduced in Java 1.1. An event handling architecture "
     "where events generated by a source component are <i>delegated</i> to a separate "
     "listener object for processing. The three key components are:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Event Source:</b> The GUI component that generates the event "
         "(e.g., Button, TextField, Frame). It maintains a list of registered listeners "
@@ -3314,8 +3314,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Two Event Handling Mechanisms in Java")
-pn.info_table(
+en.section("Two Event Handling Mechanisms in Java")
+en.info_table(
     ["Mechanism", "Java Version", "Approach", "Limitation"],
     [
         [
@@ -3340,13 +3340,13 @@ pn.info_table(
 # -----------------------------------------------------------------------------
 #  Q5(b) -- 4 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q5(b) [4 Marks] -- Two Event Types in Delegation Model | JDBC-ODBC Bridge | Mouse Event Class\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("Two Types of Events in the Delegation Model")
-pn.info_table(
+en.section("Two Types of Events in the Delegation Model")
+en.info_table(
     ["Event Category", "Description", "Examples"],
     [
         [
@@ -3369,8 +3369,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Role of JDBC-ODBC Bridge")
-pn.definition(
+en.section("Role of JDBC-ODBC Bridge")
+en.definition(
     "<b>JDBC-ODBC Bridge (Type 1 Driver):</b> One of four JDBC driver types, the bridge "
     "provides connectivity between JDBC (Java Database Connectivity) API calls and "
     "the ODBC (Open Database Connectivity) standard. It translates JDBC method calls "
@@ -3378,7 +3378,7 @@ pn.definition(
     "<b>The bridge was removed in Java 8.</b> It was useful for connecting to "
     "databases that only had ODBC drivers (e.g., Microsoft Access, Excel via DSN)."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Architecture:</b> Java App -> JDBC API -> JDBC-ODBC Bridge Driver -> ODBC Driver -> Database",
         "<b>Platform:</b> Windows-only (ODBC is a Windows technology).",
@@ -3387,8 +3387,8 @@ pn.bullet(
     ]
 )
 
-pn.section("The Mouse Event Class -- Complete Demonstration")
-pn.code_block(
+en.section("The Mouse Event Class -- Complete Demonstration")
+en.code_block(
     """
 // MouseEventClassDemo.java -- Demonstrates all MouseEvent methods
 import java.awt.*;
@@ -3495,20 +3495,20 @@ public class MouseEventClassDemo extends Frame
 # -----------------------------------------------------------------------------
 #  Q5(c) -- 4 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q5(c) [4 Marks] -- ResultSet Object | Comparing Event Models | Delegation Event Model | Advantages\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("ResultSet Object and How It Is Used")
-pn.definition(
+en.section("ResultSet Object and How It Is Used")
+en.definition(
     "<b>ResultSet (java.sql.ResultSet):</b> An object that represents the tabular "
     "result set of a SQL query executed via JDBC. It acts as a cursor that points to "
     "rows of data returned by a SELECT statement. Initially the cursor is positioned "
     "<b>BEFORE the first row</b>. You call <code>next()</code> to advance the cursor "
     "one row forward and retrieve data from columns using type-specific getter methods."
 )
-pn.info_table(
+en.info_table(
     ["ResultSet Method", "Return Type", "Description"],
     [
         [
@@ -3540,7 +3540,7 @@ pn.info_table(
         ],
     ],
 )
-pn.code_block(
+en.code_block(
     """
 // ResultSet usage example
 ResultSet rs = stmt.executeQuery("SELECT id, name, marks FROM students");
@@ -3555,8 +3555,8 @@ rs.close();
     lang="java",
 )
 
-pn.section("Delegation Event Model -- Advantages")
-pn.bullet(
+en.section("Delegation Event Model -- Advantages")
+en.bullet(
     [
         "<b>Separation of Concerns:</b> Event source and event handler are separate classes. "
         "The Button doesn't need to know how its click is processed.",
@@ -3572,8 +3572,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Comparing Old (Inheritance) vs New (Delegation) Event Model")
-pn.info_table(
+en.section("Comparing Old (Inheritance) vs New (Delegation) Event Model")
+en.info_table(
     ["Criterion", "Old Model (Java 1.0)", "New Delegation Model (Java 1.1+)"],
     [
         [
@@ -3612,15 +3612,15 @@ pn.info_table(
 # -----------------------------------------------------------------------------
 #  Q5(d) -- 10 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q5(d) [10 Marks] -- JDBC Remote Database Connection | ActionListener AWT Program | JDBC Driver Types\n"
     "(May-June 2025 | July-Dec 2024 | June 2022 | May-June 2024)"
 )
 
-pn.section("JDBC Architecture -- Overview")
+en.section("JDBC Architecture -- Overview")
 
-net_jdbc = pd.NetworkDiagram(
-    width=pn.CW,
+net_jdbc = ed.NetworkDiagram(
+    width=en.CW,
     height=240,
     theme=diag_theme,
     caption="Fig 5.1: JDBC Architecture -- Java Application to Remote Database",
@@ -3638,10 +3638,10 @@ net_jdbc.link("app", "api", bidirectional=False, label="calls")
 net_jdbc.link("api", "dm", bidirectional=False, label="delegates")
 net_jdbc.link("dm", "drv", bidirectional=False, label="loads")
 net_jdbc.link("drv", "db", bidirectional=True, label="SQL / Results")
-pn.story.extend(net_jdbc.as_flowable())
+en.story.extend(net_jdbc.as_flowable())
 
-pn.section("Four Types of JDBC Drivers")
-pn.info_table(
+en.section("Four Types of JDBC Drivers")
+en.info_table(
     ["Type", "Name", "Mechanism", "Use Case"],
     [
         [
@@ -3671,8 +3671,8 @@ pn.info_table(
     ],
 )
 
-pn.section("JDBC Connection Process -- Step by Step")
-pn.bullet(
+en.section("JDBC Connection Process -- Step by Step")
+en.bullet(
     [
         '<b>Step 1 -- Load Driver:</b> <code>Class.forName("com.mysql.cj.jdbc.Driver")</code> -- registers the driver with DriverManager. (Optional in JDBC 4.0+ -- auto-loaded via ServiceLoader.)',
         "<b>Step 2 -- Get Connection:</b> <code>Connection con = DriverManager.getConnection(url, user, password)</code>",
@@ -3683,8 +3683,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Complete Java Program -- Connect to Remote MySQL Database")
-pn.code_block(
+en.section("Complete Java Program -- Connect to Remote MySQL Database")
+en.code_block(
     """
 // JDBCRemoteConnection.java -- Connect to remote MySQL database using JDBC
 // Required: MySQL Connector/J JAR in classpath
@@ -3782,8 +3782,8 @@ public class JDBCRemoteConnection {
     lang="java",
 )
 
-pn.section("ActionListener Program -- Handling Button Click Events in AWT")
-pn.code_block(
+en.section("ActionListener Program -- Handling Button Click Events in AWT")
+en.code_block(
     """
 // ActionListenerDemo.java -- ActionListener for button click events
 import java.awt.*;
@@ -3897,7 +3897,7 @@ public class ActionListenerDemo extends Frame implements ActionListener {
     lang="java",
 )
 
-pn.tip(
+en.tip(
     "JDBC exam tip: The 6 steps are: Load Driver -> getConnection -> createStatement -> "
     "executeQuery/Update -> process ResultSet -> close resources. "
     "Type 4 (Pure Java Thin Driver) is the recommended driver type today. "
@@ -3908,20 +3908,20 @@ pn.tip(
 # -----------------------------------------------------------------------------
 #  Q5(e) -- 10 Marks
 # -----------------------------------------------------------------------------
-pn.chap_box(
+en.chap_box(
     "Q5(e) [10 Marks] -- Short Notes: Exception Handling | Constructor | Access Specifiers | Abstract Class\n"
     "(May-June 2025 | May-June 2024 -- SAME QUESTION | July-Dec 2024 JDBC | June 2022 JDBC SQL)"
 )
 
-pn.section("Short Note (a): Exception Handling in Java")
-pn.definition(
+en.section("Short Note (a): Exception Handling in Java")
+en.definition(
     "<b>Exception Handling</b> is Java's structured mechanism for detecting, reporting, "
     "and recovering from runtime errors (exceptions) without abnormal program termination. "
     "An <b>exception</b> is an abnormal condition that disrupts normal program flow. "
     "Java's exception hierarchy has <code>Throwable</code> as root, with two branches: "
     "<code>Error</code> (JVM-level, unrecoverable) and <code>Exception</code> (program-level)."
 )
-pn.info_table(
+en.info_table(
     ["Keyword", "Purpose"],
     [
         [
@@ -3946,7 +3946,7 @@ pn.info_table(
         ],
     ],
 )
-pn.code_block(
+en.code_block(
     """
 // Exception types
 try {
@@ -3968,8 +3968,8 @@ try {
     lang="java",
 )
 
-pn.section("Short Note (b): Constructors in Java")
-pn.definition(
+en.section("Short Note (b): Constructors in Java")
+en.definition(
     "<b>Constructor</b> is a special method that is automatically invoked when an object "
     "is created using <code>new</code>. It initializes the newly created object's state. "
     "Key rules: (1) Name must match class name. (2) No return type (not even void). "
@@ -3977,7 +3977,7 @@ pn.definition(
     "(4) If no constructor is written, Java provides a default no-arg constructor automatically -- "
     "but only if you define ZERO constructors."
 )
-pn.info_table(
+en.info_table(
     ["Type", "Description", "Example"],
     [
         [
@@ -3998,12 +3998,12 @@ pn.info_table(
     ],
 )
 
-pn.section("Short Note (c): Access Specifiers in Java")
-pn.definition(
+en.section("Short Note (c): Access Specifiers in Java")
+en.definition(
     "<b>Access Specifiers</b> (Access Modifiers) control the visibility and accessibility "
     "of classes, methods, and variables. Java has four levels of access control."
 )
-pn.info_table(
+en.info_table(
     ["Specifier", "Same Class", "Same Package", "Subclass (diff pkg)", "Other Package"],
     [
         ["private", "YES", "NO", "NO", "NO"],
@@ -4012,7 +4012,7 @@ pn.info_table(
         ["public", "YES", "YES", "YES", "YES"],
     ],
 )
-pn.bullet(
+en.bullet(
     [
         "<b>private:</b> Most restrictive. Used for data hiding (encapsulation). Fields should typically be private.",
         "<b>default (package-private):</b> No modifier written. Visible within the same package only.",
@@ -4021,15 +4021,15 @@ pn.bullet(
     ]
 )
 
-pn.section("Short Note (d): Abstract Class in Java")
-pn.definition(
+en.section("Short Note (d): Abstract Class in Java")
+en.definition(
     "<b>Abstract Class</b> is a class declared with the <code>abstract</code> keyword that "
     "<b>cannot be instantiated</b> directly (cannot do <code>new AbstractClass()</code>). "
     "It serves as an incomplete blueprint: it can define common concrete methods "
     "AND declare abstract methods (body-less methods) that concrete subclasses MUST implement. "
     "Abstract classes enable the <b>Template Method</b> design pattern."
 )
-pn.info_table(
+en.info_table(
     ["Property", "Abstract Class", "Interface"],
     [
         ["Instantiation", "Cannot be instantiated", "Cannot be instantiated"],
@@ -4056,7 +4056,7 @@ pn.info_table(
         ],
     ],
 )
-pn.code_block(
+en.code_block(
     """
 // Abstract class example
 abstract class Vehicle {
@@ -4090,8 +4090,8 @@ v2.fuel(); v2.describe();
     lang="java",
 )
 
-pn.section("Q5(e) Alternative: Executing SQL Statements and Processing Results in JDBC")
-pn.code_block(
+en.section("Q5(e) Alternative: Executing SQL Statements and Processing Results in JDBC")
+en.code_block(
     """
 // JDBCSQLExecutionDemo.java -- Complete SQL execution and ResultSet processing
 import java.sql.*;
@@ -4161,10 +4161,10 @@ public class JDBCSQLExecutionDemo {
     lang="java",
 )
 
-pn.section("Delegation Event Model -- Sequence Diagram")
+en.section("Delegation Event Model -- Sequence Diagram")
 
-seq = pd.SequenceDiagram(
-    width=pn.CW,
+seq = ed.SequenceDiagram(
+    width=en.CW,
     height=260,
     caption="Fig 5.2: Delegation Event Model -- User Action to Listener Callback Flow",
     theme=diag_theme,
@@ -4178,18 +4178,18 @@ seq.message("edt", "edt", "look up registered listeners")
 seq.message("edt", "lst", "actionPerformed(ActionEvent e)")
 seq.message("lst", "edt", "update label / do logic")
 seq.divider("end loop")
-pn.story.extend(seq.as_flowable())
+en.story.extend(seq.as_flowable())
 
-pn.tip(
+en.tip(
     "Q5(e) Short Note memory aid: "
     "Exception = try-catch-finally-throw-throws. "
     "Constructor = same name as class, no return type, called by 'new'. "
     "Access = private(class) < default(package) < protected(+subclass) < public(everywhere). "
     "Abstract = cannot instantiate, has abstract methods, subclass MUST implement all."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  BUILD THE PDF
 # =============================================================================
-pn.build_doc("Java_PYQ_Answers.pdf")
+en.build_doc("Java_PYQ_Answers.pdf")

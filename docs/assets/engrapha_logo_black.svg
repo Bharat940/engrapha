@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="700.0" height="200.0" preserveAspectRatio="xMinYMin meet" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="nonzero" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="700.0" height="200.0"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-200)" style="clip-path: url(#clip)">
+		<g transform="">
+			<g transform="">
+				<rect x="53.6" y="32.8" width="25.199999999999996" height="134.39999999999998" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(14%,38%,92%); fill-rule: nonzero;"/>
+				<rect x="53.6" y="32.8" width="79.80000000000001" height="26.879999999999995" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(14%,38%,92%); fill-rule: nonzero;"/>
+				<rect x="53.6" y="83.2" width="54.6" height="25.200000000000003" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(14%,38%,92%); fill-rule: nonzero;"/>
+				<rect x="70.4" y="140.32" width="33.599999999999994" height="26.879999999999995" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(14%,38%,92%); fill-rule: nonzero;"/>
+				<polygon points="104 140.32, 104 167.2, 125 157.12, 125 150.4" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(90%,72%,29%); fill-rule: nonzero;"/>
+				<polygon points="125 150.4, 125 157.12, 131.3 153.76" style="stroke: none; stroke-linecap: butt; stroke-width: 0; fill: rgb(12%,16%,21%); fill-rule: nonzero;"/>
+				<text x="222.0" y="73.471" style="font-family: Helvetica-Bold; font-size: 74px;fill: rgb(6%,9%,15%); stroke:none;" transform="translate(0,146) scale(1,-1)">Engrapha</text>
+			</g>
+		</g>
+	</g>
+</svg>

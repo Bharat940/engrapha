@@ -5,10 +5,10 @@ A UML sequence diagram maps ordered message arrows over lifelines. Each actor is
 ## Minimal example
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-seq = pd.SequenceDiagram(width=400, height=220, caption="Fig 2: TCP Handshake")
+seq = ed.SequenceDiagram(width=400, height=220, caption="Fig 2: TCP Handshake")
 
 seq.actor("cl", "Client")
 seq.actor("srv", "Server")
@@ -19,8 +19,8 @@ seq.divider("Internal processing")
 seq.message("srv", "cl", "SYN-ACK", arrow="dashed")
 seq.deactivate("srv")
 
-pn.add(seq.as_flowable())
-pn.build_doc("seq.pdf")
+en.add(seq.as_flowable())
+en.build_doc("seq.pdf")
 ```
 
 ## Arrow styles
@@ -92,3 +92,4 @@ seq.actor("b", "Beta", x=280, y=200)
 
 - [ER and Schema](er.md)
 - [Architecture](architecture.md)
+

@@ -8,46 +8,46 @@ Output: Java_Unit2_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
 # =============================================================================
 #  THEME & GLOBAL FOOTER SETUP
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.MIDNIGHT_DARK)
+en.set_story([])
+en.set_theme(en.MIDNIGHT_DARK)
 
-pn.set_global_footer(
+en.set_global_footer(
     left="Java Programming (IT408) -- Unit II",
     right="UIT-RGPV (Autonomous) Bhopal",
     show_page_num=True,
 )
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(28)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(28)
 
-pn.cover_card(
+en.cover_card(
     "JAVA PROGRAMMING",
     "Unit II -- Classes, OOP, Packages, Exceptions & Threads",
 )
-# pn.cover_subtitle(
+# en.cover_subtitle(
 #     [
 #         "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
 #         "Complete Exam Notes: Class Fundamentals, Inheritance, Packages, Interfaces,",
 #         "Exception Handling, and Multithreading with Code Examples and Diagrams",
 #     ]
 # )
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(8)
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(8)
 
-pn.info_table(
+en.info_table(
     ["Section", "Syllabus Topics Covered"],
     [
         [
@@ -113,21 +113,21 @@ pn.info_table(
 # =============================================================================
 #  TABLE OF CONTENTS
 # =============================================================================
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  UNIT DIVIDER
 # =============================================================================
-pn.part_box("UNIT II -- JAVA CLASSES, OOP, PACKAGES, EXCEPTIONS & THREADS")
+en.part_box("UNIT II -- JAVA CLASSES, OOP, PACKAGES, EXCEPTIONS & THREADS")
 
 # =============================================================================
 #  2.1  CLASS FUNDAMENTALS
 # =============================================================================
-pn.chap_box("2.1  Class Fundamentals")
-pn.section("What is a Class?")
-pn.definition(
+en.chap_box("2.1  Class Fundamentals")
+en.section("What is a Class?")
+en.definition(
     "<b>Class:</b> A class is a user-defined data type (blueprint/template) that encapsulates "
     "data (called <i>fields</i> or <i>instance variables</i>) and behavior (called <i>methods</i>). "
     "A class is declared using the <code>class</code> keyword. Objects are instances of a class, "
@@ -135,8 +135,8 @@ pn.definition(
     "-- only objects (instances) consume memory."
 )
 
-pn.section("Class Declaration Syntax")
-pn.code_block(
+en.section("Class Declaration Syntax")
+en.code_block(
     """
 // General class syntax
 [access_modifier] class ClassName [extends ParentClass] [implements Interface1, ...] {
@@ -159,8 +159,8 @@ pn.code_block(
     lang="java",
 )
 
-pn.section("Simple Class Example -- Box")
-pn.code_block(
+en.section("Simple Class Example -- Box")
+en.code_block(
     """
 // Box.java -- a simple class with fields and methods
 public class Box {
@@ -207,8 +207,8 @@ public class BoxDemo {
     lang="java",
 )
 
-pn.section("Access Specifiers")
-pn.info_table(
+en.section("Access Specifiers")
+en.info_table(
     ["Modifier", "Same Class", "Same Package", "Subclass (Other Pkg)", "Other Package"],
     [
         ["private", "YES", "NO", "NO", "NO"],
@@ -218,15 +218,15 @@ pn.info_table(
     ],
 )
 
-pn.note(
+en.note(
     "The <b>default</b> (package-private) access is applied when no modifier is written. "
     "It allows access within the same package only. It is NOT the same as <code>public</code>."
 )
 
-pn.section("Memory Model: Stack vs Heap for Objects")
+en.section("Memory Model: Stack vs Heap for Objects")
 
-net_mem = pd.NetworkDiagram(
-    width=pn.CW,
+net_mem = ed.NetworkDiagram(
+    width=en.CW,
     height=200,
     theme=diag_theme,
     caption="Fig 2.1: Object memory layout -- reference variable on stack, object on heap",
@@ -263,15 +263,15 @@ net_mem.link("stack", "heap1", label="box1 points to")
 net_mem.link("stack", "heap2", label="box2 points to")
 net_mem.link("heap1", "method", label="shared class")
 net_mem.link("heap2", "method", label="shared class")
-pn.story.extend(net_mem.as_flowable())
-pn.br()
+en.story.extend(net_mem.as_flowable())
+en.br()
 
 # =============================================================================
 #  2.2  CONSTRUCTORS
 # =============================================================================
-pn.chap_box("2.2  Constructors")
-pn.section("What is a Constructor?")
-pn.definition(
+en.chap_box("2.2  Constructors")
+en.section("What is a Constructor?")
+en.definition(
     "<b>Constructor:</b> A special method that is automatically called when an object is "
     "created using <code>new</code>. A constructor initializes the object's state. "
     "Rules: (1) Constructor name must EXACTLY match the class name. "
@@ -281,8 +281,8 @@ pn.definition(
     "(no-argument, zero-initializes fields). Once you define any constructor, the default is no longer provided."
 )
 
-pn.section("Types of Constructors")
-pn.info_table(
+en.section("Types of Constructors")
+en.info_table(
     ["Constructor Type", "Description", "When to Use"],
     [
         [
@@ -303,7 +303,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block(
+en.code_block(
     """
 // ConstructorDemo.java
 public class Student {
@@ -360,19 +360,19 @@ public class Student {
     lang="java",
 )
 
-pn.tip(
+en.tip(
     "Constructor name = Class name. No return type. Called automatically by 'new'. "
     "Java auto-provides default constructor ONLY if you write ZERO constructors. "
     "Constructor overloading = same class, different parameter lists."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.3  THE this KEYWORD
 # =============================================================================
-pn.chap_box("2.3  The this Keyword")
-pn.section("Uses of this")
-pn.definition(
+en.chap_box("2.3  The this Keyword")
+en.section("Uses of this")
+en.definition(
     "<b>this:</b> A reference that always points to the <b>current object</b> -- the object "
     "on which the method or constructor is being invoked. It is implicitly passed to every "
     "instance method and constructor. Three primary uses: "
@@ -381,7 +381,7 @@ pn.definition(
     "(3) Call another constructor in the same class using <code>this()</code> -- must be the first statement."
 )
 
-pn.code_block(
+en.code_block(
     """
 // ThisKeywordDemo.java
 public class Employee {
@@ -435,19 +435,19 @@ public class Employee {
     lang="java",
 )
 
-pn.note(
+en.note(
     "<b>this() call rules:</b> It must be the FIRST statement in a constructor body. "
     "You cannot use both <code>this()</code> and <code>super()</code> in the same constructor "
     "since both require being the first statement."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.4  METHOD OVERLOADING
 # =============================================================================
-pn.chap_box("2.4  Method Overloading")
-pn.section("Compile-Time Polymorphism")
-pn.definition(
+en.chap_box("2.4  Method Overloading")
+en.section("Compile-Time Polymorphism")
+en.definition(
     "<b>Method Overloading:</b> Defining multiple methods in the SAME class with the "
     "SAME name but DIFFERENT parameter lists (different number of parameters, or different "
     "parameter types, or different order of parameter types). The compiler selects the "
@@ -455,7 +455,7 @@ pn.definition(
     "or <b>early binding</b>. Return type alone is NOT sufficient to differentiate overloaded methods."
 )
 
-pn.info_table(
+en.info_table(
     ["Rule", "Valid Overloading?", "Example"],
     [
         [
@@ -486,7 +486,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block(
+en.code_block(
     """
 // OverloadDemo.java -- Arithmetic Calculator with overloaded add() methods
 public class Calculator {
@@ -541,21 +541,21 @@ public class Calculator {
     lang="java",
 )
 
-pn.section("Overloading Constructors")
-pn.body(
+en.section("Overloading Constructors")
+en.body(
     "Constructor overloading follows the same rules as method overloading. "
     "Different constructors are provided to allow creating objects in multiple ways -- "
     "this is extremely common in the Java standard library (e.g., <code>String</code>, "
     "<code>ArrayList</code>, <code>Scanner</code> all have multiple constructors)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.5  OBJECTS AS PARAMETERS & RETURNING OBJECTS
 # =============================================================================
-pn.chap_box("2.5  Using Objects as Parameters & Returning Objects")
-pn.section("Pass by Reference (Objects)")
-pn.definition(
+en.chap_box("2.5  Using Objects as Parameters & Returning Objects")
+en.section("Pass by Reference (Objects)")
+en.definition(
     "<b>Java passes object references by value.</b> When you pass an object to a method, "
     "you pass a copy of the <i>reference</i> (memory address), NOT a copy of the object. "
     "This means the method CAN modify the object's fields through the reference. "
@@ -563,7 +563,7 @@ pn.definition(
     "in the caller -- only the object's contents can be modified."
 )
 
-pn.code_block(
+en.code_block(
     """
 // ObjectParamDemo.java
 public class Point {
@@ -613,21 +613,21 @@ public class Point {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.6  GARBAGE COLLECTION & finalize()
 # =============================================================================
-pn.chap_box("2.6  Garbage Collection & finalize()")
-pn.section("Automatic Memory Management")
-pn.definition(
+en.chap_box("2.6  Garbage Collection & finalize()")
+en.section("Automatic Memory Management")
+en.definition(
     "<b>Garbage Collection:</b> Java's automatic memory reclamation mechanism. "
     "When an object has no more references pointing to it, it becomes <b>eligible for "
     "garbage collection</b>. The JVM's garbage collector (GC) runs in the background "
     "and reclaims the heap memory of unreferenced objects. The programmer never calls "
     "<code>free()</code> (as in C/C++) -- memory management is automatic."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>When is an object eligible for GC?</b> When the reference variable holding it goes out of scope, is set to null, or is reassigned to another object.",
         "<b>System.gc():</b> A hint to the JVM to run garbage collection. Not guaranteed to run immediately -- the JVM may ignore it.",
@@ -635,7 +635,7 @@ pn.bullet(
     ]
 )
 
-pn.code_block(
+en.code_block(
     """
 // GarbageCollectionDemo.java
 public class ResourceHolder {
@@ -685,9 +685,9 @@ public class ResourceHolder {
     lang="java",
 )
 
-pn.section("Object Lifecycle Flowchart")
-fc_gc = pd.Flowchart(
-    width=pn.CW,
+en.section("Object Lifecycle Flowchart")
+fc_gc = ed.Flowchart(
+    width=en.CW,
     height=320,
     theme=diag_theme,
     caption="Fig 2.2: Java Object Lifecycle -- from creation to garbage collection",
@@ -711,15 +711,15 @@ fc_gc.edge("ref", "eligible", branch="no")
 fc_gc.edge("eligible", "finalize")
 fc_gc.edge("finalize", "reclaim")
 fc_gc.edge("reclaim", "end")
-pn.story.extend(fc_gc.as_flowable())
-pn.br()
+en.story.extend(fc_gc.as_flowable())
+en.br()
 
 # =============================================================================
 #  2.7  ABSTRACT CLASSES
 # =============================================================================
-pn.chap_box("2.7  Abstract Classes")
-pn.section("What is an Abstract Class?")
-pn.definition(
+en.chap_box("2.7  Abstract Classes")
+en.section("What is an Abstract Class?")
+en.definition(
     "<b>Abstract Class:</b> A class declared with the <code>abstract</code> keyword that "
     "cannot be instantiated directly (you cannot do <code>new AbstractClass()</code>). "
     "It serves as an <b>incomplete blueprint</b> -- it defines common state and behavior, "
@@ -727,7 +727,7 @@ pn.definition(
     "subclasses MUST override. Abstract classes enable the Template Method design pattern."
 )
 
-pn.info_table(
+en.info_table(
     ["Property", "Abstract Class", "Concrete Class"],
     [
         ["Instantiation", "CANNOT be instantiated with new", "CAN be instantiated"],
@@ -759,8 +759,8 @@ pn.info_table(
     ],
 )
 
-pn.body("<b>Part 1: The Abstract Base Class</b>")
-pn.code_block(
+en.body("<b>Part 1: The Abstract Base Class</b>")
+en.code_block(
     """
 // Shape.java -- Abstract Base Class
 abstract class Shape {
@@ -785,8 +785,8 @@ abstract class Shape {
     lang="java",
 )
 
-pn.body("<b>Part 2: The Concrete Subclasses</b>")
-pn.code_block(
+en.body("<b>Part 2: The Concrete Subclasses</b>")
+en.code_block(
     """
 // Circle concrete subclass
 class Circle extends Shape {
@@ -843,8 +843,8 @@ class Triangle extends Shape {
     lang="java",
 )
 
-pn.body("<b>Part 3: The Driver Execution Class</b>")
-pn.code_block(
+en.body("<b>Part 3: The Driver Execution Class</b>")
+en.code_block(
     """
 // AbstractClassDemo.java -- Main driver class
 public class AbstractClassDemo {
@@ -865,9 +865,9 @@ public class AbstractClassDemo {
     lang="java",
 )
 
-pn.section("Abstract Class UML Diagram")
-cd_abstract = pd.ClassDiagram(
-    width=pn.CW,
+en.section("Abstract Class UML Diagram")
+cd_abstract = ed.ClassDiagram(
+    width=en.CW,
     height=200,
     theme=diag_theme,
     caption="Fig 2.3: Abstract Shape hierarchy showing inheritance and method overriding",
@@ -906,15 +906,15 @@ cd_abstract.uml_class(
 cd_abstract.relate("Circle", "Shape", kind="inheritance")
 cd_abstract.relate("Rectangle", "Shape", kind="inheritance")
 cd_abstract.relate("Triangle", "Shape", kind="inheritance")
-pn.story.extend(cd_abstract.as_flowable())
-pn.br()
+en.story.extend(cd_abstract.as_flowable())
+en.br()
 
 # =============================================================================
 #  2.8  INHERITANCE
 # =============================================================================
-pn.chap_box("2.8  Inheritance")
-pn.section("What is Inheritance?")
-pn.definition(
+en.chap_box("2.8  Inheritance")
+en.section("What is Inheritance?")
+en.definition(
     "<b>Inheritance:</b> A mechanism by which a new class (called <b>subclass</b>, "
     "child class, or derived class) acquires the properties (fields) and behaviors "
     "(methods) of an existing class (called <b>superclass</b>, parent class, or base class). "
@@ -924,7 +924,7 @@ pn.definition(
     "(to avoid the diamond problem) but IS achievable via interfaces."
 )
 
-pn.info_table(
+en.info_table(
     ["Inheritance Type", "Description", "Java Support"],
     [
         ["Single", "One subclass extends one superclass.", "YES -- via extends"],
@@ -951,9 +951,9 @@ pn.info_table(
     ],
 )
 
-pn.section("The super Keyword and Method Overriding")
-pn.body("<b>Part 1: The Base Superclass</b>")
-pn.code_block(
+en.section("The super Keyword and Method Overriding")
+en.body("<b>Part 1: The Base Superclass</b>")
+en.code_block(
     """
 // Animal.java -- Base Superclass
 class Animal {
@@ -979,8 +979,8 @@ class Animal {
     lang="java",
 )
 
-pn.body("<b>Part 2: The Inherited Subclasses</b>")
-pn.code_block(
+en.body("<b>Part 2: The Inherited Subclasses</b>")
+en.code_block(
     """
 // Dog subclass extending Animal
 class Dog extends Animal {
@@ -1031,8 +1031,8 @@ class GuideDog extends Dog {
     lang="java",
 )
 
-pn.body("<b>Part 3: The Driver Execution Class</b>")
-pn.code_block(
+en.body("<b>Part 3: The Driver Execution Class</b>")
+en.code_block(
     """
 // InheritanceDemo.java -- Main driver execution class
 public class InheritanceDemo {
@@ -1052,8 +1052,8 @@ public class InheritanceDemo {
     lang="java",
 )
 
-pn.section("Rules of Method Overriding")
-pn.info_table(
+en.section("Rules of Method Overriding")
+en.info_table(
     ["Rule", "Detail"],
     [
         [
@@ -1083,9 +1083,9 @@ pn.info_table(
     ],
 )
 
-pn.section("Inheritance Hierarchy Diagram")
-cd_inherit = pd.ClassDiagram(
-    width=pn.CW,
+en.section("Inheritance Hierarchy Diagram")
+cd_inherit = ed.ClassDiagram(
+    width=en.CW,
     height=230,
     theme=diag_theme,
     caption="Fig 2.4: Multilevel + Hierarchical inheritance -- Animal hierarchy",
@@ -1115,15 +1115,15 @@ cd_inherit.uml_class(
 cd_inherit.relate("Dog", "Animal", kind="inheritance")
 cd_inherit.relate("Cat", "Animal", kind="inheritance")
 cd_inherit.relate("GuideDog", "Dog", kind="inheritance")
-pn.story.extend(cd_inherit.as_flowable())
-pn.br()
+en.story.extend(cd_inherit.as_flowable())
+en.br()
 
 # =============================================================================
 #  2.9  MULTILEVEL HIERARCHY & CONSTRUCTOR CHAINING
 # =============================================================================
-pn.chap_box("2.9  Multilevel Hierarchy & Constructor Chaining")
-pn.section("Constructor Call Order in Inheritance")
-pn.definition(
+en.chap_box("2.9  Multilevel Hierarchy & Constructor Chaining")
+en.section("Constructor Call Order in Inheritance")
+en.definition(
     "<b>Constructor Chaining:</b> In a class hierarchy, constructors are called from "
     "the TOP of the hierarchy (root superclass) DOWN to the most derived subclass. "
     "This ensures that parent class state is fully initialized before child class "
@@ -1131,7 +1131,7 @@ pn.definition(
     "explicitly, or the compiler inserts an implicit <code>super()</code> call if none is written."
 )
 
-pn.code_block(
+en.code_block(
     """
 // ConstructorChainDemo.java -- Constructor order in multilevel hierarchy
 class A {
@@ -1178,9 +1178,9 @@ public class ConstructorChainDemo {
     lang="java",
 )
 
-pn.section("Constructor Chain Sequence Diagram")
-seq_chain = pd.SequenceDiagram(
-    width=pn.CW,
+en.section("Constructor Chain Sequence Diagram")
+seq_chain = ed.SequenceDiagram(
+    width=en.CW,
     height=260,
     theme=diag_theme,
     caption="Fig 2.5: Constructor chaining sequence in multilevel hierarchy A -> B -> C",
@@ -1201,15 +1201,15 @@ seq_chain.message("B_ctor", "C_ctor", "B initialized", arrow="dashed")
 seq_chain.deactivate("B_ctor")
 seq_chain.message("C_ctor", "main", "C initialized; object ready", arrow="dashed")
 seq_chain.deactivate("C_ctor")
-pn.story.extend(seq_chain.as_flowable())
-pn.br()
+en.story.extend(seq_chain.as_flowable())
+en.br()
 
 # =============================================================================
 #  2.10  PACKAGES
 # =============================================================================
-pn.chap_box("2.10  Packages & Import")
-pn.section("What is a Package?")
-pn.definition(
+en.chap_box("2.10  Packages & Import")
+en.section("What is a Package?")
+en.definition(
     "<b>Package:</b> A namespace that groups related classes and interfaces together. "
     "Packages serve two purposes: (1) <b>Namespace management</b> -- prevents naming conflicts "
     "between classes in different packages (e.g., <code>java.util.Date</code> vs "
@@ -1219,7 +1219,7 @@ pn.definition(
     "Packages map to directory structures on the file system."
 )
 
-pn.info_table(
+en.info_table(
     ["Type", "Syntax", "Description"],
     [
         [
@@ -1250,7 +1250,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block(
+en.code_block(
     """
 // File: com/shapes/Circle.java
 package com.shapes;         // MUST be first non-comment statement
@@ -1295,8 +1295,8 @@ public class Main {
     lang="java",
 )
 
-pn.section("Key Standard Packages")
-pn.info_table(
+en.section("Key Standard Packages")
+en.info_table(
     ["Package", "Contents (selected)"],
     [
         [
@@ -1323,14 +1323,14 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.11  INTERFACES
 # =============================================================================
-pn.chap_box("2.11  Interfaces")
-pn.section("What is an Interface?")
-pn.definition(
+en.chap_box("2.11  Interfaces")
+en.section("What is an Interface?")
+en.definition(
     "<b>Interface:</b> A completely abstract type (prior to Java 8) that declares a set "
     "of methods a class MUST implement. Interfaces define a <b>contract</b> -- any class "
     "that implements the interface must provide concrete bodies for all its abstract methods. "
@@ -1340,7 +1340,7 @@ pn.definition(
     "A class can implement MULTIPLE interfaces (solving the multiple inheritance limitation)."
 )
 
-pn.info_table(
+en.info_table(
     ["Feature", "Abstract Class", "Interface"],
     [
         ["Keyword", "abstract class", "interface"],
@@ -1370,8 +1370,8 @@ pn.info_table(
     ],
 )
 
-pn.body("<b>Part 1: The Interface Contracts</b>")
-pn.code_block(
+en.body("<b>Part 1: The Interface Contracts</b>")
+en.code_block(
     """
 // Printable.java and Saveable.java -- Interface contracts
 interface Printable {
@@ -1397,8 +1397,8 @@ interface Saveable {
     lang="java",
 )
 
-pn.body("<b>Part 2: Implementing the Interfaces</b>")
-pn.code_block(
+en.body("<b>Part 2: Implementing the Interfaces</b>")
+en.code_block(
     """
 // DocumentReport implements Printable and Saveable (multiple inheritance of behavior)
 class DocumentReport implements Printable, Saveable {
@@ -1430,8 +1430,8 @@ class DocumentReport implements Printable, Saveable {
     lang="java",
 )
 
-pn.body("<b>Part 3: The Driver Execution Class</b>")
-pn.code_block(
+en.body("<b>Part 3: The Driver Execution Class</b>")
+en.code_block(
     """
 // InterfaceDemo.java -- Main driver execution class
 public class InterfaceDemo {
@@ -1451,9 +1451,9 @@ public class InterfaceDemo {
     lang="java",
 )
 
-pn.section("Interface vs Abstract Class UML")
-cd_iface = pd.ClassDiagram(
-    width=pn.CW,
+en.section("Interface vs Abstract Class UML")
+cd_iface = ed.ClassDiagram(
+    width=en.CW,
     height=210,
     theme=diag_theme,
     caption="Fig 2.6: Interface implementation -- class implements multiple interfaces",
@@ -1479,15 +1479,15 @@ cd_iface.uml_class(
 )
 cd_iface.relate("DocumentReport", "Printable", kind="realization")
 cd_iface.relate("DocumentReport", "Saveable", kind="realization")
-pn.story.extend(cd_iface.as_flowable())
-pn.br()
+en.story.extend(cd_iface.as_flowable())
+en.br()
 
 # =============================================================================
 #  2.12  EXCEPTION HANDLING
 # =============================================================================
-pn.chap_box("2.12  Exception Handling")
-pn.section("What is an Exception?")
-pn.definition(
+en.chap_box("2.12  Exception Handling")
+en.section("What is an Exception?")
+en.definition(
     "<b>Exception:</b> An event that disrupts the normal flow of a program's execution. "
     "When an error occurs inside a method, the JVM creates an exception object containing "
     "information about the error (type, message, stack trace) and <b>throws</b> it. "
@@ -1496,9 +1496,9 @@ pn.definition(
     "<code>try</code>, <code>catch</code>, <code>finally</code>, <code>throw</code>, <code>throws</code>."
 )
 
-pn.section("Exception Hierarchy")
-cd_exc = pd.ClassDiagram(
-    width=pn.CW,
+en.section("Exception Hierarchy")
+cd_exc = ed.ClassDiagram(
+    width=en.CW,
     height=240,
     theme=diag_theme,
     caption="Fig 2.7: Java Exception class hierarchy",
@@ -1542,10 +1542,10 @@ cd_exc.relate("Exception", "Throwable", kind="inheritance")
 cd_exc.relate("RuntimeException", "Exception", kind="inheritance")
 cd_exc.relate("Checked", "Exception", kind="inheritance")
 cd_exc.relate("Unchecked", "RuntimeException", kind="inheritance")
-pn.story.extend(cd_exc.as_flowable())
+en.story.extend(cd_exc.as_flowable())
 
-pn.section("Checked vs Unchecked Exceptions")
-pn.info_table(
+en.section("Checked vs Unchecked Exceptions")
+en.info_table(
     ["Feature", "Checked Exceptions", "Unchecked (Runtime) Exceptions"],
     [
         [
@@ -1576,8 +1576,8 @@ pn.info_table(
     ],
 )
 
-pn.body("<b>Part 1: Custom Exception & Domain Logic</b>")
-pn.code_block(
+en.body("<b>Part 1: Custom Exception & Domain Logic</b>")
+en.code_block(
     """
 // BankAccount.java -- Custom exception and class declaration
 class InsufficientFundsException extends Exception {
@@ -1616,8 +1616,8 @@ class BankAccount {
     lang="java",
 )
 
-pn.body("<b>Part 2: Basic Exception Handling (try-catch-finally)</b>")
-pn.code_block(
+en.body("<b>Part 2: Basic Exception Handling (try-catch-finally)</b>")
+en.code_block(
     """
 // TryCatchFinallyDemo.java -- Demo try-catch-finally
 public class TryCatchFinallyDemo {
@@ -1646,8 +1646,8 @@ public class TryCatchFinallyDemo {
     lang="java",
 )
 
-pn.body("<b>Part 3: Multi-Catch and Try-With-Resources (Java 7+)</b>")
-pn.code_block(
+en.body("<b>Part 3: Multi-Catch and Try-With-Resources (Java 7+)</b>")
+en.code_block(
     """
 // ExceptionFeaturesDemo.java -- Multi-catch & Try-with-resources
 import java.io.*;
@@ -1674,9 +1674,9 @@ public class ExceptionFeaturesDemo {
     lang="java",
 )
 
-pn.section("Exception Propagation Flow")
-fc_exc = pd.Flowchart(
-    width=pn.CW,
+en.section("Exception Propagation Flow")
+fc_exc = ed.Flowchart(
+    width=en.CW,
     height=310,
     theme=diag_theme,
     caption="Fig 2.8: Exception propagation and catch block selection",
@@ -1705,22 +1705,22 @@ fc_exc.edge("finally_r", "resume")
 fc_exc.edge("propagate", "caller")
 fc_exc.edge("caller", "handle", branch="yes")
 fc_exc.edge("caller", "jvm", branch="no")
-pn.story.extend(fc_exc.as_flowable())
+en.story.extend(fc_exc.as_flowable())
 
-pn.tip(
+en.tip(
     "try: wraps risky code. catch: handles specific exception types. "
     "finally: ALWAYS runs (cleanup). throw: manually throw an exception. "
     "throws: declares that a method may propagate a checked exception. "
     "Unchecked (RuntimeException) need not be declared or caught."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.13  MULTITHREADING
 # =============================================================================
-pn.chap_box("2.13  Multithreading")
-pn.section("What is a Thread?")
-pn.definition(
+en.chap_box("2.13  Multithreading")
+en.section("What is a Thread?")
+en.definition(
     "<b>Thread:</b> The smallest unit of execution within a process. A Java program "
     "starts with one thread -- the <b>main thread</b> -- which runs the <code>main()</code> "
     "method. Creating additional threads allows the program to perform concurrent tasks. "
@@ -1729,8 +1729,8 @@ pn.definition(
     "<code>java.lang.Thread</code> class and the <code>java.lang.Runnable</code> interface."
 )
 
-pn.section("Two Ways to Create a Thread")
-pn.info_table(
+en.section("Two Ways to Create a Thread")
+en.info_table(
     ["Method", "How", "When to Use", "Limitation"],
     [
         [
@@ -1748,8 +1748,8 @@ pn.info_table(
     ],
 )
 
-pn.body("<b>Method 1: Extending the Thread Class</b>")
-pn.code_block(
+en.body("<b>Method 1: Extending the Thread Class</b>")
+en.code_block(
     """
 // CounterThread.java -- Extending Thread class
 class CounterThread extends Thread {
@@ -1781,8 +1781,8 @@ class CounterThread extends Thread {
     lang="java",
 )
 
-pn.body("<b>Method 2: Implementing the Runnable Interface (Preferred)</b>")
-pn.code_block(
+en.body("<b>Method 2: Implementing the Runnable Interface (Preferred)</b>")
+en.code_block(
     """
 // PrintTask.java -- Implementing Runnable interface
 class PrintTask implements Runnable {
@@ -1810,8 +1810,8 @@ class PrintTask implements Runnable {
     lang="java",
 )
 
-pn.body("<b>Driver Execution: Starting and Joining Threads</b>")
-pn.code_block(
+en.body("<b>Driver Execution: Starting and Joining Threads</b>")
+en.code_block(
     """
 // MultithreadingDemo.java -- Driver class
 public class MultithreadingDemo {
@@ -1842,10 +1842,10 @@ public class MultithreadingDemo {
     lang="java",
 )
 
-pn.section("Thread Lifecycle")
+en.section("Thread Lifecycle")
 
-sm_thread = pd.StateMachine(
-    width=pn.CW,
+sm_thread = ed.StateMachine(
+    width=en.CW,
     height=240,
     theme=diag_theme,
     caption="Fig 2.9: Java Thread State Lifecycle",
@@ -1866,10 +1866,10 @@ sm_thread.transition(
     "blocked", "runnable", label="sleep ends /\nnotify() /\nI/O done", pill=True
 )
 sm_thread.transition("running", "dead", label="run() returns /\nexception", pill=True)
-pn.story.extend(sm_thread.as_flowable())
+en.story.extend(sm_thread.as_flowable())
 
-pn.section("Synchronization -- Preventing Race Conditions")
-pn.definition(
+en.section("Synchronization -- Preventing Race Conditions")
+en.definition(
     "<b>Race Condition:</b> When two or more threads access shared data simultaneously and "
     "at least one of them modifies it, the result depends on the unpredictable order of "
     "thread execution. This leads to <b>data inconsistency</b>. "
@@ -1878,8 +1878,8 @@ pn.definition(
     "block on the same object at a time. Other threads must wait until the lock is released."
 )
 
-pn.body("<b>Part 1: Shared Resource with Synchronized Methods</b>")
-pn.code_block(
+en.body("<b>Part 1: Shared Resource with Synchronized Methods</b>")
+en.code_block(
     """
 // BankAccount.java -- Shared account structure showing lock synchronization
 class BankAccount {
@@ -1920,8 +1920,8 @@ class BankAccount {
     lang="java",
 )
 
-pn.body("<b>Part 2: Multi-Thread Access Driver Class</b>")
-pn.code_block(
+en.body("<b>Part 2: Multi-Thread Access Driver Class</b>")
+en.code_block(
     """
 // SynchronizationDemo.java -- Runnable thread task and driver execution
 class DepositThread implements Runnable {
@@ -1959,8 +1959,8 @@ public class SynchronizationDemo {
     lang="java",
 )
 
-pn.section("Inter-Thread Communication: wait() and notify()")
-pn.definition(
+en.section("Inter-Thread Communication: wait() and notify()")
+en.definition(
     "<b>Inter-thread Communication:</b> Allows threads to coordinate execution. "
     "Three methods defined in <code>Object</code> (not Thread) and usable only inside "
     "synchronized blocks: "
@@ -1970,7 +1970,7 @@ pn.definition(
     "<code>notifyAll()</code> -- wakes ALL threads waiting on this object's monitor."
 )
 
-pn.code_block(
+en.code_block(
     """
 // ProducerConsumerDemo.java -- Classic inter-thread communication pattern
 class SharedBuffer {
@@ -2030,8 +2030,8 @@ public class ProducerConsumerDemo {
     lang="java",
 )
 
-pn.section("Thread Priority and Daemon Threads")
-pn.info_table(
+en.section("Thread Priority and Daemon Threads")
+en.info_table(
     ["Concept", "Description", "API"],
     [
         [
@@ -2057,57 +2057,57 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  QUICK REVISION SUMMARY
 # =============================================================================
-pn.chap_box("Unit II -- Quick Revision Exam Flashcards")
-pn.section("Key Points by Topic")
+en.chap_box("Unit II -- Quick Revision Exam Flashcards")
+en.section("Key Points by Topic")
 
-pn.highlight(
+en.highlight(
     "<b>Q: What is the difference between method overloading and method overriding?</b><br/>"
     "A: Overloading: same class, same name, different parameters -- resolved at compile time (static polymorphism). "
     "Overriding: subclass redefines parent's method with identical signature -- resolved at runtime (dynamic polymorphism)."
 )
-pn.highlight(
+en.highlight(
     "<b>Q: What is the role of the super keyword?</b><br/>"
     "A: Two uses: (1) <code>super.method()</code> -- calls the overridden method from the parent class. "
     "(2) <code>super(args)</code> -- calls the parent class constructor. super() must be the first statement "
     "in a constructor."
 )
-pn.highlight(
+en.highlight(
     "<b>Q: What is the difference between an abstract class and an interface?</b><br/>"
     "A: Abstract class can have instance variables, constructors, and concrete methods; "
     "only single inheritance. Interface has only constants and abstract methods (prior Java 8); "
     "a class can implement multiple interfaces."
 )
-pn.highlight(
+en.highlight(
     "<b>Q: Checked vs unchecked exceptions?</b><br/>"
     "A: Checked (IOException, SQLException) must be caught or declared -- compiler enforces. "
     "Unchecked (NullPointerException, ArrayIndexOutOfBoundsException) are programming bugs -- "
     "compiler does not require handling. Both extend Throwable via Exception."
 )
-pn.highlight(
+en.highlight(
     "<b>Q: What happens if you call run() instead of start()?</b><br/>"
     "A: Calling run() directly executes the run() body in the CURRENT thread -- no new thread is created. "
     "Only start() creates a new OS thread and invokes run() concurrently."
 )
-pn.highlight(
+en.highlight(
     "<b>Q: What is synchronization and why is it needed?</b><br/>"
     "A: When multiple threads access shared mutable data, a race condition can produce inconsistent results. "
     "Synchronized methods/blocks use a mutex (monitor lock) so only one thread executes them at a time on a given object, "
     "ensuring thread safety."
 )
-pn.highlight(
+en.highlight(
     "<b>Q: What does finally always do?</b><br/>"
     "A: The finally block ALWAYS executes -- whether an exception is thrown or not, "
     "whether it is caught or not. The only exception: System.exit() or JVM crash. "
     "Used for mandatory cleanup (close files, DB connections, release locks)."
 )
 
-pn.section("Unit II Exam Blueprint")
-pn.info_table(
+en.section("Unit II Exam Blueprint")
+en.info_table(
     ["Marks", "Expected Questions"],
     [
         [
@@ -2125,7 +2125,7 @@ pn.info_table(
     ],
 )
 
-pn.note(
+en.note(
     "Practice writing: (1) a full inheritance chain with super, (2) a try-catch-finally with custom exception, "
     "(3) a thread using Runnable with synchronized method. These are the most frequently asked 10-mark questions."
 )
@@ -2133,5 +2133,5 @@ pn.note(
 # =============================================================================
 #  BUILD DOCUMENT
 # =============================================================================
-pn.build_doc("Java_Unit2_Notes.pdf")
+en.build_doc("Java_Unit2_Notes.pdf")
 print("Generated: Java_Unit2_Notes.pdf")

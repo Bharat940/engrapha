@@ -18,9 +18,9 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-import paperforge_diagrams as pd
-import paperforge_notes as pn
-from paperforge_notes import (
+import engrapha_diagrams as ed
+import engrapha_notes as en
+from engrapha_notes import (
     COVER_H1,
     COVER_H2,
     COVER_SUB,
@@ -55,22 +55,22 @@ for arg in sys.argv[1:]:
         theme_name = "light"
 
 theme_map = {
-    "dark": pn.DARK,
-    "light": pn.LIGHT,
-    "ocean_dark": pn.OCEAN_DARK,
-    "forest_dark": pn.FOREST_DARK,
-    "sunset_dark": pn.SUNSET_DARK,
-    "midnight_dark": pn.MIDNIGHT_DARK,
-    "ocean_light": pn.OCEAN_LIGHT,
-    "sepia": pn.SEPIA,
+    "dark": en.DARK,
+    "light": en.LIGHT,
+    "ocean_dark": en.OCEAN_DARK,
+    "forest_dark": en.FOREST_DARK,
+    "sunset_dark": en.SUNSET_DARK,
+    "midnight_dark": en.MIDNIGHT_DARK,
+    "ocean_light": en.OCEAN_LIGHT,
+    "sepia": en.SEPIA,
 }
 
-active_theme = theme_map.get(theme_name, pn.MIDNIGHT_DARK)
-pn.set_story([])
-pn.set_theme(active_theme)
+active_theme = theme_map.get(theme_name, en.MIDNIGHT_DARK)
+en.set_story([])
+en.set_theme(active_theme)
 print(f"Using theme: {active_theme.name}")
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 
 # =============================================================================
@@ -92,7 +92,7 @@ def intersect_segments(p1, p2, p3, p4):
 
 
 def clip_polygon(poly_points, cx, cy, tx, ty):
-    from paperforge_diagrams.layout import edge_clip_rect
+    from engrapha_diagrams.layout import edge_clip_rect
 
     p1 = (cx, cy)
     p2 = (tx, ty)
@@ -155,7 +155,7 @@ def clip_input(cx, cy, w, h, tx, ty):
 
 
 def draw_alu(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     pts = [
         cx - w / 2,
@@ -177,7 +177,7 @@ def draw_alu(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_register(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     diag._add(
         S.rounded_rect(
@@ -205,7 +205,7 @@ def clip_none(cx, cy, w, h, tx, ty):
 
 
 def draw_fa_labeled(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     W = 70.0
     H = 50.0
@@ -246,7 +246,7 @@ def draw_fa_labeled(diag, cx, cy, w, h, fill, stroke):
 
 
 def clip_fa_custom(cx, cy, w, h, tx, ty):
-    from paperforge_diagrams.layout import edge_clip_rect
+    from engrapha_diagrams.layout import edge_clip_rect
 
     W = 70.0
     H = 50.0
@@ -254,7 +254,7 @@ def clip_fa_custom(cx, cy, w, h, tx, ty):
 
 
 def draw_block_80x40(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     diag._add(
         S.rounded_rect(
@@ -271,13 +271,13 @@ def draw_block_80x40(diag, cx, cy, w, h, fill, stroke):
 
 
 def clip_block_80x40(cx, cy, w, h, tx, ty):
-    from paperforge_diagrams.layout import edge_clip_rect
+    from engrapha_diagrams.layout import edge_clip_rect
 
     return edge_clip_rect(cx, cy, 80.0, 40.0, tx, ty)
 
 
 def draw_cu(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     diag._add(
         S.rounded_rect(
@@ -302,7 +302,7 @@ def draw_cu(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_mux_labeled(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
     W = 70.0
     H = 60.0
     pts = [
@@ -359,7 +359,7 @@ def draw_mux_labeled(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_input(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     diag._add(
         S.parallelogram(
@@ -383,7 +383,7 @@ def draw_input(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_output(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     diag._add(
         S.rounded_rect(
@@ -417,7 +417,7 @@ def draw_output(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_register_swap(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
     mid_x = CW / 2
     r1_cx = mid_x - 90
     r2_cx = mid_x + 90
@@ -498,7 +498,7 @@ def draw_register_swap(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_associative_mapping(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
     mid_x = CW / 2
 
     # CPU Address fields
@@ -556,7 +556,7 @@ def draw_associative_mapping(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_daisy_chain(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     # We will draw within a canvas of width CW and height 130
     mid_y = 65
@@ -634,7 +634,7 @@ def draw_daisy_chain(diag, cx, cy, w, h, fill, stroke):
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
+en.bookmark("Cover Page")
 sp(20)
 t = Table(
     [
@@ -739,7 +739,7 @@ bullet(
 )
 
 section("Von Neumann Subsystems Diagram")
-net_vn = pd.NetworkDiagram(
+net_vn = ed.NetworkDiagram(
     width=CW,
     height=240,
     theme=diag_theme,
@@ -828,7 +828,7 @@ bullet(
 )
 
 section("Instruction Cycle Flowchart")
-fc_fde = pd.Flowchart(
+fc_fde = ed.Flowchart(
     width=CW,
     height=280,
     theme=diag_theme,
@@ -920,7 +920,7 @@ bullet(
 )
 
 section("Register Swap Hardware Schematic Block Diagram")
-net_swap = pd.NetworkDiagram(
+net_swap = ed.NetworkDiagram(
     width=CW,
     height=170,
     theme=diag_theme,
@@ -969,7 +969,7 @@ bullet(
 )
 
 section("Hardware Control Logic Schematic Diagram")
-net_ctrl = pd.NetworkDiagram(
+net_ctrl = ed.NetworkDiagram(
     width=CW,
     height=190,
     theme=diag_theme,
@@ -1109,7 +1109,7 @@ info_table(
 )
 
 section("Arithmetic Circuit Stage Diagram")
-net_arith = pd.NetworkDiagram(
+net_arith = ed.NetworkDiagram(
     width=CW,
     height=200,
     theme=diag_theme,
@@ -2199,7 +2199,7 @@ body(
 )
 
 section("Daisy Chain Priority Interrupt Schematic")
-net_daisy = pd.NetworkDiagram(
+net_daisy = ed.NetworkDiagram(
     width=CW,
     height=130,
     theme=diag_theme,
@@ -2337,7 +2337,7 @@ sp(10)
 
 # -- Q3 (d) 2024 --
 chap_box(
-    "Q3. d) What do you mean by reverse Polish notation? Convert the following arithmetic expressions from infix to RPN.\n A*B+C*D+E*F\n[10 Marks] (June 2024)"
+    "Q3. d) What do you mean by reverse Polish notation? Convert the following arithmetic expressions from infix to Ren.\n A*B+C*D+E*F\n[10 Marks] (June 2024)"
 )
 section("Reverse Polish Notation (RPN)")
 definition(
@@ -2404,7 +2404,7 @@ bullet(
 )
 
 section("DMA System Architecture Block Diagram")
-net_dma = pd.NetworkDiagram(
+net_dma = ed.NetworkDiagram(
     width=CW,
     height=190,
     theme=diag_theme,
@@ -2639,7 +2639,7 @@ bullet(
 )
 
 section("Memory Hierarchy Pyramid")
-stack_mem = pd.LayeredStack(
+stack_mem = ed.LayeredStack(
     width=CW * 0.7,
     height=160,
     theme=diag_theme,
@@ -2880,7 +2880,7 @@ bullet(
 )
 
 section("Associative Cache Mapping Architecture Block Diagram")
-net_assoc = pd.NetworkDiagram(
+net_assoc = ed.NetworkDiagram(
     width=CW,
     height=200,
     theme=diag_theme,
@@ -3056,7 +3056,7 @@ def draw_spacetime_table():
     from reportlab.lib.enums import TA_CENTER
     from reportlab.lib.styles import ParagraphStyle
 
-    t_theme = pn.get_theme()
+    t_theme = en.get_theme()
 
     th = ParagraphStyle(
         "ST_Header",
@@ -3245,7 +3245,7 @@ sp(6)
 add(
     Paragraph(
         "Computer Architecture IT-404 PYQ 2022, 2023 &amp; 2024 Solutions  |  UIT-RGPV (Autonomous) Bhopal",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
 

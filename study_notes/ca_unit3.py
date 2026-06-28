@@ -8,25 +8,25 @@ Output: CA_Unit3_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 from reportlab.platypus import Paragraph, Table, TableStyle
-from paperforge_diagrams import ResponsiveDrawingFlowable
+from engrapha_diagrams import ResponsiveDrawingFlowable
 
 # =============================================================================
 #  THEME SETUP
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.SUNSET_DARK)
+en.set_story([])
+en.set_theme(en.SUNSET_DARK)
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 
 # =============================================================================
 #  CUSTOM NODE DRAWERS (reused across diagrams)
 # =============================================================================
 def draw_register(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     diag._add(
         S.rounded_rect(
@@ -46,7 +46,7 @@ def draw_register(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_cu(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     diag._add(
         S.rounded_rect(
@@ -71,7 +71,7 @@ def draw_cu(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_flags(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     diag._add(
         S.rounded_rect(
@@ -107,42 +107,42 @@ def draw_flags(diag, cx, cy, w, h, fill, stroke):
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(14)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(14)
 t = Table(
     [
-        [Paragraph("COMPUTER ARCHITECTURE", pn.COVER_H1)],
-        [Paragraph("Unit III -- Complete Exam Notes", pn.COVER_H2)],
+        [Paragraph("COMPUTER ARCHITECTURE", en.COVER_H1)],
+        [Paragraph("Unit III -- Complete Exam Notes", en.COVER_H2)],
     ],
-    colWidths=[pn.CW],
+    colWidths=[en.CW],
 )
 t.setStyle(
     TableStyle(
         [
-            ("BACKGROUND", (0, 0), (-1, -1), pn.get_theme().rl(pn.get_theme().surface)),
+            ("BACKGROUND", (0, 0), (-1, -1), en.get_theme().rl(en.get_theme().surface)),
             ("TOPPADDING", (0, 0), (-1, -1), 16),
             ("BOTTOMPADDING", (0, 0), (-1, -1), 16),
             ("LEFTPADDING", (0, 0), (-1, -1), 20),
             ("RIGHTPADDING", (0, 0), (-1, -1), 20),
-            ("BOX", (0, 0), (-1, -1), 2.5, pn.get_theme().rl(pn.get_theme().accent)),
+            ("BOX", (0, 0), (-1, -1), 2.5, en.get_theme().rl(en.get_theme().accent)),
         ]
     )
 )
-pn.add(t)
-pn.sp(8)
-pn.add(
+en.add(t)
+en.sp(8)
+en.add(
     Paragraph(
         "Prepared by: Bharat Dangi  |  Subject Code: IT-404  |  UIT-RGPV (Autonomous) Bhopal",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
-pn.add(Paragraph("Semester IV  |  Based on University Syllabus 2024-25", pn.COVER_SUB))
-pn.sp(6)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(4)
+en.add(Paragraph("Semester IV  |  Based on University Syllabus 2024-25", en.COVER_SUB))
+en.sp(6)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(4)
 
-pn.info_table(
+en.info_table(
     ["Topic", "Coverage"],
     [
         ["3.1 CPU Organization", "Program sequencing, instruction execution overview"],
@@ -180,29 +180,29 @@ pn.info_table(
         ["3.16 Quick Revision Summary", "Key formulas, tables, and exam flashcards"],
     ],
 )
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  UNIT DIVIDER
 # =============================================================================
-pn.footer(left="IT-404: Computer Architecture", right="Unit III Notes", show_page_num=True)
-pn.part_box("UNIT III -- CPU, INSTRUCTION FORMATS, I/O AND INTERRUPTS")
+en.footer(left="IT-404: Computer Architecture", right="Unit III Notes", show_page_num=True)
+en.part_box("UNIT III -- CPU, INSTRUCTION FORMATS, I/O AND INTERRUPTS")
 
 # =============================================================================
 #  3.1  CPU ORGANIZATION
 # =============================================================================
-pn.chap_box("3.1  CPU Organization")
-pn.section("Overview")
-pn.definition(
+en.chap_box("3.1  CPU Organization")
+en.section("Overview")
+en.definition(
     "<b>CPU (Central Processing Unit):</b> The part of the computer that performs the "
     "bulk of data-processing operations. The CPU is made up of three major parts:<br/>"
     "1. <b>Register Set:</b> Stores intermediate data used during the execution of instructions.<br/>"
     "2. <b>Arithmetic Logic Unit (ALU):</b> Performs the required arithmetic and logic micro-operations for executing instructions.<br/>"
     "3. <b>Control Unit (CU):</b> Supervises the transfer of information among the registers and instructs the ALU as to which operation to perform."
 )
-pn.body(
+en.body(
     "Beyond the basic fetch-decode-execute cycle covered in Unit I, the CPU must "
     "also handle <b>interrupts</b> (external events that divert normal program flow), "
     "<b>stack operations</b> for subroutine calls and expression evaluation, and "
@@ -210,8 +210,8 @@ pn.body(
 )
 
 # CPU Major Parts block diagram (matching Fig 8-1 in notes)
-net_cpu = pd.NetworkDiagram(
-    width=pn.CW,
+net_cpu = ed.NetworkDiagram(
+    width=en.CW,
     height=220,
     theme=diag_theme,
     caption="Fig 1a: Major Components of the CPU (Register Set, ALU, and Control Unit)",
@@ -226,11 +226,11 @@ net_cpu.link("registers", "cu", label="Status/Data")
 net_cpu.link("cu", "alu", label="Control lines")
 net_cpu.link("registers", "bus", label="")
 net_cpu.link("cu", "bus", label="Bus control")
-pn.story.extend(net_cpu.as_flowable())
-pn.sp(8)
+en.story.extend(net_cpu.as_flowable())
+en.sp(8)
 
-pn.section("Program Sequencing")
-pn.bullet(
+en.section("Program Sequencing")
+en.bullet(
     [
         "<b>Sequential:</b> PC increments after each fetch (PC <- PC + 1 or +instruction length).",
         "<b>Branch/Jump:</b> PC is loaded with the target address on branch.",
@@ -240,8 +240,8 @@ pn.bullet(
 )
 
 # CPU fetch-execute state machine
-sm_cpu = pd.StateMachine(
-    width=pn.CW,
+sm_cpu = ed.StateMachine(
+    width=en.CW,
     height=200,
     theme=diag_theme,
     caption="Fig 1b: CPU instruction-cycle state machine",
@@ -255,21 +255,21 @@ sm_cpu.transition("decode", "execute", label="decode opcode")
 sm_cpu.transition("execute", "intr", label="complete op")
 sm_cpu.transition("intr", "fetch", label="no interrupt")
 sm_cpu.transition("intr", "fetch", label="service ISR")
-pn.story.extend(sm_cpu.as_flowable())
+en.story.extend(sm_cpu.as_flowable())
 
-pn.tip(
+en.tip(
     "CPU cycle: Fetch -> Decode -> Execute -> Interrupt Check -> Fetch. "
     "Interrupt check happens after every instruction. "
     "If interrupt pending and enabled: save PC/PSW, jump to ISR."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.2  STACK ORGANIZATION
 # =============================================================================
-pn.chap_box("3.2  Stack Organization")
-pn.section("What is a Stack?")
-pn.definition(
+en.chap_box("3.2  Stack Organization")
+en.section("What is a Stack?")
+en.definition(
     "<b>Stack:</b> A Last-In-First-Out (LIFO) storage device that stores information "
     "in such a manner that the item stored last is the first item retrieved. "
     "The operation of a stack can be compared to a stack of trays: the last tray placed "
@@ -277,14 +277,14 @@ pn.definition(
     "memory or registers, where the insertion/deletion of items is managed by "
     "incrementing or decrementing a <b>Stack Pointer (SP)</b> register that points to the top item."
 )
-pn.body(
+en.body(
     "Contrary to physical trays, the physical registers or memory locations of a computer stack "
     "are always available for reading and writing; it is simply the <i>content</i> of the words "
     "that is logically pushed or popped by updating the address in the SP register."
 )
 
-pn.section("Register Stack (64-Word Hardware Stack)")
-pn.body(
+en.section("Register Stack (64-Word Hardware Stack)")
+en.body(
     "A stack can be organized as a collection of a finite number of memory words or registers. "
     "For a <b>64-word register stack</b> (Fig 2a):<br/>"
     "• <b>Stack Pointer (SP):</b> Contains 6 bits (since 2<sup>6</sup> = 64) with address values from 0 to 63 (000000 to 111111 in binary).<br/>"
@@ -293,7 +293,7 @@ pn.body(
     "• <b>EMTY Register:</b> A 1-bit register set to 1 when the stack is empty of items.<br/>"
     "• <b>DR (Data Register):</b> Holds the binary data to be written into or read out of the stack."
 )
-pn.code_block("""
+en.code_block("""
  REGISTER STACK MICRO-OPERATIONS:
  ======================================================
  Initial: SP = 0, EMTY = 1, FULL = 0
@@ -315,8 +315,8 @@ pn.code_block("""
  Note: A push when FULL = 1 or a pop when EMTY = 1 results in an erroneous operation.
 """)
 
-pn.section("Memory Stack")
-pn.body(
+en.section("Memory Stack")
+en.body(
     "A memory stack is implemented in a portion of random-access memory (RAM) attached to the CPU, "
     "using a processor register as the Stack Pointer (SP). As shown in Fig 2b:<br/>"
     "• <b>Memory Partitioning:</b> The computer memory is partitioned into three segments: <i>Program</i> (pointed to by PC), "
@@ -326,7 +326,7 @@ pn.body(
     "• <b>Stack Limit Checking:</b> Two registers are used to hold the limits: one for the <i>upper limit</i> (3000 in this case) "
     "and one for the <i>lower limit</i> (4001). After a PUSH, SP is compared with the upper limit; after a POP, SP is compared with the lower limit to prevent overflow or underflow."
 )
-pn.code_block("""
+en.code_block("""
  MEMORY STACK MICRO-OPERATIONS (Grows Downward):
  ======================================================
  Initial: SP = 4001, Limit = 3000
@@ -341,8 +341,8 @@ pn.code_block("""
 """)
 
 # Stack visual diagrams (Fig 2a and Fig 2b side-by-side)
-reg_stack = pd.LayeredStack(
-    width=pn.CW * 0.44,
+reg_stack = ed.LayeredStack(
+    width=en.CW * 0.44,
     height=220,
     theme=diag_theme,
     caption="Fig 2a: 64-Word Register Stack (Grows Upward)",
@@ -354,8 +354,8 @@ reg_stack.layer("Location 2: Item B", sublabel="")
 reg_stack.layer("Location 1: Item A (First stored item)", sublabel="")
 reg_stack.layer("Location 0 (Initial: EMTY = 1)", sublabel="SP points here initially")
 
-mem_stack = pd.LayeredStack(
-    width=pn.CW * 0.44,
+mem_stack = ed.LayeredStack(
+    width=en.CW * 0.44,
     height=220,
     theme=diag_theme,
     caption="Fig 2b: Memory Stack (Grows Downward)",
@@ -377,7 +377,7 @@ tbl_stack = Table(
             ResponsiveDrawingFlowable(mem_stack.drawing),
         ]
     ],
-    colWidths=[pn.CW * 0.48, pn.CW * 0.48],
+    colWidths=[en.CW * 0.48, en.CW * 0.48],
 )
 tbl_stack.setStyle(
     TableStyle(
@@ -390,18 +390,18 @@ tbl_stack.setStyle(
         ]
     )
 )
-pn.add(tbl_stack)
-pn.sp(6)
-pn.add(
+en.add(tbl_stack)
+en.sp(6)
+en.add(
     Paragraph(
         "Fig 2a (left): 64-word Register Stack growing upward.  |  Fig 2b (right): Memory Stack growing downward in RAM.",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
-pn.sp(8)
+en.sp(8)
 
-pn.section("Key Stack Organization Points")
-pn.bullet(
+en.section("Key Stack Organization Points")
+en.bullet(
     [
         "<b>Stack Pointer (SP) points to Top of Stack:</b><br/>"
         "  - <i>Push:</i> First increment/decrement SP, then write to memory location.<br/>"
@@ -417,8 +417,8 @@ pn.bullet(
 )
 
 # Stack push/pop sequence diagram
-seq_stack = pd.SequenceDiagram(
-    width=pn.CW,
+seq_stack = ed.SequenceDiagram(
+    width=en.CW,
     height=220,
     theme=diag_theme,
     caption="Fig 2c: Stack PUSH and POP operations with subroutine call",
@@ -437,22 +437,22 @@ seq_stack.message("cpu", "mem", "R1 <- M[SP] (restore register)", arrow="dashed"
 seq_stack.message("cpu", "sp", "SP <- SP + 1", arrow="solid")
 seq_stack.message("cpu", "mem", "PC <- M[SP] (return address)", arrow="dashed")
 seq_stack.message("cpu", "sp", "SP <- SP + 1", arrow="solid")
-pn.story.extend(seq_stack.as_flowable())
+en.story.extend(seq_stack.as_flowable())
 
-pn.tip(
+en.tip(
     "Stack is LIFO. SP points to current TOP. "
     "Push: SP--, M[SP]=data. Pop: data=M[SP], SP++. "
     "Subroutine call: push PC, jump. Return: pop PC. "
     "Stack grows downward (toward lower addresses) in most architectures."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.3  REVERSE POLISH NOTATION (RPN)
 # =============================================================================
-pn.chap_box("3.3  Reverse Polish Notation (RPN / Postfix)")
-pn.section("What is RPN?")
-pn.definition(
+en.chap_box("3.3  Reverse Polish Notation (RPN / Postfix)")
+en.section("What is RPN?")
+en.definition(
     "<b>Reverse Polish Notation (Postfix Notation):</b> A mathematical notation in "
     "which every operator follows its operands. No parentheses are needed because "
     "the order of operations is unambiguous. RPN is directly executable on a stack "
@@ -460,7 +460,7 @@ pn.definition(
     "operands, computes the result, and pushes the result back."
 )
 
-pn.info_table(
+en.info_table(
     ["Notation", "Example", "How Parsed"],
     [
         [
@@ -477,8 +477,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Infix to Postfix Conversion")
-pn.code_block("""
+en.section("Infix to Postfix Conversion")
+en.code_block("""
  INFIX TO POSTFIX CONVERSION ALGORITHM:
  ======================================================
  Rules:
@@ -512,13 +512,13 @@ pn.code_block("""
  Result: A B + C * D E / -
 """)
 
-pn.section("Example 3: Postfix Evaluation of (3 * 4) + (5 * 6)")
-pn.body(
+en.section("Example 3: Postfix Evaluation of (3 * 4) + (5 * 6)")
+en.body(
     "<b>Arithmetic Expression:</b> (3 * 4) + (5 * 6)<br/>"
     "<b>Reverse Polish Notation (RPN):</b> 3 4 * 5 6 * +<br/>"
     "Scanning this RPN expression from left to right yields the following stack operations:"
 )
-pn.code_block("""
+en.code_block("""
  STEP-BY-STEP STACK TRACE FOR: 3 4 * 5 6 * +
  ======================================================
  Token | Action                                 | Stack (TOS on right)
@@ -534,13 +534,13 @@ pn.code_block("""
  Final result: 42 (remains on top of the stack)
 """)
 
-pn.section("Example 5: Evaluation of (3 + 4) * [ 10 * ( 2 + 6 ) + 8 ]")
-pn.body(
+en.section("Example 5: Evaluation of (3 + 4) * [ 10 * ( 2 + 6 ) + 8 ]")
+en.body(
     "Let us convert this complex expression to postfix and trace its evaluation using a stack:<br/>"
     "• <b>Infix:</b> (3 + 4) * [ 10 * ( 2 + 6 ) + 8 ]<br/>"
     "• <b>RPN:</b> 3 4 + 10 2 6 + * 8 + *"
 )
-pn.info_table(
+en.info_table(
     ["Token", "Action / Operation", "Stack State (TOS on right)", "Intermediate Result"],
     [
         ["3", "PUSH operand 3", "[3]", ""],
@@ -556,11 +556,11 @@ pn.info_table(
         ["*", "POP 88, 7; Compute 7 * 88 = 616; PUSH 616", "[616]", "616"],
     ],
 )
-pn.sp(6)
+en.sp(6)
 
 # RPN flowchart
-fc_rpn = pd.Flowchart(
-    width=pn.CW,
+fc_rpn = ed.Flowchart(
+    width=en.CW,
     height=280,
     theme=diag_theme,
     caption="Fig 3: Postfix (RPN) expression evaluation using a stack",
@@ -587,21 +587,21 @@ fc_rpn.edge("pop2", "compute")
 fc_rpn.edge("compute", "push_r")
 fc_rpn.edge("push_r", "read", orthogonal=True)
 fc_rpn.edge("result", "done")
-pn.story.extend(fc_rpn.as_flowable())
+en.story.extend(fc_rpn.as_flowable())
 
-pn.tip(
+en.tip(
     "RPN (postfix): operators follow operands. No parentheses needed. "
     "Evaluate with stack: operand -> PUSH, operator -> POP 2, compute, PUSH result. "
     "Stack machines (Java JVM, HP calculators, Forth) use RPN natively."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.4  INSTRUCTION FORMATS
 # =============================================================================
-pn.chap_box("3.4  Instruction Formats")
-pn.section("What is an Instruction Format?")
-pn.definition(
+en.chap_box("3.4  Instruction Formats")
+en.section("What is an Instruction Format?")
+en.definition(
     "<b>Instruction Format:</b> The binary layout of a machine instruction -- "
     "how many bits are devoted to the opcode, addressing mode, and operand fields. "
     "The format determines the power of each instruction, the size of addressable "
@@ -609,8 +609,8 @@ pn.definition(
     "word length, addressing range, and hardware complexity."
 )
 
-pn.section("General Instruction Word Layout")
-pn.frame_format(
+en.section("General Instruction Word Layout")
+en.frame_format(
     "Generic Instruction Word (16-bit example)",
     [
         ("OPCODE", "4-6 bits"),
@@ -618,15 +618,15 @@ pn.frame_format(
         ("OPERAND / ADDRESS", "remaining bits"),
     ],
 )
-pn.body(
+en.body(
     "The <b>opcode</b> identifies the operation (ADD, LOAD, BRANCH, etc.). "
     "The <b>mode field</b> specifies the addressing mode (immediate, direct, "
     "indirect, register, etc.). The <b>operand/address field</b> provides the "
     "data value or memory address needed for the operation."
 )
 
-pn.section("Types of Instruction Formats by Number of Addresses")
-pn.info_table(
+en.section("Types of Instruction Formats by Number of Addresses")
+en.info_table(
     ["Format", "Fields", "Registers/Memory Accesses", "Code Density", "Typical ISA"],
     [
         [
@@ -659,26 +659,26 @@ pn.info_table(
         ],
     ],
 )
-pn.tip(
+en.tip(
     "More addresses per instruction = more work per instruction but larger instruction word. "
     "RISC typically uses three-address instructions with fixed-length 32-bit words. "
     "CISC may use 0, 1, 2, or 3 addresses in variable-length instructions."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.5  ZERO-ADDRESS INSTRUCTIONS
 # =============================================================================
-pn.chap_box("3.5  Zero-Address Instructions")
-pn.section("Concept")
-pn.definition(
+en.chap_box("3.5  Zero-Address Instructions")
+en.section("Concept")
+en.definition(
     "<b>Zero-Address Instructions:</b> Instructions that contain only an opcode -- "
     "no explicit operand address. Both operands are implicitly on the top of the "
     "stack. The CPU always operates on the stack top (TOS) and the element below it "
     "(NOS -- Next on Stack). Used in pure stack-based (zero-address) architectures."
 )
 
-pn.code_block("""
+en.code_block("""
  ZERO-ADDRESS INSTRUCTION SET EXAMPLE (Stack Machine):
  ======================================================
  Instructions: PUSH addr, POP addr, ADD, SUB, MUL, DIV, NOT
@@ -702,26 +702,26 @@ pn.code_block("""
  No address fields in arithmetic instructions (ADD, MUL) -- just opcode!
 """)
 
-pn.tip(
+en.tip(
     "Zero-address machines use a hardware stack for all computation. "
     "PUSH and POP move data between memory and stack. "
     "Arithmetic instructions (ADD, SUB, MUL) have NO address field. "
     "Used in Java Virtual Machine (JVM) and HP scientific calculators."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.6  ONE-ADDRESS INSTRUCTIONS
 # =============================================================================
-pn.chap_box("3.6  One-Address Instructions")
-pn.section("Concept")
-pn.definition(
+en.chap_box("3.6  One-Address Instructions")
+en.section("Concept")
+en.definition(
     "<b>One-Address Instructions:</b> Instructions that contain the opcode and "
     "one explicit operand address. The second operand is always the "
     "<b>Accumulator (AC)</b> -- a dedicated CPU register. Results are always "
     "placed back in the AC. Also called <b>Accumulator-Based</b> architecture."
 )
-pn.code_block("""
+en.code_block("""
  ONE-ADDRESS INSTRUCTION SET EXAMPLE (Accumulator Machine):
  ======================================================
  Instructions: LOAD addr, STORE addr, ADD addr, SUB addr, MUL addr, DIV addr
@@ -742,26 +742,26 @@ pn.code_block("""
  AC is the implicit destination for all arithmetic.
 """)
 
-pn.tip(
+en.tip(
     "One-address: AC is always the implicit operand and destination. "
     "Requires STORE/LOAD for temporary values (like T). "
     "More instructions needed than two/three-address. "
     "Classic examples: Intel 8080, MOS 6502."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.7  TWO-ADDRESS INSTRUCTIONS
 # =============================================================================
-pn.chap_box("3.7  Two-Address Instructions")
-pn.section("Concept")
-pn.definition(
+en.chap_box("3.7  Two-Address Instructions")
+en.section("Concept")
+en.definition(
     "<b>Two-Address Instructions:</b> Instructions that contain the opcode and "
     "two operand addresses. One address is the source, and the other is both the "
     "second source AND the destination (the result overwrites one source operand). "
     "This is the format used by Intel x86 for most arithmetic and logic operations."
 )
-pn.code_block("""
+en.code_block("""
  TWO-ADDRESS INSTRUCTION FORMAT:
  ======================================================
  Format: OPCODE  Dest/Src1,  Src2
@@ -783,7 +783,7 @@ pn.code_block("""
            Must save values if needed again.
 """)
 
-pn.frame_format(
+en.frame_format(
     "Two-Address Instruction Word (16-bit example)",
     [
         ("OPCODE (4b)", "4 bits"),
@@ -792,25 +792,25 @@ pn.frame_format(
         ("MODE (4b)", "4 bits"),
     ],
 )
-pn.tip(
+en.tip(
     "Two-address: result overwrites one source (Dest <- Dest op Src). "
     "x86 family uses this format (e.g., ADD EAX, EBX means EAX = EAX + EBX). "
     "Need extra MOV instructions to preserve operands before overwriting."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.8  THREE-ADDRESS INSTRUCTIONS
 # =============================================================================
-pn.chap_box("3.8  Three-Address Instructions")
-pn.section("Concept")
-pn.definition(
+en.chap_box("3.8  Three-Address Instructions")
+en.section("Concept")
+en.definition(
     "<b>Three-Address Instructions:</b> Instructions that contain the opcode and "
     "three operand addresses -- two source operands and one distinct destination. "
     "No source is destroyed. This allows maximum flexibility and is the format "
     "used by RISC architectures (MIPS, ARM, RISC-V)."
 )
-pn.code_block("""
+en.code_block("""
  THREE-ADDRESS INSTRUCTION FORMAT:
  ======================================================
  Format: OPCODE  Dest,  Src1,  Src2
@@ -831,7 +831,7 @@ pn.code_block("""
    MIPS and ARM use fixed 32-bit instructions with 3 register fields.
 """)
 
-pn.frame_format(
+en.frame_format(
     "Three-Address RISC Instruction Word (32-bit)",
     [
         ("OPCODE (6b)", "6 bits"),
@@ -842,8 +842,8 @@ pn.frame_format(
     ],
 )
 
-pn.section("Comparison of All Four Address Formats")
-pn.info_table(
+en.section("Comparison of All Four Address Formats")
+en.info_table(
     [
         "Format",
         "Instructions for (A+B)*(C+D)",
@@ -882,35 +882,35 @@ pn.info_table(
         ],
     ],
 )
-pn.tip(
+en.tip(
     "Three-address: fewest instructions, widest word. "
     "Two-address: x86 style, one source destroyed. "
     "One-address: accumulator style, many LOAD/STORE needed. "
     "Zero-address: stack machine, most compact per instruction but most instructions."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.9  RISC vs CISC
 # =============================================================================
-pn.chap_box("3.9  RISC vs CISC Characteristics")
-pn.section("Definitions")
-pn.definition(
+en.chap_box("3.9  RISC vs CISC Characteristics")
+en.section("Definitions")
+en.definition(
     "<b>RISC (Reduced Instruction Set Computer):</b> A CPU design philosophy that "
     "uses a small set of simple, fixed-length instructions that each execute in "
     "exactly one clock cycle (when pipelined). All computation is performed in "
     "registers. Only LOAD and STORE access memory."
 )
-pn.definition(
+en.definition(
     "<b>CISC (Complex Instruction Set Computer):</b> A CPU design philosophy that "
     "uses a large set of complex, variable-length instructions. A single instruction "
     "may perform multiple operations (e.g., multiply-accumulate, string move). "
     "Instructions can directly access memory operands."
 )
 
-pn.section("Major Characteristics")
-pn.subsection("RISC major characteristics")
-pn.bullet(
+en.section("Major Characteristics")
+en.subsection("RISC major characteristics")
+en.bullet(
     [
         "<b>Relatively few instructions:</b> Typically under 100 simple instructions.",
         "<b>Relatively few addressing modes:</b> Simplifies instruction decoding.",
@@ -921,8 +921,8 @@ pn.bullet(
         "<b>Hardwired control:</b> Hardwired control logic is preferred over microprogrammed control for speed."
     ]
 )
-pn.subsection("CISC major characteristics")
-pn.bullet(
+en.subsection("CISC major characteristics")
+en.bullet(
     [
         "<b>Large instruction set:</b> Typically from 100 to 250 instructions.",
         "<b>Specialized instructions:</b> Instructions that perform specialized tasks and are used infrequently.",
@@ -932,8 +932,8 @@ pn.bullet(
     ]
 )
 
-pn.section("CISC vs RISC Comparison Table")
-pn.info_table(
+en.section("CISC vs RISC Comparison Table")
+en.info_table(
     ["Characteristic", "RISC", "CISC"],
     [
         [
@@ -992,8 +992,8 @@ pn.info_table(
 )
 
 # RISC vs CISC pipeline diagram
-left_pipe = pd.LayeredStack(
-    width=pn.CW * 0.44,
+left_pipe = ed.LayeredStack(
+    width=en.CW * 0.44,
     height=200,
     theme=diag_theme,
     caption="RISC Pipeline (simple, efficient)",
@@ -1004,8 +1004,8 @@ left_pipe.layer("EX -- Execute", sublabel="ALU operation, registers only")
 left_pipe.layer("MEM -- Memory Access", sublabel="Only LOAD/STORE touch memory")
 left_pipe.layer("WB -- Write Back", sublabel="Result to register file")
 
-right_pipe = pd.LayeredStack(
-    width=pn.CW * 0.44,
+right_pipe = ed.LayeredStack(
+    width=en.CW * 0.44,
     height=200,
     theme=diag_theme,
     caption="CISC Pipeline (complex, variable)",
@@ -1026,7 +1026,7 @@ tbl_pipe = Table(
             ResponsiveDrawingFlowable(right_pipe.drawing),
         ]
     ],
-    colWidths=[pn.CW * 0.48, pn.CW * 0.48],
+    colWidths=[en.CW * 0.48, en.CW * 0.48],
 )
 tbl_pipe.setStyle(
     TableStyle(
@@ -1039,36 +1039,36 @@ tbl_pipe.setStyle(
         ]
     )
 )
-pn.add(tbl_pipe)
-pn.sp(6)
-pn.add(
+en.add(tbl_pipe)
+en.sp(6)
+en.add(
     Paragraph(
         "Fig 4 (left): RISC 5-stage pipeline (IF/ID/EX/MEM/WB).  |  Fig 4 (right): CISC variable pipeline with micro-op dispatch.",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
 
-pn.tip(
+en.tip(
     "RISC: fixed-length instructions, large register file, hardwired CU, pipelining-friendly. "
     "CISC: variable-length, few registers, microprogrammed CU, compact code. "
     "Modern x86 (Intel/AMD) internally translates CISC instructions to RISC-like micro-ops!"
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.10  ADDRESSING MODES
 # =============================================================================
-pn.chap_box("3.10  Addressing Modes")
-pn.section("What is an Addressing Mode?")
-pn.definition(
+en.chap_box("3.10  Addressing Modes")
+en.section("What is an Addressing Mode?")
+en.definition(
     "<b>Addressing Mode:</b> The method by which the CPU determines the effective "
     "address (EA) of the operand for an instruction. The EA is the actual memory "
     "address or register that holds the data. Different addressing modes provide "
     "flexibility for accessing arrays, stack frames, and program-relative data."
 )
 
-pn.section("All Major Addressing Modes")
-pn.info_table(
+en.section("All Major Addressing Modes")
+en.info_table(
     ["Mode", "Effective Address (EA) Formula", "Example Syntax", "Explanation / Use Case"],
     [
         [
@@ -1128,8 +1128,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Relative Addressing Mode Example")
-pn.body(
+en.section("Relative Addressing Mode Example")
+en.body(
     "<b>Relative Addressing Mode Example:</b><br/>"
     "Assume that the Program Counter (PC) contains the number <b>825</b> and the address part of the instruction "
     "contains the number <b>24</b>. During the fetch phase, the instruction at location 825 is read from memory, and the "
@@ -1137,8 +1137,8 @@ pn.body(
     "<b>EA = incremented PC + address part = 826 + 24 = 850</b>."
 )
 
-pn.section("Addressing Mode Examples (RTL)")
-pn.code_block("""
+en.section("Addressing Mode Examples (RTL)")
+en.code_block("""
  ADDRESSING MODE SUMMARY WITH EXAMPLES:
  ======================================================
  Instruction field: OPCODE | MODE | ADDRESS/OPERAND
@@ -1171,39 +1171,39 @@ pn.code_block("""
                    R1 <- M[R2 + 8]
 """)
 
-pn.tip(
+en.tip(
     "Know the EA formula for each mode. "
     "Immediate: no memory access, value in instruction. "
     "Direct: 1 memory access. Indirect: 2 memory accesses (pointer). "
     "Indexed: EA = base + index (used for arrays). "
     "PC-relative: used for branches (position-independent code)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.11  INSTRUCTION SET COMPLETENESS
 # =============================================================================
-pn.chap_box("3.11  Instruction Set Completeness")
-pn.section("Concept")
-pn.definition(
+en.chap_box("3.11  Instruction Set Completeness")
+en.section("Concept")
+en.definition(
     "<b>Instruction Set Completeness:</b> An instruction set is said to be complete "
     "if it contains a sufficient set of instructions in each basic category to allow "
     "the user to write programs for any computational task. Although computers differ "
     "in their addressing modes, the fundamental operations they support are highly standardized."
 )
-pn.body(
+en.body(
     "Most computer instructions fall into one of three basic categories:<br/>"
     "1. <b>Data Transfer Instructions:</b> Move data from one location to another without altering its content.<br/>"
     "2. <b>Data Manipulation Instructions:</b> Perform arithmetic, logical, or shift operations to process data.<br/>"
     "3. <b>Program Control Instructions:</b> Modify the Program Counter (PC) to alter the flow of execution."
 )
 
-pn.section("1. Data Transfer Instructions")
-pn.body(
+en.section("1. Data Transfer Instructions")
+en.body(
     "These instructions transfer data between memory and processor registers, between registers, "
     "or between registers and I/O devices. Table 8-5 lists typical data transfer instructions:"
 )
-pn.info_table(
+en.info_table(
     ["Instruction Name", "Mnemonic Mapped in Many ISAs", "Operation Description"],
     [
         ["Load", "LD / LDR", "Transfer word from memory to CPU register (e.g. AC)"],
@@ -1216,10 +1216,10 @@ pn.info_table(
         ["Pop", "POP", "Transfer word from top of memory stack to register"],
     ],
 )
-pn.sp(6)
+en.sp(6)
 
-pn.section("2. Data Manipulation Instructions")
-pn.body(
+en.section("2. Data Manipulation Instructions")
+en.body(
     "These instructions perform calculations and logic processing. They are divided into three types:<br/>"
     "• <b>Arithmetic Instructions:</b> The four basic operations are Addition, Subtraction, Multiplication, and Division. "
     "If multiplication/division are missing in hardware, they are implemented via software subroutines.<br/>"
@@ -1228,7 +1228,7 @@ pn.body(
     "• <b>Shift Instructions:</b> Shift bits left or right. Can be <i>logical shifts</i> (fill with 0s), "
     "<i>arithmetic shifts</i> (preserve sign bit on right shift), or <i>rotate-type shifts</i> (circular shifts)."
 )
-pn.info_table(
+en.info_table(
     ["Logical Operation", "Typical Mnemonic", "Operation Description"],
     [
         ["Clear", "CLR", "Replace all bits of the operand with 0's"],
@@ -1238,24 +1238,24 @@ pn.info_table(
         ["Logical XOR", "XOR", "Bitwise Exclusive OR; used to complement groups of bits"],
     ],
 )
-pn.sp(6)
+en.sp(6)
 
-pn.section("3. Program Control Instructions")
-pn.body(
+en.section("3. Program Control Instructions")
+en.body(
     "Program control instructions change the value of the Program Counter (PC) to break the "
     "sequential flow of execution. This provides decision-making capability and branching:<br/>"
     "• <b>Unconditional Branch / Jump:</b> Forces a branch to a specified memory address without checking any conditions.<br/>"
     "• <b>Conditional Branch / Jump:</b> Checks status flags (e.g. Zero, Sign, Carry, Overflow). If the condition is met, "
     "the PC is loaded with the target address. If the condition is not met, the PC remains unchanged and the next sequential instruction is executed."
 )
-pn.sp(8)
+en.sp(8)
 
 # =============================================================================
 #  3.12  MODES OF DATA TRANSFER
 # =============================================================================
-pn.chap_box("3.12  Modes of Data Transfer (I/O)")
-pn.section("Overview")
-pn.definition(
+en.chap_box("3.12  Modes of Data Transfer (I/O)")
+en.section("Overview")
+en.definition(
     "<b>Modes of Transfer:</b> The different methods by which data is transferred "
     "between the central computer (CPU/Memory) and external I/O devices. "
     "Data transfer to and from peripherals may be handled in one of three possible modes:<br/>"
@@ -1264,7 +1264,7 @@ pn.definition(
     "3. <b>Direct Memory Access (DMA):</b> Data is transferred directly between the peripheral and memory without CPU intervention."
 )
 
-pn.info_table(
+en.info_table(
     ["Mode", "How It Works", "CPU Involvement", "Speed", "Use Case"],
     [
         [
@@ -1290,10 +1290,10 @@ pn.info_table(
         ],
     ],
 )
-pn.sp(6)
+en.sp(6)
 
-pn.section("Programmed I/O Handshaking Protocol")
-pn.body(
+en.section("Programmed I/O Handshaking Protocol")
+en.body(
     "In the programmed I/O method, the I/O device has no direct access to memory. A transfer requires the CPU to execute "
     "instructions to move data first to a CPU register and then to memory. Below is the detailed handshake procedure "
     "for data transfer from a device into the CPU:<br/>"
@@ -1306,11 +1306,11 @@ pn.body(
     "5. <b>Handshake Reset:</b> Once the F flag is cleared, the interface disables the Data Accepted line, allowing the I/O device to "
     "send the next data byte."
 )
-pn.sp(6)
+en.sp(6)
 
 # I/O mode comparison sequence diagram
-seq_io = pd.SequenceDiagram(
-    width=pn.CW,
+seq_io = ed.SequenceDiagram(
+    width=en.CW,
     height=280,
     theme=diag_theme,
     caption="Fig 6: Three modes of I/O transfer -- polling, interrupt, and DMA",
@@ -1333,30 +1333,30 @@ seq_io.message(
 )
 seq_io.message("io", "mem", "DMA transfers data directly to memory", arrow="solid")
 seq_io.message("io", "cpu", "INTERRUPT: DMA complete", arrow="dashed")
-pn.story.extend(seq_io.as_flowable())
+en.story.extend(seq_io.as_flowable())
 
-pn.tip(
+en.tip(
     "Programmed I/O: CPU polls -- wastes CPU time. "
     "Interrupt-Driven: device signals CPU -- efficient for slow devices. "
     "DMA: controller moves data to/from memory -- CPU is free. "
     "Rule: use DMA for large fast transfers (disk, video); interrupt for slow devices."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.13  PRIORITY INTERRUPT AND DAISY CHAINING
 # =============================================================================
-pn.chap_box("3.13  Priority Interrupt and Daisy Chaining")
-pn.section("Interrupt Concept")
-pn.definition(
+en.chap_box("3.13  Priority Interrupt and Daisy Chaining")
+en.section("Interrupt Concept")
+en.definition(
     "<b>Interrupt:</b> A signal to the CPU from an external device (or software) "
     "indicating that it needs immediate attention. When an interrupt is accepted, "
     "the CPU suspends the current program, saves its state (PC, PSW), executes an "
     "<b>Interrupt Service Routine (ISR)</b>, then restores state and resumes."
 )
 
-pn.section("Types of Interrupts")
-pn.info_table(
+en.section("Types of Interrupts")
+en.info_table(
     ["Type", "Source", "Maskable?", "Examples"],
     [
         [
@@ -1386,15 +1386,15 @@ pn.info_table(
     ],
 )
 
-pn.section("Priority Interrupt -- Vectored Interrupts")
-pn.definition(
+en.section("Priority Interrupt -- Vectored Interrupts")
+en.definition(
     "<b>Vectored Interrupt:</b> Each interrupting device is assigned a unique "
     "<b>interrupt vector</b> -- the address of its ISR stored in an interrupt "
     "vector table. When a device interrupts, it places its vector number on the "
     "data bus and the CPU fetches the ISR address from the corresponding entry "
     "in the interrupt vector table. No software polling needed."
 )
-pn.code_block("""
+en.code_block("""
  INTERRUPT VECTOR TABLE EXAMPLE (x86 style):
  ======================================================
  Address   | Vector | ISR Description
@@ -1421,8 +1421,8 @@ pn.code_block("""
    9. ISR executes IRET: restores PC and PSW from stack.
 """)
 
-pn.section("Daisy Chaining (Serial Priority)")
-pn.definition(
+en.section("Daisy Chaining (Serial Priority)")
+en.definition(
     "<b>Daisy Chaining:</b> A hardware method for resolving multiple simultaneous "
     "interrupt requests. All devices share a common interrupt line (INTR). "
     "The CPU's interrupt acknowledge (INTA) signal is passed serially through all "
@@ -1431,8 +1431,8 @@ pn.definition(
     "higher priority."
 )
 
-net_daisy = pd.NetworkDiagram(
-    width=pn.CW,
+net_daisy = ed.NetworkDiagram(
+    width=en.CW,
     height=200,
     theme=diag_theme,
     caption="Fig 7: Daisy-chain interrupt priority -- INTA propagates through devices",
@@ -1450,9 +1450,9 @@ net_daisy.link("cpu", "intr_bus", label="INTR")
 net_daisy.link("dev1", "intr_bus")
 net_daisy.link("dev2", "intr_bus")
 net_daisy.link("dev3", "intr_bus")
-pn.story.extend(net_daisy.as_flowable())
+en.story.extend(net_daisy.as_flowable())
 
-pn.code_block("""
+en.code_block("""
  DAISY CHAIN OPERATION:
  ======================================================
  1. One or more devices assert the shared INTR line HIGH.
@@ -1477,20 +1477,20 @@ pn.code_block("""
    Propagation delay limits speed with many devices.
 """)
 
-pn.tip(
+en.tip(
     "Daisy chain: priority determined by position in chain (nearest CPU = highest). "
     "INTA passes through chain; first device with pending interrupt captures it. "
     "Alternative: parallel priority encoder (each device has dedicated interrupt line). "
     "Vectored interrupts: device places ISR address on bus (no software polling needed)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.14  DIRECT MEMORY ACCESS (DMA)
 # =============================================================================
-pn.chap_box("3.14  Direct Memory Access (DMA)")
-pn.section("DMA Overview")
-pn.definition(
+en.chap_box("3.14  Direct Memory Access (DMA)")
+en.section("DMA Overview")
+en.definition(
     "<b>DMA (Direct Memory Access):</b> A hardware mechanism that allows I/O "
     "devices to transfer data directly to or from main memory WITHOUT involving "
     "the CPU for each data word. The CPU programs the DMA controller with the "
@@ -1498,8 +1498,8 @@ pn.definition(
     "handles the transfer -- freeing the CPU to execute other instructions."
 )
 
-pn.section("DMA Controller Registers")
-pn.info_table(
+en.section("DMA Controller Registers")
+en.info_table(
     ["Register", "Contents", "Purpose"],
     [
         [
@@ -1525,8 +1525,8 @@ pn.info_table(
     ],
 )
 
-pn.section("DMA Transfer Modes")
-pn.info_table(
+en.section("DMA Transfer Modes")
+en.info_table(
     ["Mode", "How It Works", "CPU Impact", "Use Case"],
     [
         [
@@ -1550,9 +1550,9 @@ pn.info_table(
     ],
 )
 
-pn.section("DMA Transfer Flowchart")
-fc_dma = pd.Flowchart(
-    width=pn.CW,
+en.section("DMA Transfer Flowchart")
+fc_dma = ed.Flowchart(
+    width=en.CW,
     height=340,
     theme=diag_theme,
     caption="Fig 8: DMA transfer operation -- initialization and autonomous data movement",
@@ -1581,11 +1581,11 @@ fc_dma.edge("done", "intr", branch="yes")
 fc_dma.edge("done", "next", branch="no")
 fc_dma.edge("next", "req", orthogonal=True)
 fc_dma.edge("intr", "end")
-pn.story.extend(fc_dma.as_flowable())
+en.story.extend(fc_dma.as_flowable())
 
-pn.section("DMA Architecture")
-net_dma = pd.NetworkDiagram(
-    width=pn.CW,
+en.section("DMA Architecture")
+net_dma = ed.NetworkDiagram(
+    width=en.CW,
     height=260,
     theme=diag_theme,
     caption="Fig 9: DMA system architecture -- CPU, DMA controller, memory, and device",
@@ -1601,22 +1601,22 @@ net_dma.link("mem", "bus", label="")
 net_dma.link("cpu", "dma", label="Program & Interrupt")
 net_dma.link("device", "dma", label="Data Ready")
 net_dma.link("device", "mem", label="Direct Transfer (via DMA)")
-pn.story.extend(net_dma.as_flowable())
+en.story.extend(net_dma.as_flowable())
 
-pn.tip(
+en.tip(
     "DMA: CPU programs controller (address, count, mode), then steps aside. "
     "DMA arbitrates for bus and transfers data directly to/from memory. "
     "Interrupt CPU when done. Cycle stealing: 1 cycle at a time (less CPU impact). "
     "Burst mode: fastest but CPU locked out until done."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.15  INPUT-OUTPUT PROCESSOR (IOP)
 # =============================================================================
-pn.chap_box("3.15  Input-Output Processor (IOP)")
-pn.section("What is an IOP?")
-pn.definition(
+en.chap_box("3.15  Input-Output Processor (IOP)")
+en.section("What is an IOP?")
+en.definition(
     "<b>Input-Output Processor (IOP):</b> A specialized processor dedicated to "
     "handling I/O operations on behalf of the main CPU. Unlike a simple DMA "
     "controller (which only moves data), an IOP can execute a sequence of I/O "
@@ -1624,8 +1624,8 @@ pn.definition(
     "memory. The IOP operates autonomously, freeing the main CPU completely."
 )
 
-pn.section("IOP vs DMA Comparison")
-pn.info_table(
+en.section("IOP vs DMA Comparison")
+en.info_table(
     ["Feature", "DMA Controller", "I/O Processor (IOP)"],
     [
         [
@@ -1662,14 +1662,14 @@ pn.info_table(
     ],
 )
 
-pn.section("Channel Program")
-pn.definition(
+en.section("Channel Program")
+en.definition(
     "<b>Channel Program:</b> A sequence of I/O instructions (Channel Command Words -- CCW) "
     "stored in main memory that the IOP executes to perform a complete I/O operation. "
     "The CPU only sets up the pointer to the channel program, then resumes. "
     "The IOP fetches and executes CCWs autonomously."
 )
-pn.code_block("""
+en.code_block("""
  CHANNEL PROGRAM EXAMPLE (IBM 360 style):
  ======================================================
  Goal: Read one disk sector (512 bytes) into memory buffer at address 5000
@@ -1695,9 +1695,9 @@ pn.code_block("""
    Multiple IOPs can run simultaneously (parallel I/O).
 """)
 
-pn.section("IOP System Architecture")
-net_iop = pd.NetworkDiagram(
-    width=pn.CW,
+en.section("IOP System Architecture")
+net_iop = ed.NetworkDiagram(
+    width=en.CW,
     height=260,
     theme=diag_theme,
     caption="Fig 10: IOP system architecture -- main CPU, IOP, and I/O devices",
@@ -1716,24 +1716,24 @@ net_iop.link("iop", "mem", label="Fetch CCWs & Store Data")
 net_iop.link("iop", "dev1", label="I/O Bus")
 net_iop.link("iop", "dev2", label="I/O Bus")
 net_iop.link("iop", "dev3", label="I/O Bus")
-pn.story.extend(net_iop.as_flowable())
+en.story.extend(net_iop.as_flowable())
 
-pn.tip(
+en.tip(
     "IOP = smart DMA that executes I/O channel programs. "
     "CPU issues START I/O, then does other work. "
     "IOP fetches CCWs from memory and controls devices autonomously. "
     "Interrupt CPU only when the full I/O program (not just one transfer) completes. "
     "IBM mainframes use channel processors (IOP concept) extensively."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.16  QUICK REVISION SUMMARY
 # =============================================================================
-pn.part_box("UNIT III -- QUICK REVISION SUMMARY")
-pn.chap_box("Key Concepts at a Glance")
+en.part_box("UNIT III -- QUICK REVISION SUMMARY")
+en.chap_box("Key Concepts at a Glance")
 
-pn.info_table(
+en.info_table(
     ["Topic", "Key Point to Remember"],
     [
         [
@@ -1848,9 +1848,9 @@ pn.info_table(
     ],
 )
 
-pn.highlight(
+en.highlight(
     "<b>UNIT III EXAM BLUEPRINT:</b>  "
-    "2-mark: Define RPN. State PUSH/POP operations. Differentiate RISC and CISC. "
+    "2-mark: Define Ren. State PUSH/POP operations. Differentiate RISC and CISC. "
     "List addressing modes. Distinguish DMA and IOP.  "
     "5-mark: Convert infix to postfix and evaluate (show stack trace). "
     "Explain zero/one/two/three-address instructions with examples for (A+B)*(C+D). "
@@ -1862,20 +1862,20 @@ pn.highlight(
     "Compare RISC and CISC in detail with pipeline diagram.",
 )
 
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.0)
-pn.sp(6)
-pn.add(
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.0)
+en.sp(6)
+en.add(
     Paragraph(
         "Computer Architecture IT-404 Unit III -- Bharat Dangi  |  UIT-RGPV (Autonomous) Bhopal | Semester IV",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
 
 # =============================================================================
 #  BUILD PDF
 # =============================================================================
-pn.build_doc(
+en.build_doc(
     "CA_Unit3_Notes.pdf",
     title="Computer Architecture - Unit III Notes",
     author="Bharat Dangi",

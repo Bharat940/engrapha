@@ -8,17 +8,17 @@ Output: CA_Unit1_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 from reportlab.platypus import Paragraph, Table, TableStyle
 
 # =============================================================================
 #  THEME SETUP
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.CATPPUCCIN_MOCHA)
+en.set_story([])
+en.set_theme(en.CATPPUCCIN_MOCHA)
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 
 def intersect_segments(p1, p2, p3, p4):
@@ -37,7 +37,7 @@ def intersect_segments(p1, p2, p3, p4):
 
 
 def clip_polygon(poly_points, cx, cy, tx, ty):
-    from paperforge_diagrams.layout import edge_clip_rect
+    from engrapha_diagrams.layout import edge_clip_rect
 
     p1 = (cx, cy)
     p2 = (tx, ty)
@@ -105,7 +105,7 @@ def clip_input(cx, cy, w, h, tx, ty):
 #  CUSTOM CPU DIAGRAM NODE DRAWERS
 # =============================================================================
 def draw_alu(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     # V-notched ALU block
     pts = [
@@ -128,7 +128,7 @@ def draw_alu(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_register(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     # Rounded rectangle representing a register, split into 4 fields
     diag._add(
@@ -149,7 +149,7 @@ def draw_register(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_cu(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     # Control unit with a horizontal partition and decoder line patterns at the bottom
     diag._add(
@@ -175,7 +175,7 @@ def draw_cu(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_mux(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     # MUX is a trapezoid narrow at bottom
     pts = [
@@ -192,7 +192,7 @@ def draw_mux(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_flags(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     # Status flags register with Z, N, C, V cells
     diag._add(
@@ -228,7 +228,7 @@ def draw_flags(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_input(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     # Slanted keyboard shape
     diag._add(
@@ -253,7 +253,7 @@ def draw_input(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_output(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     # Monitor screen shape
     diag._add(
@@ -288,7 +288,7 @@ def draw_output(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_logic_unit(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     diag._add(
         S.rounded_rect(
@@ -313,7 +313,7 @@ def draw_logic_unit(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_shift_unit(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     diag._add(
         S.rounded_rect(
@@ -356,36 +356,36 @@ def draw_shift_unit(diag, cx, cy, w, h, fill, stroke):
 
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.sp(28)
+en.bookmark("Cover Page")
+en.sp(28)
 t = Table(
     [
-        [Paragraph("COMPUTER ARCHITECTURE", pn.COVER_H1)],
-        [Paragraph("Unit I -- Complete Exam Notes", pn.COVER_H2)],
+        [Paragraph("COMPUTER ARCHITECTURE", en.COVER_H1)],
+        [Paragraph("Unit I -- Complete Exam Notes", en.COVER_H2)],
     ],
-    colWidths=[pn.CW],
+    colWidths=[en.CW],
 )
 t.setStyle(
     TableStyle(
         [
-            ("BACKGROUND", (0, 0), (-1, -1), pn.get_theme().rl(pn.get_theme().surface)),
+            ("BACKGROUND", (0, 0), (-1, -1), en.get_theme().rl(en.get_theme().surface)),
             ("TOPPADDING", (0, 0), (-1, -1), 22),
             ("BOTTOMPADDING", (0, 0), (-1, -1), 22),
             ("LEFTPADDING", (0, 0), (-1, -1), 20),
             ("RIGHTPADDING", (0, 0), (-1, -1), 20),
-            ("BOX", (0, 0), (-1, -1), 2.5, pn.get_theme().rl(pn.get_theme().accent)),
+            ("BOX", (0, 0), (-1, -1), 2.5, en.get_theme().rl(en.get_theme().accent)),
         ]
     )
 )
-pn.add(t)
-pn.sp(14)
-pn.add(Paragraph("Prepared by: Bharat Dangi  |  Subject Code: IT-404  |  UIT-RGPV (Autonomous) Bhopal", pn.COVER_SUB))
-pn.add(Paragraph("Semester IV  |  Based on University Syllabus 2024-25", pn.COVER_SUB))
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(8)
+en.add(t)
+en.sp(14)
+en.add(Paragraph("Prepared by: Bharat Dangi  |  Subject Code: IT-404  |  UIT-RGPV (Autonomous) Bhopal", en.COVER_SUB))
+en.add(Paragraph("Semester IV  |  Based on University Syllabus 2024-25", en.COVER_SUB))
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(8)
 
-pn.info_table(
+en.info_table(
     ["Topic", "Coverage"],
     [
         [
@@ -414,27 +414,27 @@ pn.info_table(
         ["1.12 Quick Revision Summary", "Key formulas, tables, and exam flashcards"],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  UNIT DIVIDER
 # =============================================================================
-pn.part_box("UNIT I -- COMPUTER ARCHITECTURE FUNDAMENTALS")
+en.part_box("UNIT I -- COMPUTER ARCHITECTURE FUNDAMENTALS")
 
 # =============================================================================
 #  1.1  COMPUTER ARCHITECTURE vs ORGANIZATION
 # =============================================================================
-pn.chap_box("1.1  Computer Architecture vs. Computer Organization")
-pn.section("Definitions")
+en.chap_box("1.1  Computer Architecture vs. Computer Organization")
+en.section("Definitions")
 
-pn.definition(
+en.definition(
     "<b>Computer Architecture:</b> Refers to those attributes of a system that have "
     "a direct impact on the <b>logical execution of a program</b>. It describes the "
     "structure and behavior of the computer as seen by the programmer -- instruction "
     "set, number of bits used for data, I/O mechanisms, and addressing techniques. "
     "Architecture is <i>what</i> the computer does."
 )
-pn.definition(
+en.definition(
     "<b>Computer Organization:</b> Refers to the <b>operational units and their "
     "interconnections</b> that realize the architectural specifications. It deals with "
     "hardware implementation details that are transparent to the programmer -- control "
@@ -442,8 +442,8 @@ pn.definition(
     "Organization is <i>how</i> the computer does it."
 )
 
-pn.section("Key Differences")
-pn.info_table(
+en.section("Key Differences")
+en.info_table(
     ["Aspect", "Computer Architecture", "Computer Organization"],
     [
         [
@@ -475,32 +475,32 @@ pn.info_table(
     ],
 )
 
-pn.body(
+en.body(
     "Two machines may have the <b>same architecture</b> (same ISA) but different "
     "organizations. For example, all x86-compatible processors share the same "
     "architecture but differ vastly in their internal organization (pipeline depth, "
     "cache size, clock frequency). This is the IBM compatibility story -- the ISA "
     "remained stable across generations while the organization evolved."
 )
-pn.tip(
+en.tip(
     "Architecture = ISA (what instructions exist, data formats, addressing). "
     "Organization = Implementation (how ALU is built, what bus topology is used). "
     "Same architecture can have multiple organizations."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.2  COMPUTER GENERATIONS
 # =============================================================================
-pn.chap_box("1.2  Computer Generations")
-pn.section("Overview")
-pn.body(
+en.chap_box("1.2  Computer Generations")
+en.section("Overview")
+en.body(
     "The history of digital computers is divided into five generations, each "
     "characterized by a major shift in the underlying switching technology, "
     "programming model, and performance capabilities."
 )
 
-pn.info_table(
+en.info_table(
     ["Generation", "Period", "Technology", "Key Features", "Examples"],
     [
         [
@@ -546,8 +546,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Key Milestones Timeline")
-pn.bullet(
+en.section("Key Milestones Timeline")
+en.bullet(
     [
         "<b>1946:</b> ENIAC (Electronic Numerical Integrator And Computer) -- first general-purpose electronic digital computer. 18,000 vacuum tubes, 30 tons, 150kW power.",
         "<b>1947:</b> Transistor invented at Bell Labs by Shockley, Bardeen, and Brattain.",
@@ -560,19 +560,19 @@ pn.bullet(
         "<b>2006:</b> Intel Core 2 Duo -- first mainstream multi-core x86 processor.",
     ]
 )
-pn.tip(
+en.tip(
     "Generations: (1) Vacuum tubes, (2) Transistors, (3) ICs, (4) VLSI/Microprocessors, (5) AI/Quantum. "
     "Each generation brought roughly 1000x improvement in speed and cost-efficiency."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.3  VON NEUMANN MODEL
 # =============================================================================
-pn.chap_box("1.3  Von Neumann Model (Stored-Program Concept)")
-pn.section("The Stored-Program Concept")
+en.chap_box("1.3  Von Neumann Model (Stored-Program Concept)")
+en.section("The Stored-Program Concept")
 
-pn.definition(
+en.definition(
     "<b>Von Neumann Architecture:</b> A computer architecture proposed by John von "
     "Neumann in 1945 (in the EDVAC report) in which both <b>program instructions "
     "and data are stored in the same memory</b>. The CPU fetches instructions from "
@@ -580,8 +580,8 @@ pn.definition(
     "basis of virtually all modern general-purpose computers."
 )
 
-pn.section("Key Principles of the Von Neumann Model")
-pn.bullet(
+en.section("Key Principles of the Von Neumann Model")
+en.bullet(
     [
         "<b>Stored-Program Concept:</b> Instructions are stored in memory just like data. The program can be modified by the computer itself during execution.",
         "<b>Sequential Execution:</b> Instructions are executed one after another in the order they appear in memory, unless a branch/jump instruction alters the sequence.",
@@ -591,10 +591,10 @@ pn.bullet(
     ]
 )
 
-pn.section("Von Neumann Architecture -- Block Diagram")
+en.section("Von Neumann Architecture -- Block Diagram")
 
-net_vn = pd.NetworkDiagram(
-    width=pn.CW,
+net_vn = ed.NetworkDiagram(
+    width=en.CW,
     height=280,
     theme=diag_theme,
     caption="Fig 1: Von Neumann Computer Architecture -- stored-program model",
@@ -642,11 +642,11 @@ net_vn.link("mem", "cu", label="Instr/Ctrl", bidirectional=True)
 net_vn.link("cu", "alu", label="Control", bidirectional=False)
 net_vn.link("cu", "input", label="Control", bidirectional=False)
 net_vn.link("cu", "output", label="Control", bidirectional=False)
-pn.story.extend(net_vn.as_flowable())
+en.story.extend(net_vn.as_flowable())
 
 
-pn.section("Von Neumann Components")
-pn.info_table(
+en.section("Von Neumann Components")
+en.info_table(
     ["Component", "Function", "Details"],
     [
         [
@@ -682,16 +682,16 @@ pn.info_table(
     ],
 )
 
-pn.section("The Fetch-Decode-Execute Cycle")
-pn.definition(
+en.section("The Fetch-Decode-Execute Cycle")
+en.definition(
     "<b>Instruction Cycle (Fetch-Decode-Execute):</b> The fundamental operating "
     "cycle of a von Neumann computer. Every instruction passes through three phases: "
     "(1) Fetch the instruction from memory using the PC, (2) Decode the opcode to "
     "determine what operation to perform, (3) Execute the operation."
 )
 
-fc_fde = pd.Flowchart(
-    width=pn.CW,
+fc_fde = ed.Flowchart(
+    width=en.CW,
     height=320,
     theme=diag_theme,
     caption="Fig 2: Fetch-Decode-Execute cycle with RTL operations",
@@ -717,43 +717,43 @@ fc_fde.edge("alu_op", "exec")
 fc_fde.edge("branch", "exec")
 fc_fde.edge("exec", "halt")
 fc_fde.edge("halt", "fetch", orthogonal=True)
-pn.story.extend(fc_fde.as_flowable())
+en.story.extend(fc_fde.as_flowable())
 
-pn.section("Von Neumann Bottleneck")
-pn.highlight(
+en.section("Von Neumann Bottleneck")
+en.highlight(
     "<b>Von Neumann Bottleneck:</b> Since instructions and data share the same "
     "memory and the same bus, the CPU must alternate between fetching instructions "
     "and fetching data. This single shared bus between CPU and memory limits overall "
     "throughput. Modern solutions include: cache memory, Harvard architecture "
     "(separate instruction and data buses), pipelining, and prefetch buffers."
 )
-pn.tip(
+en.tip(
     "Von Neumann = stored-program concept. Both program and data in same memory. "
     "Bottleneck = single bus for instructions and data. "
     "Harvard architecture solves this with separate instruction and data buses (used in DSPs and microcontrollers)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.4  CPU ORGANIZATION
 # =============================================================================
-pn.chap_box("1.4  CPU Organization")
-pn.section("Internal Structure of the CPU")
-pn.definition(
+en.chap_box("1.4  CPU Organization")
+en.section("Internal Structure of the CPU")
+en.definition(
     "<b>CPU (Central Processing Unit):</b> The brain of the computer. It consists "
     "of the <b>Arithmetic Logic Unit (ALU)</b>, the <b>Control Unit (CU)</b>, and "
     "a set of <b>Registers</b>. The CPU fetches instructions from memory, decodes "
     "them, and controls all operations through the datapath."
 )
 
-pn.section("ALU -- Arithmetic Logic Unit")
-pn.definition(
+en.section("ALU -- Arithmetic Logic Unit")
+en.definition(
     "<b>ALU:</b> The functional core of the CPU that performs all <b>arithmetic "
     "operations</b> (add, subtract, multiply, divide) and <b>logical operations</b> "
     "(AND, OR, XOR, NOT, shift). It takes two operands from registers, applies the "
     "operation selected by control lines, and writes the result back."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Inputs:</b> Two n-bit operands (A and B) from registers plus carry-in.",
         "<b>Outputs:</b> Result (n bits) plus status flags: Z (zero), N (negative), C (carry), V (overflow).",
@@ -762,15 +762,15 @@ pn.bullet(
     ]
 )
 
-pn.section("Control Unit (CU)")
-pn.definition(
+en.section("Control Unit (CU)")
+en.definition(
     "<b>Control Unit:</b> Generates all <b>control signals</b> needed to coordinate "
     "the activity of the CPU. It reads the instruction from the IR (Instruction "
     "Register), decodes the opcode, and produces a sequence of control signals that "
     "activate the correct datapath components (ALU operation, register enables, memory "
     "read/write, I/O control)."
 )
-pn.info_table(
+en.info_table(
     ["CU Type", "How Control Signals Are Generated", "Speed", "Flexibility"],
     [
         [
@@ -788,15 +788,15 @@ pn.info_table(
     ],
 )
 
-pn.section("Datapath Organization")
-pn.body(
+en.section("Datapath Organization")
+en.body(
     "The <b>datapath</b> is the collection of functional units (ALU, registers, buses) "
     "and their interconnections. The datapath is controlled by the CU. A typical "
     "single-bus datapath has one internal bus shared by all registers and the ALU."
 )
 
-net_cpu = pd.NetworkDiagram(
-    width=pn.CW,
+net_cpu = ed.NetworkDiagram(
+    width=en.CW,
     height=350,
     theme=diag_theme,
     caption="Fig 3: CPU Internal Organization -- single-bus datapath",
@@ -880,29 +880,29 @@ net_cpu.link("alu", "bus", label="Result", bidirectional=False)
 net_cpu.link("ir", "cu", label="Opcode", bidirectional=False)
 net_cpu.link("cu", "bus", label="Ctrl Sigs", bidirectional=False)
 net_cpu.link("cu", "alu", label="ALU Sel", bidirectional=False)
-pn.story.extend(net_cpu.as_flowable())
+en.story.extend(net_cpu.as_flowable())
 
-pn.tip(
+en.tip(
     "<b>Key Datapath Flow:</b> The internal CPU bus (◄─── INTERNAL CPU BUS (16/32-bit) ───►) "
     "serves as the primary communication channel. All CPU registers (PC, IR, MAR, MDR, AC) "
     "and temporary registers feed into or read from this shared bus to coordinate micro-operations."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.5  REGISTER ORGANIZATION
 # =============================================================================
-pn.chap_box("1.5  Register Organization")
-pn.section("What Are Registers?")
-pn.definition(
+en.chap_box("1.5  Register Organization")
+en.section("What Are Registers?")
+en.definition(
     "<b>Registers:</b> Small, extremely fast storage locations <b>inside the CPU</b> "
     "used to hold operands, addresses, and status information during instruction "
     "execution. Registers are implemented using flip-flops (D-type) and are the "
     "fastest component in the memory hierarchy. Access time is typically 1 CPU clock cycle."
 )
 
-pn.section("Types of CPU Registers")
-pn.info_table(
+en.section("Types of CPU Registers")
+en.info_table(
     ["Register", "Full Name", "Size", "Function"],
     [
         [
@@ -972,8 +972,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Register Sizes and Memory Addressing")
-pn.code_block("""
+en.section("Register Sizes and Memory Addressing")
+en.code_block("""
  REGISTER SIZES AND ADDRESSING:
  ======================================================
  PC size = log2(Memory size in words)
@@ -996,15 +996,15 @@ pn.code_block("""
    I (Interrupt): If set, interrupt requests are enabled
 """)
 
-pn.section("Register File Organization (RISC Style)")
-pn.body(
+en.section("Register File Organization (RISC Style)")
+en.body(
     "Modern RISC processors use a <b>register file</b> -- an array of n general-purpose "
     "registers (typically 16 or 32) with two read ports and one write port. This allows "
     "reading two source operands and writing one result per clock cycle."
 )
 
-stack_reg = pd.LayeredStack(
-    width=pn.CW * 0.55,
+stack_reg = ed.LayeredStack(
+    width=en.CW * 0.55,
     height=200,
     theme=diag_theme,
     caption="Fig 4: Register hierarchy in the CPU memory hierarchy",
@@ -1015,22 +1015,22 @@ stack_reg.layer("L1 Cache", sublabel="~4 cycles, 32-64 KB")
 stack_reg.layer("L2 Cache", sublabel="~12 cycles, 256 KB - 1 MB")
 stack_reg.layer("Main Memory (RAM)", sublabel="~100-300 cycles, GB range")
 stack_reg.layer("Secondary Storage (Disk/SSD)", sublabel="millions of cycles, TB range")
-pn.story.extend(stack_reg.as_flowable())
+en.story.extend(stack_reg.as_flowable())
 
-pn.tip(
+en.tip(
     "PC = address of NEXT instruction. IR = CURRENT instruction. "
     "MAR = memory address. MDR = memory data (the value). "
     "AC = accumulator (result holder). SP = top of stack. "
     "PSW flags: Z, N, C, V -- set by ALU after every operation."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.6  REGISTER TRANSFER LANGUAGE (RTL)
 # =============================================================================
-pn.chap_box("1.6  Register Transfer Language (RTL)")
-pn.section("What is RTL?")
-pn.definition(
+en.chap_box("1.6  Register Transfer Language (RTL)")
+en.section("What is RTL?")
+en.definition(
     "<b>Register Transfer Language (RTL):</b> A formal notation used to describe "
     "the <b>micro-operations</b> performed during instruction execution. RTL "
     "specifies how data is transferred between registers and how the ALU transforms "
@@ -1038,8 +1038,8 @@ pn.definition(
     "register-transfer level of abstraction."
 )
 
-pn.section("RTL Notation Rules")
-pn.info_table(
+en.section("RTL Notation Rules")
+en.info_table(
     ["RTL Symbol", "Meaning", "Example"],
     [
         ["R1, R2, ...", "Registers", "R1 holds the value 1010"],
@@ -1056,8 +1056,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Micro-Operation Examples")
-pn.code_block("""
+en.section("Micro-Operation Examples")
+en.code_block("""
  COMMON RTL MICRO-OPERATIONS:
  ======================================================
  1. SIMPLE TRANSFER:
@@ -1094,14 +1094,14 @@ pn.code_block("""
     MAR <- PC, PC <- PC+1 : Load MAR and increment PC simultaneously
 """)
 
-pn.section("Timing and Control Steps")
-pn.body(
+en.section("Timing and Control Steps")
+en.body(
     "In a clocked digital system, each register transfer takes one <b>clock cycle</b>. "
     "A sequence of micro-operations is described using timing labels T0, T1, T2, ... "
     "where each T represents one clock period. The control unit generates the appropriate "
     "control signals during each Tn to activate the required transfers."
 )
-pn.code_block("""
+en.code_block("""
  EXECUTE CYCLE for ADD Instruction (single-address machine):
  ======================================================
  Assume instruction: ADD M  (AC <- AC + M[operand address])
@@ -1116,27 +1116,27 @@ pn.code_block("""
  T4: MBR <- M[MAR]                       (fetch operand from memory)
  T5: AC  <- AC + MBR                     (execute: add operand to AC)
 """)
-pn.tip(
+en.tip(
     "RTL is essential for exam questions on instruction cycles. "
     "Fetch cycle is always: MAR<-PC, MBR<-M[MAR], PC<-PC+1, IR<-MBR. "
     "Know this sequence cold -- it appears in every CA exam."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.7  BUS AND MEMORY TRANSFERS
 # =============================================================================
-pn.chap_box("1.7  Bus and Memory Transfers")
-pn.section("The Common Bus System")
-pn.definition(
+en.chap_box("1.7  Bus and Memory Transfers")
+en.section("The Common Bus System")
+en.definition(
     "<b>Bus:</b> A shared communication pathway consisting of a set of wires over "
     "which data, addresses, and control signals are transferred between CPU components "
     "and memory. A <b>common bus</b> connects multiple registers and the ALU so that "
     "any register can transfer data to any other register."
 )
 
-pn.section("Types of Buses")
-pn.info_table(
+en.section("Types of Buses")
+en.info_table(
     ["Bus Type", "Lines", "Direction", "Function"],
     [
         [
@@ -1161,14 +1161,14 @@ pn.info_table(
     ],
 )
 
-pn.section("Common Bus with Multiplexer / Three-State Logic")
-pn.body(
+en.section("Common Bus with Multiplexer / Three-State Logic")
+en.body(
     "To prevent bus contention (two sources driving the bus simultaneously), "
     "each device is connected to the bus through <b>three-state (tri-state) buffers</b>. "
     "Only one device may be enabled (output = 0 or 1) at a time; all others are in "
     "the high-impedance (Z) state, effectively disconnected from the bus."
 )
-pn.code_block("""
+en.code_block("""
  THREE-STATE BUFFER TRUTH TABLE:
  ======================================================
  Enable (EN) | Input (D) | Output (Y)
@@ -1192,8 +1192,8 @@ pn.code_block("""
    Step 4: Result appears at ALU output -> loaded into destination via bus
 """)
 
-pn.section("Memory Read and Write Operations")
-pn.info_table(
+en.section("Memory Read and Write Operations")
+en.info_table(
     ["Operation", "RTL Steps", "Control Signals"],
     [
         [
@@ -1216,8 +1216,8 @@ pn.info_table(
 )
 
 # Memory bus timing diagram
-td_mem = pd.TimingDiagram(
-    width=pn.CW,
+td_mem = ed.TimingDiagram(
+    width=en.CW,
     height=190,
     theme=diag_theme,
     caption="Fig 5: Memory Read cycle timing -- address valid, MemRead asserted, data valid",
@@ -1227,28 +1227,28 @@ td_mem.signal("ADDR_VALID", transitions=[(0, 0), (10, 1), (110, 0)])
 td_mem.signal("MEM_READ", transitions=[(0, 0), (30, 1), (90, 0)])
 td_mem.signal("DATA_VALID", transitions=[(0, 0), (70, 1), (110, 0)])
 td_mem.signal("MDR_LOAD", transitions=[(0, 0), (85, 1), (105, 0)])
-pn.story.extend(td_mem.as_flowable())
+en.story.extend(td_mem.as_flowable())
 
-pn.tip(
+en.tip(
     "Three buses: Address (CPU->Mem, unidirectional), Data (bidirectional), Control (both). "
     "Tri-state buffers prevent bus contention. Only one device drives the bus at a time. "
     "Memory read: assert MAR, assert MemRead, wait for data, latch into MDR."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.8  ARITHMETIC MICRO-OPERATIONS
 # =============================================================================
-pn.chap_box("1.8  Arithmetic Micro-Operations")
-pn.section("Overview")
-pn.definition(
+en.chap_box("1.8  Arithmetic Micro-Operations")
+en.section("Overview")
+en.definition(
     "<b>Arithmetic Micro-Operations:</b> Basic operations performed by the ALU "
     "that involve numerical computations on binary data stored in registers. "
     "These include addition, subtraction, increment, decrement, and BCD arithmetic."
 )
 
-pn.section("List of Arithmetic Micro-Operations")
-pn.info_table(
+en.section("List of Arithmetic Micro-Operations")
+en.info_table(
     ["Operation", "RTL Notation", "Description"],
     [
         ["Add", "R3 <- R1 + R2", "Binary addition of R1 and R2"],
@@ -1273,8 +1273,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Binary Addition and Carry Propagation")
-pn.code_block("""
+en.section("Binary Addition and Carry Propagation")
+en.code_block("""
  BINARY ADDITION EXAMPLE (8-bit):
  ======================================================
    1011 0110   (182)   R1
@@ -1301,14 +1301,14 @@ pn.code_block("""
    Result = 0000 0100 = 4, Carry-out = 1 (no borrow -> subtraction is positive)
 """)
 
-pn.section("BCD Arithmetic")
-pn.definition(
+en.section("BCD Arithmetic")
+en.definition(
     "<b>BCD (Binary Coded Decimal) Addition:</b> When adding two BCD digits, "
     "if the result exceeds 9 (binary 1001) or a carry-out occurs, add 6 (0110) "
     "to the 4-bit result to skip the invalid states (1010 to 1111) and propagate "
     "carry to the next BCD digit."
 )
-pn.code_block("""
+en.code_block("""
  BCD ADDITION EXAMPLE:
  ======================================================
    BCD digit 1: 0111  (7 in BCD)
@@ -1322,27 +1322,27 @@ pn.code_block("""
  Rule: if Sum > 9 or Carry-out = 1, add 0110 to the 4-bit sum.
 """)
 
-pn.tip(
+en.tip(
     "Subtraction = addition of 2's complement. "
     "2's complement of X = NOT(X) + 1. "
     "BCD add: if sum > 9 or carry, add 6. "
     "Flags: Z (zero result), N (MSB=1), C (carry/borrow), V (signed overflow)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.9  LOGIC MICRO-OPERATIONS
 # =============================================================================
-pn.chap_box("1.9  Logic Micro-Operations")
-pn.section("Overview")
-pn.definition(
+en.chap_box("1.9  Logic Micro-Operations")
+en.section("Overview")
+en.definition(
     "<b>Logic Micro-Operations:</b> Bitwise operations performed on registers "
     "treating each bit independently. These operations are used for <b>masking</b> "
     "(selective clear/set), <b>selective complement</b>, and <b>bit testing</b>."
 )
 
-pn.section("Basic Logic Operations and Truth Tables")
-pn.info_table(
+en.section("Basic Logic Operations and Truth Tables")
+en.info_table(
     ["Operation", "RTL", "Bit 0 Result", "Bit 1 Result", "Common Use"],
     [
         [
@@ -1397,9 +1397,9 @@ pn.info_table(
     ],
 )
 
-pn.section("Applications of Logic Micro-Operations")
-pn.subsection("Selective Bit Operations Using Masks")
-pn.code_block("""
+en.section("Applications of Logic Micro-Operations")
+en.subsection("Selective Bit Operations Using Masks")
+en.code_block("""
  LOGIC MICRO-OPERATION APPLICATIONS:
  ======================================================
  Let A = 1010 1100  (data register)
@@ -1429,9 +1429,9 @@ pn.code_block("""
     Example: Check bit 3 of A: A AND 0000 1000
 """)
 
-pn.section("Logic Operations in Flowchart")
-fc_logic = pd.Flowchart(
-    width=pn.CW,
+en.section("Logic Operations in Flowchart")
+fc_logic = ed.Flowchart(
+    width=en.CW,
     height=230,
     theme=diag_theme,
     caption="Fig 6: Selective bit manipulation using logic micro-operations",
@@ -1457,28 +1457,28 @@ fc_logic.edge("or_op", "output")
 fc_logic.edge("xor_op", "output")
 fc_logic.edge("not_op", "output")
 fc_logic.edge("output", "end")
-pn.story.extend(fc_logic.as_flowable())
+en.story.extend(fc_logic.as_flowable())
 
-pn.tip(
+en.tip(
     "AND = masking (clear bits). OR = setting bits. XOR = complementing bits. "
     "XOR with itself = 0 (clear register). AND with 0 = 0 (clear). OR with 1 = 1 (set). "
     "These are used extensively in OS kernels, device drivers, and bit field manipulation."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.10  SHIFT MICRO-OPERATIONS
 # =============================================================================
-pn.chap_box("1.10  Shift Micro-Operations")
-pn.section("Types of Shifts")
-pn.definition(
+en.chap_box("1.10  Shift Micro-Operations")
+en.section("Types of Shifts")
+en.definition(
     "<b>Shift Micro-Operations:</b> Operations that move the bits of a register "
     "left or right by one or more positions. The difference between shift types "
     "lies in what bit is shifted into the vacated position and what happens to "
     "the bit shifted out."
 )
 
-pn.info_table(
+en.info_table(
     ["Shift Type", "RTL Symbol", "Left Shift Behavior", "Right Shift Behavior"],
     [
         [
@@ -1508,8 +1508,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Shift Operation Details with Examples")
-pn.code_block("""
+en.section("Shift Operation Details with Examples")
+en.code_block("""
  SHIFT MICRO-OPERATION EXAMPLES (8-bit register):
  ======================================================
  Original value: 1011 0110  (182 unsigned / -74 signed)
@@ -1553,27 +1553,27 @@ pn.code_block("""
    Right shift by n = divide by 2^n    (logical: unsigned, arithmetic: signed)
 """)
 
-pn.section("Shift Hardware -- Barrel Shifter")
-pn.definition(
+en.section("Shift Hardware -- Barrel Shifter")
+en.definition(
     "<b>Barrel Shifter:</b> A combinational circuit that can shift an n-bit "
     "word by any number of positions (0 to n-1) in a single clock cycle "
     "(as opposed to a serial shifter that takes n cycles for an n-bit shift). "
     "Modern CPUs use barrel shifters for variable-length shifts."
 )
-pn.tip(
+en.tip(
     "Logical shift: fill with 0. Arithmetic right shift: fill with sign bit. "
     "Rotate (circular): no bits lost, MSB/LSB wraps. "
     "Arithmetic left shift n = multiply by 2^n. Arithmetic right shift n = divide by 2^n (signed). "
     "Barrel shifter shifts any amount in ONE clock cycle."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.11  ARITHMETIC LOGIC SHIFT UNIT (ALSU)
 # =============================================================================
-pn.chap_box("1.11  Arithmetic Logic Shift Unit (ALSU)")
-pn.section("Overview")
-pn.definition(
+en.chap_box("1.11  Arithmetic Logic Shift Unit (ALSU)")
+en.section("Overview")
+en.definition(
     "<b>Arithmetic Logic Shift Unit (ALSU):</b> A combined hardware unit that "
     "implements all arithmetic micro-operations, logic micro-operations, and "
     "shift micro-operations in a single circuit. The ALSU is the central "
@@ -1581,8 +1581,8 @@ pn.definition(
     "a set of <b>function select lines</b> driven by the Control Unit."
 )
 
-pn.section("ALSU Structure")
-pn.body(
+en.section("ALSU Structure")
+en.body(
     "The ALSU contains three parallel sub-units: an <b>Arithmetic Unit</b> "
     "(built from full adders + mux for subtraction/pass), a <b>Logic Unit</b> "
     "(AND, OR, XOR, NOT gates), and a <b>Shift Unit</b> (barrel shifter). "
@@ -1590,8 +1590,8 @@ pn.body(
     "the output register based on the operation select lines."
 )
 
-pn.section("ALSU Select Lines and Operations")
-pn.info_table(
+en.section("ALSU Select Lines and Operations")
+en.info_table(
     ["S3", "S2", "S1", "S0", "Cin", "Operation", "Function"],
     [
         ["0", "0", "0", "0", "0", "F = A", "Transfer A"],
@@ -1613,10 +1613,10 @@ pn.info_table(
     ],
 )
 
-pn.section("ALSU Block Diagram (Conceptual)")
+en.section("ALSU Block Diagram (Conceptual)")
 
-net_alsu = pd.NetworkDiagram(
-    width=pn.CW,
+net_alsu = ed.NetworkDiagram(
+    width=en.CW,
     height=310,
     theme=diag_theme,
     caption="Fig 7: Arithmetic Logic Shift Unit -- combined functional block diagram",
@@ -1687,12 +1687,12 @@ net_alsu.link("shift", "mux", label="")
 net_alsu.link("mux", "result", label="F")
 net_alsu.link("result", "flags", label="status")
 net_alsu.link("ctrl", "mux", label="S3..S0")
-pn.story.extend(net_alsu.as_flowable())
+en.story.extend(net_alsu.as_flowable())
 
 
-pn.section("ALSU Flowchart -- Operation Selection")
-fc_alsu = pd.Flowchart(
-    width=pn.CW,
+en.section("ALSU Flowchart -- Operation Selection")
+fc_alsu = ed.Flowchart(
+    width=en.CW,
     height=290,
     theme=diag_theme,
     caption="Fig 8: ALSU operation selection based on control unit select lines",
@@ -1715,10 +1715,10 @@ fc_alsu.edge("arith_exec", "store")
 fc_alsu.edge("logic_exec", "store")
 fc_alsu.edge("shift_exec", "store")
 fc_alsu.edge("store", "end")
-pn.story.extend(fc_alsu.as_flowable())
+en.story.extend(fc_alsu.as_flowable())
 
-pn.section("Status Flags Generated by ALSU")
-pn.info_table(
+en.section("Status Flags Generated by ALSU")
+en.info_table(
     ["Flag", "Name", "Set Condition", "Cleared Condition", "Use"],
     [
         [
@@ -1751,21 +1751,21 @@ pn.info_table(
         ],
     ],
 )
-pn.tip(
+en.tip(
     "ALSU = Arithmetic Unit + Logic Unit + Shift Unit + Output Mux. "
     "CU provides select lines S3..S0 to choose the operation. "
     "Output mux selects result from whichever sub-unit is active. "
     "Status flags (Z, N, C, V) are set combinationally from the result."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.12  QUICK REVISION SUMMARY
 # =============================================================================
-pn.part_box("UNIT I -- QUICK REVISION SUMMARY")
-pn.chap_box("Key Concepts at a Glance")
+en.part_box("UNIT I -- QUICK REVISION SUMMARY")
+en.chap_box("Key Concepts at a Glance")
 
-pn.info_table(
+en.info_table(
     ["Topic", "Key Point to Remember"],
     [
         [
@@ -1847,7 +1847,7 @@ pn.info_table(
     ],
 )
 
-pn.highlight(
+en.highlight(
     "<b>UNIT I EXAM BLUEPRINT:</b>  "
     "2-mark: Differentiate architecture vs organization. List CPU registers. "
     "State the stored-program concept. Define RTL.  "
@@ -1861,18 +1861,18 @@ pn.highlight(
     "Explain bus and memory transfers with timing diagram.",
 )
 
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.0)
-pn.sp(6)
-pn.add(
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.0)
+en.sp(6)
+en.add(
     Paragraph(
         "Computer Architecture IT-404 Unit I -- Bharat Dangi  |  UIT-RGPV (Autonomous) Bhopal | Semester IV",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
 
 # =============================================================================
 #  BUILD PDF
 # =============================================================================
-pn.build_doc("CA_Unit1_Notes.pdf", title="Computer Architecture - Unit I Notes", author="Bharat Dangi")
+en.build_doc("CA_Unit1_Notes.pdf", title="Computer Architecture - Unit I Notes", author="Bharat Dangi")
 print("Generated: CA_Unit1_Notes.pdf")

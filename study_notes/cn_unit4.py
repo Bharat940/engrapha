@@ -30,8 +30,8 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-import paperforge_diagrams as pd
-import paperforge_diagrams.shapes as pds
+import engrapha_diagrams as ed
+import engrapha_diagrams.shapes as pds
 
 PAGE_W, PAGE_H = A4
 PM = 1.8 * cm
@@ -1030,7 +1030,7 @@ code_block("""
 """)
 
 # VLSM Binary Splitting Trie Diagram
-vlsm_fc = pd.Flowchart(
+vlsm_fc = ed.Flowchart(
     width=540, 
     height=220, 
     caption="Fig 9: VLSM Address Space Binary Splitting Tree (Trie)",
@@ -1154,7 +1154,7 @@ code_block("""
 """)
 
 # ARP sequence diagram
-seq_arp = pd.SequenceDiagram(
+seq_arp = ed.SequenceDiagram(
     width=CW,
     height=250,
     caption="Fig 1: ARP Operation -- broadcast request, unicast reply, cache update",
@@ -1299,7 +1299,7 @@ code_block("""
 """)
 
 # Packet forwarding network diagram -- dynamic layout, short labels
-fwd_net = pd.NetworkDiagram(
+fwd_net = ed.NetworkDiagram(
     width=CW,
     height=200,
     caption="Fig 2: Packet forwarding across three hops -- IP addresses constant, MACs change at each router",
@@ -1322,7 +1322,7 @@ body(
     "The following decision flow connects the concepts of direct delivery, ARP, "
     "longest prefix match, next-hop forwarding, and ICMP error reporting."
 )
-route_fc = pd.Flowchart(
+route_fc = ed.Flowchart(
     width=560,
     height=385,
     caption="Fig 3: Router forwarding decision -- local delivery, routed delivery, or error",
@@ -1717,7 +1717,7 @@ info_table(
 )
 
 # Dijkstra example graph -- dynamic layout, nodes A-F with weighted edges
-dijkstra_net = pd.NetworkDiagram(
+dijkstra_net = ed.NetworkDiagram(
     width=CW * 0.7,
     height=230,
     caption="Fig 4: Dijkstra example graph (A=source) -- shortest paths computed iteratively",
@@ -1799,7 +1799,7 @@ code_block("""
 """)
 
 # Bellman-Ford example graph -- directed graph with negative weights
-bf_net = pd.NetworkDiagram(
+bf_net = ed.NetworkDiagram(
     width=CW * 0.7,
     height=230,
     caption="Fig 5: Bellman-Ford example graph (A=source) -- directed edges with negative weights",
@@ -1950,7 +1950,7 @@ code_block("""
 """)
 
 # Leaky Bucket Flowchart
-leaky_fc = pd.Flowchart(
+leaky_fc = ed.Flowchart(
     width=400,
     height=260,
     caption="Fig 6a: Leaky Bucket Traffic Shaper Flowchart",
@@ -1996,7 +1996,7 @@ code_block("""
 """)
 
 # Token Bucket Flowchart
-token_fc = pd.Flowchart(
+token_fc = ed.Flowchart(
     width=400,
     height=260,
     caption="Fig 6b: Token Bucket Traffic Shaper Flowchart",
@@ -2096,7 +2096,7 @@ code_block("""
 
 def make_state_drawer(label_text: str) -> Callable[..., None]:
     def draw(
-        sm: pd.StateMachine,
+        sm: ed.StateMachine,
         x: float,
         y: float,
         radius: float,
@@ -2119,7 +2119,7 @@ def make_state_drawer(label_text: str) -> Callable[..., None]:
     return draw
 
 
-tcp_cc_sm = pd.StateMachine(
+tcp_cc_sm = ed.StateMachine(
     width=380,
     height=200,
     caption="Fig 7: TCP Congestion Control State Transition Diagram (Reno)",
@@ -2326,7 +2326,7 @@ bullet(
 )
 
 # Network diagram showing different devices
-devices_net = pd.NetworkDiagram(
+devices_net = ed.NetworkDiagram(
     width=CW,
     height=245,
     caption="Fig 5: Internetworking devices at different OSI layers connecting network segments",
@@ -2493,7 +2493,7 @@ code_block("""
 """)
 
 # IPv4 Fragmentation Diagram
-frag_fc = pd.Flowchart(
+frag_fc = ed.Flowchart(
     width=500,
     height=160,
     caption="Fig 11: IPv4 Fragmentation Example (MTU = 1500 bytes)",

@@ -8,44 +8,44 @@ Output: Java_Unit1_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
 # =============================================================================
 #  THEME & GLOBAL FOOTER SETUP
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.CATPPUCCIN_MOCHA)
+en.set_story([])
+en.set_theme(en.CATPPUCCIN_MOCHA)
 
 # Set the global academic footer across all pages (except cover/TOC)
-pn.set_global_footer(
+en.set_global_footer(
     left="Java Programming (IT408) -- Unit I",
     right="UIT-RGPV (Autonomous) Bhopal",
     show_page_num=True,
 )
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(28)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(28)
 
-pn.cover_card("JAVA PROGRAMMING", "Unit I -- Language Fundamentals & OOP")
-# pn.cover_subtitle(
+en.cover_card("JAVA PROGRAMMING", "Unit I -- Language Fundamentals & OOP")
+# en.cover_subtitle(
 #     [
 #         "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
 #         "Complete Exam Notes with OOP Fundamentals, Installation, Compilation, Language Elements,",
 #         "Data Types, Casting, Operators, Control Statements, and Arrays",
 #     ]
 # )
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(8)
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(8)
 
-pn.info_table(
+en.info_table(
     ["Section", "Syllabus Topics Covered"],
     [
         [
@@ -99,27 +99,27 @@ pn.info_table(
 # =============================================================================
 #  TABLE OF CONTENTS
 # =============================================================================
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  UNIT DIVIDER
 # =============================================================================
-pn.part_box("UNIT I -- JAVA LANGUAGE FUNDAMENTALS & OOP")
+en.part_box("UNIT I -- JAVA LANGUAGE FUNDAMENTALS & OOP")
 
 # =============================================================================
 #  1.1  OBJECT-ORIENTED PROGRAMMING CONCEPTS
 # =============================================================================
-pn.chap_box("1.1  Object-Oriented Programming (OOP) Concepts")
-pn.section("OOP Paradigm vs Procedure-Oriented Programming")
-pn.body(
+en.chap_box("1.1  Object-Oriented Programming (OOP) Concepts")
+en.section("OOP Paradigm vs Procedure-Oriented Programming")
+en.body(
     "Java is built entirely around the <b>Object-Oriented Programming (OOP)</b> paradigm. "
     "Unlike procedure-oriented programming (like C) which focuses on writing code algorithms "
     "to operate on data, OOP organizes programs around data (objects) and methods that interact with them."
 )
 
-pn.info_table(
+en.info_table(
     [
         "Feature",
         "Procedure-Oriented Programming (POP)",
@@ -155,19 +155,19 @@ pn.info_table(
     ],
 )
 
-pn.definition(
+en.definition(
     "<b>Object:</b> An instance of a class. It represents a real-world entity with a state "
     "(attributes/fields) and behavior (methods). For example, a Student object has states like "
     "name, rollNumber, and behaviors like study(), attendClass()."
 )
-pn.definition(
+en.definition(
     "<b>Class:</b> A blueprint, template, or user-defined data type from which individual objects "
     "are created. It defines the structure and behavior that objects of the class will possess. "
     "A class is a logical entity (requires no heap space), while an object is a physical entity."
 )
 
-pn.section("Object Memory Layout in Java")
-pn.bullet(
+en.section("Object Memory Layout in Java")
+en.bullet(
     [
         "<b>Stack Memory:</b> Stores the local variables and the object reference variable. "
         "The reference variable (e.g. <i>Student s</i>) holds the memory address pointing to the heap.",
@@ -178,8 +178,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Core Principles of OOP")
-pn.bullet(
+en.section("Core Principles of OOP")
+en.bullet(
     [
         "<b>Encapsulation:</b> The process of wrapping data (variables) and code (methods) together "
         "as a single unit (a class). By declaring variables as private, we achieve data hiding, "
@@ -195,8 +195,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Polymorphism: Overloading vs. Overriding")
-pn.info_table(
+en.section("Polymorphism: Overloading vs. Overriding")
+en.info_table(
     ["Property", "Method Overloading (Compile-time)", "Method Overriding (Runtime)"],
     [
         [
@@ -218,7 +218,7 @@ pn.info_table(
     ],
 )
 
-pn.info_table(
+en.info_table(
     ["OOP Principle", "Java Implementation Mechanism", "Primary Benefit"],
     [
         [
@@ -244,16 +244,16 @@ pn.info_table(
     ],
 )
 
-pn.sp(4)
-pn.section("OOP Principles Visualized")
-pn.body(
+en.sp(4)
+en.section("OOP Principles Visualized")
+en.body(
     "Below is a UML Class Diagram showing the core concepts of object-oriented design: "
     "<b>Abstraction</b> (abstract superclass Vehicle), <b>Encapsulation</b> (private variable brand with public getter), "
     "and <b>Inheritance</b> (subclasses Car and Bicycle extending Vehicle)."
 )
 
-cd = pd.ClassDiagram(
-    width=pn.CW,
+cd = ed.ClassDiagram(
+    width=en.CW,
     height=165,
     theme=diag_theme,
     caption="Fig 1.1: UML Class Diagram demonstrating Inheritance, Encapsulation, and Abstraction",
@@ -276,15 +276,15 @@ cd.uml_class(
 cd.relate("Car", "Vehicle", kind="inheritance")
 cd.relate("Bicycle", "Vehicle", kind="inheritance")
 
-pn.story.extend(cd.as_flowable())
-pn.br()
+en.story.extend(cd.as_flowable())
+en.br()
 
 # =============================================================================
 #  1.2  OVERVIEW OF JAVA
 # =============================================================================
-pn.chap_box("1.2  Overview of Java & Key Features")
-pn.section("What is Java?")
-pn.body(
+en.chap_box("1.2  Overview of Java & Key Features")
+en.section("What is Java?")
+en.body(
     "Java is a general-purpose, concurrent, class-based, object-oriented programming language "
     "originally developed by Sun Microsystems (led by James Gosling, Patrick Naughton, Mike Sheridan, "
     "and their 'Green Team') in 1995. Initially named <i>Oak</i> (after an oak tree outside Gosling's office), "
@@ -292,8 +292,8 @@ pn.body(
     "by Oracle Corporation in 2010, which now maintains the language."
 )
 
-pn.section("Features of Java (The Java Buzzwords)")
-pn.info_table(
+en.section("Features of Java (The Java Buzzwords)")
+en.info_table(
     ["Feature", "Explanation", "Significance in Exams & Industry"],
     [
         [
@@ -344,41 +344,41 @@ pn.info_table(
     ],
 )
 
-pn.note(
+en.note(
     "Java's platform independence is driven by the compile-and-interpret design. The compiler (javac) "
     "translates source code to bytecode (.class), which is then interpreted/JITcompiled at runtime by "
     "the local OS-specific Java Virtual Machine (JVM). Thus, <b>Java the language</b> is platform independent, "
     "but <b>the JVM itself</b> is platform dependent since it must interface with the native operating system."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.3  INSTALLATION & ENVIRONMENT SETUP
 # =============================================================================
-pn.chap_box("1.3  Java Environment Setup: JDK vs. JRE vs. JVM")
-pn.section("Comparing the Core Components")
-pn.body(
+en.chap_box("1.3  Java Environment Setup: JDK vs. JRE vs. JVM")
+en.section("Comparing the Core Components")
+en.body(
     "When setting up Java, it is crucial to understand the distinct roles of the JVM, JRE, and JDK "
     "in the development and execution lifecycle."
 )
 
-pn.definition(
+en.definition(
     "<b>JVM (Java Virtual Machine):</b> An abstract computing machine that provides the runtime "
     "execution environment for Java bytecode. It is platform-dependent (different JVMs are written "
     "for Windows, macOS, Linux) and translates bytecode to native CPU instructions."
 )
-pn.definition(
+en.definition(
     "<b>JRE (Java Runtime Environment):</b> The minimum environment required to <i>run</i> Java "
     "programs. It contains the JVM, standard Java class libraries, and other supporting files. It "
     "does not contain development tools like compilers (javac) or debuggers."
 )
-pn.definition(
+en.definition(
     "<b>JDK (Java Development Kit):</b> The complete software development environment containing "
     "the JRE plus tools (javac compiler, java interpreter, jdb debugger, javadoc tool) needed to "
     "<i>write and compile</i> Java applications."
 )
 
-pn.info_table(
+en.info_table(
     ["Component", "Target Audience", "Key Contents"],
     [
         [
@@ -395,8 +395,8 @@ pn.info_table(
     ],
 )
 
-pn.section("JVM Internal Architecture")
-pn.bullet(
+en.section("JVM Internal Architecture")
+en.bullet(
     [
         "<b>ClassLoader Subsystem:</b> Responsible for loading, linking, and initializing class files. "
         "Loading is done via 3 class loaders: Bootstrap (loads core libraries), Extension (loads classes from ext folder), "
@@ -416,8 +416,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Setting Environment Variables")
-pn.bullet(
+en.section("Setting Environment Variables")
+en.bullet(
     [
         "<b>PATH:</b> Tells the operating system shell where to find developer executable tools "
         "like the compiler (javac) and interpreter (java). Points to <i>C:\\Program Files\\Java\\jdk-xx\\bin</i>.",
@@ -427,15 +427,15 @@ pn.bullet(
     ]
 )
 
-pn.sp(4)
-pn.section("JDK vs. JRE vs. JVM Nested Relationship")
-pn.body(
+en.sp(4)
+en.section("JDK vs. JRE vs. JVM Nested Relationship")
+en.body(
     "A visual representation of the Java development environment hierarchy. The JDK contains the JRE, "
     "and the JRE contains the JVM."
 )
 
-stack = pd.LayeredStack(
-    width=pn.CW * 0.7,
+stack = ed.LayeredStack(
+    width=en.CW * 0.7,
     height=150,
     theme=diag_theme,
     caption="Fig 1.2: Nested Architecture of JDK, JRE, and JVM",
@@ -453,20 +453,20 @@ stack.layer(
     sublabel="Execution Engine: JIT, Class Loader, Garbage Collector",
 )
 
-pn.story.extend(stack.as_flowable())
-pn.br()
+en.story.extend(stack.as_flowable())
+en.br()
 
 # =============================================================================
 #  1.4  FIRST SIMPLE PROGRAM & COMPILATION FLOW
 # =============================================================================
-pn.chap_box("1.4  First Simple Program & Compilation Flow")
-pn.section("First Simple Java Program")
-pn.body(
+en.chap_box("1.4  First Simple Program & Compilation Flow")
+en.section("First Simple Java Program")
+en.body(
     "Here is a basic Java program that prints a message to the console. In Java, all code "
     "must reside inside a class. The filename must match the name of the public class."
 )
 
-pn.code_block(
+en.code_block(
     """
 // HelloWorld.java
 // In Java, all code must reside inside a class. 
@@ -490,8 +490,8 @@ public class HelloWorld {
     lang="java",
 )
 
-pn.section("Step-by-Step Compilation & Execution")
-pn.bullet(
+en.section("Step-by-Step Compilation & Execution")
+en.bullet(
     [
         "<b>Step 1 (Source):</b> The programmer writes code in <i>HelloWorld.java</i>.",
         "<b>Step 2 (Compilation):</b> The compiler `javac HelloWorld.java` generates bytecode in <i>HelloWorld.class</i>.",
@@ -500,8 +500,8 @@ pn.bullet(
 )
 
 # Compilation network diagram
-net_comp = pd.NetworkDiagram(
-    width=pn.CW,
+net_comp = ed.NetworkDiagram(
+    width=en.CW,
     height=150,
     theme=diag_theme,
     caption="Fig 1.3: Java Compilation and Virtual Machine Execution Lifecycle",
@@ -521,17 +521,17 @@ net_comp.link("javac", "bytecode", bidirectional=False)
 net_comp.link("bytecode", "jvm", bidirectional=False)
 net_comp.link("jvm", "os", bidirectional=False)
 
-pn.story.extend(net_comp.as_flowable())
+en.story.extend(net_comp.as_flowable())
 
-pn.sp(4)
-pn.section("JVM Class File (.class) Binary Structure")
-pn.body(
+en.sp(4)
+en.section("JVM Class File (.class) Binary Structure")
+en.body(
     "Every compiled Java class file starts with a specific binary sequence "
     "containing metadata, version indexes, constant tables, and bytecode. The header begins "
     "with a magic number signature <i>0xCAFEBABE</i>. Below is the 32-bit field structure:"
 )
 
-pn.packet_format(
+en.packet_format(
     "JVM Class File (.class) Header structure",
     [
         ("Magic Number (0xCAFEBABE)", 32),
@@ -545,7 +545,7 @@ pn.packet_format(
     bit_ruler=True,
 )
 
-pn.info_table(
+en.info_table(
     ["Class File Field", "Size (Bits)", "Description & Exam Relevance"],
     [
         [
@@ -580,18 +580,18 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.5  KEYWORDS, IDENTIFIERS, LITERALS, AND COMMENTS
 # =============================================================================
-pn.chap_box("1.5  Java Keywords, Identifiers, Literals, and Comments")
-pn.section("Java Keywords")
-pn.body(
+en.chap_box("1.5  Java Keywords, Identifiers, Literals, and Comments")
+en.section("Java Keywords")
+en.body(
     "Keywords are reserved words that have predefined meanings in Java and cannot be used as "
     "variable, class, or method names. Java has 50+ keywords, which can be categorized as follows:"
 )
-pn.info_table(
+en.info_table(
     ["Category", "Keywords", "Description"],
     [
         [
@@ -627,8 +627,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Identifiers (Naming Rules & Conventions)")
-pn.definition(
+en.section("Identifiers (Naming Rules & Conventions)")
+en.definition(
     "<b>Identifier:</b> Names given to classes, methods, variables, packages, and arrays. "
     "Rules for valid identifiers in Java: "
     "1. Must start with a letter (A-Z, a-z), underscore (_), or dollar sign ($). "
@@ -637,15 +637,15 @@ pn.definition(
     "4. Keywords cannot be used as identifiers. "
     "5. Java is case-sensitive (e.g., 'value' and 'Value' are distinct)."
 )
-pn.body(
+en.body(
     "<b>Standard Naming Conventions (CamelCase):</b><br/>"
     "• <b>Classes / Interfaces:</b> PascalCase (e.g., <i>MyFirstClass</i>, <i>StudentDetails</i>). Start with an uppercase letter.<br/>"
     "• <b>Variables / Methods:</b> camelCase (e.g., <i>rollNumber</i>, <i>calculateTotalMarks()</i>). Start with a lowercase letter.<br/>"
     "• <b>Constants:</b> UPPER_CASE (e.g., <i>MAX_VALUE</i>, <i>PI_CONSTANT</i>). Separated by underscores."
 )
 
-pn.section("Literals")
-pn.definition(
+en.section("Literals")
+en.definition(
     "<b>Literal:</b> A constant value assigned directly to a variable. Types of literals in Java: "
     "1. <i>Integer Literals:</i> Decimal (42), Binary (0b1010), Hexadecimal (0x2A), and Octal (052). Supports underscores (e.g. 1_000_000) for readability since Java 7. "
     "2. <i>Floating-Point:</i> Float (3.14f) and Double (3.14159). "
@@ -654,8 +654,8 @@ pn.definition(
     "5. <i>Boolean & Null:</i> true, false, and null."
 )
 
-pn.section("Types of Comments")
-pn.info_table(
+en.section("Types of Comments")
+en.info_table(
     ["Comment Style", "Syntax", "Purpose & Scope"],
     [
         [
@@ -675,19 +675,19 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.6  DATA TYPES, VARIABLES, AND INITIALIZATION
 # =============================================================================
-pn.chap_box("1.6  Data Types, Variables, and Scope")
-pn.section("Data Types -- Size and Range")
-pn.body(
+en.chap_box("1.6  Data Types, Variables, and Scope")
+en.section("Data Types -- Size and Range")
+en.body(
     "Java is a strongly typed language, meaning every variable must have a declared type before "
     "compilation. Java has 8 primitive data types (integers, floats, characters, booleans)."
 )
 
-pn.info_table(
+en.info_table(
     ["Data Type", "Size (Bits)", "Default Value", "Range of Values"],
     [
         ["byte", "8 bits (1 byte)", "0", "-128 to 127"],
@@ -716,8 +716,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Instance Variables vs. Class (Static) Variables vs. Local Variables")
-pn.info_table(
+en.section("Instance Variables vs. Class (Static) Variables vs. Local Variables")
+en.info_table(
     ["Variable Type", "Declared Location", "Default Value", "Memory Scope & Lifetime"],
     [
         [
@@ -741,14 +741,14 @@ pn.info_table(
     ],
 )
 
-pn.section("Declaring Variables & Dynamic Initialization")
-pn.body(
+en.section("Declaring Variables & Dynamic Initialization")
+en.body(
     "A variable is a container that holds a value of a specified data type. In addition to "
     "static initialization, Java allows <b>dynamic initialization</b>, where a variable is "
     "initialized at runtime using an expression or method output."
 )
 
-pn.code_block(
+en.code_block(
     """
 // InitializationDemo.java
 public class InitializationDemo {
@@ -769,15 +769,15 @@ public class InitializationDemo {
     lang="java",
 )
 
-pn.section("Scope and Lifetime of Variables")
-pn.definition(
+en.section("Scope and Lifetime of Variables")
+en.definition(
     "<b>Scope:</b> Determines the visibility and accessibility of a variable in a program. "
     "Java variables are scoped to the block `{}` in which they are declared. Blocks can be "
     "nested, but inner blocks can access outer variables, while outer blocks cannot access inner variables. "
     "<b>Lifetime:</b> The duration for which a variable remains active in memory (from creation to destruction)."
 )
 
-pn.code_block(
+en.code_block(
     """
 // ScopeDemo.java
 public class ScopeDemo {
@@ -798,30 +798,30 @@ public class ScopeDemo {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.7  TYPE CONVERSION AND CASTING
 # =============================================================================
-pn.chap_box("1.7  Type Conversion and Casting")
-pn.section("Automatic (Widening) vs. Explicit (Narrowing) Conversion")
-pn.body(
+en.chap_box("1.7  Type Conversion and Casting")
+en.section("Automatic (Widening) vs. Explicit (Narrowing) Conversion")
+en.body(
     "Java handles type conversion automatically when converting compatible types of smaller size "
     "to larger size. However, explicit casting is required when converting a larger type to a smaller type."
 )
 
-pn.definition(
+en.definition(
     "<b>Widening (Automatic) Conversion:</b> Happens when target type is compatible and is "
     "larger than the source. No data loss occurs. "
     "Order: byte -> short -> int -> long -> float -> double."
 )
-pn.definition(
+en.definition(
     "<b>Narrowing (Explicit) Casting:</b> Happens when target type is smaller than source or "
     "is incompatible. Data loss may occur (truncation of decimals, integer overflow). "
     "Syntax: `(targetType) value`."
 )
 
-pn.code_block(
+en.code_block(
     """
 // ConversionDemo.java
 public class ConversionDemo {
@@ -848,12 +848,12 @@ public class ConversionDemo {
     lang="java",
 )
 
-pn.section("Type Promotion Rules in Expressions")
-pn.body(
+en.section("Type Promotion Rules in Expressions")
+en.body(
     "When evaluating mathematical expressions, Java automatically promotes operand types to prevent data loss. "
     "The rules are applied in the following order:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Byte, Short, Char to Int:</b> All `byte`, `short`, and `char` operands are automatically promoted to `int` before arithmetic operations.",
         "<b>Promotion to Long:</b> If any operand is `long`, the entire expression is promoted to `long`.",
@@ -861,7 +861,7 @@ pn.bullet(
         "<b>Promotion to Double:</b> If any operand is `double`, the entire expression is promoted to `double`.",
     ]
 )
-pn.note(
+en.note(
     "<b>Exam Trap: The Byte Addition Compilation Error</b><br/>"
     "Consider the following code:<br/>"
     "<code>byte a = 40;<br/>"
@@ -871,19 +871,19 @@ pn.note(
     "is promoted to <code>int</code> at evaluation. Assigning an <code>int</code> to a <code>byte</code> variable "
     "requires explicit casting: <code>byte c = (byte)(a + b);</code>."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.8  OPERATORS AND EXPRESSIONS
 # =============================================================================
-pn.chap_box("1.8  Operators and Precedence")
-pn.section("Java Operator Categories")
-pn.body(
+en.chap_box("1.8  Operators and Precedence")
+en.section("Java Operator Categories")
+en.body(
     "Operators are tokens that perform specific calculations on one, two, or three operands. "
     "Java categorizes them based on their logic and execution precedence."
 )
 
-pn.info_table(
+en.info_table(
     ["Operator Category", "Symbols", "Usage Example & Description"],
     [
         [
@@ -919,14 +919,14 @@ pn.info_table(
     ],
 )
 
-pn.section("Operator Precedence and Associativity")
-pn.body(
+en.section("Operator Precedence and Associativity")
+en.body(
     "When multiple operators appear in a single expression, their execution order is determined "
     "by precedence. Operators with higher precedence are evaluated first. If they have equal precedence, "
     "associativity determines the direction (left-to-right or right-to-left):"
 )
 
-pn.info_table(
+en.info_table(
     ["Precedence Level", "Operator Symbols", "Description", "Associativity"],
     [
         ["1 (Highest)", "expr++ , expr--", "Postfix operators", "Left-to-Right"],
@@ -956,8 +956,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Short-Circuit (&&, ||) vs. Logical (&, |) Operators")
-pn.bullet(
+en.section("Short-Circuit (&&, ||) vs. Logical (&, |) Operators")
+en.bullet(
     [
         "<b>&& (Short-Circuit AND):</b> Evaluates the right-hand operand ONLY if the left-hand operand is true. "
         "Useful for preventing runtime crashes. For example: <i>if (str != null && str.length() > 0)</i> will not crash even if <i>str</i> is null.",
@@ -967,8 +967,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Bitwise Shift Operators")
-pn.bullet(
+en.section("Bitwise Shift Operators")
+en.bullet(
     [
         "<b><< (Left Shift):</b> Shifts bits to the left, filling empty spaces on the right with zeros. Multiplies by 2 for each shift position.",
         "<b>>> (Signed Right Shift):</b> Shifts bits to the right, filling empty spaces on the left with the sign bit (preserves negative sign).",
@@ -976,7 +976,7 @@ pn.bullet(
     ]
 )
 
-pn.code_block(
+en.code_block(
     """
 // OperatorDemo.java
 public class OperatorDemo {
@@ -1005,19 +1005,19 @@ public class OperatorDemo {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.9  CONTROL STATEMENTS
 # =============================================================================
-pn.chap_box("1.9  Control Statements")
-pn.section("Selection, Iteration, and Jump Statements")
-pn.body(
+en.chap_box("1.9  Control Statements")
+en.section("Selection, Iteration, and Jump Statements")
+en.body(
     "Control statements determine the flow of program execution based on condition evaluations. "
     "They are categorized into Selection (conditional execution), Iteration (looping), and Jumps."
 )
 
-pn.info_table(
+en.info_table(
     ["Flow Type", "Statements", "Purpose & Syntax Structure"],
     [
         [
@@ -1038,8 +1038,8 @@ pn.info_table(
     ],
 )
 
-pn.section("The Switch Statement & Case Fall-Through")
-pn.bullet(
+en.section("The Switch Statement & Case Fall-Through")
+en.bullet(
     [
         "<b>Switch Expression Types:</b> The switch expression must evaluate to: <i>byte</i>, <i>short</i>, <i>char</i>, <i>int</i>, "
         "their corresponding wrapper classes (Byte, Short, Character, Integer), <i>String</i> (since Java 7), or an <i>Enum</i>.",
@@ -1049,8 +1049,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Loops: While vs. Do-While")
-pn.info_table(
+en.section("Loops: While vs. Do-While")
+en.info_table(
     ["Property", "While Loop", "Do-While Loop"],
     [
         [
@@ -1071,8 +1071,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Code Demonstration -- Loops & Switch Case")
-pn.code_block(
+en.section("Code Demonstration -- Loops & Switch Case")
+en.code_block(
     """
 // ControlFlowDemo.java
 public class ControlFlowDemo {
@@ -1107,15 +1107,15 @@ public class ControlFlowDemo {
     lang="java",
 )
 
-pn.sp(4)
-pn.section("Labeled loops (labeled break and continue)")
-pn.body(
+en.sp(4)
+en.section("Labeled loops (labeled break and continue)")
+en.body(
     "In Java, you can attach a label to nested loops. A labeled <i>break</i> or <i>continue</i> "
     "will transfer control directly out of or to the next iteration of the designated loop "
     "rather than just the innermost loop."
 )
 
-pn.code_block(
+en.code_block(
     """
 // LabeledLoopDemo.java
 public class LabeledLoopDemo {
@@ -1136,20 +1136,20 @@ public class LabeledLoopDemo {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.10  ARRAYS IN JAVA
 # =============================================================================
-pn.chap_box("1.10  Arrays in Java")
-pn.section("Understanding Array Creation & Memory Layout")
-pn.body(
+en.chap_box("1.10  Arrays in Java")
+en.section("Understanding Array Creation & Memory Layout")
+en.body(
     "An array is a collection of variables of the same type referenced by a common name. "
     "Unlike C/C++, Java arrays are objects allocated dynamically on the heap. Memory is managed "
     "automatically by the Garbage Collector."
 )
 
-pn.bullet(
+en.bullet(
     [
         "<b>Step 1: Declaration:</b> Declares the reference variable. No memory is allocated on the heap yet. "
         "Syntax: <code>int[] arr;</code> (Preferred) or <code>int arr[];</code>. <i>Note: Specifying size during declaration (e.g. <code>int[5] arr;</code>) is a compilation error!</i>",
@@ -1160,7 +1160,7 @@ pn.bullet(
     ]
 )
 
-pn.note(
+en.note(
     "<b>Array Properties: length Variable vs. String length() Method</b><br/>"
     "• To get the size of an <b>array</b>, use the read-only instance variable <code>.length</code> (e.g., <code>arr.length</code>). "
     "There are no parentheses because it is an instance field.<br/>"
@@ -1168,13 +1168,13 @@ pn.note(
     "It has parentheses because it is a method call."
 )
 
-pn.section("Jagged / Irregular Arrays")
-pn.body(
+en.section("Jagged / Irregular Arrays")
+en.body(
     "Since multidimensional arrays are implemented as arrays of arrays, the nested arrays do "
     "not need to have the same length. This is known as a <b>jagged or irregular array</b>."
 )
 
-pn.code_block(
+en.code_block(
     """
 // ArrayDemo.java
 public class ArrayDemo {
@@ -1215,52 +1215,52 @@ public class ArrayDemo {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.11  QUICK REVISION SUMMARY
 # =============================================================================
-pn.chap_box("1.11  Quick Revision Exam Flashcards")
-pn.section("Exam Key Focus Areas")
-pn.highlight(
+en.chap_box("1.11  Quick Revision Exam Flashcards")
+en.section("Exam Key Focus Areas")
+en.highlight(
     "<b>Q: Why is Java platform independent but JVM is platform dependent?</b><br/>"
     "A: The Java compiler javac compiles source code to Bytecode (.class) which is standard and "
     "platform-neutral. However, the JVM must interpret this bytecode into native CPU binary instructions "
     "of the specific operating system. Hence, a Windows machine needs a Windows-specific JVM, "
     "while a macOS machine needs a macOS-specific JVM."
 )
-pn.highlight(
+en.highlight(
     "<b>Q: What is compile-time type checking?</b><br/>"
     "A: In Java, type checking is strictly performed by the compiler before program execution. "
     "Every variable, parameter, and return type must be declared explicitly, preventing memory safety "
     "crashes or incompatible types in assignments at runtime."
 )
-pn.highlight(
+en.highlight(
     "<b>Q: What is the difference between >> and >>> operators?</b><br/>"
     "A: The signed shift operator (>>) preserves the sign bit (fills left vacancies with the value "
     "of the sign bit: 1 if negative, 0 if positive). The unsigned shift operator (>>>) fills left "
     "vacancies with zeros regardless of whether the original value was positive or negative."
 )
-pn.highlight(
+en.highlight(
     "<b>Q: What is the difference between the == operator and the equals() method?</b><br/>"
     "A: The <code>==</code> operator compares reference memory addresses for objects (checking if they point to the same "
     "location on the heap) or direct values for primitives. The <code>.equals()</code> method is designed to compare "
     "the logical content/values inside the objects (often overridden in classes like String for value comparison)."
 )
-pn.highlight(
+en.highlight(
     "<b>Q: Can a Java program execute without the main() method?</b><br/>"
     "A: Prior to Java 7, yes, we could execute static initializer blocks without a main method. However, "
     "from Java 7 onwards, the JVM checks for the presence of the main method (with the exact signature "
     "<code>public static void main(String[] args)</code>) before initializing execution, so it is strictly mandatory."
 )
-pn.highlight(
+en.highlight(
     "<b>Q: How do break and continue differ inside loops?</b><br/>"
     "A: The <code>break</code> statement immediately terminates the loop execution entirely, passing control to the "
     "first statement outside the loop body. The <code>continue</code> statement skips only the remaining statements "
     "in the current iteration and jumps directly to the next loop iteration condition evaluation/increment."
 )
 
-pn.note(
+en.note(
     "Make sure to practice writing class structures, simple programs, type casting rules, and loop control "
     "with jump statements (break/continue) for your exam!"
 )
@@ -1268,5 +1268,5 @@ pn.note(
 # =============================================================================
 #  BUILD DOCUMENT
 # =============================================================================
-pn.build_doc("Java_Unit1_Notes.pdf")
+en.build_doc("Java_Unit1_Notes.pdf")
 print("Generated: Java_Unit1_Notes.pdf")

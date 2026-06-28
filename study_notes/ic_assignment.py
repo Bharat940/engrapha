@@ -7,16 +7,16 @@ Output: IC_Assignment_IT410.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
 # =============================================================================
 #  THEME & GLOBAL FOOTER
 # =============================================================================
-pn.set_story([])
+en.set_story([])
 # Create print-optimized light theme using Times New Roman
 # Create print-optimized light theme using Times New Roman (pure B&W, no greys, plain questions)
-print_theme = pn.LIGHT.copy_with(
+print_theme = en.LIGHT.copy_with(
     name="Print Light",
     bg="#ffffff",
     surface="#ffffff",
@@ -54,9 +54,9 @@ print_theme = pn.LIGHT.copy_with(
     show_headers=True,
     plain_questions=True,
 )
-pn.set_theme(print_theme)
+en.set_theme(print_theme)
 
-pn.set_global_header(
+en.set_global_header(
     left="Indian Constitution",
     center="Semester –IV",
     right="Session-Jan-June 2026",
@@ -64,13 +64,13 @@ pn.set_global_header(
     line_y_offset=0.85,
 )
 
-pn.set_global_footer(
+en.set_global_footer(
     left="Name: Bharat Dangi",
     center="Enrollment no: 0101IT241013",
     show_page_num=True,
 )
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme()).model_copy(
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme()).model_copy(
     update={
         "stack_colors": (
             "#ffffff",
@@ -105,26 +105,26 @@ diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme()).model_copy(
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_header(page_only=True)
-pn.suppress_footer(page_only=True)
-pn.sp(15)
+en.bookmark("Cover Page")
+en.suppress_header(page_only=True)
+en.suppress_footer(page_only=True)
+en.sp(15)
 
 # Center the title card
-pn.cover_card(
+en.cover_card(
     "INDIAN CONSTITUTION -- ASSIGNMENT",
 )
-pn.sp(15)
+en.sp(15)
 
 # Centered logo
-pn.image("RGPVLOGO.jpg", width=120, height=128)
-pn.sp(20)
+en.image("RGPVLOGO.jpg", width=120, height=128)
+en.sp(20)
 
 # Student details in a neat column format (borderless centered table)
 from reportlab.platypus import Table, TableStyle, Paragraph
 from reportlab.lib.styles import ParagraphStyle
 
-t_theme = pn.get_theme()
+t_theme = en.get_theme()
 st_key = ParagraphStyle(
     "CoverKey",
     fontName="Times-Bold",
@@ -160,14 +160,14 @@ meta_table_style = TableStyle(
 )
 meta_table = Table(metadata, colWidths=[150, 200], hAlign="CENTER")
 meta_table.setStyle(meta_table_style)
-pn.add(meta_table)
+en.add(meta_table)
 
-pn.sp(20)
-pn.br()
+en.sp(20)
+en.br()
 
-pn.suppress_header(page_only=True)
-pn.suppress_footer(page_only=True)
-pn.toc(
+en.suppress_header(page_only=True)
+en.suppress_footer(page_only=True)
+en.toc(
     style="index",
     headers=["Q.no", "Question", "CO", "DOA", "DOS", "Page no", "Signature"],
     col_widths=["8%", "34%", "8%", "14%", "14%", "10%", "12%"],
@@ -180,18 +180,18 @@ pn.toc(
 # #############################################################################
 #  ASSIGNMENT 1 -- CO1
 # #############################################################################
-pn.part_box("ASSIGNMENT 1 -- CO1: CONSTITUTION BASICS & STRUCTURE")
+en.part_box("ASSIGNMENT 1 -- CO1: CONSTITUTION BASICS & STRUCTURE")
 
-pn.bookmark(
+en.bookmark(
     "Q1.1 -- What are the three lists under the Seventh Schedule of the Indian Constitution?"
 )
-pn.qbox(
+en.qbox(
     "Q1.1: What are the three lists under the Seventh Schedule of the Indian Constitution?"
 )
-pn.body(
+en.body(
     "The Seventh Schedule of the Constitution of India, in accordance with Article 246, distributes legislative powers between the Union government and the State governments. This distribution of power represents one of the core federal characteristics of the Indian polity. The schedule partitions legislative subjects into three distinct lists:"
 )
-pn.info_table(
+en.info_table(
     [
         "List Name",
         "Constitutional Provision",
@@ -223,24 +223,24 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Conflict Resolution and Doctrine of Repugnancy")
-pn.body(
+en.section("Conflict Resolution and Doctrine of Repugnancy")
+en.body(
     "Under Article 254, if there is a conflict between a law enacted by Parliament and a law enacted by a State Legislature on a subject in the Concurrent List, the central law prevails. The state law becomes void to the extent of its repugnancy with the central law. However, if the state law has received the assent of the President of India, it may prevail in that particular state."
 )
-pn.section("Residuary Powers (Article 248)")
-pn.body(
+en.section("Residuary Powers (Article 248)")
+en.body(
     "Subjects not explicitly mentioned in any of the three lists (such as Cyber Law, E-Commerce, and Artificial Intelligence) are classified as residuary powers. Article 248 vests the exclusive authority to legislate on residuary subjects solely in the Parliament of India, illustrating the unitary bias of the Indian federal structure."
 )
 
 
-pn.br()
-pn.bookmark("Q1.2 -- Name the articles that deal with the Fundamental Duties.")
-pn.qbox("Q1.2: Name the articles that deal with the Fundamental Duties.")
-pn.body(
+en.br()
+en.bookmark("Q1.2 -- Name the articles that deal with the Fundamental Duties.")
+en.qbox("Q1.2: Name the articles that deal with the Fundamental Duties.")
+en.body(
     "The Fundamental Duties of citizens are contained in <b>Part IV-A</b> of the Constitution of India, which consists of a single Article -- <b>Article 51A</b>. Unlike Fundamental Rights, these duties are non-justiciable in court, meaning a citizen cannot be directly punished by the judiciary for failing to perform them, unless there is a specific statutory law enacted by Parliament that penalizes such failure."
 )
-pn.section("Historical Evolution & Committees")
-pn.bullet(
+en.section("Historical Evolution & Committees")
+en.bullet(
     [
         "<b>Swaran Singh Committee (1976):</b> Set up by the Congress Party during the National Emergency to make recommendations about fundamental duties. The committee suggested the inclusion of 8 duties, but the 42nd Amendment Act added 10 duties.",
         "<b>42nd Amendment Act, 1976:</b> Formally inserted Part IV-A and Article 51A into the Constitution, introducing the original 10 duties (clauses a to j).",
@@ -248,9 +248,9 @@ pn.bullet(
         "<b>Verma Committee (1999):</b> Identified the existence of legal provisions for the implementation of some of the Fundamental Duties (e.g., Prevention of Insults to National Honour Act, Wildlife Protection Act, Representation of the People Act).",
     ]
 )
-pn.section("List of 11 Fundamental Duties under Article 51A")
-pn.body("It shall be the duty of every citizen of India:")
-pn.bullet(
+en.section("List of 11 Fundamental Duties under Article 51A")
+en.body("It shall be the duty of every citizen of India:")
+en.bullet(
     [
         "<b>(a)</b> To abide by the Constitution and respect its ideals and institutions, the National Flag and the National Anthem;",
         "<b>(b)</b> To cherish and follow the noble ideals which inspired our national struggle for freedom;",
@@ -267,21 +267,21 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q1.3 -- What is the article number that deals with the amendment procedure of the Indian constitution?"
 )
-pn.qbox(
+en.qbox(
     "Q1.3: What is the article number that deals with the amendment procedure of the Indian constitution?"
 )
-pn.body(
+en.body(
     "<b>Article 368</b> in <b>Part XX</b> of the Constitution of India vests the power in Parliament to amend the Constitution and lays down the detailed procedure for doing so. This article ensures that the Constitution remains a living document that can adapt to changing socio-economic and political realities, balancing the rigid and flexible characteristics of the state."
 )
-pn.section("Three Types of Amendment Procedures")
-pn.body(
+en.section("Three Types of Amendment Procedures")
+en.body(
     "The amendment procedure under the Indian Constitution is categorized into three methods based on the significance of the provisions:"
 )
-pn.info_table(
+en.info_table(
     ["Amendment Type", "Scope / Application", "Voting Requirement", "Key Examples"],
     [
         [
@@ -304,31 +304,31 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Step-by-Step Amendment Bill Procedure")
-pn.bullet(
+en.section("Step-by-Step Amendment Bill Procedure")
+en.bullet(
     [
         "<b>Initiation:</b> An amendment bill can be introduced in either House of Parliament (Lok Sabha or Rajya Sabha) by any minister or private member, without requiring the prior permission of the President.",
         "<b>Passage:</b> The bill must be passed in each House by a special majority (or simple/state-ratified majority where applicable). There is no provision for a joint sitting in case of a deadlock between the two Houses.",
         "<b>Presidential Assent:</b> After being passed by both Houses (and ratified by states if required), the bill is presented to the President. Under the 24th Amendment Act of 1971, the President <i>must</i> give their assent and cannot withhold it or return the bill for reconsideration.",
     ]
 )
-pn.section("Limitations: The Basic Structure Doctrine")
-pn.body(
+en.section("Limitations: The Basic Structure Doctrine")
+en.body(
     "In the landmark case of <b>Kesavananda Bharati v. State of Kerala (1973)</b>, the Supreme Court held that while Parliament has broad powers to amend any part of the Constitution under Article 368, it cannot alter or destroy its <i>Basic Structure</i>. Features like judicial review, supremacy of the Constitution, secularism, and federalism are immune to amendment."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q1.4 -- What are the three types of emergencies provided in the Indian Constitution?"
 )
-pn.qbox(
+en.qbox(
     "Q1.4: What are the three types of emergencies provided in the Indian Constitution?"
 )
-pn.body(
+en.body(
     "<b>Part XVIII</b> of the Constitution of India (Articles 352 to 360) contains the emergency provisions. These provisions enable the Central government to meet any abnormal situation effectively, turning the federal structure into a unitary one during times of crisis. The Constitution provides for three distinct types of emergencies:"
 )
-pn.info_table(
+en.info_table(
     [
         "Emergency Type",
         "Article",
@@ -360,8 +360,8 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Key Distinctions and Safeguards")
-pn.bullet(
+en.section("Key Distinctions and Safeguards")
+en.bullet(
     [
         "<b>National Emergency (Art. 352):</b> Requires a written recommendation from the Cabinet (Prime Minister and other cabinet-rank ministers) to the President. This safeguard was introduced by the 44th Amendment Act of 1978 to prevent the unilateral proclamation of emergency.",
         "<b>President's Rule (Art. 356):</b> Often criticized for misuse by the ruling party at the Centre. In the <b>S.R. Bommai case (1994)</b>, the Supreme Court established guidelines, holding that the state assembly cannot be dissolved until Parliament approves the proclamation, and the proclamation is subject to judicial review.",
@@ -370,13 +370,13 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark("Q1.5 -- List five salient features of the Indian Constitution.")
-pn.qbox("Q1.5: List five salient features of the Indian Constitution.")
-pn.body(
+en.br()
+en.bookmark("Q1.5 -- List five salient features of the Indian Constitution.")
+en.qbox("Q1.5: List five salient features of the Indian Constitution.")
+en.body(
     "The Constitution of India is unique in its spirit and content. While it has borrowed features from various constitutions across the world, it is tailored to suit the specific socio-cultural realities of India. Below are five key salient features of the Indian Constitution explained in detail:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>1. Lengthiest Written Constitution:</b> It is the most detailed written constitution in the world. Originally in 1949, it had 395 Articles, 8 Schedules, and 22 Parts. Today, it has over 448 Articles, 12 Schedules, and 25 Parts. This detail is due to the vast geographical size of India, its cultural diversity, the inclusion of administrative details, and single constitutions for both the Union and the States (except historically Jammu & Kashmir).",
         "<b>2. Blend of Rigidity and Flexibility:</b> The Constitution is neither entirely rigid (like the US Constitution, which requires a very complex amendment process) nor entirely flexible (like the British Constitution, which can be amended by ordinary laws). Article 368 provides for three types of amendments, allowing some provisions to be amended by simple majority, others by special majority, and federally important ones by special majority plus state ratification.",
@@ -385,21 +385,21 @@ pn.bullet(
         "<b>5. Synthesis of Parliamentary Sovereignty and Judicial Supremacy:</b> It balances the British principle of parliamentary sovereignty (where parliament can make or unmake any law) and the American principle of judicial supremacy (where courts have the final power of judicial review). The Supreme Court of India can declare parliamentary laws unconstitutional through judicial review, but Parliament can amend major parts of the Constitution through Article 368 (limited by the Basic Structure Doctrine).",
     ]
 )
-pn.section("Additional Notable Features")
-pn.body(
+en.section("Additional Notable Features")
+en.body(
     "Other prominent characteristics include an integrated and independent judiciary (Supreme Court at the apex, followed by High Courts and subordinate courts), justiciable Fundamental Rights (Part III), non-justiciable Directive Principles of State Policy (Part IV), and a secular state concept where all religions are given equal protection and respect by the state."
 )
 
 
-pn.br()
-pn.bookmark("Q1.6 -- What article of the constitution defines equality before law?")
-pn.qbox("Q1.6: What article of the constitution defines equality before law?")
-pn.body(
+en.br()
+en.bookmark("Q1.6 -- What article of the constitution defines equality before law?")
+en.qbox("Q1.6: What article of the constitution defines equality before law?")
+en.body(
     "<b>Article 14</b> in <b>Part III</b> of the Constitution of India defines the fundamental right to equality. It states: 'The State shall not deny to any person equality before the law or the equal protection of the laws within the territory of India.' This right is a cornerstone of Indian democracy and applies to all persons -- citizens and foreigners alike, as well as legal corporations."
 )
-pn.section("The Dual Concept of Article 14")
-pn.body("Article 14 incorporates two distinct but complementary concepts of equality:")
-pn.info_table(
+en.section("The Dual Concept of Article 14")
+en.body("Article 14 incorporates two distinct but complementary concepts of equality:")
+en.info_table(
     ["Concept", "Equality Before Law", "Equal Protection of the Laws"],
     [
         [
@@ -424,35 +424,35 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Doctrine of Reasonable Classification")
-pn.body(
+en.section("Doctrine of Reasonable Classification")
+en.body(
     "While Article 14 forbids class legislation, it permits reasonable classification of persons, objects, and transactions by the legislature. To be constitutional, any classification must pass the <b>Twin Test</b> established by the Supreme Court:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Intelligible Differentia:</b> There must be a clear and understandable difference distinguishing those grouped together from those left out.",
         "<b>Rational Nexus:</b> The differentia must have a direct, logical relation to the object sought to be achieved by the legislation.",
     ]
 )
-pn.section("New Dimension: Non-Arbitrariness")
-pn.body(
+en.section("New Dimension: Non-Arbitrariness")
+en.body(
     "In cases like <b>E.P. Royappa v. State of Tamil Nadu (1974)</b> and <b>Maneka Gandhi v. Union of India (1978)</b>, the Supreme Court expanded Article 14, holding that equality is a dynamic concept. Any state action that is arbitrary, unfair, or discriminatory is a direct violation of Article 14, regardless of classification tests."
 )
 
 
-pn.br()
-pn.bookmark("Q1.7 -- What year was the 73rd and 74th constitutional amendment passed?")
-pn.qbox("Q1.7: What year was the 73rd and 74th constitutional amendment passed?")
-pn.body(
+en.br()
+en.bookmark("Q1.7 -- What year was the 73rd and 74th constitutional amendment passed?")
+en.qbox("Q1.7: What year was the 73rd and 74th constitutional amendment passed?")
+en.body(
     "The <b>73rd and 74th Constitutional Amendment Acts</b> were passed by the Parliament in the year <b>1992</b>. These landmark amendments gave constitutional status to local self-governments in India, fulfilling the Gandhian dream of decentralized power. The 73rd Amendment came into force on <b>24 April 1993</b> (celebrated as National Panchayati Raj Day), and the 74th Amendment came into force on <b>1 June 1993</b>."
 )
-pn.section("Key Features of 73rd Amendment (Panchayati Raj)")
-pn.body(
+en.section("Key Features of 73rd Amendment (Panchayati Raj)")
+en.body(
     "The 73rd Amendment added <b>Part IX</b> to the Constitution, titled 'The Panchayats', and the <b>11th Schedule</b> containing 29 functional subjects. It mandated a standardized three-tier structure:"
 )
 # Diagram: LayeredStack for Panchayati Raj
-stack_pr = pd.LayeredStack(
-    width=pn.CW * 0.75,
+stack_pr = ed.LayeredStack(
+    width=en.CW * 0.75,
     height=185,
     theme=diag_theme,
     caption="Fig 1.1: Three-Tier Structure of Panchayati Raj System",
@@ -469,21 +469,21 @@ stack_pr.layer(
     "Gram Panchayat (Village Level)",
     sublabel="Grassroots administrative body directly elected by the Gram Sabha",
 )
-pn.story.extend(stack_pr.as_flowable())
-pn.sp(4)
-pn.section("Key Features of 74th Amendment (Municipalities)")
-pn.body(
+en.story.extend(stack_pr.as_flowable())
+en.sp(4)
+en.section("Key Features of 74th Amendment (Municipalities)")
+en.body(
     "The 74th Amendment added <b>Part IX-A</b>, titled 'The Municipalities', and the <b>12th Schedule</b> containing 18 functional subjects. It created three types of urban local bodies:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Nagar Panchayats:</b> For transitional areas transitioning from rural to urban.",
         "<b>Municipal Councils:</b> For smaller urban areas.",
         "<b>Municipal Corporations:</b> For larger urban areas (metropolitan cities).",
     ]
 )
-pn.section("Common Mandatory Institutional Provisions")
-pn.bullet(
+en.section("Common Mandatory Institutional Provisions")
+en.bullet(
     [
         "<b>Regular Elections:</b> Mandatory elections every 5 years; if dissolved earlier, elections must be held within 6 months.",
         "<b>Reservations:</b> Mandatory reservation of seats for SCs and STs in proportion to their population, and not less than 1/3rd of total seats reserved for women (including chairperson posts).",
@@ -492,21 +492,21 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q1.8 -- What part of the constitution contains the directive principles of state policy?"
 )
-pn.qbox(
+en.qbox(
     "Q1.8: What part of the constitution contains the directive principles of state policy?"
 )
-pn.body(
+en.body(
     "The Directive Principles of State Policy (DPSP) are contained in <b>Part IV</b> (Articles 36 to 51) of the Constitution of India. Borrowed from the Irish Constitution (which had borrowed them from Spain), these principles represent the socio-economic goals of the Indian state. Article 37 declares that these principles are non-justiciable (not enforceable by any court), but are 'fundamental in the governance of the country' and it is the duty of the State to apply them in making laws."
 )
-pn.section("Classification of Directive Principles")
-pn.body(
+en.section("Classification of Directive Principles")
+en.body(
     "Although the Constitution does not formally classify DPSPs, they are categorized into three broad philosophical groups based on their content and objectives:"
 )
-pn.info_table(
+en.info_table(
     ["Classification", "Core Objective", "Key Articles & Provisions"],
     [
         [
@@ -526,11 +526,11 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Relationship and Conflict with Fundamental Rights")
-pn.body(
+en.section("Relationship and Conflict with Fundamental Rights")
+en.body(
     "The relationship between Fundamental Rights (Part III) and DPSPs (Part IV) has evolved through key judicial rulings:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Champakam Dorairajan (1951):</b> The Supreme Court ruled that Fundamental Rights prevail over Directive Principles in case of conflict. DPSPs must run as subsidiary to Part III.",
         "<b>25th Amendment (1971):</b> Introduced Article 31C, stating that laws passed to implement socialistic DPSPs (Art 39b & c) cannot be declared void for violating equality (Art 14) or freedoms (Art 19).",
@@ -539,18 +539,18 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q1.9 -- What is the full name of the document that became the foundation of the Indian Constitution?"
 )
-pn.qbox(
+en.qbox(
     "Q1.9: What is the full name of the document that became the foundation of the Indian Constitution?"
 )
-pn.body(
+en.body(
     "The single most important document that became the administrative foundation of the Indian Constitution is the <b>Government of India Act, 1935</b>. Passed by the British Parliament, it was the longest and most detailed act enacted at the time. Nearly 250 provisions -- almost 60% of the text of the Constitution of India adopted in 1949 -- were borrowed directly or adapted from this Act, earning it the label of the 'blueprint' or 'structural skeleton' of the Constitution."
 )
-pn.section("Key Administrative Features Borrowed from the 1935 Act")
-pn.bullet(
+en.section("Key Administrative Features Borrowed from the 1935 Act")
+en.bullet(
     [
         "<b>Federal Scheme:</b> The Act proposed an All-India Federation consisting of British provinces and princely states. While the federation never materialized due to princely states refusing to join, the structural division of powers was adopted in the Constitution.",
         "<b>Three Legislative Lists:</b> The division of legislative subjects into Federal, Provincial, and Concurrent lists under the 1935 Act became the direct basis for the Union, State, and Concurrent lists of the Seventh Schedule.",
@@ -559,27 +559,27 @@ pn.bullet(
         "<b>Public Service Commissions:</b> Established a Federal Public Service Commission and Provincial Public Service Commissions, which became the Union Public Service Commission (UPSC) and State Public Service Commissions (SPSC) under Article 315.",
     ]
 )
-pn.section("Other Historical Foundations")
-pn.body(
+en.section("Other Historical Foundations")
+en.body(
     "In addition to the 1935 Act, the constitutional assembly (headed by Dr. Rajendra Prasad and drafted by the committee chaired by Dr. B.R. Ambedkar) adopted the formally titled <b>'Constitution of India'</b> on 26 November 1949. The philosophical foundation was provided by the <b>'Objective Resolution'</b> moved by Jawaharlal Nehru on 13 December 1946, which later became the basis of the Preamble."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q1.10 -- What article of the constitution defines the right to life and personal liberty?"
 )
-pn.qbox(
+en.qbox(
     "Q1.10: What article of the constitution defines the right to life and personal liberty?"
 )
-pn.body(
+en.body(
     "<b>Article 21</b> in <b>Part III</b> of the Constitution of India defines the right to life and personal liberty. It states: 'No person shall be deprived of his life or personal liberty except according to procedure established by law.' This right is considered the most fundamental of all rights, available to both citizens and non-citizens. Crucially, under Article 359 (amended by 44th Amendment), Article 21 cannot be suspended even during a National Emergency."
 )
-pn.section("The Judicial Evolution of Article 21")
-pn.body(
+en.section("The Judicial Evolution of Article 21")
+en.body(
     "The interpretation of Article 21 has undergone a major transition through two landmark cases:"
 )
-pn.info_table(
+en.info_table(
     ["Case Name", "Judicial Interpretation", "Procedure Standard", "Core Ruling"],
     [
         [
@@ -596,11 +596,11 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Unenumerated Rights under Article 21")
-pn.body(
+en.section("Unenumerated Rights under Article 21")
+en.body(
     "By interpreting 'Life' not as mere animal existence but as living with human dignity, the Supreme Court has read several implied rights into Article 21:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Right to Privacy:</b> Declared a fundamental right under Art. 21 in <i>K.S. Puttaswamy v. Union of India (2017)</i>.",
         "<b>Right to Clean Environment:</b> Protection against pollution and hazardous industries (<i>M.C. Mehta v. Union of India</i>).",
@@ -610,27 +610,27 @@ pn.bullet(
     ]
 )
 
-pn.br()
-pn.part_box("ASSIGNMENT 2 -- CO2: STRUCTURE, RIGHTS & PROCESSES")
+en.br()
+en.part_box("ASSIGNMENT 2 -- CO2: STRUCTURE, RIGHTS & PROCESSES")
 
-pn.bookmark(
+en.bookmark(
     "Q2.1 -- Explain the difference between constitutional law and constitutionalism."
 )
-pn.qbox(
+en.qbox(
     "Q2.1: Explain the difference between constitutional law and constitutionalism."
 )
-pn.body(
+en.body(
     "While the terms 'Constitution', 'Constitutional Law', and 'Constitutionalism' are closely related, they represent distinct concepts in political science and jurisprudence. A country may possess a constitution and a body of constitutional law, yet completely lack the spirit of constitutionalism if the rulers do not respect the limits placed upon their power."
 )
-pn.section("Detailed Definitions")
-pn.bullet(
+en.section("Detailed Definitions")
+en.bullet(
     [
         "<b>Constitutional Law:</b> The body of legal rules, doctrines, and judicial precedents that defines the structure, powers, and functions of the legislative, executive, and judicial organs of a state, and regulates the relationship between the government and its citizens. It is the formal legal manifestation of the Constitution.",
         "<b>Constitutionalism:</b> A political philosophy and doctrine which asserts that government authority must be derived from and limited by a body of fundamental law. It is the concept of 'limited government' and the 'rule of law' as opposed to arbitrary rule. It dictates that government must operate within strict legal boundaries.",
     ]
 )
-pn.section("Comparison Matrix")
-pn.info_table(
+en.section("Comparison Matrix")
+en.info_table(
     ["Dimension", "Constitutional Law", "Constitutionalism"],
     [
         [
@@ -655,11 +655,11 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Core Elements of Constitutionalism")
-pn.body(
+en.section("Core Elements of Constitutionalism")
+en.body(
     "Constitutionalism in a modern democracy like India is sustained through several institutional mechanisms:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Written Constitution:</b> Provides a clear, supreme legal framework that binds all state organs.",
         "<b>Separation of Powers:</b> Prevents concentration of power by distributing it among the Legislature, Executive, and Judiciary, coupled with a system of checks and balances.",
@@ -670,18 +670,18 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q2.2 -- Summarize the historical influences that shaped the Indian Constitution."
 )
-pn.qbox(
+en.qbox(
     "Q2.2: Summarize the historical influences that shaped the Indian Constitution."
 )
-pn.body(
+en.body(
     "The Constitution of India was not drafted in a vacuum. It was the product of a long historical process, reflecting both the administrative legacy of British colonial rule and the democratic ideals championed during the Indian national movement. The framers, led by the Drafting Committee chaired by Dr. B.R. Ambedkar, carefully analyzed and borrowed structural, philosophical, and administrative features from various global models, adapting them to the Indian context."
 )
-pn.section("Comparative Borrowings from Global Constitutions")
-pn.info_table(
+en.section("Comparative Borrowings from Global Constitutions")
+en.info_table(
     ["Country Source", "Borrowed Features in the Indian Constitution"],
     [
         [
@@ -722,24 +722,24 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Impact of the Nationalist Freedom Struggle")
-pn.body(
+en.section("Impact of the Nationalist Freedom Struggle")
+en.body(
     "The values of the freedom struggle directly shaped the Preamble, Fundamental Rights, and DPSPs. The <b>Motilal Nehru Report (1928)</b> had demanded a bill of rights, while the <b>Karachi Resolution (1931)</b> of the Indian National Congress outlined a socio-economic program advocating civil liberties, equality, and protection of labor, which became the blueprint for Parts III and IV."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q2.3 -- Describe the relationship between Fundamental Rights and Directive Principles."
 )
-pn.qbox(
+en.qbox(
     "Q2.3: Describe the relationship between Fundamental Rights and Directive Principles."
 )
-pn.body(
+en.body(
     "The relationship between Fundamental Rights (Part III) and Directive Principles of State Policy (Part IV) forms the moral and legal core of the Indian Constitution. Together, they are described by Granville Austin as the 'conscience of the Constitution'. While Part III guarantees civil liberties and political democracy, Part IV directs the state to establish socio-economic democracy. Their relationship has evolved from conflict to harmony through decades of judicial interpretation."
 )
-pn.section("Comparison of Key Differences")
-pn.info_table(
+en.section("Comparison of Key Differences")
+en.info_table(
     ["Dimension", "Fundamental Rights (Part III)", "Directive Principles (Part IV)"],
     [
         [
@@ -764,8 +764,8 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Judicial Evolution of the Relationship")
-pn.bullet(
+en.section("Judicial Evolution of the Relationship")
+en.bullet(
     [
         "<b>Phase 1: Primacy of FRs (State of Madras v. Champakam Dorairajan, 1951):</b> The Supreme Court ruled that DPSPs are subsidiary to Fundamental Rights. If a law implementing DPSP violates a Fundamental Right, the law is void.",
         "<b>Phase 2: Legislative Backlash & 25th Amendment (1971):</b> Parliament inserted Article 31C to protect laws implementing socialistic DPSPs (Art 39b & c) from challenge under Articles 14 and 19.",
@@ -775,18 +775,18 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q2.4 -- Explain the concept of federal structure with a unitary bias in the Indian context."
 )
-pn.qbox(
+en.qbox(
     "Q2.4: Explain the concept of federal structure with a unitary bias in the Indian context."
 )
-pn.body(
+en.body(
     "Article 1 of the Constitution describes India as a 'Union of States'. The Constitution establishes a federal system of government but endows it with a strong centralizing character. This unique design led constitutional expert K.C. Wheare to classify the Indian Constitution as <b>'quasi-federal'</b>. It is federal in structure but unitary in spirit, designed to maintain national integrity and security amidst extreme regional diversity."
 )
-pn.section("Federal Features of the Indian Constitution")
-pn.bullet(
+en.section("Federal Features of the Indian Constitution")
+en.bullet(
     [
         "<b>Dual Polity:</b> Clear division of government into the Union at the Centre and the States at the periphery, each exercising authority in their respective spheres.",
         "<b>Written Constitution:</b> A supreme, written document that serves as the source of power for both the Centre and the States.",
@@ -795,8 +795,8 @@ pn.bullet(
         "<b>Independent Judiciary:</b> An independent judicial branch (Supreme Court) acts as the arbiter of disputes between the Centre and States.",
     ]
 )
-pn.section("Unitary Features (Unitary Bias)")
-pn.bullet(
+en.section("Unitary Features (Unitary Bias)")
+en.bullet(
     [
         "<b>Strong Centre:</b> The Union List has more subjects, more important subjects, and residuary powers (Article 248) are vested in the Centre.",
         "<b>Single Constitution & Citizenship:</b> Unlike the US, where states have separate constitutions and dual citizenship, Indian citizens have only one citizenship and follow a single integrated constitution.",
@@ -808,14 +808,14 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark("Q2.5 -- How does the parliamentary form of government function in India?")
-pn.qbox("Q2.5: How does the parliamentary form of government function in India?")
-pn.body(
+en.br()
+en.bookmark("Q2.5 -- How does the parliamentary form of government function in India?")
+en.qbox("Q2.5: How does the parliamentary form of government function in India?")
+en.body(
     "The Constitution of India adopts the parliamentary form of government, also known as the Cabinet government or the Westminster model, at both the Centre and in the States. Based on the principle of cooperation and coordination between the executive and legislative branches, it differs fundamentally from the presidential system which is based on strict separation of powers."
 )
-pn.section("Key Functional Characteristics")
-pn.bullet(
+en.section("Key Functional Characteristics")
+en.bullet(
     [
         "<b>1. Nominal and Real Executives:</b> The President of India is the nominal executive (de jure head / head of state), while the Prime Minister is the real executive (de facto head / head of government). Executive decisions are taken in the President's name but on the aid and advice of the Council of Ministers (Article 74).",
         "<b>2. Majority Party Rule:</b> The political party that secures a majority of seats in the Lok Sabha (lower house of Parliament) forms the government. The leader of this party is appointed as the Prime Minister by the President.",
@@ -825,8 +825,8 @@ pn.bullet(
     ]
 )
 # Diagram: LayeredStack for Organs of Government
-stack_organs = pd.LayeredStack(
-    width=pn.CW * 0.75,
+stack_organs = ed.LayeredStack(
+    width=en.CW * 0.75,
     height=185,
     theme=diag_theme,
     caption="Fig 2.1: Relationship and Functions of government organs",
@@ -843,18 +843,18 @@ stack_organs.layer(
     "Judiciary",
     sublabel="Supreme Court, High Courts & Subordinate Courts -- Interprets Laws & Resolves Disputes",
 )
-pn.story.extend(stack_organs.as_flowable())
-pn.sp(4)
+en.story.extend(stack_organs.as_flowable())
+en.sp(4)
 
 
-pn.br()
-pn.bookmark("Q2.6 -- Explain the process of amending the Indian Constitution.")
-pn.qbox("Q2.6: Explain the process of amending the Indian Constitution.")
-pn.body(
+en.br()
+en.bookmark("Q2.6 -- Explain the process of amending the Indian Constitution.")
+en.qbox("Q2.6: Explain the process of amending the Indian Constitution.")
+en.body(
     "The amendment process under the Indian Constitution, governed by <b>Article 368</b> (Part XX), is a unique blend of rigidity and flexibility. It is designed to allow constitutional growth while protecting the foundational values of the republic from temporary majoritarian impulses."
 )
-pn.section("Detailed Step-by-Step Procedure")
-pn.bullet(
+en.section("Detailed Step-by-Step Procedure")
+en.bullet(
     [
         "<b>1. Introduction:</b> An amendment bill can be initiated only by the introduction of a bill in either House of Parliament (Lok Sabha or Rajya Sabha). It cannot be introduced in state legislatures.",
         "<b>2. Who Can Introduce:</b> The bill can be introduced either by a minister (Government Bill) or by a private member (Private Member Bill), and does not require the prior permission of the President.",
@@ -864,27 +864,27 @@ pn.bullet(
         "<b>6. Presidential Assent:</b> After being passed by both Houses (and ratified by states if needed), the bill is presented to the President who <i>must</i> give assent. The President cannot withhold assent or return the bill for reconsideration.",
     ]
 )
-pn.section("Categories of Amendments")
-pn.body(
+en.section("Categories of Amendments")
+en.body(
     "Article 368 specifies two types of amendments (Special Majority, and Special Majority + State Ratification). However, some other provisions of the Constitution can be amended by a simple majority of Parliament (outside the scope of Article 368), such as the creation of new states, abolition of legislative councils, and rules of procedure in Parliament."
 )
 
 
-pn.br()
-pn.bookmark("Q2.7 -- What are the grounds for imposing a National Emergency?")
-pn.qbox("Q2.7: What are the grounds for imposing a National Emergency?")
-pn.body(
+en.br()
+en.bookmark("Q2.7 -- What are the grounds for imposing a National Emergency?")
+en.qbox("Q2.7: What are the grounds for imposing a National Emergency?")
+en.body(
     "A National Emergency is proclaimed under <b>Article 352</b> of the Constitution of India when the security of India or any part of its territory is threatened. Under Article 352, the President can declare a National Emergency on three specific grounds:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>1. War:</b> When there is an active, formal state of war between India and another country.",
         "<b>2. External Aggression:</b> When there is unilateral aggression/hostility by a foreign power against India, short of a formal declaration of war.",
         "<b>3. Armed Rebellion:</b> When there is an internal armed insurrection threatening the state. Originally, the Constitution used the term 'internal disturbance'. However, because of its vagueness and potential for abuse, the <b>44th Amendment Act of 1978</b> replaced it with 'armed rebellion'.",
     ]
 )
-pn.section("Key Classifications & Procedural Safeguards")
-pn.bullet(
+en.section("Key Classifications & Procedural Safeguards")
+en.bullet(
     [
         "<b>External vs Internal Emergency:</b> An emergency declared on the grounds of 'war' or 'external aggression' is called an 'External Emergency'. An emergency declared on the grounds of 'armed rebellion' is called an 'Internal Emergency'.",
         "<b>Cabinet Consent:</b> The President can proclaim a National Emergency only after receiving a written recommendation from the Cabinet (Prime Minister and other cabinet-rank ministers), ensuring collective decision-making.",
@@ -894,14 +894,14 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark("Q2.8 -- Explain the significance of Local Self Government in India.")
-pn.qbox("Q2.8: Explain the significance of Local Self Government in India.")
-pn.body(
+en.br()
+en.bookmark("Q2.8 -- Explain the significance of Local Self Government in India.")
+en.qbox("Q2.8: Explain the significance of Local Self Government in India.")
+en.body(
     "Local Self-Government, constitutionalized through the 73rd and 74th Amendment Acts of 1992, represents the third tier of governance in the Indian federal structure (Panchayats in rural areas and Municipalities in urban areas). Its significance lies in translating the concept of democratic decentralization into grassroots reality."
 )
-pn.section("Key Aspects of Significance")
-pn.bullet(
+en.section("Key Aspects of Significance")
+en.bullet(
     [
         "<b>1. Democratic Decentralization:</b> It shifts power from centralized state capitals and New Delhi directly to the local community, promoting participatory democracy where citizens are directly involved in planning and executing local schemes.",
         "<b>2. Administrative Efficiency:</b> Local problems (sanitation, primary education, local water supply, rural roads) are best understood and solved by local representatives, rather than distant bureaucrats who lack local contextual knowledge.",
@@ -910,25 +910,25 @@ pn.bullet(
         "<b>5. Local Resource Mobilization:</b> Local bodies can levy taxes, duties, and fees, encouraging local self-reliance and community-based resource management.",
     ]
 )
-pn.section("Core Challenges Faced")
-pn.body(
+en.section("Core Challenges Faced")
+en.body(
     "Despite its significance, local self-government faces structural challenges known as the <b>'Three Fs'</b> deficit: inadequate <b>Funds</b> (heavy dependence on state grants), incomplete devolution of <b>Functions</b> by state governments, and lack of trained administrative <b>Functionaries</b> to execute policies."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q2.9 -- Describe the scope of the right to freedom of speech and expression."
 )
-pn.qbox("Q2.9: Describe the scope of the right to freedom of speech and expression.")
-pn.body(
+en.qbox("Q2.9: Describe the scope of the right to freedom of speech and expression.")
+en.body(
     "<b>Article 19(1)(a)</b> in Part III of the Constitution of India guarantees to all citizens the right to freedom of speech and expression. It is considered one of the most vital civil liberties, enabling the free exchange of ideas and opinions which is the lifeblood of a democratic society. Its scope has been significantly expanded through judicial interpretation, but it is subject to reasonable restrictions under Article 19(2)."
 )
-pn.section("Expanded Scope of Article 19(1)(a)")
-pn.body(
+en.section("Expanded Scope of Article 19(1)(a)")
+en.body(
     "While the text is concise, the Supreme Court has read several 'unenumerated' rights into its scope:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Freedom of Press:</b> The right to print, publish, and circulate news without arbitrary state interference (<i>Romesh Thapar case</i>).",
         "<b>Right to Information (RTI):</b> The right to know about government actions and obtain public records (implied in the freedom to receive information).",
@@ -937,11 +937,11 @@ pn.bullet(
         "<b>Right to Expression via Internet:</b> Access to the internet and expression on digital platforms is protected (<i>Shreya Singhal case, 2015</i>).",
     ]
 )
-pn.section("Reasonable Restrictions (Article 19(2))")
-pn.body(
+en.section("Reasonable Restrictions (Article 19(2))")
+en.body(
     "The right to free speech is not absolute. Under Article 19(2), the state can impose reasonable restrictions on only <b>eight specific grounds</b>:"
 )
-pn.info_table(
+en.info_table(
     ["Ground for Restriction", "Core Purpose", "Example Scenario"],
     [
         [
@@ -978,14 +978,14 @@ pn.info_table(
 )
 
 
-pn.br()
-pn.bookmark("Q2.10 -- Explain the importance of the right to constitutional remedies.")
-pn.qbox("Q2.10: Explain the importance of the right to constitutional remedies.")
-pn.body(
+en.br()
+en.bookmark("Q2.10 -- Explain the importance of the right to constitutional remedies.")
+en.qbox("Q2.10: Explain the importance of the right to constitutional remedies.")
+en.body(
     "<b>Article 32</b> of the Constitution of India guarantees the right to move the Supreme Court for the enforcement of Fundamental Rights. Dr. B.R. Ambedkar famously declared Article 32 as <b>'the heart and soul of the Constitution'</b>, stating that without it, the Constitution would be a nullity. A declaration of rights on paper is meaningless without an effective mechanism for their enforcement against state excesses."
 )
-pn.section("Why Article 32 is Critically Important")
-pn.bullet(
+en.section("Why Article 32 is Critically Important")
+en.bullet(
     [
         "<b>1. Justiciability of Rights:</b> Article 32 makes the Fundamental Rights justiciable. It transforms moral and legal declarations into enforceable commands.",
         "<b>2. Supreme Court as Guard and Guarantor:</b> It appoints the Supreme Court as the protector of citizens' rights, providing a direct channel of justice without going through lengthy lower court appeals.",
@@ -993,11 +993,11 @@ pn.bullet(
         "<b>4. Power of Judicial Review:</b> It vests the Supreme Court with the power to strike down executive orders and legislative acts that violate Part III.",
     ]
 )
-pn.section("The Five Constitutional Writs")
-pn.body(
+en.section("The Five Constitutional Writs")
+en.body(
     "Under Article 32 (and Article 226 for High Courts), the courts can issue writs, directions, or orders for rights enforcement:"
 )
-pn.info_table(
+en.info_table(
     ["Writ Type", "Literal Meaning", "Core Application", "Against Whom Issued"],
     [
         [
@@ -1034,27 +1034,27 @@ pn.info_table(
     col_widths=["15%", "18%", "42%", "25%"],
 )
 
-pn.br()
-pn.part_box("ASSIGNMENT 3 -- CO3: APPLIED CONSTITUTIONAL SCENARIOS")
+en.br()
+en.part_box("ASSIGNMENT 3 -- CO3: APPLIED CONSTITUTIONAL SCENARIOS")
 
-pn.bookmark(
+en.bookmark(
     "Q3.1 -- If a state government passes a law that violates a Fundamental Right, what legal recourse is available?"
 )
-pn.qbox(
+en.qbox(
     "Q3.1: If a state government passes a law that violates a Fundamental Right, what legal recourse is available?"
 )
-pn.body(
+en.body(
     "If a State Legislature passes a law that violates any Fundamental Right guaranteed under Part III of the Constitution, the law is void from its inception. The Constitution provides robust legal mechanisms under Articles 13, 32, and 226 for citizens to challenge such laws and for the judiciary to strike them down."
 )
-pn.section("Constitutional Basis of Judicial Review")
-pn.bullet(
+en.section("Constitutional Basis of Judicial Review")
+en.bullet(
     [
         "<b>Article 13(2):</b> Explicitly prohibits the State from making any law that takes away or abridges the Fundamental Rights. Any law made in contravention of this clause is void to the extent of the contravention.",
         "<b>Article 13(3):</b> Defines 'law' broadly to include ordinances, orders, bye-laws, rules, regulations, notifications, customs, or usages having the force of law.",
     ]
 )
-pn.section("Available Legal Recourse for Citizens")
-pn.info_table(
+en.section("Available Legal Recourse for Citizens")
+en.info_table(
     [
         "Legal Pathway",
         "Constitutional Article",
@@ -1076,11 +1076,11 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Key Judicial Doctrines Applied by the Courts")
-pn.body(
+en.section("Key Judicial Doctrines Applied by the Courts")
+en.body(
     "When a state law is challenged, the courts apply several established doctrines to determine its validity:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Doctrine of Severability:</b> If only a portion of the state law violates a Fundamental Right, and that portion can be separated from the rest of the act, the court will strike down only the offending portion, leaving the remaining law intact.",
         "<b>Doctrine of Eclipse:</b> Holds that a pre-constitutional law that violates a Fundamental Right is not dead but remains dormant (e.g., eclipsed by the FR) and can become active again if the Constitution is amended to remove the conflict.",
@@ -1089,16 +1089,16 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q3.2 -- How can a citizen use the Fundamental Duties to promote social harmony?"
 )
-pn.qbox("Q3.2: How can a citizen use the Fundamental Duties to promote social harmony?")
-pn.body(
+en.qbox("Q3.2: How can a citizen use the Fundamental Duties to promote social harmony?")
+en.body(
     "Fundamental Duties, introduced in 1976 under Article 51A (Part IV-A), serve as a constant reminder to citizens of their responsibilities to the nation and to each other. While civil rights protect individuals from the state, duties help foster a sense of civic responsibility, national unity, and social harmony in a diverse society."
 )
-pn.section("Key Duties Fostering Social Harmony")
-pn.bullet(
+en.section("Key Duties Fostering Social Harmony")
+en.bullet(
     [
         "<b>1. Promotion of Common Brotherhood (Art. 51A(e)):</b> Directly mandates citizens 'to promote harmony and the spirit of common brotherhood amongst all the people of India transcending religious, linguistic and regional or sectional diversities'. It encourages citizens to look past differences and cultivate mutual respect.",
         "<b>2. Renunciation of Derogatory Practices (Art. 51A(e)):</b> Mandates citizens 'to renounce practices derogatory to the dignity of women'. This is crucial for gender harmony, pushing communities to reform outdated patriarchal customs.",
@@ -1107,24 +1107,24 @@ pn.bullet(
         "<b>5. Developing Scientific Temper (Art. 51A(h)):</b> Mandates citizens 'to develop the scientific temper, humanism and the spirit of inquiry and reform', which helps combat superstitions, communal bigotry, and blind dogma.",
     ]
 )
-pn.section("Statutory Enforcement and Civic Action")
-pn.body(
+en.section("Statutory Enforcement and Civic Action")
+en.body(
     "Although the duties are non-justiciable on their own, citizens can use them as moral guidelines. Furthermore, the <b>Verma Committee (1999)</b> pointed out that several laws enforce these duties, such as the <i>Protection of Civil Rights Act (1955)</i> and the <i>IPC provisions</i> penalizing offenses inciting communal hatred, making compliance with these duties a legal necessity for social peace."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q3.3 -- How can the Directive Principles be applied to formulate social welfare policies?"
 )
-pn.qbox(
+en.qbox(
     "Q3.3: How can the Directive Principles be applied to formulate social welfare policies?"
 )
-pn.body(
+en.body(
     "The Directive Principles of State Policy (DPSP) under Part IV of the Constitution serve as the constitutional blueprint for economic democracy and social justice. Article 37 mandates that the State must apply these principles when enacting laws and policies. Governments have continuously drawn inspiration from Part IV to formulate landmark social welfare programs and laws."
 )
-pn.section("Application of DPSPs in Key National Policies")
-pn.info_table(
+en.section("Application of DPSPs in Key National Policies")
+en.info_table(
     ["Policy Area / Law", "DPSP Article Applied", "Welfare Objective & Impact", "Key Implementation / Notes"],
     [
         [
@@ -1160,29 +1160,29 @@ pn.info_table(
     ],
     col_widths=["20%", "18%", "37%", "25%"],
 )
-pn.section("Ongoing Policy Challenges: Uniform Civil Code (Article 44)")
-pn.body(
+en.section("Ongoing Policy Challenges: Uniform Civil Code (Article 44)")
+en.body(
     "A key directive that remains a subject of policy debate is <b>Article 44</b>, which directs the State to secure a Uniform Civil Code (UCC) for all citizens throughout India. Applying this principle requires careful balancing of gender justice and minority rights, illustrating how DPSPs guide long-term social reform."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q3.4 -- In what situations might the President's rule be imposed in a state?"
 )
-pn.qbox("Q3.4: In what situations might the President's rule be imposed in a state?")
-pn.body(
+en.qbox("Q3.4: In what situations might the President's rule be imposed in a state?")
+en.body(
     "President's Rule, also known as State Emergency or Constitutional Emergency, is imposed in a State under <b>Article 356</b> of the Constitution. It is declared when the governance of a State cannot be carried out in accordance with the provisions of the Constitution. Upon proclamation, the elected State Government is dismissed, and executive authority is transferred to the Governor, who administers the state on behalf of the President."
 )
-pn.section("Constitutional Grounds for Imposition")
-pn.bullet(
+en.section("Constitutional Grounds for Imposition")
+en.bullet(
     [
         "<b>1. Failure of Constitutional Machinery (Article 356):</b> If the President, on receipt of a report from the Governor of a State or otherwise, is satisfied that a situation has arisen in which the government of the State cannot be carried on in accordance with the Constitution.",
         "<b>2. Non-Compliance with Central Directions (Article 365):</b> If a State fails to comply with or give effect to any direction issued by the Central government (e.g., on national security, railway protection), the President can hold that a situation has arisen where State governance has failed.",
     ]
 )
-pn.section("Typical Situations Warranting Article 356")
-pn.info_table(
+en.section("Typical Situations Warranting Article 356")
+en.info_table(
     ["Scenario Type", "Core Situation Description", "Example Scenario"],
     [
         [
@@ -1202,11 +1202,11 @@ pn.info_table(
         ],
     ],
 )
-pn.section("S.R. Bommai Guidelines (1994) & Safeguards")
-pn.body(
+en.section("S.R. Bommai Guidelines (1994) & Safeguards")
+en.body(
     "Historically abused for political gains, the Supreme Court in the <b>S.R. Bommai case (1994)</b> established strict safeguards:"
 )
-pn.bullet(
+en.bullet(
     [
         "The proclamation of President's Rule is subject to judicial review.",
         "The State Legislative Assembly cannot be dissolved until both Houses of Parliament approve the proclamation (within 2 months). The assembly can only be suspended.",
@@ -1215,87 +1215,87 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q3.5 -- How does the distribution of financial powers impact the relationship between the Union and the States?"
 )
-pn.qbox(
+en.qbox(
     "Q3.5: How does the distribution of financial powers impact the relationship between the Union and the States?"
 )
-pn.body(
+en.body(
     "The distribution of financial powers between the Union and the States, governed by <b>Part XII</b> of the Constitution, is one of the most critical and friction-prone aspects of Indian federalism. The Constitution divides tax sources between the Centre and the States, but intentionally vests more productive tax avenues in the Centre, creating a structural fiscal imbalance that requires institutional resolution."
 )
-pn.section("Key Sources of Tax Allocation")
-pn.bullet(
+en.section("Key Sources of Tax Allocation")
+en.bullet(
     [
         "<b>Union Taxes:</b> Income Tax (except agriculture), Customs, Corporation Tax, GST (Central and Integrated portion). These taxes are highly elastic and generate the bulk of public revenue.",
         "<b>State Taxes:</b> Land Revenue, Agricultural Income Tax, Stamp Duty, State Excise (on alcohol), GST (State portion). These taxes are less elastic and insufficient to meet the development needs of the states.",
     ]
 )
-pn.section("Resolving Fiscal Imbalances: The Finance Commission (Article 280)")
-pn.body(
+en.section("Resolving Fiscal Imbalances: The Finance Commission (Article 280)")
+en.body(
     "To bridge the gap between states' expenditure needs and tax resources (vertical imbalance) and inequalities among states (horizontal imbalance), the Constitution establishes the <b>Finance Commission</b> every 5 years under Article 280. Its core recommendations dictate:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Devolution of Taxes:</b> The percentage of central taxes to be shared with the states (e.g., devolute 41% of net central tax pool to states).",
         "<b>Grants-in-Aid:</b> Principles governing grants-in-aid of the revenues of the states out of the Consolidated Fund of India (Article 275).",
     ]
 )
-pn.section("Impact of GST and Centrally Sponsored Schemes")
-pn.body(
+en.section("Impact of GST and Centrally Sponsored Schemes")
+en.body(
     "The introduction of the Goods and Services Tax (GST) through the 101st Amendment Act of 2016 created a unified market but limited the fiscal autonomy of the states. States can no longer unilaterally set tax rates on goods. Furthermore, states often complain about the conditions attached to <b>Centrally Sponsored Schemes (CSS)</b> and delays in GST compensation, making fiscal federalism a continuous site of union-state negotiation."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q3.6 -- If the parliament passes a law that contradicts the basic structure of the constitution, what can the supreme court do?"
 )
-pn.qbox(
+en.qbox(
     "Q3.6: If the parliament passes a law that contradicts the basic structure of the constitution, what can the supreme court do?"
 )
-pn.body(
+en.body(
     "If the Parliament passes a constitutional amendment or a law that violates or contradicts the 'Basic Structure' of the Constitution, the Supreme Court of India has the power of judicial review to declare that amendment or law unconstitutional and void. This power ensures the supremacy of the Constitution and protects the core identity of the republic."
 )
-pn.section("Origin and Meaning of the Basic Structure Doctrine")
-pn.body(
+en.section("Origin and Meaning of the Basic Structure Doctrine")
+en.body(
     "The doctrine was established in the landmark case of <b>Kesavananda Bharati v. State of Kerala (1973)</b>. The Supreme Court ruled that while Article 368 gives Parliament the power to amend any part of the Constitution, it cannot alter or destroy its essential elements or 'Basic Structure'. Features like judicial review, democracy, secularism, and rule of law are immune to amendment."
 )
-pn.section("Available Judicial Remedial Actions")
-pn.bullet(
+en.section("Available Judicial Remedial Actions")
+en.bullet(
     [
         "<b>Declare Unconstitutional:</b> The Supreme Court can strike down the entire amendment or the offending provisions under its writ jurisdiction (Articles 32 and 136).",
         "<b>Strike Down ordinary laws:</b> If the law is an ordinary statute, it can be declared void under Article 13 if it violates any Fundamental Right or exceeds legislative competence.",
         "<b>Apply Judicial Review:</b> The court can review any law placed in the <b>Ninth Schedule</b>. In the <i>I.R. Coelho case (2007)</i>, the Supreme Court held that laws added to the Ninth Schedule after 24 April 1973 are subject to judicial review if they violate the Basic Structure.",
     ]
 )
-pn.section("Real-World Example: 99th Amendment & NJAC (2015)")
-pn.body(
+en.section("Real-World Example: 99th Amendment & NJAC (2015)")
+en.body(
     "A prominent example occurred in 2015 when Parliament passed the 99th Constitutional Amendment Act to establish the National Judicial Appointments Commission (NJAC). The Supreme Court struck down the amendment in its entirety, holding that it compromised the independence of the judiciary (a basic feature) by giving the executive a role in judicial appointments."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q3.7 -- How does the Right to Equality apply to affirmative action policies?"
 )
-pn.qbox("Q3.7: How does the Right to Equality apply to affirmative action policies?")
-pn.body(
+en.qbox("Q3.7: How does the Right to Equality apply to affirmative action policies?")
+en.body(
     "The Right to Equality in India (Articles 14 to 18) does not mean a mathematical, formal equality that ignores existing historical and social inequalities. Instead, the Constitution adopts the concept of <b>substantive equality</b>, which permits the State to take affirmative action and make special provisions for the advancement of socially and educationally backward classes."
 )
-pn.section("Constitutional Framework of Affirmative Action")
-pn.bullet(
+en.section("Constitutional Framework of Affirmative Action")
+en.bullet(
     [
         "<b>Article 15(4):</b> Enables the State to make special provisions for the advancement of any socially and educationally backward classes of citizens or for the Scheduled Castes (SCs) and Scheduled Tribes (STs) (e.g., educational reservations).",
         "<b>Article 16(4):</b> Enables the State to make provisions for the reservation of appointments or posts in favor of any backward class of citizens which, in the opinion of the State, is not adequately represented in the services under the State.",
     ]
 )
-pn.section("Key Judicial Principles & Boundaries")
-pn.body(
+en.section("Key Judicial Principles & Boundaries")
+en.body(
     "To ensure that affirmative action does not destroy the right to equality of other citizens, the Supreme Court has laid down several key legal boundaries:"
 )
-pn.info_table(
+en.info_table(
     ["Judicial Case", "Established Rule / Doctrine", "Core Impact on Reservations"],
     [
         [
@@ -1315,20 +1315,20 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Recent Development: EWS Reservation (103rd Amendment)")
-pn.body(
+en.section("Recent Development: EWS Reservation (103rd Amendment)")
+en.body(
     "The 103rd Amendment Act of 2019 inserted Articles 15(6) and 16(6), permitting up to 10% reservation in educational institutions and public employment for the economically weaker sections (EWS) of citizens, shifting the affirmative action paradigm to include economic status alongside social backwardness."
 )
 
 
-pn.br()
-pn.bookmark("Q3.8 -- How can Article 19 be used to protect journalistic freedom?")
-pn.qbox("Q3.8: How can Article 19 be used to protect journalistic freedom?")
-pn.body(
+en.br()
+en.bookmark("Q3.8 -- How can Article 19 be used to protect journalistic freedom?")
+en.qbox("Q3.8: How can Article 19 be used to protect journalistic freedom?")
+en.body(
     "Although the Constitution of India does not explicitly mention 'freedom of the press', it is well-established that journalistic freedom is implied within <b>Article 19(1)(a)</b> -- the freedom of speech and expression. Journalists, editors, and publishers can invoke this article to protect their right to report, investigate, and disseminate information without arbitrary censorship."
 )
-pn.section("Key Protections Enabled for Journalists")
-pn.bullet(
+en.section("Key Protections Enabled for Journalists")
+en.bullet(
     [
         "<b>1. Right to Publish and Circulate:</b> In <i>Romesh Thappar v. State of Madras (1950)</i>, the Supreme Court held that freedom of speech includes the freedom of propagation of ideas, which is ensured only by freedom of circulation of publications. The state cannot arbitrarily ban the distribution of newspapers.",
         "<b>2. Protection against Pre-Censorship:</b> Pre-censorship (requiring government approval before publication) is generally held unconstitutional, except in rare emergency situations. The press cannot be silenced prior to publication.",
@@ -1336,26 +1336,26 @@ pn.bullet(
         "<b>4. Investigative Journalism & Sourcing:</b> Freedom of expression protects the right of journalists to conduct interviews and report on public matters, subject only to reasonable restrictions.",
     ]
 )
-pn.section("Reasonable Restrictions (Article 19(2))")
-pn.body(
+en.section("Reasonable Restrictions (Article 19(2))")
+en.body(
     "Journalistic freedom is not absolute and is subject to the eight reasonable restrictions under Article 19(2). Restrictions on journalists must be narrowly tailored and cannot be vague. For example, in <b>Shreya Singhal v. Union of India (2015)</b>, the Supreme Court struck down Section 66A of the IT Act, which had been used to arrest citizens and journalists for online posts, holding that it was vague and overbroad, violating Article 19(1)(a)."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q3.9 -- How does the supreme court help to expand the scope of article 21?"
 )
-pn.qbox("Q3.9: How does the supreme court help to expand the scope of article 21?")
-pn.body(
+en.qbox("Q3.9: How does the supreme court help to expand the scope of article 21?")
+en.body(
     "Article 21 is a masterwork of judicial activism in India. Through a series of landmark judgments, the Supreme Court has expanded the literal words 'right to life and personal liberty' into a repository of numerous unenumerated rights, ensuring that 'life' does not mean mere animal existence but living with human dignity, self-respect, and health."
 )
-pn.section("The Transition: From Gopalan to Maneka Gandhi")
-pn.body(
+en.section("The Transition: From Gopalan to Maneka Gandhi")
+en.body(
     "In the <i>A.K. Gopalan case (1950)</i>, the court interpreted Article 21 strictly, holding that 'personal liberty' only protected against arbitrary arrest, and the 'procedure established by law' meant any procedure enacted by the legislature. This was overruled in the <i>Maneka Gandhi case (1978)</i>, where the court held that any procedure depriving a person of life or liberty must be <b>'fair, just, and reasonable'</b> (Due Process). This opened the doors to expanding Article 21's scope."
 )
-pn.section("Key Unenumerated Rights Read into Article 21")
-pn.info_table(
+en.section("Key Unenumerated Rights Read into Article 21")
+en.info_table(
     ["Implied Right", "Landmark Supreme Court Case", "Core Constitutional Rationale"],
     [
         [
@@ -1385,51 +1385,51 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Impact on the Right to Education (Article 21A)")
-pn.body(
+en.section("Impact on the Right to Education (Article 21A)")
+en.body(
     "In <i>Mohini Jain (1992)</i> and <i>Unni Krishnan (1993)</i>, the Supreme Court held that the right to education is directly linked to human dignity. This forced Parliament to enact the <b>86th Constitutional Amendment Act of 2002</b>, formally inserting <b>Article 21A</b> to make free and compulsory primary education a justiciable fundamental right."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q3.10 -- If a citizen is arrested unlawfully, what fundamental right can they invoke?"
 )
-pn.qbox(
+en.qbox(
     "Q3.10: If a citizen is arrested unlawfully, what fundamental right can they invoke?"
 )
-pn.body(
+en.body(
     "If a citizen is arrested unlawfully by the police or any state authority, they can invoke their fundamental right to protection against arrest and detention under <b>Article 22</b>, read alongside the right to personal liberty under <b>Article 21</b>, and seek immediate release through the right to constitutional remedies under <b>Article 32</b>."
 )
-pn.section("Protections Guaranteed under Article 22(1) and 22(2)")
-pn.bullet(
+en.section("Protections Guaranteed under Article 22(1) and 22(2)")
+en.bullet(
     [
         "<b>1. Right to be Informed of Grounds:</b> No person who is arrested shall be detained in custody without being informed, as soon as may be, of the grounds for such arrest.",
         "<b>2. Right to Legal Representation:</b> The arrested person has the right to consult and be defended by a legal practitioner of their choice.",
         "<b>3. 24-Hour Magistrate Rule:</b> Every person arrested must be produced before the nearest magistrate within a period of 24 hours of such arrest, excluding the time necessary for the journey; no person can be detained in custody beyond 24 hours without the authority of a magistrate.",
     ]
 )
-pn.section("Writ of Habeas Corpus: The Ultimate Remedy")
-pn.body(
+en.section("Writ of Habeas Corpus: The Ultimate Remedy")
+en.body(
     "If these protections are violated (e.g., detention exceeds 24 hours without magistrate approval), the arrest is unlawful. The citizen (or their relatives/friends on their behalf) can file a writ petition for <b>Habeas Corpus</b> under Article 32 (Supreme Court) or Article 226 (High Court). The court will order the police to 'produce the body' of the detainee and release them immediately if the arrest lacks legal justification."
 )
-pn.section("Landmark D.K. Basu Guidelines (1997)")
-pn.body(
+en.section("Landmark D.K. Basu Guidelines (1997)")
+en.body(
     "In the case of <b>D.K. Basu v. State of West Bengal</b>, the Supreme Court laid down mandatory guidelines to prevent custodial violence and unlawful arrests, requiring police officers to wear clear identification tags, prepare an arrest memo witnessed by a family member, and allow the arrestee to undergo a medical examination."
 )
 
-pn.br()
-pn.part_box("ASSIGNMENT 4 -- CO4: ANALYTICAL EVALUATION")
+en.br()
+en.part_box("ASSIGNMENT 4 -- CO4: ANALYTICAL EVALUATION")
 
-pn.bookmark(
+en.bookmark(
     "Q4.1 -- Analyze the strengths and weaknesses of the Indian federal structure."
 )
-pn.qbox("Q4.1: Analyze the strengths and weaknesses of the Indian federal structure.")
-pn.body(
+en.qbox("Q4.1: Analyze the strengths and weaknesses of the Indian federal structure.")
+en.body(
     "The federal structure of India, described as 'quasi-federal' with a strong centralizing bias, was designed to accommodate the country's vast cultural, linguistic, and regional diversity while preserving national unity. This system has unique strengths that have sustained the republic, but it also suffers from structural weaknesses that cause frequent union-state friction."
 )
-pn.section("Strengths of Indian Federalism")
-pn.bullet(
+en.section("Strengths of Indian Federalism")
+en.bullet(
     [
         "<b>1. Preservation of National Unity:</b> By vesting strong powers (defense, foreign affairs, emergency) in the Centre, the Constitution prevents the disintegration of the country and ensures a unified response to external threats.",
         "<b>2. Accommodation of Diversity:</b> The creation of states on a linguistic basis (e.g., Andhra Pradesh, Maharashtra) and special autonomy provisions for tribal/northeastern states (Fifth and Sixth Schedules, Article 371) have satisfied regional aspirations, preventing secessionist movements.",
@@ -1437,8 +1437,8 @@ pn.bullet(
         "<b>4. Fiscal Redistribution:</b> The Finance Commission (Article 280) acts as an independent body to allocate resources, ensuring that economically weaker states receive grants and tax shares from the national pool.",
     ]
 )
-pn.section("Weaknesses and Areas of Friction")
-pn.bullet(
+en.section("Weaknesses and Areas of Friction")
+en.bullet(
     [
         "<b>1. Over-Centralization of Fiscal Power:</b> The Centre controls the most elastic tax sources, leaving states financially dependent on central transfers, which compromises their autonomy.",
         "<b>2. Misuse of the Office of the Governor:</b> Governors are appointed by the Centre and often act in the interest of the ruling party in New Delhi, creating conflicts with elected state governments (e.g., delaying bills, recommending President's Rule).",
@@ -1448,18 +1448,18 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q4.2 -- Compare and contrast the powers of the President of India with those of the Prime Minister."
 )
-pn.qbox(
+en.qbox(
     "Q4.2: Compare and contrast the powers of the President of India with those of the Prime Minister."
 )
-pn.body(
+en.body(
     "The Indian parliamentary system establishes a dual executive structure: the President of India is the nominal executive (de jure head / head of state), while the Prime Minister is the real executive (de facto head / head of government). While all executive actions are formally taken in the President's name, real decision-making authority lies with the Prime Minister and the Council of Ministers."
 )
-pn.section("Comparison of Executive Status and Roles")
-pn.info_table(
+en.section("Comparison of Executive Status and Roles")
+en.info_table(
     ["Dimension", "The President of India", "The Prime Minister of India"],
     [
         [
@@ -1484,18 +1484,18 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Pardoning and Appointment Powers")
-pn.bullet(
+en.section("Pardoning and Appointment Powers")
+en.bullet(
     [
         "<b>Pardoning Power (Article 72):</b> The President has the exclusive power to grant pardons, reprieves, or commutations of sentences, including death sentences. The PM has no judicial powers.",
         "<b>Appointments:</b> The President appoints the PM, other ministers (on PM's advice), CJI, CAG, and Governors. The PM, however, makes all final decisions on who gets appointed.",
     ]
 )
-pn.section("Constitutional Discretion of the President")
-pn.body(
+en.section("Constitutional Discretion of the President")
+en.body(
     "Under Article 74 (amended by 44th Amendment), the President must act on ministerial advice, but can return advice once for reconsideration. The President also has situational discretion:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>1. Appointment of PM:</b> When no party has a clear majority in the Lok Sabha, the President must decide who to invite to form the government.",
         "<b>2. Dismissal of Ministry:</b> If the ministry loses the confidence of the Lok Sabha but refuses to resign.",
@@ -1504,26 +1504,26 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q4.3 -- Evaluate the effectiveness of the Fundamental Duties in promoting civic responsibility."
 )
-pn.qbox(
+en.qbox(
     "Q4.3: Evaluate the effectiveness of the Fundamental Duties in promoting civic responsibility."
 )
-pn.body(
+en.body(
     "Fundamental Duties under Article 51A (Part IV-A) were introduced during the Emergency in 1976 to restore the balance between rights and duties. While they have acted as a moral guide for citizens and a constitutional interpretive tool for the judiciary, their effectiveness in promoting active civic responsibility has been a subject of criticism due to their non-justiciable nature."
 )
-pn.section("Areas of Effectiveness")
-pn.bullet(
+en.section("Areas of Effectiveness")
+en.bullet(
     [
         "<b>1. Judicial Interpretation:</b> The Supreme Court has ruled that in determining the constitutionality of any law, if the law seeks to give effect to a Fundamental Duty, it can be held as 'reasonable' under Article 14 or 19. Duties thus help defend welfare laws.",
         "<b>2. Statutory Support:</b> Many duties are backed by specific statutes that penalize violations. For example, the duty to respect the National Flag is backed by the <i>Prevention of Insults to National Honour Act</i>, and the duty to protect wildlife is enforced by the <i>Wildlife Protection Act</i>.",
         "<b>3. Educational Value:</b> They serve as a pedagogical tool in schools and colleges, raising awareness about environmental protection, cultural heritage, and national respect.",
     ]
 )
-pn.section("Key Criticisms and Limitations")
-pn.bullet(
+en.section("Key Criticisms and Limitations")
+en.bullet(
     [
         "<b>1. Non-Justiciability:</b> Unlike Fundamental Rights, there is no direct legal remedy for their violation. A citizen cannot be sued or arrested merely for failing to follow a duty, unless there is a specific enabling law.",
         "<b>2. Vague Language:</b> Terms like 'scientific temper', 'noble ideals', and 'composite culture' are abstract and open to multiple subjective interpretations.",
@@ -1532,15 +1532,15 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q4.4 -- Analyze the impact of major constitutional amendments on Indian polity."
 )
-pn.qbox("Q4.4: Analyze the impact of major constitutional amendments on Indian polity.")
-pn.body(
+en.qbox("Q4.4: Analyze the impact of major constitutional amendments on Indian polity.")
+en.body(
     "Constitutional amendments under Article 368 have significantly reshaped the Indian polity, correcting administrative lacunae, responding to judicial challenges, and expanding democratic representation. Below is an analysis of four major amendments that have had a transformative impact on the governance structure of India:"
 )
-pn.info_table(
+en.info_table(
     ["Amendment & Year", "Key Changes Introduced", "Polity & Governance Impact"],
     [
         [
@@ -1565,35 +1565,35 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Conclusion on Amendment Power")
-pn.body(
+en.section("Conclusion on Amendment Power")
+en.body(
     "These amendments show that the Indian Constitution is a dynamic, living document. While amendments allow the state to respond to modern needs, the <b>Basic Structure Doctrine</b> ensures that amendments cannot alter the democratic and secular character of the republic."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q4.5 -- How does the balance between individual rights and state power manifest in the Indian Constitution?"
 )
-pn.qbox(
+en.qbox(
     "Q4.5: How does the balance between individual rights and state power manifest in the Indian Constitution?"
 )
-pn.body(
+en.body(
     "The balance between individual rights and state power is one of the most delicate constitutional designs in India. The Constitution guarantees justiciable civil liberties to individuals under Part III, but simultaneously arms the State with powers to restrict these rights to protect national security, public order, and social welfare, ensuring that individual liberty does not degenerates into license."
 )
-pn.section("Constitutional Manifestation of the Balance")
-pn.bullet(
+en.section("Constitutional Manifestation of the Balance")
+en.bullet(
     [
         "<b>1. Reasonable Restrictions (Articles 19(2) to 19(6)):</b> The rights under Article 19 are not absolute. The State can impose 'reasonable restrictions' on specific grounds like sovereignty, security, public order, and morality. The courts decide whether a restriction is indeed 'reasonable'.",
         "<b>2. Preventive Detention (Article 22):</b> Unlike western democracies, the Indian Constitution permits preventive detention (detaining a person without trial to prevent them from committing a crime) even in peacetime. However, Article 22 provides safeguards, such as review by an Advisory Board.",
         "<b>3. Suspension of Rights during Emergency (Articles 358 & 359):</b> During a National Emergency, Article 19 is automatically suspended, and the President can suspend the right to move courts for enforcement of other rights (except Articles 20 and 21).",
     ]
 )
-pn.section("Judicial Test: The Doctrine of Proportionality")
-pn.body(
+en.section("Judicial Test: The Doctrine of Proportionality")
+en.body(
     "To prevent state encroachment on individual rights, the Supreme Court applies the <b>Doctrine of Proportionality</b> (reaffirmed in the <i>Puttaswamy case</i>). For a state restriction on a right to be constitutional, it must satisfy four conditions:"
 )
-pn.bullet(
+en.bullet(
     [
         "The restriction must be backed by a clear law (Legality).",
         "The restriction must serve a legitimate state goal (Legitimacy).",
@@ -1603,49 +1603,49 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark("Q4.6 -- Analyze the impact of emergency provisions on fundamental rights.")
-pn.qbox("Q4.6: Analyze the impact of emergency provisions on fundamental rights.")
-pn.body(
+en.br()
+en.bookmark("Q4.6 -- Analyze the impact of emergency provisions on fundamental rights.")
+en.qbox("Q4.6: Analyze the impact of emergency provisions on fundamental rights.")
+en.body(
     "The proclamation of a National Emergency under Article 352 has a severe impact on the Fundamental Rights of citizens. The Constitution contains two articles -- <b>Article 358</b> and <b>Article 359</b> -- which govern the suspension of Fundamental Rights, turning the state's focus from individual liberty to national security."
 )
-pn.section("Suspension of Article 19 (Article 358)")
-pn.body(
+en.section("Suspension of Article 19 (Article 358)")
+en.body(
     "When a National Emergency is declared on the grounds of war or external aggression, the six freedoms guaranteed under Article 19 are automatically suspended. The State is freed from the restrictions of Article 19 and can make any law or take executive action violating these freedoms. These laws and actions cannot be challenged in court. However, Article 19 is <i>not</i> suspended if the emergency is declared on the grounds of 'armed rebellion' (Internal Emergency)."
 )
-pn.section("Suspension of Enforcement of Other Rights (Article 359)")
-pn.body(
+en.section("Suspension of Enforcement of Other Rights (Article 359)")
+en.body(
     "Article 359 does not suspend the Fundamental Rights themselves but empowers the President to suspend the right to move any court for the enforcement of specified rights. Key features include:"
 )
-pn.bullet(
+en.bullet(
     [
         "The suspension must be through a specific Presidential Order specifying the rights and the period.",
         "<b>Non-suspension of Art 20 & 21:</b> Crucially, the 44th Amendment Act of 1978 provided that the President <i>cannot</i> suspend the right to move court for the enforcement of <b>Article 20</b> (protection in respect of conviction for offenses) and <b>Article 21</b> (right to life and personal liberty).",
     ]
 )
-pn.section("Historical Abuse and Restorations")
-pn.body(
+en.section("Historical Abuse and Restorations")
+en.body(
     "During the 1975 emergency, in the infamous case of <b>ADM Jabalpur v. Shivkant Shukla (1976)</b>, the Supreme Court ruled that even the right to life under Article 21 could be suspended during emergency, denying Habeas Corpus. This widely condemned ruling led to the <b>44th Amendment</b>, which permanently exempted Articles 20 and 21 from suspension, ensuring basic human rights are protected even in times of national crisis."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q4.7 -- Analyze the role of the judiciary in protecting fundamental rights"
 )
-pn.qbox("Q4.7: Analyze the role of the judiciary in protecting fundamental rights")
-pn.body(
+en.qbox("Q4.7: Analyze the role of the judiciary in protecting fundamental rights")
+en.body(
     "The judiciary is appointed by the Constitution as the protector and guarantor of the Fundamental Rights of citizens. Under Articles 32 and 226, the Supreme Court and High Courts have been armed with extraordinary powers to defend individual liberties against legislative excesses and executive arbitrariness."
 )
-pn.section("Constitutional Pillars of Judicial Protection")
-pn.bullet(
+en.section("Constitutional Pillars of Judicial Protection")
+en.bullet(
     [
         "<b>Article 32 (Supreme Court):</b> Allows citizens to directly petition the Supreme Court if their rights are violated. The court can issue writs (Habeas Corpus, Mandamus, etc.) for enforcement.",
         "<b>Article 226 (High Courts):</b> Empowers High Courts to issue writs for the enforcement of Fundamental Rights and other legal rights within their territorial jurisdiction.",
     ]
 )
-pn.section("Innovative Judicial Mechanisms")
-pn.info_table(
+en.section("Innovative Judicial Mechanisms")
+en.info_table(
     ["Judicial Tool", "Key Mechanism & Innovation", "Governance & Rights Impact"],
     [
         [
@@ -1665,28 +1665,28 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Limitations and Criticisms")
-pn.body(
+en.section("Limitations and Criticisms")
+en.body(
     "While the judiciary has played a stellar role in protecting rights, it faces criticisms regarding <b>judicial overreach</b> (encroaching on executive policy-making, e.g., banning liquor sale on highways) and massive <b>judicial pendency</b>, which delays the delivery of justice to needy citizens."
 )
 
 
-pn.br()
-pn.bookmark("Q4.8 -- Analyze the effectiveness of local self-government in India.")
-pn.qbox("Q4.8: Analyze the effectiveness of local self-government in India.")
-pn.body(
+en.br()
+en.bookmark("Q4.8 -- Analyze the effectiveness of local self-government in India.")
+en.qbox("Q4.8: Analyze the effectiveness of local self-government in India.")
+en.body(
     "The formalization of local self-governments (Panchayati Raj and Municipalities) in 1992 aimed to deepen democracy by decentralizing administrative and financial powers. Over three decades of implementation, this system has achieved significant success in empowering local communities, but its effectiveness remains severely constrained by systemic challenges."
 )
-pn.section("Key Successes and Achievements")
-pn.bullet(
+en.section("Key Successes and Achievements")
+en.bullet(
     [
         "<b>1. Deepening Democracy:</b> India now has over 3 million elected local representatives (the largest in the world), creating political awareness and democratic representation at the village and town levels.",
         "<b>2. Gender and Social Empowerment:</b> The reservation of not less than 1/3rd of seats for women has brought over 1 million women into leadership roles. Reservations for SCs and STs have challenged traditional feudal power structures in rural areas.",
         "<b>3. Local Development Delivery:</b> Local bodies have successfully executed local developmental projects like village roads, primary schools, water harvesting, and implementation of MGNREGA.",
     ]
 )
-pn.section("Key Weaknesses and Failures")
-pn.bullet(
+en.section("Key Weaknesses and Failures")
+en.bullet(
     [
         "<b>1. The 'Three Fs' Deficit:</b> States have failed to devolve adequate <b>Funds</b> (local bodies have minimal tax base and rely heavily on state grants), <b>Functions</b> (overlapping jurisdictions between state departments and local bodies), and <b>Functionaries</b> (lack of independent administrative staff).",
         "<b>2. Proxy Politics ('Sarpanch Pati'):</b> In many rural areas, elected women representatives are dominated by their husbands or male relatives who exercise actual administrative power.",
@@ -1695,14 +1695,14 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark("Q4.9 -- How has the interpretation of Article 21 changed over time?")
-pn.qbox("Q4.9: How has the interpretation of Article 21 changed over time?")
-pn.body(
+en.br()
+en.bookmark("Q4.9 -- How has the interpretation of Article 21 changed over time?")
+en.qbox("Q4.9: How has the interpretation of Article 21 changed over time?")
+en.body(
     "The judicial interpretation of Article 21 ('right to life and personal liberty') is one of the most remarkable stories of constitutional evolution in the democratic world. It has transformed from a narrow, literal procedural guarantee in 1950 into a broad, substantive repository of human rights and dignity today."
 )
-pn.section("Chronological Phase Analysis")
-pn.info_table(
+en.section("Chronological Phase Analysis")
+en.info_table(
     [
         "Phase / Era",
         "Key Landmark Case",
@@ -1738,16 +1738,16 @@ pn.info_table(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q4.10 -- What are the limitations of the right to freedom under article 19?"
 )
-pn.qbox("Q4.10: What are the limitations of the right to freedom under article 19?")
-pn.body(
+en.qbox("Q4.10: What are the limitations of the right to freedom under article 19?")
+en.body(
     "<b>Article 19</b> in Part III of the Constitution guarantees six democratic freedoms to all citizens: speech, assembly, association, movement, residence, and profession. However, these rights are not absolute. To prevent individual liberty from encroaching upon the rights of others or national security, the Constitution permits the State to impose 'reasonable restrictions' under Articles 19(2) to 19(6)."
 )
-pn.section("The Six Freedoms and Their Respective Limitation Grounds")
-pn.info_table(
+en.section("The Six Freedoms and Their Respective Limitation Grounds")
+en.info_table(
     [
         "Freedom Clause",
         "Right Guaranteed",
@@ -1781,38 +1781,38 @@ pn.info_table(
         ],
     ],
 )
-pn.section("The Requirement of 'Reasonableness'")
-pn.body(
+en.section("The Requirement of 'Reasonableness'")
+en.body(
     "For any state restriction on these freedoms to be valid, it must satisfy two conditions:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Legality:</b> The restriction must be imposed through a valid law passed by the legislature, not merely an executive order.",
         "<b>Reasonableness:</b> The restriction must not be arbitrary or disproportionate. The Supreme Court has the final authority to test the reasonableness of the restriction by looking at the public interest and the severity of the restriction.",
     ]
 )
 
-pn.br()
-pn.part_box("ASSIGNMENT 5 -- CO5: CRITICAL & EVALUATIVE ANALYSIS")
+en.br()
+en.part_box("ASSIGNMENT 5 -- CO5: CRITICAL & EVALUATIVE ANALYSIS")
 
-pn.bookmark(
+en.bookmark(
     "Q5.1 -- To what extent does the Indian Constitution ensure social and economic justice?"
 )
-pn.qbox(
+en.qbox(
     "Q5.1: To what extent does the Indian Constitution ensure social and economic justice?"
 )
-pn.body(
+en.body(
     "The Preamble of the Constitution declares the resolve of the people to secure to all its citizens <b>'Justice -- social, economic, and political'</b>. Social and economic justice form the core of the welfare state model adopted by the Constitution, which uses a combination of justiciable Fundamental Rights and non-justiciable Directive Principles to achieve these objectives."
 )
-pn.section("Constitutional Tools for Justice")
-pn.bullet(
+en.section("Constitutional Tools for Justice")
+en.bullet(
     [
         "<b>Social Justice:</b> The Preamble's promise and Article 38 direct the state to secure a social order for the promotion of welfare. Article 17 abolishes 'untouchability', and Article 15 prohibits discrimination on grounds of religion, race, caste, sex, or place of birth, promoting social equality. Articles 15(4) and 16(4) enable reservation policies to uplift Scheduled Castes, Scheduled Tribes, and OBCs.",
         "<b>Economic Justice:</b> Article 39(b) directs the state to distribute material resources of the community to serve the common good. Article 39(c) directs the state to prevent the concentration of wealth. Article 39(d) mandates equal pay for equal work for both men and women. Article 41 directs the state to secure the right to work, education, and public assistance in cases of unemployment or old age.",
     ]
 )
-pn.section("Critical Evaluation of Success and Gaps")
-pn.bullet(
+en.section("Critical Evaluation of Success and Gaps")
+en.bullet(
     [
         "<b>Successes:</b> Landmark legislations like the <i>Abolition of Zamindari System</i>, <i>Right to Education Act</i>, <i>MGNREGA</i>, and food security acts have significantly reduced absolute poverty and provided legal rights to the marginalized.",
         "<b>Gaps:</b> Economic inequality remains severe, with a major concentration of national wealth in the hands of a small percentage of the population. Social discrimination and caste-based violence continue in rural areas, showing that formal constitutional provisions require stronger executive implementation.",
@@ -1820,18 +1820,18 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q5.2 -- Evaluate the role of the judiciary in safeguarding constitutionalism in India."
 )
-pn.qbox(
+en.qbox(
     "Q5.2: Evaluate the role of the judiciary in safeguarding constitutionalism in India."
 )
-pn.body(
+en.body(
     "The judiciary has played a defining role in safeguarding constitutionalism (the principle of limited government and rule of law) in India. By acting as an independent check on legislative and executive authority, the Supreme Court has protected individual liberties and prevented majoritarian regimes from altering the democratic structure of the country."
 )
-pn.section("Key Judicial Tools and Doctrines")
-pn.bullet(
+en.section("Key Judicial Tools and Doctrines")
+en.bullet(
     [
         "<b>1. Basic Structure Doctrine:</b> Established in the <i>Kesavananda Bharati case (1973)</i>, this doctrine acts as the ultimate check on Parliament's amending power. It prevents the ruling party from using a legislative majority to destroy democratic elections, judicial review, or federalism.",
         "<b>2. Judicial Review:</b> Under Articles 13, 32, and 226, the courts routinely strike down executive orders and statutes that violate Fundamental Rights or exceed constitutional power limits.",
@@ -1839,24 +1839,24 @@ pn.bullet(
         "<b>4. Expanding Article 21:</b> Read 'Due Process' and implied rights into the right to life, protecting citizens against arbitrary executive actions.",
     ]
 )
-pn.section("Areas of Criticism & Overreach")
-pn.body(
+en.section("Areas of Criticism & Overreach")
+en.body(
     "While the judiciary has defended constitutionalism, it faces criticisms regarding <b>judicial overreach</b> (interfering in executive policy-making, like determining national highway liquor bans or directing river cleanup) and a severe backlog of cases (over 5 crore pending cases across courts), which compromises the right to speedy justice."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q5.3 -- Assess the success of the Indian Constitution in achieving its stated objectives."
 )
-pn.qbox(
+en.qbox(
     "Q5.3: Assess the success of the Indian Constitution in achieving its stated objectives."
 )
-pn.body(
+en.body(
     "The core objectives of the Indian Constitution are enshrined in its Preamble: to secure <b>Justice</b> (social, economic, and political), <b>Liberty</b> (of thought, expression, belief, faith, and worship), <b>Equality</b> (of status and opportunity), and to promote <b>Fraternity</b> assuring the dignity of the individual and the unity and integrity of the nation. Over 75 years of independence, India's success in achieving these goals represents a mix of institutional endurance and systemic challenges."
 )
-pn.section("Assessment of Objectives")
-pn.info_table(
+en.section("Assessment of Objectives")
+en.info_table(
     ["Preamble Objective", "Key Achievements & Successes", "Key Failures & Gaps"],
     [
         [
@@ -1883,42 +1883,42 @@ pn.info_table(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q5.4 -- How effectively does the Indian Constitution balance the rights of individuals with the needs of the state?"
 )
-pn.qbox(
+en.qbox(
     "Q5.4: How effectively does the Indian Constitution balance the rights of individuals with the needs of the state?"
 )
-pn.body(
+en.body(
     "The balance between individual rights and the needs of the state (national security, public order, and socio-economic development) is one of the most complex aspects of Indian constitutional law. Unlike the US Constitution, which enumerates rights in absolute terms (leaving restrictions to judicial interpretation), the Indian Constitution incorporates both the rights and their specific limitations directly within the constitutional text."
 )
-pn.section("Institutional Balancing Mechanisms")
-pn.bullet(
+en.section("Institutional Balancing Mechanisms")
+en.bullet(
     [
         "<b>Reasonable Restrictions:</b> Under Article 19(2) to 19(6), the state can restrict individual freedoms only on eight specific grounds. The judiciary acts as the arbiter, applying the <b>test of reasonableness</b> and <b>proportionality</b> to strike down excessive state actions.",
         "<b>Preventive Detention (Article 22):</b> Allows the state to detain individuals without trial in the interest of public order or national security (e.g., under laws like UAPA, NSA). The Constitution attempts to balance this state power by mandating review by an independent Advisory Board.",
         "<b>Welfare legislation:</b> Articles 31A, 31B, and 31C protect state agrarian reforms and social welfare legislation from being challenged for violating individual property or equality rights, ensuring state capability for socio-economic development.",
     ]
 )
-pn.section("Critical Assessment")
-pn.body(
+en.section("Critical Assessment")
+en.body(
     "While the framework is theoretically balanced, in practice, the executive often leverages state security laws (like sedition or UAPA) to curb individual dissent, leading to criticisms that the balance is tilted in favor of state power. However, the active use of writ petitions (Article 32/226) and judicial review acts as a continuous check to restore individual liberty."
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q5.5 -- Is the amendment procedure of the Indian constitution too rigid, or too flexible?"
 )
-pn.qbox(
+en.qbox(
     "Q5.5: Is the amendment procedure of the Indian constitution too rigid, or too flexible?"
 )
-pn.body(
+en.body(
     "Constitutional experts generally agree that the amendment procedure of the Indian Constitution, governed by <b>Article 368</b>, represents a successful synthesis of rigidity and flexibility. It is rigid enough to protect the foundational democratic values from temporary majoritarian whims, yet flexible enough to allow the document to evolve with changing national needs."
 )
-pn.section("Comparative Analysis of Rigidity and Flexibility")
-pn.info_table(
+en.section("Comparative Analysis of Rigidity and Flexibility")
+en.info_table(
     ["Constitution", "Amendment Nature", "Procedure Complexity", "Outcome / Frequency"],
     [
         [
@@ -1941,8 +1941,8 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Evaluation of the Indian Synthesis")
-pn.bullet(
+en.section("Evaluation of the Indian Synthesis")
+en.bullet(
     [
         "<b>Flexibility:</b> Allowed India to reorganize states on a linguistic basis, introduce Panchayati Raj (73rd/74th amendments), and bring major tax reforms (GST) without causing constitutional crises.",
         "<b>Rigidity (Basic Structure Safeguard):</b> The Supreme Court's introduction of the <i>Basic Structure Doctrine</i> in 1973 ensures that the flexible amendment procedure cannot be used to destroy the core identity of the Constitution (secularism, democracy, rule of law). It makes the foundational values completely rigid.",
@@ -1950,18 +1950,18 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q5.6 -- Evaluate the impact of the directive principals of state policy in India."
 )
-pn.qbox(
+en.qbox(
     "Q5.6: Evaluate the impact of the directive principals of state policy in India."
 )
-pn.body(
+en.body(
     "The Directive Principles of State Policy (DPSP) under Part IV of the Constitution were designed to guide the legislative and executive organs towards building a welfare state. Although non-justiciable, they have had a profound impact on the legal, social, and economic landscape of India, serving as the basis for major national policies and laws."
 )
-pn.section("Major Policy Impacts and Successes")
-pn.bullet(
+en.section("Major Policy Impacts and Successes")
+en.bullet(
     [
         "<b>1. Grassroots Democracy (Article 40):</b> Provided the constitutional mandate that led to the 73rd and 74th Amendment Acts, establishing local self-governance across rural and urban India.",
         "<b>2. Educational Reform (Article 45):</b> Led to the Right to Education (RTE) Act of 2009 and the insertion of Article 21A, making free primary education a fundamental right.",
@@ -1969,8 +1969,8 @@ pn.bullet(
         "<b>4. Legal Justice (Article 39A):</b> Guided the enactment of the <i>Legal Services Authorities Act (1987)</i>, providing free legal representation and establishing Lok Adalats.",
     ]
 )
-pn.section("Unfulfilled Directives and Criticisms")
-pn.bullet(
+en.section("Unfulfilled Directives and Criticisms")
+en.bullet(
     [
         "<b>Uniform Civil Code (Article 44):</b> A unified personal law for all citizens remains unimplemented due to political sensitivities and religious diversity.",
         "<b>Nutrition and Public Health (Article 47):</b> While schemes like the Mid-day Meal exist, malnutrition and high out-of-pocket healthcare costs remain major issues.",
@@ -1979,25 +1979,25 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark("Q5.7 -- How well does the Indian constitution protect minority rights?")
-pn.qbox("Q5.7: How well does the Indian constitution protect minority rights?")
-pn.body(
+en.br()
+en.bookmark("Q5.7 -- How well does the Indian constitution protect minority rights?")
+en.qbox("Q5.7: How well does the Indian constitution protect minority rights?")
+en.body(
     "The Constitution of India provides comprehensive safeguards to protect the religious, linguistic, and cultural rights of minorities. These rights are justiciable under Part III, protecting minority communities from assimilation by the majority and ensuring their active participation in the nation's democratic fabric."
 )
-pn.section("Core Constitutional Provisions")
-pn.bullet(
+en.section("Core Constitutional Provisions")
+en.bullet(
     [
         "<b>Article 29 (Protection of Interests of Minorities):</b> Guarantees any section of citizens residing in India having a distinct language, script, or culture the right to conserve the same. It also prohibits discrimination in admission to state-funded educational institutions.",
         "<b>Article 30 (Right to Establish Educational Institutions):</b> Confers on all minorities, whether based on religion or language, the right to establish and administer educational institutions of their choice. The State cannot discriminate against minority-run institutions in granting aid.",
         "<b>Article 25 to 28 (Freedom of Religion):</b> Guarantees freedom of conscience, right to profess, practice, and propagate religion, and manage religious affairs, forming the basis of Indian secularism.",
     ]
 )
-pn.section("Judicial Interpretations and Boundaries")
-pn.body(
+en.section("Judicial Interpretations and Boundaries")
+en.body(
     "The Supreme Court has clarified the scope of Article 30 to ensure it is not used to evade national education standards:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>T.M.A. Pai Foundation Case (2002):</b> The court ruled that the right under Article 30 is not absolute. The state can regulate minority institutions to ensure academic standards, safety, and proper administration.",
         "<b>In Re Kerala Education Bill (1958):</b> Held that the state can regulate curriculum and teacher qualifications in minority-aided schools, provided it does not destroy their right to administer.",
@@ -2005,28 +2005,28 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark("Q5.8 -- Evaluate the effectiveness of the emergency provisions in India.")
-pn.qbox("Q5.8: Evaluate the effectiveness of the emergency provisions in India.")
-pn.body(
+en.br()
+en.bookmark("Q5.8 -- Evaluate the effectiveness of the emergency provisions in India.")
+en.qbox("Q5.8: Evaluate the effectiveness of the emergency provisions in India.")
+en.body(
     "The emergency provisions under Part XVIII (Articles 352 to 360) were incorporated to safeguard the sovereignty, unity, and security of the country during crises. While they have successfully preserved national unity during external wars, their historical application shows a mixed record of effectiveness, frequently marred by political abuse and suppression of civil liberties."
 )
-pn.section("Evaluation of Successes and Safeguarding Integrity")
-pn.bullet(
+en.section("Evaluation of Successes and Safeguarding Integrity")
+en.bullet(
     [
         "<b>External Emergencies:</b> Proclaimed during the 1962 Sino-Indian War, the 1965 and 1971 Indo-Pak Wars. During these external threats, the emergency provisions effectively centralized executive power, enabling the state to coordinate defense and mobilize national resources.",
         "<b>Integration of States:</b> Centralization of power helped manage regional border insurgencies and restore constitutional order during severe internal disturbances.",
     ]
 )
-pn.section("Abuse of Power and the 1975 Emergency")
-pn.body(
+en.section("Abuse of Power and the 1975 Emergency")
+en.body(
     "The biggest criticism of these provisions is the 1975 Internal Emergency declared by Indira Gandhi on the grounds of 'internal disturbance'. It led to the mass arrest of opposition leaders, pre-censorship of the press, and suspension of basic human rights, illustrating how the executive can abuse emergency powers for political survival."
 )
-pn.section("Impact of the 44th Amendment Restorations")
-pn.body(
+en.section("Impact of the 44th Amendment Restorations")
+en.body(
     "To prevent future abuse, the 44th Amendment Act of 1978 introduced crucial safeguards:"
 )
-pn.bullet(
+en.bullet(
     [
         "Replaced 'internal disturbance' with 'armed rebellion' in Article 352.",
         "Mandated a written recommendation from the Cabinet to the President.",
@@ -2036,14 +2036,14 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark("Q5.9 -- Is the indian constitution truly secular?")
-pn.qbox("Q5.9: Is the indian constitution truly secular?")
-pn.body(
+en.br()
+en.bookmark("Q5.9 -- Is the indian constitution truly secular?")
+en.qbox("Q5.9: Is the indian constitution truly secular?")
+en.body(
     "Yes, the Indian Constitution is truly secular, but it adopts a unique, positive model of secularism that differs fundamentally from the Western concept of secularism. While Western secularism is based on a strict 'wall of separation' between the State and the Church, Indian secularism is based on the principle of equal respect for all religions."
 )
-pn.section("Comparison of Western vs Indian Secularism")
-pn.info_table(
+en.section("Comparison of Western vs Indian Secularism")
+en.info_table(
     [
         "Dimension",
         "Western Secularism (Strict Separation)",
@@ -2072,8 +2072,8 @@ pn.info_table(
         ],
     ],
 )
-pn.section("Constitutional Evidence of Secularism")
-pn.bullet(
+en.section("Constitutional Evidence of Secularism")
+en.bullet(
     [
         "<b>Preamble:</b> The word 'Secular' was formally added to the Preamble by the 42nd Amendment in 1976.",
         "<b>Freedom of Religion:</b> Articles 25 to 28 guarantee freedom of conscience, right to practice and propagate religion, and manage religious affairs. Article 15 prohibits discrimination based on religion.",
@@ -2082,16 +2082,16 @@ pn.bullet(
 )
 
 
-pn.br()
-pn.bookmark(
+en.br()
+en.bookmark(
     "Q5.10 -- To what extent does the Indian constitution promote democratic values?"
 )
-pn.qbox("Q5.10: To what extent does the Indian constitution promote democratic values?")
-pn.body(
+en.qbox("Q5.10: To what extent does the Indian constitution promote democratic values?")
+en.body(
     "The Constitution of India promotes democratic values to a very high degree, establishing India as the world's largest representative democracy. It goes beyond merely setting up electoral machinery by incorporating deep substantive democratic values -- equality, liberty, rule of law, and minority protections -- into its core structure."
 )
-pn.section("Core Pillars Promoting Democratic Values")
-pn.bullet(
+en.section("Core Pillars Promoting Democratic Values")
+en.bullet(
     [
         "<b>1. Universal Adult Franchise (Article 326):</b> Guarantees every citizen who is not less than 18 years of age the right to vote in elections, without discrimination based on caste, class, creed, or gender. This was a revolutionary step in 1950, empowering the masses.",
         "<b>2. Independent Election Commission (Article 324):</b> Establishes an autonomous, constitutional body to supervise, direct, and control all elections to Parliament, State Legislatures, and the offices of President and Vice-President, ensuring free and fair polls.",
@@ -2100,8 +2100,8 @@ pn.bullet(
         "<b>5. Constitutional Autonomy of Watchdogs:</b> Protects key oversight institutions like the Comptroller and Auditor General (CAG) and the Union Public Service Commission (UPSC) to maintain integrity and prevent nepotism.",
     ]
 )
-pn.section("Conclusion on Indian Democracy")
-pn.body(
+en.section("Conclusion on Indian Democracy")
+en.body(
     "While Indian democracy faces operational challenges (e.g., money power in elections, criminalization of politics), the Constitution has successfully sustained a democratic polity for over seven decades, showing that its democratic values are deeply institutionalized."
 )
 
@@ -2204,7 +2204,7 @@ students = [
 ]
 
 # Find where the metadata table is in the story
-meta_table_idx = pn.story.index(meta_table)
+meta_table_idx = en.story.index(meta_table)
 
 import os
 import zipfile
@@ -2233,10 +2233,10 @@ with zipfile.ZipFile(zip_filename, "w", zipfile.ZIP_DEFLATED) as zipf:
         ]
         new_meta_table = Table(new_metadata, colWidths=[150, 200], hAlign="CENTER")
         new_meta_table.setStyle(meta_table_style)
-        pn.story[meta_table_idx] = new_meta_table
+        en.story[meta_table_idx] = new_meta_table
         
         # 2. Update the global footer configuration
-        pn.set_global_footer(
+        en.set_global_footer(
             left=f"Name: {name}",
             center=f"Enrollment no: {enroll}",
             show_page_num=True,
@@ -2245,7 +2245,7 @@ with zipfile.ZipFile(zip_filename, "w", zipfile.ZIP_DEFLATED) as zipf:
         # 3. Build the PDF inside the temp directory
         pdf_filename = f"IC_Assignment_IT410_{enroll}.pdf"
         pdf_path = os.path.join(temp_dir, pdf_filename)
-        pn.build_doc(pdf_path)
+        en.build_doc(pdf_path)
         print(f"[{students.index(s) + 1}/{len(students)}] Generated: {pdf_filename} for {name}")
         
         # 4. Add to ZIP file

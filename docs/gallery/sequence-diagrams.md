@@ -5,10 +5,10 @@ Sequence diagrams express API calls, handshake protocols, and event ordering.
 ## Basic handshake
 
 ```python title="seq_handshake.py"
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-seq = pd.SequenceDiagram(
+seq = ed.SequenceDiagram(
     width=450, height=220,
     caption="Fig 6: Three-way handshake",
 )
@@ -21,7 +21,7 @@ seq.message("cl",    "srv",   "SYN")
 seq.message("srv",   "cl",    "SYN-ACK",  arrow="dashed")
 seq.message("cl",    "srv",   "ACK",      arrow="dashed")
 
-pn.add(seq.as_flowable())
+en.add(seq.as_flowable())
 ```
 
 ![Screenshot placeholder](../assets/screenshots/seq_handshake.png)
@@ -29,10 +29,10 @@ pn.add(seq.as_flowable())
 ## Async processing with activation bars
 
 ```python title="seq_async.py"
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-seq = pd.SequenceDiagram(
+seq = ed.SequenceDiagram(
     width=460, height=240,
     caption="Fig 7: Async order flow",
 )
@@ -52,7 +52,7 @@ seq.deactivate("bus")
 seq.deactivate("api")
 seq.message("bus", "app",  "websocket: accepted", arrow="dashed")
 
-pn.add(seq.as_flowable())
+en.add(seq.as_flowable())
 ```
 
 ![Screenshot placeholder](../assets/screenshots/seq_async.png)
@@ -60,15 +60,15 @@ pn.add(seq.as_flowable())
 ## Self-message
 
 ```python title="seq_self.py"
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-seq = pd.SequenceDiagram(
+seq = ed.SequenceDiagram(
     width=380, height=200, caption="Fig 8: Retry loop"
 )
 seq.actor("client", "Client")
 seq.message("client", "client", "retry(3)")
-pn.add(seq.as_flowable())
+en.add(seq.as_flowable())
 ```
 
 ![Screenshot placeholder](../assets/screenshots/seq_self.png)
@@ -77,3 +77,4 @@ pn.add(seq.as_flowable())
 
 - [Network Diagrams](network-diagrams.md)
 - [Architecture Diagrams](architectures.md)
+

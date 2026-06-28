@@ -1,8 +1,8 @@
-/* PaperForge brand overrides for Material for MkDocs */
+/* Engrapha brand overrides for Material for MkDocs */
 
 /* ── Dark slate scheme (default) ── */
 [data-md-color-scheme="slate"] {
-  /* Primary brand colour – PaperForge cyan */
+  /* Primary brand colour – Engrapha cyan */
   --md-primary-fg-color: #79c0ff;
   --md-primary-fg-color--light: #9dd5f7;
   --md-primary-fg-color--dark: #2a8ab5;
@@ -12,7 +12,7 @@
   --md-accent-fg-color--light: #67e8f9;
   --md-accent-fg-color--dark: #0891b2;
 
-  /* Background tones pulled from paperforge_notes palette */
+  /* Background tones pulled from engrapha_notes palette */
   --md-default-bg-color: #0d1117;
   --md-default-fg-color: #f0f6fc;
   --md-default-fg-color--light: #c9d1d9;
@@ -58,7 +58,7 @@
   --md-selection-bg-color: rgba(121, 192, 255, 0.25);
 }
 
-/* ── Light scheme (paperforge light) ── */
+/* ── Light scheme (engrapha light) ── */
 [data-md-color-scheme="default"] {
   --md-primary-fg-color: #2563eb;
   --md-primary-fg-color--light: #60a5fa;

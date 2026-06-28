@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=75.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "engrapha-diagrams"
+version = "0.1.0"
+description = "Vector-native PDF diagram toolkit for ReportLab Platypus"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [
+    {name = "Bharat Dangi"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "reportlab>=4.5.1",
+    "pydantic>=2.13.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-cov>=6.0",
+    "ruff>=0.9.0",
+    "mypy>=1.11.0",
+]
+
+[tool.setuptools]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["engrapha_diagrams*"]
+exclude = ["engrapha_diagrams.tests*"]

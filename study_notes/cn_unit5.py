@@ -30,7 +30,7 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-import paperforge_diagrams as pd
+import engrapha_diagrams as ed
 
 PAGE_W, PAGE_H = A4
 PM = 1.8 * cm
@@ -874,7 +874,7 @@ code_block("""
 """)
 
 # Port/socket diagram
-seq_mux = pd.SequenceDiagram(
+seq_mux = ed.SequenceDiagram(
     width=CW,
     height=200,
     caption="Fig 1: Multiplexing at sender and demultiplexing at receiver using port numbers",
@@ -1100,7 +1100,7 @@ definition(
 )
 
 # TCP 3-way handshake sequence diagram
-seq_tcp = pd.SequenceDiagram(
+seq_tcp = ed.SequenceDiagram(
     width=CW,
     height=320,
     caption="Fig 2: TCP 3-Way Handshake (connection setup) and 4-Way Teardown",
@@ -1156,7 +1156,7 @@ code_block("""
 """)
 
 section("TCP State Machine")
-sm_tcp = pd.StateMachine(
+sm_tcp = ed.StateMachine(
     width=CW,
     height=200,
     caption="Fig 3: Simplified TCP State Machine (client side)",
@@ -1231,7 +1231,7 @@ code_block("""
 """)
 
 # TCP Sliding Window flowchart (explicit coords for clean layout)
-fc_sw = pd.Flowchart(
+fc_sw = ed.Flowchart(
     width=CW,
     height=260,
     caption="Fig 5: TCP Sliding Window Flow Control (sender side logic)",
@@ -1364,7 +1364,7 @@ body(
 )
 
 # TCP Congestion Control state machine
-import paperforge_diagrams.shapes as _pds5
+import engrapha_diagrams.shapes as _pds5
 
 
 def _make_cc_drawer(lbl: str):
@@ -1385,7 +1385,7 @@ def _make_cc_drawer(lbl: str):
     return draw
 
 
-sm_cc = pd.StateMachine(
+sm_cc = ed.StateMachine(
     width=CW,
     height=200,
     caption="Fig 6: TCP Reno Congestion Control State Machine",
@@ -1582,7 +1582,7 @@ bullet(
 )
 
 # RSVP sequence diagram
-seq_rsvp = pd.SequenceDiagram(
+seq_rsvp = ed.SequenceDiagram(
     width=CW,
     height=250,
     caption="Fig 4: RSVP signalling -- PATH message downstream, RESV message upstream",
@@ -1752,7 +1752,7 @@ info_table(
 )
 
 # Three-tier network diagram
-hier_net = pd.NetworkDiagram(
+hier_net = ed.NetworkDiagram(
     width=CW,
     height=250,
     caption="Fig 5: Three-Tier Hierarchical Enterprise LAN Design",

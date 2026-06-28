@@ -1,7 +1,7 @@
 [tool.pytest.ini_options]
 testpaths = [
-    "paperforge_diagrams/tests",
-    "paperforge_notes/tests",
+    "packages/engrapha_diagrams/tests",
+    "packages/engrapha_notes/tests",
 ]
 python_files = ["test_*.py"]
 
@@ -19,9 +19,12 @@ exclude = [
 python_version = "3.12"
 warn_unused_configs = true
 ignore_missing_imports = true
+exclude = [
+    "packages/*/tests",
+]
 files = [
-    "paperforge_notes",
-    "paperforge_diagrams",
+    "packages/engrapha_notes",
+    "packages/engrapha_diagrams",
 ]
 
 [[tool.mypy.overrides]]

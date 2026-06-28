@@ -17,7 +17,7 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-import paperforge_diagrams as pd
+import engrapha_diagrams as ed
 
 PAGE_W, PAGE_H = A4
 PM = 1.8 * cm
@@ -26,7 +26,7 @@ print(f"Page size: {PAGE_W} x {PAGE_H} points, Content width: {CW} points")
 
 # -- Color palette & Theme configuration ---------------------------------------
 import sys
-import paperforge_notes as pn
+import engrapha_notes as en
 
 # Parse command line theme selection
 theme_name = "dark"
@@ -37,22 +37,22 @@ for arg in sys.argv[1:]:
         theme_name = "light"
 
 theme_map = {
-    "dark": pn.DARK,
-    "light": pn.LIGHT,
-    "ocean_dark": pn.OCEAN_DARK,
-    "forest_dark": pn.FOREST_DARK,
-    "sunset_dark": pn.SUNSET_DARK,
-    "midnight_dark": pn.MIDNIGHT_DARK,
-    "ocean_light": pn.OCEAN_LIGHT,
-    "sepia": pn.SEPIA,
+    "dark": en.DARK,
+    "light": en.LIGHT,
+    "ocean_dark": en.OCEAN_DARK,
+    "forest_dark": en.FOREST_DARK,
+    "sunset_dark": en.SUNSET_DARK,
+    "midnight_dark": en.MIDNIGHT_DARK,
+    "ocean_light": en.OCEAN_LIGHT,
+    "sepia": en.SEPIA,
 }
 
-active_theme = theme_map.get(theme_name, pn.DARK)
-pn.set_theme(active_theme)
+active_theme = theme_map.get(theme_name, en.DARK)
+en.set_theme(active_theme)
 print(f"Using theme: {active_theme.name}")
 
-# Import styles and helpers from paperforge_notes
-from paperforge_notes import (
+# Import styles and helpers from engrapha_notes
+from engrapha_notes import (
     COVER_H1, COVER_H2, COVER_SUB,
     add, sp, rule, br,
     part_box, chap_box, section, subsection,
@@ -197,7 +197,7 @@ bullet(
 )
 
 section("Network Topology Diagram")
-net = pd.NetworkDiagram(
+net = ed.NetworkDiagram(
     width=CW, height=200, caption="Fig 1.1: Hub -> Switch -> Router -> Gateway topology"
 )
 net.node("h1", "PC-A", x=35, y=145, kind="host")
@@ -421,7 +421,7 @@ code_block("""
 """)
 
 section("TCP Congestion Control State Machine")
-sm = pd.StateMachine(
+sm = ed.StateMachine(
     width=CW, height=200, caption="Fig 1.2: TCP Congestion Control States"
 )
 sm.state("ss", "Slow Start", initial=True)
@@ -595,7 +595,7 @@ info_table(
     ],
 )
 
-stack1 = pd.LayeredStack(
+stack1 = ed.LayeredStack(
     width=CW, height=220, caption="Fig 2.1: PDU names at each OSI layer"
 )
 stack1.layer(
@@ -621,7 +621,7 @@ definition(
     "lower three OSI layers."
 )
 
-stack2 = pd.LayeredStack(
+stack2 = ed.LayeredStack(
     width=CW, height=175, caption="Fig 2.2: X.25 three-layer architecture"
 )
 stack2.layer(
@@ -771,7 +771,7 @@ definition(
     "into a single Application layer."
 )
 
-stack3 = pd.LayeredStack(
+stack3 = ed.LayeredStack(
     width=CW, height=210, caption="Fig 2.3: TCP/IP four-layer architecture"
 )
 stack3.layer(
@@ -895,7 +895,7 @@ info_table(
 )
 
 section("2x2 Crossbar Grid Diagram")
-net2 = pd.NetworkDiagram(
+net2 = ed.NetworkDiagram(
     width=CW, height=180, caption="Fig 2.4: 2x2 Crossbar switch (4 crosspoints)"
 )
 net2.node("i1", "Input 1", kind="host")
@@ -940,7 +940,7 @@ bullet(
 )
 
 section("Go-Back-N Sequence Diagram")
-seq1 = pd.SequenceDiagram(
+seq1 = ed.SequenceDiagram(
     width=CW, height=260, caption="Fig 2.5: Go-Back-N (frame 1 lost, retransmit 1,2,3)"
 )
 seq1.actor("snd", "Sender")
@@ -1152,7 +1152,7 @@ bullet(
 )
 
 section("Sliding Window Flowchart")
-fc_sw = pd.Flowchart(
+fc_sw = ed.Flowchart(
     width=CW, height=320, caption="Fig 2.6: Sliding Window sender logic"
 )
 fc_sw.terminal("start", "START")
@@ -1420,7 +1420,7 @@ definition(
     "transmission up to user-facing applications."
 )
 
-stack4 = pd.LayeredStack(
+stack4 = ed.LayeredStack(
     width=CW, height=280, caption="Fig 3.1: ISO-OSI 7-layer reference model"
 )
 stack4.layer(
@@ -3063,7 +3063,7 @@ bullet(
 )
 
 section("Slotted ALOHA Sequence Diagram")
-seq2 = pd.SequenceDiagram(
+seq2 = ed.SequenceDiagram(
     width=CW,
     height=260,
     caption="Fig 4.1: Slotted ALOHA -- 3 stations, slot-based transmission",
@@ -3311,7 +3311,7 @@ section(
 # Dijkstra graph: manual x,y placement for clear 2D topology
 # Layout: A(left) -> B/C(center-left) -> D(center) -> E/F(center-right) -> G(right)
 # CW ~ 493pt; keep all nodes inside with margin
-net3 = pd.NetworkDiagram(
+net3 = ed.NetworkDiagram(
     width=CW, height=240, caption="Fig 4.2: Weighted graph for Dijkstra algorithm"
 )
 net3.node("A", "A", x=55, y=120, kind="generic")
@@ -3843,7 +3843,7 @@ body(
 )
 
 # NetworkDiagram with manual coordinate layout for 2D topology
-net4 = pd.NetworkDiagram(
+net4 = ed.NetworkDiagram(
     width=CW, height=200, caption="Fig 5.1: Weighted graph for May-June 2025 Dijkstra problem"
 )
 net4.node("A", "A", x=55,  y=100, kind="generic")

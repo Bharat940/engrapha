@@ -3,32 +3,32 @@
 Assignment sheet with question numbers, code blocks, marking rubrics, and MCQs.
 
 ```python title="assignment.py"
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-pn.set_theme(pn.LIGHT)
-pn.set_global_header(center="Data Structures — Assignment 3")
+en.set_theme(en.LIGHT)
+en.set_global_header(center="Data Structures — Assignment 3")
 
-pn.cover_card(
+en.cover_card(
     "Assignment 3: Trees and Graphs",
     "Data Structures — Session 2026",
 )
 
-pn.qbox("1. Draw a BST and its AVL rotation.")
-pn.answer(
+en.qbox("1. Draw a BST and its AVL rotation.")
+en.answer(
     "Perform a single right rotation on the unbalanced node. "
     "The former left child becomes the new root. "
     "Height reduces by one."
 )
 
-pn.chap_box("Programming Question")
+en.chap_box("Programming Question")
 
-pn.qbox(
+en.qbox(
     "2. Implement a Trie supporting insert(), search(), and startsWith() "
     "in Python. Discuss time/space tradeoffs in a comment block."
 )
 
-pn.code_block("""
+en.code_block("""
 class TrieNode:
     __slots__ = ("children", "is_end")
     def __init__(self):
@@ -64,13 +64,14 @@ class Trie:
         return True
 """, lang="python")
 
-pn.mcq(
+en.mcq(
     "3. Correct BST worst-case height (N nodes)?",
     ["N", "N/2", "log N", "N²"],
     correct_index=0,
 )
 
-pn.build_doc("assignment.pdf")
+en.build_doc("assignment.pdf")
 ```
 
 ![Screenshot placeholder](../assets/screenshots/notes_assignment.png)
+

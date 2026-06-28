@@ -16,10 +16,10 @@ UML class diagrams express OOP structure: classes with stereotypes, attributes, 
 ## Minimal example
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-cd = pd.ClassDiagram(width=420, height=200, caption="Fig 5: Shape Inheritance")
+cd = ed.ClassDiagram(width=420, height=200, caption="Fig 5: Shape Inheritance")
 
 cd.uml_class(
     "Animal", "Animal",
@@ -33,7 +33,7 @@ cd.uml_class("Dog", "Dog",
 cd.relate("Dog", "Animal", kind="inheritance")
 cd.relate("Dog", "Animal", kind="realization", label="implements")
 
-pn.add(cd.as_flowable())
+en.add(cd.as_flowable())
 ```
 
 ## Multiplicity labels
@@ -56,5 +56,6 @@ cd.uml_class("A", "A")
 cd.uml_class("B", "B")
 cd.relate("A", "B", kind="dependency")
 ```
+
 
 

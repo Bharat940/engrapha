@@ -1,6 +1,6 @@
 # Notes: Callouts and Highlights
 
-PaperForge ships with semantic callout blocks for all the most common exam-note situations.
+Engrapha ships with semantic callout blocks for all the most common exam-note situations.
 
 ## Available callouts
 
@@ -19,17 +19,17 @@ PaperForge ships with semantic callout blocks for all the most common exam-note 
 ## Quick usage
 
 ```python
-pn.tip("Average case is O(N log N). Use Random Pivots.")
-pn.note("Pivot selection is the only difference vs Quick Sort.")
-pn.warning("Do not apply on reverse-sorted arrays.")
-pn.important("Master the recurrence relation.")
-pn.exam("A frequent exam question.")
-pn.theorem("If p is prime and a | b, then p^(a-1) divides b^(p-1) - 1 modulo p.")
-pn.proof(
+en.tip("Average case is O(N log N). Use Random Pivots.")
+en.note("Pivot selection is the only difference vs Quick Sort.")
+en.warning("Do not apply on reverse-sorted arrays.")
+en.important("Master the recurrence relation.")
+en.exam("A frequent exam question.")
+en.theorem("If p is prime and a | b, then p^(a-1) divides b^(p-1) - 1 modulo p.")
+en.proof(
     "By Fermat's Little Theorem and induction on prime factors."
 )
-pn.highlight("Time complexity O(N log N) is best-case and average-case.")
-pn.definition("A sorting algorithm is 'in-place' if O(1) extra memory.")
+en.highlight("Time complexity O(N log N) is best-case and average-case.")
+en.definition("A sorting algorithm is 'in-place' if O(1) extra memory.")
 ```
 
 ## Visual contract
@@ -46,8 +46,8 @@ Each callout has:
 In `plain_questions=True` themes (such as the Print Light preset), the callouts are rendered as plain body text with a prefix:
 
 ```python
-pn.tip("Pivot selection matters")  # → "Exam Tip: Pivot selection matters"
-pn.note("Use random pivots")       # → "Note: Use random pivots"
+en.tip("Pivot selection matters")  # → "Exam Tip: Pivot selection matters"
+en.note("Use random pivots")       # → "Note: Use random pivots"
 ```
 
 This avoids boxed layouts for exam/print output.
@@ -63,3 +63,4 @@ This avoids boxed layouts for exam/print output.
 
 - [Study helpers](study.md)
 - [Advanced topics](advanced.md)
+

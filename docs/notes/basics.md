@@ -1,28 +1,28 @@
 # Notes: Basics
 
-This page covers the core API of `paperforge_notes`: themes, headings, body, and footers. By the end of this page you'll be able to construct a structured PDF document.
+This page covers the core API of `engrapha_notes`: themes, headings, body, and footers. By the end of this page you'll be able to construct a structured PDF document.
 
 ## Setting the theme
 
 ```python
-import paperforge_notes as pn
-pn.set_theme(pn.OCEAN_DARK)
+import engrapha_notes as en
+en.set_theme(en.OCEAN_DARK)
 ```
 
 Explore other themes: `DARK`, `LIGHT`, `FOREST_DARK`, `SUNSET_DARK`, `MIDNIGHT_DARK`, `OCEAN_LIGHT`, `SEPIA`, `CATPPUCCIN_LATTE`, `CATPPUCCIN_MOCHA`, `NOTION`, `GITHUB`, `LINEAR`, `ACADEMIC`, `TEXTBOOK`.
 
 ## The story
 
-All helpers append into a global `story` list. To use PaperForge with a custom story list, redirect it:
+All helpers append into a global `story` list. To use Engrapha with a custom story list, redirect it:
 
 ```python
 my_story = []
-pn.set_story(my_story)
+en.set_story(my_story)
 # ... add content ...
-pn.build_doc("output.pdf")
+en.build_doc("output.pdf")
 ```
 
-You can inspect the current story with `pn.get_story()`. Set `pn.bookmarks_enabled = False` temporarily to suppress PDF outline/meta bookmarks without rewriting content.
+You can inspect the current story with `en.get_story()`. Set `en.bookmarks_enabled = False` temporarily to suppress PDF outline/meta bookmarks without rewriting content.
 
 This is useful for sandboxing multi-document compilations.
 
@@ -37,7 +37,7 @@ This is useful for sandboxing multi-document compilations.
 
 `part_box` serves as a premium section hero page when supplied with optional `subtitle` (str) and `topics` (list[str]). For example:
 ```python
-pn.part_box(
+en.part_box(
     "Unit I: Basic Algorithms",
     subtitle="Big-O notation and sorting algorithms",
     topics=["Asymptotic Complexity", "Comparison Sorts", "Divide & Conquer"]
@@ -47,11 +47,11 @@ pn.part_box(
 ## Body content
 
 ```python
-pn.body("Justified paragraph with HTML tags.")
-pn.bullet(["First", "Second", "Third"])
-pn.sp(8)        # 8pt vertical space
-pn.rule()        # Cyan divider line
-pn.br()          # Page break
+en.body("Justified paragraph with HTML tags.")
+en.bullet(["First", "Second", "Third"])
+en.sp(8)        # 8pt vertical space
+en.rule()        # Cyan divider line
+en.br()          # Page break
 ```
 
 `body()` supports inline HTML tags: `<b>`, `<i>`, `<font color="...">`, etc.
@@ -69,26 +69,26 @@ CW     = 493.0 # Content width = PAGE_W - 2*PM
 
 ```python
 # Global footer
-pn.set_global_footer(left="Course Notes", right="Session", show_page_num=True)
+en.set_global_footer(left="Course Notes", right="Session", show_page_num=True)
 
 # Per-page footer override
-pn.footer(left="Page specific", show_page_num=False, page_only=True)
+en.footer(left="Page specific", show_page_num=False, page_only=True)
 
 # Suppress footer/header on a single page
-pn.suppress_footer(page_only=True)
+en.suppress_footer(page_only=True)
 
 # Suppress footer for all pages after this point
-pn.suppress_footer()
+en.suppress_footer()
 
 # Three-column header
-pn.set_global_header(
+en.set_global_header(
     left="Algorithms",
     center="Unit I",
     right="Spring 2026"
 )
 
 # Per-page header override
-pn.header(
+en.header(
     left="Chapter 1",
     visible=True,
     page_only=True
@@ -99,7 +99,7 @@ pn.header(
 
 ```python
 # Syntax-highlighted code block
-pn.code_block("""
+en.code_block("""
 public static void main(String[] args) {
     System.out.println("Hello, World!");
 }
@@ -110,7 +110,7 @@ Syntax-highlighting themes: `dracula`, `monokai`, `github-dark`, or any built-in
 
 ```python
 # Information table with custom column widths
-pn.info_table(
+en.info_table(
     ["Algorithm", "Best Case", "Worst Case"],
     [
         ["Quick Sort", "O(N log N)", "O(N^2)"],
@@ -124,33 +124,33 @@ pn.info_table(
 
 ```python
 # Single-page border
-pn.page_border(enabled=True, margin=15.0, color="#ffffff", page_only=True)
+en.page_border(enabled=True, margin=15.0, color="#ffffff", page_only=True)
 
 # Global double concentric border
-pn.page_border(enabled=True, margin=15.0, gap=3.0)
+en.page_border(enabled=True, margin=15.0, gap=3.0)
 ```
 
 ## Page numbering
 
 ```python
 # Default Arabic numerals
-pn.page_numbering(style="arabic")
+en.page_numbering(style="arabic")
 
 # Roman numerals for front matter
-pn.page_numbering(style="roman")
+en.page_numbering(style="roman")
 
 # Reset counter on a new page
-pn.page_numbering(style="arabic", reset_to=1)
+en.page_numbering(style="arabic", reset_to=1)
 ```
 
 ## Cover pages
 
 ```python
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(40)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(40)
 # Create a premium modern cover page
-pn.cover_card(
+en.cover_card(
     title="Discrete Mathematics",
     subtitle="Unit I: Logic",
     style="modern",
@@ -158,17 +158,17 @@ pn.cover_card(
     date="Spring 2026",
     ornament="diamond"
 )
-pn.br()
+en.br()
 ```
 
 One-line `cover_preset()` bundles an icon, tags, and style for instant professional covers:
 
 ```python
-pn.cover_preset("engineering", title="Computer Networks", subtitle="Complete Study Guide")
-pn.br()
+en.cover_preset("engineering", title="Computer Networks", subtitle="Complete Study Guide")
+en.br()
 
-pn.cover_preset("networking", title="CCNA Notes", subtitle="Semester IV")
-pn.br()
+en.cover_preset("networking", title="CCNA Notes", subtitle="Semester IV")
+en.br()
 ```
 
 Built-in presets: `engineering`, `research-paper`, `course-notes`, `networking`, `database`, `programming`.
@@ -176,7 +176,7 @@ Built-in presets: `engineering`, `research-paper`, `course-notes`, `networking`,
 Add a faint SVG background illustration with `cover_image()`:
 
 ```python
-pn.cover_image(
+en.cover_image(
     "asset_images/network_topology.svg",
     opacity=0.06,
     placement="background"
@@ -186,7 +186,7 @@ pn.cover_image(
 Or use the convenience `add_cover()` helper which automates the bookmark/suppress/break boilerplate:
 
 ```python
-pn.add_cover(
+en.add_cover(
     title="My Notes",
     subtitle="Unit I",
     author="Bharat Dangi",
@@ -200,20 +200,21 @@ Supported cover page styles: `linear`, `notion`, `academic_modern`, `catppuccin`
 ## Building the document
 
 ```python
-pn.build_doc("output.pdf", title="Algorithms Notes", author="Bharat Dangi")
+en.build_doc("output.pdf", title="Algorithms Notes", author="Bharat Dangi")
 ```
 
 Additional output formats:
 
 ```python
-pn.build_html("output/")             # Writes index.html into output directory
-pn.build_pptx("output.pptx")         # PowerPoint with theme-matched slide backgrounds
+en.build_html("output/")             # Writes index.html into output directory
+en.build_pptx("output.pptx")         # PowerPoint with theme-matched slide backgrounds
 ```
 
-Flashcard exports (`.csv`, `.json`, `.apkg`) are written automatically beside the PDF when `pn.flashcard()` is used.
+Flashcard exports (`.csv`, `.json`, `.apkg`) are written automatically beside the PDF when `en.flashcard()` is used.
 
 ## Next
 
 - [Callouts](callouts.md)
 - [Study helpers](study.md)
 - [Advanced topics](advanced.md)
+

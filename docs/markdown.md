@@ -1,11 +1,11 @@
 # Markdown Compiler
 
-PaperForge ships with a CLI tool that compiles standard Markdown files into themed PDFs. Two commands, `paperforge` and `pdfnotes`, are installed by the `paperforge-notes` package.
+Engrapha ships with a CLI tool that compiles standard Markdown files into themed PDFs. Two commands, `Engrapha` and `pdfnotes`, are installed by the `Engrapha-notes` package.
 
 ## Quick Start
 
 ```bash
-paperforge notes.md --output notes.pdf --theme catppuccin-mocha
+Engrapha notes.md --output notes.pdf --theme catppuccin-mocha
 ```
 
 Other supported themes: `dark`, `light`, `ocean-dark`, `forest-dark`, `sunset-dark`, `midnight-dark`, `ocean-light`, `sepia`, `catppuccin-latte`, `catppuccin-mocha`.
@@ -15,7 +15,7 @@ Other supported themes: `dark`, `light`, `ocean-dark`, `forest-dark`, `sunset-da
 ### Basic usage
 
 ```bash
-paperforge input.md -o output.pdf -t catppuccin-mocha --title "My Notes" --author "Your Name"
+Engrapha input.md -o output.pdf -t catppuccin-mocha --title "My Notes" --author "Your Name"
 ```
 
 ### Flags
@@ -49,22 +49,22 @@ theme: ocean-dark
 ### Headings
 
 ```markdown
-# Header 1 → pn.part_box()
-## Header 2 → pn.chap_box()
-### Header 3 → pn.section()
-#### Header 4 → pn.subsection()
+# Header 1 → en.part_box()
+## Header 2 → en.chap_box()
+### Header 3 → en.section()
+#### Header 4 → en.subsection()
 ```
 
 ### Body text
 
-All paragraphs are rendered with `pn.body()`.
+All paragraphs are rendered with `en.body()`.
 
 ### Code blocks
 
 ````markdown
 ```python
-pn.set_theme(pn.DARK)
-pn.body("Hello.")
+en.set_theme(en.DARK)
+en.body("Hello.")
 ```
 ````
 
@@ -87,20 +87,20 @@ pn.body("Hello.")
 
 ### Alert Boxes
 
-GitHub-style alert blocks map to PaperForge callouts:
+GitHub-style alert blocks map to Engrapha callouts:
 
 ```markdown
 > [!NOTE]
-> Yellow bordered note box (via `pn.note()`).
+> Yellow bordered note box (via `en.note()`).
 
 > [!TIP]
-> Green tip box (via `pn.tip()`).
+> Green tip box (via `en.tip()`).
 
 > [!WARNING]
-> Yellow-bordered highlight box (via `pn.highlight()`).
+> Yellow-bordered highlight box (via `en.highlight()`).
 
 > [!CAUTION]
-> Yellow-bordered highlight box (via `pn.highlight()`).
+> Yellow-bordered highlight box (via `en.highlight()`).
 ```
 
 ### Diagram Fences
@@ -128,7 +128,7 @@ Diagram-specific configuration values are passed at the top of the block as `key
 
 ## What gets compiled
 
-The CLI invokes the same parser used by `pn.include_markdown()`. Each block is mapped to the most appropriate PaperForge API. Unknown code-block languages are treated as syntax-highlighted code (using Pygments).
+The CLI invokes the same parser used by `en.include_markdown()`. Each block is mapped to the most appropriate Engrapha API. Unknown code-block languages are treated as syntax-highlighted code (using Pygments).
 
 ## Limitations
 
@@ -141,7 +141,7 @@ The CLI invokes the same parser used by `pn.include_markdown()`. Each block is m
 For more control, use Python's `compile_markdown_to_pdf()`:
 
 ```python
-from paperforge_notes.cli import compile_markdown_to_pdf
+from engrapha_notes.cli import compile_markdown_to_pdf
 compile_markdown_to_pdf(
     input_file="notes.md",
     output_file="notes.pdf",
@@ -153,3 +153,4 @@ compile_markdown_to_pdf(
 
 - [Diagram overview](diagrams/overview.md)
 - [Themes](themes.md)
+

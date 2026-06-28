@@ -28,7 +28,7 @@ Screenshots and examples for each diagram type and theme combination. Screenshot
 
 -   **[Themes](themes.md)**
 
-    One diagram rendered in all 10 PaperForge preset themes.
+    One diagram rendered in all 10 Engrapha preset themes.
 
 -   **[Notes Pages](notes-pages.md)**
 
@@ -61,3 +61,4 @@ Screenshots and examples for each diagram type and theme combination. Screenshot
     OSI stack + TCP three-way handshake sequence.
 
 </div>
+

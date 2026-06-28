@@ -8,24 +8,24 @@ Output: CA_Unit2_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 from reportlab.platypus import Paragraph, Table, TableStyle
 
 # =============================================================================
 #  THEME SETUP
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.CATPPUCCIN_MOCHA)
+en.set_story([])
+en.set_theme(en.CATPPUCCIN_MOCHA)
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 
 # =============================================================================
 #  CUSTOM CPU DIAGRAM NODE DRAWERS
 # =============================================================================
 def draw_register(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     # Rounded rectangle representing a register, split into 4 fields
     diag._add(
@@ -46,7 +46,7 @@ def draw_register(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_cu(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     # Control unit / sequencer block with internal partition lines
     diag._add(
@@ -72,7 +72,7 @@ def draw_cu(diag, cx, cy, w, h, fill, stroke):
 
 
 def draw_flags(diag, cx, cy, w, h, fill, stroke):
-    import paperforge_diagrams.shapes as S
+    import engrapha_diagrams.shapes as S
 
     # Status flags register with Z, N, C, V cells
     diag._add(
@@ -112,42 +112,42 @@ def draw_flags(diag, cx, cy, w, h, fill, stroke):
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(28)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(28)
 t = Table(
     [
-        [Paragraph("COMPUTER ARCHITECTURE", pn.COVER_H1)],
-        [Paragraph("Unit II -- Complete Exam Notes", pn.COVER_H2)],
+        [Paragraph("COMPUTER ARCHITECTURE", en.COVER_H1)],
+        [Paragraph("Unit II -- Complete Exam Notes", en.COVER_H2)],
     ],
-    colWidths=[pn.CW],
+    colWidths=[en.CW],
 )
 t.setStyle(
     TableStyle(
         [
-            ("BACKGROUND", (0, 0), (-1, -1), pn.get_theme().rl(pn.get_theme().surface)),
+            ("BACKGROUND", (0, 0), (-1, -1), en.get_theme().rl(en.get_theme().surface)),
             ("TOPPADDING", (0, 0), (-1, -1), 22),
             ("BOTTOMPADDING", (0, 0), (-1, -1), 22),
             ("LEFTPADDING", (0, 0), (-1, -1), 20),
             ("RIGHTPADDING", (0, 0), (-1, -1), 20),
-            ("BOX", (0, 0), (-1, -1), 2.5, pn.get_theme().rl(pn.get_theme().accent)),
+            ("BOX", (0, 0), (-1, -1), 2.5, en.get_theme().rl(en.get_theme().accent)),
         ]
     )
 )
-pn.add(t)
-pn.sp(14)
-pn.add(
+en.add(t)
+en.sp(14)
+en.add(
     Paragraph(
         "Prepared by: Bharat Dangi  |  Subject Code: IT-404  |  UIT-RGPV (Autonomous) Bhopal",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
-pn.add(Paragraph("Semester IV  |  Based on University Syllabus 2024-25", pn.COVER_SUB))
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(8)
+en.add(Paragraph("Semester IV  |  Based on University Syllabus 2024-25", en.COVER_SUB))
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(8)
 
-pn.info_table(
+en.info_table(
     ["Topic", "Coverage"],
     [
         [
@@ -183,42 +183,42 @@ pn.info_table(
         ["2.10 Quick Revision Summary", "Key formulas, tables, and exam flashcards"],
     ],
 )
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  UNIT DIVIDER
 # =============================================================================
-pn.footer(left="IT-404: Computer Architecture", right="Unit II Notes", show_page_num=True)
-pn.part_box("UNIT II -- ALU, NUMBER REPRESENTATIONS AND CONTROL UNIT")
+en.footer(left="IT-404: Computer Architecture", right="Unit II Notes", show_page_num=True)
+en.part_box("UNIT II -- ALU, NUMBER REPRESENTATIONS AND CONTROL UNIT")
 
 # =============================================================================
 #  2.1  FIXED-POINT REPRESENTATION
 # =============================================================================
-pn.chap_box("2.1  Fixed-Point Representation")
-pn.section("Integer Representation")
-pn.definition(
+en.chap_box("2.1  Fixed-Point Representation")
+en.section("Integer Representation")
+en.definition(
     "<b>Fixed-Point Representation:</b> A method of encoding numbers in binary "
     "where the binary point (decimal point equivalent) is fixed at a specific "
     "position -- usually to the right of the least significant bit for integers. "
     "All digits are whole-number digits. The hardware can represent both "
     "<b>unsigned</b> (non-negative) and <b>signed</b> (positive and negative) integers."
 )
-pn.body(
+en.body(
     "For an <b>n-bit word</b>, unsigned integers span 0 to 2<super>n</super> - 1. "
     "Signed integers require one bit (the MSB) to encode the sign. Three common "
     "signed representations are: Sign-Magnitude, 1's Complement, and 2's Complement."
 )
 
-pn.section("Sign-Magnitude Representation")
-pn.definition(
+en.section("Sign-Magnitude Representation")
+en.definition(
     "<b>Sign-Magnitude:</b> The MSB is the sign bit (0 = positive, 1 = negative). "
     "The remaining n-1 bits represent the magnitude (absolute value). "
     "This is the most intuitive representation but has two zeros (+0 and -0) "
     "and requires special hardware for arithmetic."
 )
-pn.code_block("""
+en.code_block("""
  SIGN-MAGNITUDE (8-bit examples):
  ======================================================
  +7  =  0 000 0111    (sign bit 0, magnitude 7)
@@ -234,15 +234,15 @@ pn.code_block("""
    Different sign: subtract smaller magnitude from larger, keep sign of larger.
 """)
 
-pn.section("1's Complement Representation")
-pn.definition(
+en.section("1's Complement Representation")
+en.definition(
     "<b>1's Complement:</b> Positive numbers are represented in standard binary. "
     "A negative number is formed by inverting ALL bits of the positive counterpart "
     "(bitwise NOT). Still has two zeros (+0 = 00...0 and -0 = 11...1). "
     "Addition requires an <b>end-around carry</b>: if there is a carry out of the "
     "MSB, it is added back to the LSB."
 )
-pn.code_block("""
+en.code_block("""
  1'S COMPLEMENT (8-bit examples):
  ======================================================
  +7  =  0000 0111
@@ -260,15 +260,15 @@ pn.code_block("""
                            = 0000 0010 = +2  (correct!)
 """)
 
-pn.section("2's Complement Representation")
-pn.definition(
+en.section("2's Complement Representation")
+en.definition(
     "<b>2's Complement:</b> The universally used representation for signed integers "
     "in modern computers. A negative number is formed by inverting all bits of the "
     "positive counterpart and then adding 1. There is only ONE zero. "
     "Addition and subtraction use the same hardware (no special cases). "
     "The MSB has weight -2<super>n-1</super> instead of +2<super>n-1</super>."
 )
-pn.code_block("""
+en.code_block("""
  2'S COMPLEMENT (8-bit examples):
  ======================================================
  +7  =  0000 0111
@@ -288,8 +288,8 @@ pn.code_block("""
    Example: 1011 = -1*8 + 0*4 + 1*2 + 1*1 = -8 + 3 = -5
 """)
 
-pn.section("Representation Comparison")
-pn.info_table(
+en.section("Representation Comparison")
+en.info_table(
     ["Property", "Sign-Magnitude", "1's Complement", "2's Complement"],
     [
         [
@@ -329,8 +329,8 @@ pn.info_table(
 )
 
 # Diagram: number line showing all three representations for 3-bit
-pn.subsection("Visual: 3-bit Signed Number Line")
-pn.code_block("""
+en.subsection("Visual: 3-bit Signed Number Line")
+en.code_block("""
  3-BIT NUMBER LINE COMPARISON:
  ======================================================
  Bit Pattern | Unsigned | Sign-Mag | 1's Comp | 2's Comp
@@ -347,20 +347,20 @@ pn.code_block("""
  Note: 2's complement has no -0 and has an extra -4 (100).
 """)
 
-pn.tip(
+en.tip(
     "2's complement is THE standard for modern computers. "
     "Negation: invert all bits and add 1. Range: -2^(n-1) to +2^(n-1)-1. "
     "2's complement has one more negative number than positive. "
     "Overflow: carry into MSB != carry out of MSB."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.2  NEGATION
 # =============================================================================
-pn.chap_box("2.2  Integer Arithmetic -- Negation")
-pn.section("Negation in Each Representation")
-pn.info_table(
+en.chap_box("2.2  Integer Arithmetic -- Negation")
+en.section("Negation in Each Representation")
+en.info_table(
     ["Representation", "Negation Rule", "Example: Negate +5 (0101)", "Special Case"],
     [
         [
@@ -384,7 +384,7 @@ pn.info_table(
         ],
     ],
 )
-pn.code_block("""
+en.code_block("""
  2'S COMPLEMENT NEGATION WORKED EXAMPLES (8-bit):
  ======================================================
  Negate +23 (0001 0111):
@@ -404,25 +404,25 @@ pn.code_block("""
    Example: 0110 1100 -> scan right: copy 00, copy 1, invert rest:
             copy 00, copy 1 -> 1001 0100
 """)
-pn.tip(
+en.tip(
     "2's complement negation: invert + add 1. "
     "Shortcut: copy LSBs up to first 1 (inclusive), flip everything to the left. "
     "Only overflow: negating the most negative number (-2^(n-1))."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.3  ADDITION AND SUBTRACTION
 # =============================================================================
-pn.chap_box("2.3  Integer Arithmetic -- Addition and Subtraction")
-pn.section("2's Complement Addition")
-pn.definition(
+en.chap_box("2.3  Integer Arithmetic -- Addition and Subtraction")
+en.section("2's Complement Addition")
+en.definition(
     "<b>2's Complement Addition:</b> Simply add the two n-bit numbers using "
     "standard binary addition. Ignore any carry out of the MSB (for n-bit result). "
     "This works for all combinations of positive and negative operands -- "
     "no sign checking is required."
 )
-pn.code_block("""
+en.code_block("""
  2'S COMPLEMENT ADDITION CASES (8-bit):
  ======================================================
  Case 1: Both positive (+30 + +20 = +50)
@@ -452,8 +452,8 @@ pn.code_block("""
    Note: +150 > +127 (max 8-bit signed), so result wraps negative.
 """)
 
-pn.section("Overflow Detection")
-pn.definition(
+en.section("Overflow Detection")
+en.definition(
     "<b>Overflow:</b> Occurs when the result of a signed addition exceeds the "
     "representable range. For n-bit 2's complement, overflow can be detected by: "
     "V = C<sub>n-1</sub> XOR C<sub>n</sub>, where C<sub>n</sub> is the carry out "
@@ -461,7 +461,7 @@ pn.definition(
     "Overflow ONLY happens when both operands have the same sign and the result "
     "has the opposite sign."
 )
-pn.info_table(
+en.info_table(
     ["Operand A sign", "Operand B sign", "Result sign", "Overflow?"],
     [
         ["+", "+", "+", "No"],
@@ -473,13 +473,13 @@ pn.info_table(
     ],
 )
 
-pn.section("2's Complement Subtraction")
-pn.definition(
+en.section("2's Complement Subtraction")
+en.definition(
     "<b>Subtraction via Addition:</b> A - B is computed as A + (-B) = A + (NOT B + 1). "
     "This means the hardware needs only an adder plus an inverter (XOR gate) -- "
     "no separate subtractor is required. This is the key advantage of 2's complement."
 )
-pn.code_block("""
+en.code_block("""
  SUBTRACTION HARDWARE (n-bit 2's complement):
  ======================================================
  A - B  =  A + (NOT B) + 1
@@ -501,8 +501,8 @@ pn.code_block("""
 """)
 
 # Adder/Subtractor flowchart
-fc_addsub = pd.Flowchart(
-    width=pn.CW,
+fc_addsub = ed.Flowchart(
+    width=en.CW,
     height=240,
     theme=diag_theme,
     caption="Fig 1: 2's Complement Adder-Subtractor hardware operation",
@@ -524,29 +524,29 @@ fc_addsub.edge("prep_add", "adder")
 fc_addsub.edge("prep_sub", "adder")
 fc_addsub.edge("adder", "flags")
 fc_addsub.edge("flags", "done")
-pn.story.extend(fc_addsub.as_flowable())
+en.story.extend(fc_addsub.as_flowable())
 
-pn.tip(
+en.tip(
     "A - B = A + NOT(B) + 1 in 2's complement. "
     "One adder serves both addition and subtraction (just invert B and set Cin=1). "
     "Overflow detection: V = carry_into_MSB XOR carry_out_of_MSB. "
     "Unsigned overflow = carry out. Signed overflow = V flag."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.4  MULTIPLICATION
 # =============================================================================
-pn.chap_box("2.4  Integer Arithmetic -- Multiplication")
-pn.section("Unsigned Binary Multiplication")
-pn.definition(
+en.chap_box("2.4  Integer Arithmetic -- Multiplication")
+en.section("Unsigned Binary Multiplication")
+en.definition(
     "<b>Binary Multiplication:</b> Similar to decimal long multiplication. "
     "For each bit of the multiplier (from LSB to MSB): if the bit is 1, add the "
     "multiplicand shifted left by the bit's position; if the bit is 0, add zero. "
     "The sum of all partial products is the result. An n-bit x n-bit multiplication "
     "produces a 2n-bit result."
 )
-pn.code_block("""
+en.code_block("""
  UNSIGNED MULTIPLICATION EXAMPLE (4-bit):
  ======================================================
  Multiplicand (M) = 1011  (11)
@@ -572,8 +572,8 @@ pn.code_block("""
    After n steps, (A,Q) holds the 2n-bit product.
 """)
 
-pn.section("Booth's Algorithm (Signed Multiplication)")
-pn.definition(
+en.section("Booth's Algorithm (Signed Multiplication)")
+en.definition(
     "<b>Booth's Algorithm:</b> An efficient algorithm for multiplying two signed "
     "2's complement integers. It handles both positive and negative multipliers "
     "uniformly. Instead of examining one multiplier bit at a time, Booth's algorithm "
@@ -582,8 +582,8 @@ pn.definition(
     "for multipliers with consecutive 1s."
 )
 
-pn.subsection("Booth's Encoding Table")
-pn.info_table(
+en.subsection("Booth's Encoding Table")
+en.info_table(
     ["Q[i] (current)", "Q[i-1] (previous)", "Operation", "Reason"],
     [
         ["0", "0", "No operation (shift only)", "Middle of a string of 0s"],
@@ -593,7 +593,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block("""
+en.code_block("""
  BOOTH'S ALGORITHM WORKED EXAMPLE (4-bit):
  ======================================================
  Multiplicand M = 0011  (+3)
@@ -621,8 +621,8 @@ pn.code_block("""
 """)
 
 # Booth's algorithm flowchart
-fc_booth = pd.Flowchart(
-    width=pn.CW,
+fc_booth = ed.Flowchart(
+    width=en.CW,
     height=380,
     theme=diag_theme,
     caption="Fig 2: Booth's Algorithm flowchart for signed 2's complement multiplication",
@@ -648,35 +648,35 @@ fc_booth.edge("shift", "decr")
 fc_booth.edge("decr", "done")
 fc_booth.edge("done", "end", branch="yes")
 fc_booth.edge("done", "q0q1", branch="no", orthogonal=True)
-pn.story.extend(fc_booth.as_flowable())
+en.story.extend(fc_booth.as_flowable())
 
-pn.tip(
+en.tip(
     "Booth's: examine Q[0] and Q[-1]. 01=add, 10=subtract, 00/11=no-op. "
     "Always arithmetic right shift after each step. "
     "Works for any signed 2's complement operands. "
     "n steps for n-bit multiplication. Product in (A,Q) = 2n bits."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.5  DIVISION
 # =============================================================================
-pn.chap_box("2.5  Integer Arithmetic -- Division")
-pn.section("Overview")
-pn.definition(
+en.chap_box("2.5  Integer Arithmetic -- Division")
+en.section("Overview")
+en.definition(
     "<b>Binary Division:</b> Computes quotient Q and remainder R such that "
     "Dividend = Divisor x Q + R. Hardware division is performed by a sequential "
     "algorithm that either restores or does not restore partial remainders. "
     "Two common algorithms: <b>Restoring Division</b> and <b>Non-Restoring Division</b>."
 )
 
-pn.section("Restoring Division Algorithm (Unsigned)")
-pn.body(
+en.section("Restoring Division Algorithm (Unsigned)")
+en.body(
     "In restoring division, the partial remainder is maintained non-negative at each step. "
     "If after subtracting the divisor the partial remainder goes negative, the divisor is "
     "restored (added back) and a quotient bit of 0 is recorded."
 )
-pn.code_block("""
+en.code_block("""
  RESTORING DIVISION ALGORITHM:
  ======================================================
  Registers: A (partial remainder, n bits, init=0)
@@ -705,14 +705,14 @@ pn.code_block("""
  Result: Q = 0011 = 3 (quotient), A = 0001 = 1 (remainder)  Correct!
 """)
 
-pn.section("Non-Restoring Division Algorithm")
-pn.definition(
+en.section("Non-Restoring Division Algorithm")
+en.definition(
     "<b>Non-Restoring Division:</b> Avoids the restoration step by alternating "
     "between addition and subtraction based on the sign of the partial remainder. "
     "If A is negative, shift left and ADD divisor. If A is non-negative, shift left "
     "and SUBTRACT divisor. This is faster than restoring division (fewer operations)."
 )
-pn.code_block("""
+en.code_block("""
  NON-RESTORING DIVISION RULES:
  ======================================================
  If A >= 0: Shift left (A,Q), then A <- A - M, Q[0] <- 1
@@ -731,8 +731,8 @@ pn.code_block("""
  | Correction    | Restore if neg| Final correction|
 """)
 
-fc_div = pd.Flowchart(
-    width=pn.CW,
+fc_div = ed.Flowchart(
+    width=en.CW,
     height=300,
     theme=diag_theme,
     caption="Fig 3: Restoring division flowchart",
@@ -757,21 +757,21 @@ fc_div.edge("keep", "decr")
 fc_div.edge("decr", "done")
 fc_div.edge("done", "end", branch="yes")
 fc_div.edge("done", "shift", branch="no", orthogonal=True)
-pn.story.extend(fc_div.as_flowable())
+en.story.extend(fc_div.as_flowable())
 
-pn.tip(
+en.tip(
     "Restoring: subtract, if negative restore (add back) and record 0, else record 1. "
     "Non-restoring: if A>=0 subtract and record 1; if A<0 add and record 0. "
     "Both take n steps for n-bit division. Product = Quotient * Divisor + Remainder."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.6  FLOATING-POINT REPRESENTATION
 # =============================================================================
-pn.chap_box("2.6  Floating-Point Representation")
-pn.section("Why Floating-Point?")
-pn.definition(
+en.chap_box("2.6  Floating-Point Representation")
+en.section("Why Floating-Point?")
+en.definition(
     "<b>Floating-Point Representation:</b> A method for encoding real numbers "
     "(with fractional parts and very large or very small magnitudes) in binary. "
     "A floating-point number is represented as: <b>(-1)<super>S</super> x M x 2<super>E</super></b> "
@@ -779,8 +779,8 @@ pn.definition(
     "The standard is <b>IEEE 754</b>, universally adopted in modern hardware."
 )
 
-pn.section("IEEE 754 Single Precision (32-bit)")
-pn.packet_format(
+en.section("IEEE 754 Single Precision (32-bit)")
+en.packet_format(
     "IEEE 754 Single Precision (32 bits): Sign(1) | Exponent(8) | Mantissa(23)",
     [
         ("S", 1),
@@ -789,7 +789,7 @@ pn.packet_format(
     ],
     bit_ruler=True,
 )
-pn.code_block("""
+en.code_block("""
  IEEE 754 SINGLE PRECISION DETAILS:
  ======================================================
  Field        | Bits | Description
@@ -818,8 +818,8 @@ pn.code_block("""
  RANGE: approx 1.18 x 10^-38  to  3.4 x 10^38
 """)
 
-pn.section("IEEE 754 Double Precision (64-bit)")
-pn.packet_format(
+en.section("IEEE 754 Double Precision (64-bit)")
+en.packet_format(
     "IEEE 754 Double Precision (64 bits): Sign(1) | Exponent(11) | Mantissa(52)",
     [
         ("S", 1),
@@ -828,7 +828,7 @@ pn.packet_format(
     ],
     bit_ruler=True,
 )
-pn.code_block("""
+en.code_block("""
  IEEE 754 DOUBLE PRECISION DETAILS:
  ======================================================
  Sign:     1 bit
@@ -843,8 +843,8 @@ pn.code_block("""
  RANGE: approx 2.2 x 10^-308  to  1.8 x 10^308
 """)
 
-pn.section("Special IEEE 754 Values")
-pn.info_table(
+en.section("Special IEEE 754 Values")
+en.info_table(
     ["Exponent (stored)", "Mantissa", "Value", "Meaning"],
     [
         ["0 (all zeros)", "0 (all zeros)", "+0 or -0", "Positive/negative zero"],
@@ -864,7 +864,7 @@ pn.info_table(
         ["1 to 254", "Any", "(-1)^S x 1.Mantissa x 2^(E-127)", "Normal number"],
     ],
 )
-pn.info_table(
+en.info_table(
     ["Format", "Sign", "Exponent", "Mantissa", "Bias", "Range (approx)", "Precision"],
     [
         [
@@ -896,26 +896,26 @@ pn.info_table(
         ],
     ],
 )
-pn.tip(
+en.tip(
     "IEEE 754 single: 1 sign + 8 exponent (bias 127) + 23 mantissa = 32 bits. "
     "Implied leading 1 (normalized). "
     "Special: E=0,M=0 -> zero; E=255,M=0 -> inf; E=255,M!=0 -> NaN. "
     "Value = (-1)^S x 1.M x 2^(E-127)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.7  FLOATING-POINT ARITHMETIC
 # =============================================================================
-pn.chap_box("2.7  Floating-Point Arithmetic")
-pn.section("Floating-Point Addition and Subtraction")
-pn.definition(
+en.chap_box("2.7  Floating-Point Arithmetic")
+en.section("Floating-Point Addition and Subtraction")
+en.definition(
     "<b>FP Addition/Subtraction Algorithm:</b> Floating-point addition and subtraction "
     "require aligning the exponents before performing the mantissa operation. "
     "The steps are: (1) Check for zeros, (2) Align exponents, (3) Add/subtract "
     "mantissas, (4) Normalize the result, (5) Round and check for overflow/underflow."
 )
-pn.code_block("""
+en.code_block("""
  FLOATING-POINT ADDITION ALGORITHM:
  ======================================================
  Input: A = (-1)^Sa x Ma x 2^Ea,  B = (-1)^Sb x Mb x 2^Eb
@@ -954,13 +954,13 @@ pn.code_block("""
    Result = 0.9375  (correct! 0.5 + 0.4375 = 0.9375)
 """)
 
-pn.section("Floating-Point Multiplication")
-pn.definition(
+en.section("Floating-Point Multiplication")
+en.definition(
     "<b>FP Multiplication:</b> Multiply the mantissas and add the exponents. "
     "The exponent sum must be corrected for the bias (subtract bias once). "
     "Normalize and round the result."
 )
-pn.code_block("""
+en.code_block("""
  FLOATING-POINT MULTIPLICATION:
  ======================================================
  A = (-1)^Sa x 1.Ma x 2^(Ea-bias)
@@ -984,8 +984,8 @@ pn.code_block("""
    Result = 1.000 x 2^0 = 1.0  (correct! 0.5 x 2.0 = 1.0)
 """)
 
-pn.section("Floating-Point Division")
-pn.code_block("""
+en.section("Floating-Point Division")
+en.code_block("""
  FLOATING-POINT DIVISION:
  ======================================================
  A / B = (-1)^(Sa XOR Sb)  x  (1.Ma / 1.Mb)  x  2^((Ea-Eb)+bias)
@@ -1005,8 +1005,8 @@ pn.code_block("""
 """)
 
 # FP arithmetic flowchart
-fc_fp = pd.Flowchart(
-    width=pn.CW,
+fc_fp = ed.Flowchart(
+    width=en.CW,
     height=300,
     theme=diag_theme,
     caption="Fig 4: IEEE 754 floating-point addition / subtraction algorithm",
@@ -1033,11 +1033,11 @@ fc_fp.edge("ovflw", "set_inf", branch="yes")
 fc_fp.edge("ovflw", "end", branch="no")
 fc_fp.edge("set_inf", "end")
 fc_fp.edge("handle_sp", "end")
-pn.story.extend(fc_fp.as_flowable())
+en.story.extend(fc_fp.as_flowable())
 
 # FP multiplication flowchart
-fc_fpmul = pd.Flowchart(
-    width=pn.CW,
+fc_fpmul = ed.Flowchart(
+    width=en.CW,
     height=620,
     theme=diag_theme,
     caption="Fig 5: IEEE 754 floating-point multiplication algorithm",
@@ -1071,11 +1071,11 @@ fc_fpmul.edge("ovflw", "set_inf", branch="yes", orthogonal=True)
 fc_fpmul.edge("ovflw", "end", branch="no")
 fc_fpmul.edge("set_inf", "end")
 fc_fpmul.edge("handle_sp", "end", path=[(50, 450), (50, 30)])
-pn.story.extend(fc_fpmul.as_flowable())
+en.story.extend(fc_fpmul.as_flowable())
 
 # FP division flowchart
-fc_fpdiv = pd.Flowchart(
-    width=pn.CW,
+fc_fpdiv = ed.Flowchart(
+    width=en.CW,
     height=620,
     theme=diag_theme,
     caption="Fig 6: IEEE 754 floating-point division algorithm",
@@ -1111,22 +1111,22 @@ fc_fpdiv.edge("ovflw", "set_inf", branch="yes", orthogonal=True)
 fc_fpdiv.edge("ovflw", "end", branch="no")
 fc_fpdiv.edge("set_inf", "end")
 fc_fpdiv.edge("handle_sp", "end", path=[(50, 450), (50, 30)])
-pn.story.extend(fc_fpdiv.as_flowable())
+en.story.extend(fc_fpdiv.as_flowable())
 
-pn.tip(
+en.tip(
     "FP add: align exponents (shift smaller), add mantissas, normalize, round. "
     "FP multiply: XOR signs, add stored exponents minus bias, multiply mantissas, normalize. "
     "FP divide: XOR signs, subtract stored exponents plus bias, divide mantissas, normalize. "
     "Guard/Round/Sticky bits improve rounding accuracy."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.8  HARDWIRED vs MICROPROGRAMMED CONTROL UNIT
 # =============================================================================
-pn.chap_box("2.8  Hardwired vs Microprogrammed Control Unit")
-pn.section("Role of the Control Unit")
-pn.definition(
+en.chap_box("2.8  Hardwired vs Microprogrammed Control Unit")
+en.section("Role of the Control Unit")
+en.definition(
     "<b>Control Unit (CU):</b> The component of the CPU that generates the "
     "<b>control signals</b> required to execute each instruction. Based on the "
     "current instruction (from IR) and the processor state (flags, timing), "
@@ -1135,14 +1135,14 @@ pn.definition(
     "<b>Hardwired</b> and <b>Microprogrammed</b>."
 )
 
-pn.section("Hardwired Control Unit")
-pn.definition(
+en.section("Hardwired Control Unit")
+en.definition(
     "<b>Hardwired Control Unit:</b> Control signals are generated by a fixed "
     "combinational/sequential logic circuit. The opcode bits are decoded by logic "
     "gates to produce control signals directly. There is no intermediate storage -- "
     "changing the instruction set requires redesigning the hardware."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Structure:</b> Instruction decoder + timing generator (sequencer) + combinational logic gates.",
         "<b>Speed:</b> Very fast -- combinational logic, no memory access for control signals.",
@@ -1153,14 +1153,14 @@ pn.bullet(
     ]
 )
 
-pn.section("Microprogrammed Control Unit")
-pn.definition(
+en.section("Microprogrammed Control Unit")
+en.definition(
     "<b>Microprogrammed Control Unit:</b> Each machine instruction is translated "
     "into a sequence of <b>microinstructions</b> stored in a <b>Control Memory (CM)</b> "
     "(also called the Control Store). The CU fetches microinstructions from CM and "
     "generates control signals. Changing the ISA only requires updating the microprogram."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Structure:</b> Control Memory (ROM/RAM) + Microprogram Counter (MPC) + Microinstruction Register (MIR).",
         "<b>Speed:</b> Slower -- requires an additional memory fetch cycle per microinstruction.",
@@ -1171,8 +1171,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Comparison Table")
-pn.info_table(
+en.section("Comparison Table")
+en.info_table(
     ["Property", "Hardwired CU", "Microprogrammed CU"],
     [
         [
@@ -1203,10 +1203,10 @@ pn.info_table(
 )
 
 # CU comparison diagram
-from paperforge_diagrams import ResponsiveDrawingFlowable
+from engrapha_diagrams import ResponsiveDrawingFlowable
 
-left_stack = pd.LayeredStack(
-    width=pn.CW * 0.44,
+left_stack = ed.LayeredStack(
+    width=en.CW * 0.44,
     height=220,
     theme=diag_theme,
     caption="Hardwired CU",
@@ -1217,8 +1217,8 @@ left_stack.layer("Timing Sequencer", sublabel="clock-driven state counter")
 left_stack.layer("Control Signal Generator", sublabel="AND/OR gate network")
 left_stack.layer("Control Signals Output", sublabel="to ALU, MUX, registers, buses")
 
-right_stack = pd.LayeredStack(
-    width=pn.CW * 0.44,
+right_stack = ed.LayeredStack(
+    width=en.CW * 0.44,
     height=220,
     theme=diag_theme,
     caption="Microprogrammed CU",
@@ -1243,7 +1243,7 @@ tbl_cu = Table(
             ResponsiveDrawingFlowable(right_stack.drawing),
         ]
     ],
-    colWidths=[pn.CW * 0.48, pn.CW * 0.48],
+    colWidths=[en.CW * 0.48, en.CW * 0.48],
 )
 tbl_cu.setStyle(
     TableStyle(
@@ -1256,35 +1256,35 @@ tbl_cu.setStyle(
         ]
     )
 )
-pn.add(tbl_cu)
-pn.sp(6)
-pn.add(
+en.add(tbl_cu)
+en.sp(6)
+en.add(
     Paragraph(
         "Fig 7 (left): Hardwired CU -- pure logic gates.  |  Fig 7 (right): Microprogrammed CU -- ROM-based.",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
 
-pn.tip(
+en.tip(
     "Hardwired CU: fast, inflexible, best for RISC. "
     "Microprogrammed CU: flexible, slower, best for CISC. "
     "Key insight: RISC uses hardwired, CISC uses microprogrammed. "
     "Microprogram = firmware (software stored in control ROM)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.9  CONTROL MEMORY AND MICROPROGRAM SEQUENCE
 # =============================================================================
-pn.chap_box("2.9  Control Memory and Microprogram Sequencing")
-pn.section("Control Memory (Control Store)")
-pn.definition(
+en.chap_box("2.9  Control Memory and Microprogram Sequencing")
+en.section("Control Memory (Control Store)")
+en.definition(
     "<b>Control Memory (CM):</b> A fast read-only memory (ROM, or writable RAM in some "
     "designs) that stores the <b>microprogram</b> -- the set of all microinstructions "
     "for every machine instruction in the ISA. Each word in CM is one "
     "<b>microinstruction</b> whose bits directly control the datapath."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Width:</b> One microinstruction word, typically 32-100 bits wide. Each bit (or field) controls one datapath signal.",
         "<b>Depth:</b> One entry per microinstruction step. A complex ISA may need thousands of microinstructions.",
@@ -1294,20 +1294,20 @@ pn.bullet(
     ]
 )
 
-pn.section("Microinstruction Format")
-pn.definition(
+en.section("Microinstruction Format")
+en.definition(
     "<b>Microinstruction:</b> A single entry in the control memory that specifies "
     "one or more micro-operations to be performed simultaneously, plus the address "
     "of the next microinstruction (or a condition field to select the next address)."
 )
 
-pn.subsection("Horizontal Microinstruction")
-pn.body(
+en.subsection("Horizontal Microinstruction")
+en.body(
     "Each bit directly controls one datapath signal. Very wide (many bits) but allows "
     "maximum parallelism -- any combination of micro-operations can be performed "
     "simultaneously. Decoding overhead is minimal."
 )
-pn.frame_format(
+en.frame_format(
     "Horizontal Microinstruction Format",
     [
         ("ALU_OP (4)", "4 bits"),
@@ -1321,13 +1321,13 @@ pn.frame_format(
     ],
 )
 
-pn.subsection("Vertical Microinstruction")
-pn.body(
+en.subsection("Vertical Microinstruction")
+en.body(
     "Control signals are encoded into fields (like a mini instruction set). "
     "Narrower word width but requires a decoder at each stage. Less parallelism "
     "since only one encoded operation can be specified per field."
 )
-pn.frame_format(
+en.frame_format(
     "Vertical Microinstruction Format (encoded fields)",
     [
         ("F (4 bits)", "Encoded function"),
@@ -1339,7 +1339,7 @@ pn.frame_format(
     ],
 )
 
-pn.info_table(
+en.info_table(
     ["Property", "Horizontal", "Vertical"],
     [
         ["Word width", "Very wide (50-100+ bits)", "Narrow (16-32 bits)"],
@@ -1355,8 +1355,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Microprogram Sequencer")
-pn.definition(
+en.section("Microprogram Sequencer")
+en.definition(
     "<b>Microprogram Sequencer:</b> The hardware that determines the address of "
     "the NEXT microinstruction to fetch from control memory. It selects the next "
     "address based on: the NEXT_ADDR field of the current microinstruction, "
@@ -1364,7 +1364,7 @@ pn.definition(
     "executed (for the fetch-to-execute transition)."
 )
 
-pn.info_table(
+en.info_table(
     ["Next Address Source", "When Used", "Effect"],
     [
         [
@@ -1395,8 +1395,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Microprogram Execution Sequence")
-pn.code_block("""
+en.section("Microprogram Execution Sequence")
+en.code_block("""
  MICROPROGRAM EXECUTION FLOW:
  ======================================================
  1. FETCH microinstruction:
@@ -1427,8 +1427,8 @@ pn.code_block("""
 """)
 
 # Microprogram sequencer diagram
-net_seq = pd.NetworkDiagram(
-    width=pn.CW,
+net_seq = ed.NetworkDiagram(
+    width=en.CW,
     height=330,
     theme=diag_theme,
     caption="Fig 8: Microprogrammed Control Unit -- sequencer and control memory",
@@ -1485,23 +1485,23 @@ net_seq.link("mir", "ctrl", label="control signals")
 net_seq.link("mir", "seq", label="NEXT_ADDR, COND")
 net_seq.link("cond", "seq", label="flags")
 net_seq.link("seq", "mpc", label="next MPC")
-pn.story.extend(net_seq.as_flowable())
+en.story.extend(net_seq.as_flowable())
 
-pn.tip(
+en.tip(
     "Control Memory: stores all microinstructions. MPC addresses it. "
     "MIR holds the current microinstruction. "
     "Sequencer determines next MPC from: NEXT_ADDR field, condition flags, or IR opcode mapping. "
     "Horizontal MI: wide, direct control. Vertical MI: narrow, encoded, needs decoder."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.10  QUICK REVISION SUMMARY
 # =============================================================================
-pn.part_box("UNIT II -- QUICK REVISION SUMMARY")
-pn.chap_box("Key Concepts at a Glance")
+en.part_box("UNIT II -- QUICK REVISION SUMMARY")
+en.chap_box("Key Concepts at a Glance")
 
-pn.info_table(
+en.info_table(
     ["Topic", "Key Point to Remember"],
     [
         [
@@ -1602,7 +1602,7 @@ pn.info_table(
     ],
 )
 
-pn.highlight(
+en.highlight(
     "<b>UNIT II EXAM BLUEPRINT:</b>  "
     "2-mark: State IEEE 754 single precision format. "
     "Define 2's complement range. Differentiate hardwired vs microprogrammed CU. "
@@ -1617,20 +1617,20 @@ pn.highlight(
     "Explain microinstruction formats (horizontal and vertical) with control memory.",
 )
 
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.0)
-pn.sp(6)
-pn.add(
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.0)
+en.sp(6)
+en.add(
     Paragraph(
         "Computer Architecture IT-404 Unit II -- Bharat Dangi  |  UIT-RGPV (Autonomous) Bhopal | Semester IV",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
 
 # =============================================================================
 #  BUILD PDF
 # =============================================================================
-pn.build_doc(
+en.build_doc(
     "CA_Unit2_Notes.pdf",
     title="Computer Architecture - Unit II Notes",
     author="Bharat Dangi",

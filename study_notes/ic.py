@@ -8,46 +8,46 @@ Output: IndianConstitution_IT410_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
 # =============================================================================
 #  THEME & GLOBAL FOOTER
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.OCEAN_DARK)
+en.set_story([])
+en.set_theme(en.OCEAN_DARK)
 
-pn.set_global_footer(
+en.set_global_footer(
     left="Indian Constitution (IT410) — UIT-RGPV Bhopal",
     right="Semester IV",
     show_page_num=True,
 )
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(22)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(22)
 
-pn.cover_card(
+en.cover_card(
     "INDIAN CONSTITUTION",
     "Complete Exam Notes & PYQ Answers",
 )
-# pn.cover_subtitle(
+# en.cover_subtitle(
 #     [
 #         "Subject Code: IT410  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
 #         "PYQs Covered: June 2022  |  May-June 2023  |  May-June 2024  |  Nov-Dec 2024  |  June-July 2025",
 #         "All 15 Syllabus Topics  |  CO1–CO5  |  3-mark, 4-mark & 10-mark Model Answers",
 #     ]
 # )
-pn.sp(8)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(6)
+en.sp(8)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(6)
 
-pn.info_table(
+en.info_table(
     ["Unit / CO", "Topics Covered"],
     [
         [
@@ -81,8 +81,8 @@ pn.info_table(
     col_widths=["28%", "72%"],
 )
 
-pn.sp(6)
-pn.note(
+en.sp(6)
+en.note(
     "Mark scheme: Part (a) = 3 marks | Part (b) = 4 marks | Part (c) = 4 marks | "
     "Part (d) = 10 marks | Part (e) = 10 marks (internal choice). "
     "All PYQ questions are answered with model answers calibrated to the mark weightage."
@@ -91,43 +91,43 @@ pn.note(
 # =============================================================================
 #  TABLE OF CONTENTS
 # =============================================================================
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # #############################################################################
 #  PART A — CO1: CONSTITUTION, HISTORY & CHARACTERISTICS
 # #############################################################################
-pn.part_box("UNIT I — CO1: CONSTITUTION, HISTORY & CHARACTERISTICS")
+en.part_box("UNIT I — CO1: CONSTITUTION, HISTORY & CHARACTERISTICS")
 
 # =============================================================================
 #  1.1  MEANING OF CONSTITUTION, CONSTITUTION LAW & CONSTITUTIONALISM
 # =============================================================================
-pn.chap_box("1.1  Meaning of Constitution, Constitutional Law & Constitutionalism")
+en.chap_box("1.1  Meaning of Constitution, Constitutional Law & Constitutionalism")
 
-pn.section("What is a Constitution?")
-pn.definition(
+en.section("What is a Constitution?")
+en.definition(
     "<b>Constitution:</b> A constitution is the fundamental and supreme law of a country. "
     "It is a set of basic principles and established precedents according to which a state is "
     "governed. It defines the framework for the structure of government, distribution of powers "
     "among different organs (Legislature, Executive, Judiciary), and guarantees certain rights "
     "to citizens. Every other law in the country must conform to the constitution."
 )
-pn.body(
+en.body(
     "A constitution may be <b>written</b> (like India and USA) or <b>unwritten</b> (like the UK, "
     "based on conventions and statutes). India has one of the longest written constitutions in the world."
 )
 
-pn.section("Constitutional Law")
-pn.definition(
+en.section("Constitutional Law")
+en.definition(
     "<b>Constitutional Law:</b> Constitutional law is the body of law that defines the relationship "
     "between different entities within a state — the executive, legislature, and judiciary. "
     "It also defines the rights of citizens. Constitutional law includes the text of the constitution "
     "itself as well as all judicial interpretations and conventions that have developed around it."
 )
 
-pn.section("Constitutionalism")
-pn.definition(
+en.section("Constitutionalism")
+en.definition(
     "<b>Constitutionalism:</b> Constitutionalism is the idea that government authority is derived "
     "from and limited by a body of fundamental law (the constitution). It means that government "
     "must operate within the limits set by the constitution — no authority is absolute or unlimited. "
@@ -135,7 +135,7 @@ pn.definition(
     "protection of fundamental rights, and judicial review."
 )
 
-pn.info_table(
+en.info_table(
     ["Basis", "Constitution", "Constitutionalism"],
     [
         [
@@ -162,7 +162,7 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "PYQ Tip: 'Compare Constitution and Constitutionalism' (June 2022, 3 marks) and 'What do you mean by constitutionalism?' "
     "(June-July 2025, 3 marks). Always give the definition of both and a comparison table."
 )
@@ -170,16 +170,16 @@ pn.exam(
 # =============================================================================
 #  1.2  HISTORICAL PERSPECTIVE OF INDIAN CONSTITUTION
 # =============================================================================
-pn.chap_box("1.2  Historical Perspective of the Indian Constitution")
+en.chap_box("1.2  Historical Perspective of the Indian Constitution")
 
-pn.section("Company Rule and Pre-Independence Constitutional History")
-pn.body(
+en.section("Company Rule and Pre-Independence Constitutional History")
+en.body(
     "Before the Constitution of India came into force on 26 January 1950, India's governance "
     "was shaped by a series of Charter Acts, Regulating Acts, and Government of India Acts "
     "introduced during British rule."
 )
 
-pn.info_table(
+en.info_table(
     ["Act / Year", "Key Provisions"],
     [
         [
@@ -252,14 +252,14 @@ pn.info_table(
     ],
 )
 
-pn.section("Constituent Assembly")
-pn.definition(
+en.section("Constituent Assembly")
+en.definition(
     "<b>Constituent Assembly of India:</b> The body that drafted and adopted the Constitution of India. "
     "It was constituted in December 1946 under the Cabinet Mission Plan (1946). "
     "Dr. Rajendra Prasad was elected as its President. "
     "Dr. B.R. Ambedkar was the Chairman of the Drafting Committee."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Total members:</b> 389 (reduced to 299 after partition; Muslim League members joined Pakistan's assembly).",
         "<b>Drafting Committee Chairman:</b> Dr. B.R. Ambedkar — known as the Father of the Indian Constitution.",
@@ -269,7 +269,7 @@ pn.bullet(
     ]
 )
 
-pn.exam(
+en.exam(
     "PYQ: 'Discuss the composition of Constituent Assembly' (Nov-Dec 2024, 4 marks). "
     "Also: 'Outline Company rule 1773-1785' (June 2022) and 'Name leaders of First Cabinet of free India' (June 2022)."
 )
@@ -277,13 +277,13 @@ pn.exam(
 # =============================================================================
 #  1.3  SALIENT FEATURES & CHARACTERISTICS
 # =============================================================================
-pn.chap_box("1.3  Salient Features & Characteristics of the Indian Constitution")
+en.chap_box("1.3  Salient Features & Characteristics of the Indian Constitution")
 
-pn.section("Salient Features")
-pn.body(
+en.section("Salient Features")
+en.body(
     "The Constitution of India is unique in many respects. Its key characteristics are:"
 )
-pn.info_table(
+en.info_table(
     ["Feature", "Explanation"],
     [
         [
@@ -359,28 +359,28 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # #############################################################################
 #  PART B — CO2: FUNDAMENTAL DUTIES & DIRECTIVE PRINCIPLES
 # #############################################################################
-pn.part_box("UNIT II — CO2: FUNDAMENTAL DUTIES & DIRECTIVE PRINCIPLES OF STATE POLICY")
+en.part_box("UNIT II — CO2: FUNDAMENTAL DUTIES & DIRECTIVE PRINCIPLES OF STATE POLICY")
 
 # =============================================================================
 #  2.1  FUNDAMENTAL DUTIES
 # =============================================================================
-pn.chap_box("2.1  Scheme of Fundamental Duties & Legal Status")
+en.chap_box("2.1  Scheme of Fundamental Duties & Legal Status")
 
-pn.section("Introduction")
-pn.definition(
+en.section("Introduction")
+en.definition(
     "<b>Fundamental Duties (Part IV-A, Article 51A):</b> Originally the Indian Constitution had no "
     "chapter on fundamental duties. They were added by the <b>42nd Constitutional Amendment Act, 1976</b> "
     "on the recommendation of the <b>Swaran Singh Committee</b>. A 11th duty was added by the "
     "<b>86th Amendment, 2002</b>. They are modelled on the constitutions of USSR, Japan, and China."
 )
 
-pn.section("All 11 Fundamental Duties (Article 51A)")
-pn.info_table(
+en.section("All 11 Fundamental Duties (Article 51A)")
+en.info_table(
     ["No.", "Fundamental Duty"],
     [
         [
@@ -421,12 +421,12 @@ pn.info_table(
     ],
 )
 
-pn.section("Legal Status of Fundamental Duties")
-pn.body(
+en.section("Legal Status of Fundamental Duties")
+en.body(
     "Fundamental duties are <b>non-justiciable</b> — they cannot be enforced by courts through writs. "
     "However, they are not without legal significance:"
 )
-pn.bullet(
+en.bullet(
     [
         "They serve as a warning to citizens against anti-national activities.",
         "Courts can use them to uphold the constitutional validity of laws made to enforce them.",
@@ -436,8 +436,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Swaran Singh Committee Recommendations (1976)")
-pn.definition(
+en.section("Swaran Singh Committee Recommendations (1976)")
+en.definition(
     "<b>Swaran Singh Committee:</b> Appointed in 1976 to recommend a chapter on Fundamental Duties. "
     "The committee recommended: (1) Eight fundamental duties be included. "
     "(2) Parliament should have power to legislate to enforce them. "
@@ -446,8 +446,8 @@ pn.definition(
     "The committee also recommended penalties for violation, but this was not accepted by government."
 )
 
-pn.section("Verma Committee Report (1999)")
-pn.definition(
+en.section("Verma Committee Report (1999)")
+en.definition(
     "<b>Justice J.S. Verma Committee (1999):</b> Constituted to operationalize the Fundamental Duties "
     "and identify laws in force for their implementation. Key findings: "
     "(1) Several existing laws already correspond to fundamental duties (e.g., Prevention of Insults to National Honour Act, "
@@ -456,7 +456,7 @@ pn.definition(
     "(3) Suggested that provisions in existing laws should be amended to make references to Art. 51A."
 )
 
-pn.exam(
+en.exam(
     "PYQ (June 2022): 'Explain Verma Committee Observation' (4 marks) and 'Define Swaran Singh Committee Recommendation' (4 marks). "
     "PYQ (Nov-Dec 2024): 'Fundamental duties are not enforceable by writ... but fundamental to well-being' (10 marks)."
 )
@@ -464,26 +464,26 @@ pn.exam(
 # =============================================================================
 #  2.2  DIRECTIVE PRINCIPLES OF STATE POLICY
 # =============================================================================
-pn.chap_box(
+en.chap_box(
     "2.2  Directive Principles of State Policy (DPSP) — Part IV, Articles 36–51"
 )
 
-pn.section("Introduction & Constitutional Position")
-pn.definition(
+en.section("Introduction & Constitutional Position")
+en.definition(
     "<b>Directive Principles of State Policy (DPSP):</b> Part IV of the Constitution (Articles 36–51) "
     "contains the Directive Principles. They are guidelines or directives given to the central and "
     "state governments to be kept in mind while framing laws and policies. They represent the "
     "positive obligations of the State (what the State should do), as opposed to Fundamental Rights "
     "(which represent negative obligations — what the State should NOT do)."
 )
-pn.body(
+en.body(
     "The DPSP are <b>non-justiciable</b> — they cannot be enforced by courts. "
     "However, Article 37 states that 'it shall be the duty of the State to apply these principles "
     "in making laws.' They borrowed from the Irish Constitution (which took it from the Spanish Constitution)."
 )
 
-pn.section("Classification of Directive Principles")
-pn.info_table(
+en.section("Classification of Directive Principles")
+en.info_table(
     ["Category", "Key Articles", "Content"],
     [
         [
@@ -508,8 +508,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Importance and Implementation of DPSPs")
-pn.bullet(
+en.section("Importance and Implementation of DPSPs")
+en.bullet(
     [
         "<b>Welfare State:</b> DPSPs transform India into a welfare state by directing the government to ensure social and economic justice for all citizens.",
         "<b>Political Manifesto:</b> They serve as a yardstick to measure the performance of political parties in power.",
@@ -519,8 +519,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Fundamental Rights vs Directive Principles — Comparison")
-pn.info_table(
+en.section("Fundamental Rights vs Directive Principles — Comparison")
+en.info_table(
     ["Basis", "Fundamental Rights", "Directive Principles"],
     [
         ["Part", "Part III (Articles 12–35)", "Part IV (Articles 36–51)"],
@@ -545,26 +545,26 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "PYQ (May-June 2023, 2024): 'Discuss importance and implementation of DPSP' (10 marks). "
     "'DPSP constitute a comprehensive political, social and economic program for a modern democratic welfare state' (10 marks). "
     "Also: 'Explain interrelationship between FRs and DPSP' (Nov-Dec 2024). "
     "'Compare FRs and DPSP' (June 2022, 10 marks)."
 )
-pn.br()
+en.br()
 
 # #############################################################################
 #  PART C — CO3: FEDERAL STRUCTURE, PARLIAMENT & PRESIDENT
 # #############################################################################
-pn.part_box("UNIT III — CO3: FEDERAL STRUCTURE & PARLIAMENTARY GOVERNMENT")
+en.part_box("UNIT III — CO3: FEDERAL STRUCTURE & PARLIAMENTARY GOVERNMENT")
 
 # =============================================================================
 #  3.1  FEDERAL STRUCTURE
 # =============================================================================
-pn.chap_box("3.1  Federal Structure & Distribution of Legislative and Financial Powers")
+en.chap_box("3.1  Federal Structure & Distribution of Legislative and Financial Powers")
 
-pn.section("Federal vs Unitary Constitutions")
-pn.info_table(
+en.section("Federal vs Unitary Constitutions")
+en.info_table(
     ["Basis", "Federal Constitution", "Unitary Constitution"],
     [
         [
@@ -580,8 +580,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Federal Features of the Indian Constitution")
-pn.bullet(
+en.section("Federal Features of the Indian Constitution")
+en.bullet(
     [
         "<b>Written Constitution:</b> Codified and supreme law of the land.",
         "<b>Dual Polity:</b> Two sets of government — Central (Union) and State.",
@@ -593,8 +593,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Unitary / Non-Federal Features of the Indian Constitution")
-pn.bullet(
+en.section("Unitary / Non-Federal Features of the Indian Constitution")
+en.bullet(
     [
         "<b>'Union of States' not Federation:</b> Art. 1 — India is a Union; states cannot secede.",
         "<b>Strong Centre:</b> Residuary powers with Parliament (unlike USA where residual powers are with states).",
@@ -607,11 +607,11 @@ pn.bullet(
     ]
 )
 
-pn.section("Distribution of Legislative Powers — Seventh Schedule")
-pn.definition(
+en.section("Distribution of Legislative Powers — Seventh Schedule")
+en.definition(
     "<b>Seventh Schedule:</b> Contains three lists of subjects on which laws can be made:"
 )
-pn.info_table(
+en.info_table(
     ["List", "Subjects (Count)", "Who Legislates", "Examples"],
     [
         [
@@ -640,13 +640,13 @@ pn.info_table(
         ],
     ],
 )
-pn.note(
+en.note(
     "In case of conflict between Parliamentary and State law on a Concurrent List subject, "
     "Parliamentary law prevails (Art. 254). But if state law received Presidential assent, it prevails in that state."
 )
 
-pn.section("Distribution of Financial Powers")
-pn.info_table(
+en.section("Distribution of Financial Powers")
+en.info_table(
     ["Revenue Source", "Levy By", "Collected By", "Appropriated By"],
     [
         [
@@ -675,7 +675,7 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "PYQ: 'Discuss distribution of legislative and financial powers between Union and States' (May-June 2023, 5 marks). "
     "'Distribution of powers is tilted towards the Centre — Clarify' (May-June 2024, 10 marks). "
     "'Examine administrative and financial relations between Union and State' (June-July 2025, 10 marks)."
@@ -684,16 +684,16 @@ pn.exam(
 # =============================================================================
 #  3.2  PARLIAMENTARY FORM OF GOVERNMENT
 # =============================================================================
-pn.chap_box("3.2  Parliamentary Form of Government in India")
+en.chap_box("3.2  Parliamentary Form of Government in India")
 
-pn.section("Features of Parliamentary Government")
-pn.definition(
+en.section("Features of Parliamentary Government")
+en.definition(
     "<b>Parliamentary Government (Westminster Model):</b> A system where the executive is "
     "responsible to the legislature for its policies and actions. India follows the British "
     "Westminster model — the President is the nominal head, and real power lies with the "
     "Prime Minister and the Council of Ministers."
 )
-pn.info_table(
+en.info_table(
     ["Feature", "Explanation"],
     [
         [
@@ -732,8 +732,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Parliamentary vs Presidential Government")
-pn.info_table(
+en.section("Parliamentary vs Presidential Government")
+en.info_table(
     ["Basis", "Parliamentary (India)", "Presidential (USA)"],
     [
         [
@@ -777,24 +777,24 @@ pn.info_table(
 # =============================================================================
 #  3.3  POWERS & STATUS OF THE PRESIDENT
 # =============================================================================
-pn.chap_box("3.3  Constitutional Powers & Status of the President of India")
+en.chap_box("3.3  Constitutional Powers & Status of the President of India")
 
-pn.section("Election and Removal of the President")
-pn.definition(
+en.section("Election and Removal of the President")
+en.definition(
     "<b>Election:</b> The President is elected by an Electoral College consisting of: "
     "(a) elected members of both Houses of Parliament, and (b) elected members of the Legislative Assemblies of States and Union Territories with legislatures. "
     "The election is by a system of single transferable vote (proportional representation). "
     "Term: 5 years. Re-election permitted."
 )
-pn.definition(
+en.definition(
     "<b>Removal:</b> The President can be removed from office by the process of <b>impeachment</b> "
     "(Article 61) for violation of the Constitution. A charge signed by not less than 1/4 of the total membership "
     "of the House must be preferred. The resolution must be passed by a majority of not less than 2/3 of the "
     "total membership of each House. As of 2025, no President of India has been impeached."
 )
 
-pn.section("Powers of the President of India")
-pn.info_table(
+en.section("Powers of the President of India")
+en.info_table(
     ["Category of Powers", "Key Powers"],
     [
         [
@@ -846,8 +846,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Constitutional Position of the President")
-pn.body(
+en.section("Constitutional Position of the President")
+en.body(
     "The President of India is the constitutional/nominal/titular executive head. "
     "Under the 42nd and 44th Amendments and the Supreme Court decision in <b>Shamsher Singh vs State of Punjab (1974)</b>, "
     "the President acts on the advice of the Council of Ministers headed by the PM. "
@@ -856,20 +856,20 @@ pn.body(
     "appointing a PM when no party has a clear majority."
 )
 
-pn.exam(
+en.exam(
     "PYQ: 'Discuss Judicial powers of the President' (May-June 2024, 4 marks). "
     "'Explain procedure of election and removal of President' (May-June 2023, 4 marks). "
     "'Functions and powers of President' (June-July 2025, 4 marks). "
     "'Constitutional position and powers of Governor' (June-July 2025, appears twice — check carefully!)."
 )
 
-pn.section("Powers and Functions of the Governor")
-pn.definition(
+en.section("Powers and Functions of the Governor")
+en.definition(
     "<b>Governor:</b> The constitutional head of a State, appointed by the President for a 5-year term. "
     "Like the President at the centre, the Governor is a nominal head at the state level. "
     "Real executive power lies with the Chief Minister and the State Council of Ministers."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Executive Powers:</b> All executive actions of the State Government taken in Governor's name. Appoints CM, Council of Ministers, Advocate General, State PSC members.",
         "<b>Legislative Powers:</b> Summons, prorogues, and dissolves State Legislature. Addresses the assembly. Nominates 1/6 of members to Legislative Council. Assents to Bills or returns them for reconsideration.",
@@ -879,27 +879,27 @@ pn.bullet(
         "<b>Veto Power:</b> Can withhold assent and refer bill to President's consideration (Art. 200).",
     ]
 )
-pn.br()
+en.br()
 
 # #############################################################################
 #  PART D — CO4: AMENDMENTS, EMERGENCY & LOCAL SELF GOVERNMENT
 # #############################################################################
-pn.part_box("UNIT IV — CO4: AMENDMENTS, EMERGENCY & LOCAL SELF GOVERNMENT")
+en.part_box("UNIT IV — CO4: AMENDMENTS, EMERGENCY & LOCAL SELF GOVERNMENT")
 
 # =============================================================================
 #  4.1  AMENDMENT PROCEDURE
 # =============================================================================
-pn.chap_box("4.1  Amendment of Constitutional Powers and Procedure (Article 368)")
+en.chap_box("4.1  Amendment of Constitutional Powers and Procedure (Article 368)")
 
-pn.section("Article 368 — Power of Parliament to Amend")
-pn.definition(
+en.section("Article 368 — Power of Parliament to Amend")
+en.definition(
     "<b>Article 368:</b> Provides for amendment of the Constitution. Parliament can amend the "
     "Constitution by way of addition, variation, or repeal of any provision of the Constitution. "
     "The constitution is the supreme law and its amendment procedure is different from ordinary legislation."
 )
 
-pn.section("Three Methods of Amendment")
-pn.info_table(
+en.section("Three Methods of Amendment")
+en.info_table(
     ["Method", "Procedure", "Examples of Provisions"],
     [
         [
@@ -928,8 +928,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Basic Structure Doctrine")
-pn.definition(
+en.section("Basic Structure Doctrine")
+en.definition(
     "<b>Basic Structure Doctrine (Kesavananda Bharati Case, 1973):</b> The Supreme Court held "
     "that while Parliament has wide powers to amend the Constitution (including Fundamental Rights), "
     "it cannot alter the <b>'basic structure'</b> or <b>'basic features'</b> of the Constitution. "
@@ -939,8 +939,8 @@ pn.definition(
     "Sovereignty, unity and integrity, Parliamentary democracy."
 )
 
-pn.section("Historical Perspective of Constitutional Amendments")
-pn.info_table(
+en.section("Historical Perspective of Constitutional Amendments")
+en.info_table(
     ["Amendment", "Year", "Key Changes"],
     [
         [
@@ -999,7 +999,7 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "PYQ: 'Explain amendment procedure' (multiple years, 10 marks). "
     "'Powers of Parliament to amend the Constitution is wide but not unlimited' (May-June 2023, 10 marks). "
     "'Classify Historical perspective of constitutional amendments' (May-June 2023). "
@@ -1009,22 +1009,22 @@ pn.exam(
 # =============================================================================
 #  4.2  EMERGENCY PROVISIONS
 # =============================================================================
-pn.chap_box("4.2  Emergency Provisions — National, President's Rule & Financial")
+en.chap_box("4.2  Emergency Provisions — National, President's Rule & Financial")
 
-pn.section("Overview of Three Emergency Provisions")
-pn.body(
+en.section("Overview of Three Emergency Provisions")
+en.body(
     "Part XVIII of the Constitution (Articles 352–360) contains emergency provisions. "
     "The three types are:"
 )
 
-pn.section("1. National Emergency — Article 352")
-pn.definition(
+en.section("1. National Emergency — Article 352")
+en.definition(
     "<b>National Emergency (Art. 352):</b> Proclaimed by the President when the security of India "
     "or any part of it is threatened by war, external aggression, or <b>armed rebellion</b> "
     "(the term 'internal disturbance' was replaced by 'armed rebellion' by the 44th Amendment, 1978). "
     "Cabinet's written recommendation is mandatory (44th Amendment added this safeguard)."
 )
-pn.info_table(
+en.info_table(
     ["Aspect", "Provision"],
     [
         [
@@ -1058,13 +1058,13 @@ pn.info_table(
     ],
 )
 
-pn.section("2. President's Rule / Governor's Rule — Article 356")
-pn.definition(
+en.section("2. President's Rule / Governor's Rule — Article 356")
+en.definition(
     "<b>President's Rule / State Emergency (Art. 356):</b> Proclaimed when the President (on Governor's report "
     "or otherwise) is satisfied that the government of a state cannot be carried on in accordance "
     "with the provisions of the Constitution. Also called 'Constitutional Emergency' or 'State Emergency'."
 )
-pn.info_table(
+en.info_table(
     ["Aspect", "Provision"],
     [
         [
@@ -1087,12 +1087,12 @@ pn.info_table(
     ],
 )
 
-pn.section("3. Financial Emergency — Article 360")
-pn.definition(
+en.section("3. Financial Emergency — Article 360")
+en.definition(
     "<b>Financial Emergency (Art. 360):</b> Proclaimed when the President is satisfied that "
     "the financial stability or credit of India or any part of it is threatened."
 )
-pn.info_table(
+en.info_table(
     ["Aspect", "Provision"],
     [
         [
@@ -1110,8 +1110,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Comparison of Three Emergencies")
-pn.info_table(
+en.section("Comparison of Three Emergencies")
+en.info_table(
     [
         "Basis",
         "National Emergency (Art. 352)",
@@ -1153,15 +1153,15 @@ pn.info_table(
         ["Instances", "3 times", "100+ times", "Never"],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.3  LOCAL SELF GOVERNMENT
 # =============================================================================
-pn.chap_box("4.3  Local Self Government — 73rd & 74th Constitutional Amendments")
+en.chap_box("4.3  Local Self Government — 73rd & 74th Constitutional Amendments")
 
-pn.section("What is Panchayati Raj?")
-pn.definition(
+en.section("What is Panchayati Raj?")
+en.definition(
     "<b>Panchayati Raj:</b> Panchayati Raj refers to the system of local self-government in rural areas "
     "of India. The word 'panchayat' means an assembly of five persons. "
     "It is a system of governance in which gram panchayats are the basic unit of administration. "
@@ -1169,8 +1169,8 @@ pn.definition(
     "(came into force on 24 April 1993). Added Part IX (Art. 243 to 243O) and 11th Schedule."
 )
 
-pn.section("Historical Background")
-pn.info_table(
+en.section("Historical Background")
+en.info_table(
     ["Year / Report", "Key Contribution"],
     [
         [
@@ -1202,8 +1202,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Balwant Rai Mehta Committee (1957) — Important Recommendations")
-pn.bullet(
+en.section("Balwant Rai Mehta Committee (1957) — Important Recommendations")
+en.bullet(
     [
         "Establishment of a 3-tier Panchayati Raj structure: Village (Gram Panchayat), Block (Panchayat Samiti), District (Zila Parishad).",
         "District level should be the keystone of the Panchayat Raj structure.",
@@ -1214,8 +1214,8 @@ pn.bullet(
     ]
 )
 
-pn.section("73rd Amendment — Panchayati Raj Key Provisions")
-pn.info_table(
+en.section("73rd Amendment — Panchayati Raj Key Provisions")
+en.info_table(
     ["Provision", "Article", "Content"],
     [
         [
@@ -1261,13 +1261,13 @@ pn.info_table(
     ],
 )
 
-pn.section("74th Amendment — Urban Local Bodies (Municipalities)")
-pn.definition(
+en.section("74th Amendment — Urban Local Bodies (Municipalities)")
+en.definition(
     "<b>74th Constitutional Amendment Act, 1992</b> gave constitutional status to urban local bodies. "
     "Added Part IX-A (Art. 243P to 243ZG) and 12th Schedule (18 subjects). "
     "Three types of municipalities: Nagar Panchayat, Municipal Council, Municipal Corporation (based on population)."
 )
-pn.bullet(
+en.bullet(
     [
         "Reservation of seats for SC/ST, women (minimum 1/3).",
         "12th Schedule contains 18 subjects including urban planning, regulation of land use, public health, water supply, fire services, urban poverty alleviation.",
@@ -1276,8 +1276,8 @@ pn.bullet(
     ]
 )
 
-pn.section("State Finance Commission (SFC)")
-pn.definition(
+en.section("State Finance Commission (SFC)")
+en.definition(
     "<b>State Finance Commission (Art. 243I, 243Y):</b> Constituted by the Governor every 5 years. "
     "It reviews the financial position of Panchayats and Municipalities and makes recommendations "
     "regarding: distribution of net proceeds of state taxes/duties between the state and PRIs; "
@@ -1285,8 +1285,8 @@ pn.definition(
     "position of Panchayats and Municipalities."
 )
 
-pn.section("Decentralization of Power — Benefits")
-pn.bullet(
+en.section("Decentralization of Power — Benefits")
+en.bullet(
     [
         "<b>Democracy at Grassroots:</b> Brings government closer to the people; increases political participation.",
         "<b>Efficient Local Governance:</b> Local problems understood and solved better by local bodies.",
@@ -1297,41 +1297,41 @@ pn.bullet(
     ]
 )
 
-pn.exam(
+en.exam(
     "PYQ (multiple years): 'What do you mean by Panchayati Raj?' (3 marks). "
     "'Recommendations of Balwant Rai Mehta Committee' (4 marks). "
     "'State Finance Commission functions' (4 marks). "
     "'Benefits of Decentralization of Power' (10 marks). "
     "'Critically analyse working of rural local self government' (10 marks)."
 )
-pn.br()
+en.br()
 
 # #############################################################################
 #  PART E — CO5: FUNDAMENTAL RIGHTS
 # #############################################################################
-pn.part_box("UNIT V — CO5: FUNDAMENTAL RIGHTS — EQUALITY, ARTICLE 19 & ARTICLE 21")
+en.part_box("UNIT V — CO5: FUNDAMENTAL RIGHTS — EQUALITY, ARTICLE 19 & ARTICLE 21")
 
 # =============================================================================
 #  5.1  SCHEME OF FUNDAMENTAL RIGHTS
 # =============================================================================
-pn.chap_box("5.1  Scheme of Fundamental Rights (Part III, Articles 12–35)")
+en.chap_box("5.1  Scheme of Fundamental Rights (Part III, Articles 12–35)")
 
-pn.section("Introduction")
-pn.definition(
+en.section("Introduction")
+en.definition(
     "<b>Fundamental Rights:</b> Part III (Articles 12–35) of the Constitution guarantees certain "
     "basic rights to every person, which form the foundation of individual liberty and human dignity. "
     "These rights are called 'fundamental' because they are essential for the all-round development "
     "of individuals and are justiciable (enforceable through courts). "
     "They are derived primarily from the constitutions of the USA, Ireland, and UK."
 )
-pn.body(
+en.body(
     "Originally 7 categories of Fundamental Rights. After the 44th Amendment (1978), "
     "<b>Right to Property</b> (Art. 19(f) and Art. 31) was removed from the list of FRs "
     "and made a legal/constitutional right under Art. 300A. Now there are <b>6 categories</b>."
 )
 
-pn.section("Six Fundamental Rights — Overview")
-pn.info_table(
+en.section("Six Fundamental Rights — Overview")
+en.info_table(
     ["Fundamental Right", "Articles", "Key Provisions"],
     [
         [
@@ -1379,12 +1379,12 @@ pn.info_table(
     ],
 )
 
-pn.section("Are Fundamental Rights Absolute?")
-pn.body(
+en.section("Are Fundamental Rights Absolute?")
+en.body(
     "Fundamental Rights are NOT absolute. Most FRs can be restricted (but not abrogated) "
     "by the State on reasonable grounds. For example:"
 )
-pn.bullet(
+en.bullet(
     [
         "Art. 19 freedoms are subject to 'reasonable restrictions' in the interests of sovereignty, security, public order, decency, morality, etc.",
         "Art. 25 right to religion is subject to public order, morality, and health.",
@@ -1397,10 +1397,10 @@ pn.bullet(
 # =============================================================================
 #  5.2  RIGHT TO EQUALITY (ARTICLES 14–18)
 # =============================================================================
-pn.chap_box("5.2  Fundamental Right to Equality — Articles 14–18")
+en.chap_box("5.2  Fundamental Right to Equality — Articles 14–18")
 
-pn.section("Article 14 — Equality Before Law and Equal Protection of Laws")
-pn.definition(
+en.section("Article 14 — Equality Before Law and Equal Protection of Laws")
+en.definition(
     "<b>Art. 14:</b> 'The State shall not deny to any person equality before the law or equal protection "
     "of the laws within the territory of India.' "
     "It contains two concepts: (1) Equality before Law (negative concept — borrowed from English common law) — "
@@ -1408,37 +1408,37 @@ pn.definition(
     "(2) Equal Protection of Laws (positive concept — borrowed from the US Constitution) — "
     "like should be treated alike; right to equal treatment in similar circumstances."
 )
-pn.note(
+en.note(
     "The doctrine of 'Reasonable Classification' (not arbitrary classification) is permitted under Art. 14. "
     "A law may classify persons or things differently if: (a) there is an intelligible differentia "
     "(a real difference between the groups), and (b) the differentia has a rational nexus to the object of the law."
 )
 
-pn.section("Article 15 — Prohibition of Discrimination")
-pn.definition(
+en.section("Article 15 — Prohibition of Discrimination")
+en.definition(
     "<b>Art. 15:</b> Prohibits discrimination by the State against any citizen on grounds of "
     "religion, race, caste, sex, or place of birth only. "
     "Guarantees equal access to public places (restaurants, hotels, public wells, roads, etc.). "
     "Exception: State can make special provisions for women, children, SC, ST, OBC (socially and educationally backward classes)."
 )
 
-pn.section("Article 16 — Equality of Opportunity in Public Employment")
-pn.definition(
+en.section("Article 16 — Equality of Opportunity in Public Employment")
+en.definition(
     "<b>Art. 16:</b> All citizens have equal opportunity in matters relating to employment or appointment "
     "to any office under the State. "
     "Exception: Reservation can be provided for backward classes, SC/ST not adequately represented. "
     "Residence requirement can be prescribed for certain state government posts."
 )
 
-pn.section("Article 17 — Abolition of Untouchability")
-pn.definition(
+en.section("Article 17 — Abolition of Untouchability")
+en.definition(
     "<b>Art. 17:</b> Abolishes untouchability and makes its practice in any form an offence. "
     "The Protection of Civil Rights Act, 1955 gives effect to Art. 17. "
     "This is one of the few absolute rights — no exceptions."
 )
 
-pn.section("Article 18 — Abolition of Titles")
-pn.definition(
+en.section("Article 18 — Abolition of Titles")
+en.definition(
     "<b>Art. 18:</b> Prohibits the State from conferring any title on any person (other than military or academic distinctions). "
     "Citizens of India cannot accept titles from foreign states without the President's consent. "
     "Bharat Ratna, Padma awards are NOT titles under Art. 18 (Supreme Court held in Balaji Raghavan case, 1996)."
@@ -1447,16 +1447,16 @@ pn.definition(
 # =============================================================================
 #  5.3  ARTICLE 19 — SIX FREEDOMS
 # =============================================================================
-pn.chap_box("5.3  Right to Certain Freedoms — Article 19")
+en.chap_box("5.3  Right to Certain Freedoms — Article 19")
 
-pn.section("Article 19 — Six Freedoms and Their Restrictions")
-pn.definition(
+en.section("Article 19 — Six Freedoms and Their Restrictions")
+en.definition(
     "<b>Art. 19:</b> Guarantees to all CITIZENS (not all persons) six freedoms. "
     "Originally 7 freedoms; Art. 19(1)(f) — right to acquire, hold, and dispose of property — "
     "was deleted by the 44th Amendment, 1978."
 )
 
-pn.info_table(
+en.info_table(
     ["Freedom (Art. 19(1))", "Content", "Permissible Restrictions (Art. 19(2)–(6))"],
     [
         [
@@ -1492,8 +1492,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Freedom of Speech & Expression — Landmark Cases")
-pn.info_table(
+en.section("Freedom of Speech & Expression — Landmark Cases")
+en.info_table(
     ["Case", "Holding"],
     [
         [
@@ -1515,7 +1515,7 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "PYQ: 'Explain Article 19' (June 2022, 10 marks). "
     "'Explain freedom of speech and expression under Art. 19 with decided cases' (June-July 2025, 10 marks). "
     "'Classify the six freedoms under Article 19' (multiple years). "
@@ -1525,10 +1525,10 @@ pn.exam(
 # =============================================================================
 #  5.4  ARTICLE 21 — RIGHT TO LIFE AND PERSONAL LIBERTY
 # =============================================================================
-pn.chap_box("5.4  Scope of Right to Life and Personal Liberty — Article 21")
+en.chap_box("5.4  Scope of Right to Life and Personal Liberty — Article 21")
 
-pn.section("Article 21 — Text and Interpretation")
-pn.definition(
+en.section("Article 21 — Text and Interpretation")
+en.definition(
     "<b>Art. 21:</b> 'No person shall be deprived of his life or personal liberty except according to "
     "procedure established by law.' "
     "Originally interpreted narrowly (procedure established by law = any procedure laid down by statute). "
@@ -1537,13 +1537,13 @@ pn.definition(
     "This brought Art. 21 close to the US concept of 'due process of law.'"
 )
 
-pn.section("Expanded Scope of Article 21 — Rights Implied")
-pn.body(
+en.section("Expanded Scope of Article 21 — Rights Implied")
+en.body(
     "The Supreme Court has progressively expanded Art. 21 to include a wide variety of rights "
     "through judicial interpretation. These are sometimes called the 'unenumerated rights' or "
     "'rights implicit in Art. 21':"
 )
-pn.info_table(
+en.info_table(
     ["Right Implied under Art. 21", "Case / Authority"],
     [
         ["Right to Livelihood", "Olga Tellis v. Bombay Municipal Corporation (1985)"],
@@ -1580,16 +1580,16 @@ pn.info_table(
     ],
 )
 
-pn.section("Article 21A — Right to Education")
-pn.definition(
+en.section("Article 21A — Right to Education")
+en.definition(
     "<b>Art. 21A (86th Amendment, 2002):</b> 'The State shall provide free and compulsory education "
     "to all children of the age of 6 to 14 years in such manner as the State may, by law, determine.' "
     "This was a DPSP (Art. 45) that was converted into a Fundamental Right. "
     "The Right to Education Act, 2009 gives effect to Art. 21A."
 )
 
-pn.section("Preventive Detention — Article 22")
-pn.definition(
+en.section("Preventive Detention — Article 22")
+en.definition(
     "<b>Preventive Detention (Art. 22):</b> Detention of a person without trial to prevent a possible "
     "future breach of law. "
     "Art. 22(1) and (2) — Safeguards for persons arrested: right to be informed of grounds of arrest, "
@@ -1599,35 +1599,35 @@ pn.definition(
     "(extended only on Advisory Board's opinion)."
 )
 
-pn.exam(
+en.exam(
     "PYQ: 'Explain scope of Right to Life and Personal Liberty under Art. 21' (multiple years, 4-10 marks). "
     "'Define Article 21' (June 2022, 10 marks). "
     "'What do you mean by Preventive detention?' (Nov-Dec 2024, 3 marks). "
     "'Classify personal liberty in Indian Constitution' (June 2022, 4 marks). "
     "Key cases to mention: Maneka Gandhi (1978), K.S. Puttaswamy (2017), Olga Tellis (1985)."
 )
-pn.br()
+en.br()
 
 # #############################################################################
 #  PART F — ADDITIONAL TOPICS FROM PYQs
 # #############################################################################
-pn.part_box("ADDITIONAL PYQ TOPICS — WRITS, PARLIAMENT, PREAMBLE & MORE")
+en.part_box("ADDITIONAL PYQ TOPICS — WRITS, PARLIAMENT, PREAMBLE & MORE")
 
 # =============================================================================
 #  6.1  CONSTITUTIONAL REMEDIES & WRITS
 # =============================================================================
-pn.chap_box("6.1  Article 32 — Constitutional Remedies & Five Writs")
+en.chap_box("6.1  Article 32 — Constitutional Remedies & Five Writs")
 
-pn.section("Article 32 — Right to Constitutional Remedies")
-pn.definition(
+en.section("Article 32 — Right to Constitutional Remedies")
+en.definition(
     "<b>Art. 32:</b> Called the 'Heart and Soul of the Constitution' by Dr. B.R. Ambedkar. "
     "Guarantees the right to move the Supreme Court for enforcement of Fundamental Rights. "
     "The Supreme Court can issue writs for this purpose. "
     "Art. 226 gives similar (wider) powers to High Courts for enforcement of both FRs and other legal rights."
 )
 
-pn.section("Five Writs — Detailed")
-pn.info_table(
+en.section("Five Writs — Detailed")
+en.info_table(
     ["Writ", "Literal Meaning", "Against Whom", "Purpose", "Example"],
     [
         [
@@ -1669,7 +1669,7 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "PYQ: 'Under Art. 32, how many types of writs can be issued by Supreme Court? Discuss in detail' "
     "(May-June 2024, 10 marks). Always name all 5 writs with meanings, purpose, and examples."
 )
@@ -1677,10 +1677,10 @@ pn.exam(
 # =============================================================================
 #  6.2  PREAMBLE
 # =============================================================================
-pn.chap_box("6.2  Preamble of the Indian Constitution")
+en.chap_box("6.2  Preamble of the Indian Constitution")
 
-pn.section("Text of the Preamble")
-pn.highlight(
+en.section("Text of the Preamble")
+en.highlight(
     "<b>WE, THE PEOPLE OF INDIA,</b> having solemnly resolved to constitute India into a "
     "<b>SOVEREIGN, SOCIALIST, SECULAR, DEMOCRATIC, REPUBLIC</b> and to secure to all its citizens:<br/><br/>"
     "<b>JUSTICE</b>, social, economic and political;<br/>"
@@ -1691,8 +1691,8 @@ pn.highlight(
     "IN OUR CONSTITUENT ASSEMBLY this <b>twenty-sixth day of November, 1949</b>, do HEREBY ADOPT, ENACT AND GIVE TO OURSELVES THIS CONSTITUTION."
 )
 
-pn.section("Key Terms in the Preamble")
-pn.info_table(
+en.section("Key Terms in the Preamble")
+en.info_table(
     ["Term", "Meaning"],
     [
         [
@@ -1728,14 +1728,14 @@ pn.info_table(
     ],
 )
 
-pn.section("Is Preamble a Part of the Constitution?")
-pn.body(
+en.section("Is Preamble a Part of the Constitution?")
+en.body(
     "The Supreme Court settled this question in <b>Kesavananda Bharati v. State of Kerala (1973)</b>. "
     "It is now firmly established that the Preamble IS a part of the Constitution and can be "
     "amended under Art. 368. However, its basic features cannot be destroyed."
 )
 
-pn.exam(
+en.exam(
     "PYQ: 'What is Preamble? Is it part of Constitution? Can it be used for interpretation?' (May-June 2023, 4 marks). "
     "'Write five elements of the Preamble' (May-June 2024, 4 marks)."
 )
@@ -1743,15 +1743,15 @@ pn.exam(
 # =============================================================================
 #  6.3  LOK SABHA vs RAJYA SABHA
 # =============================================================================
-pn.chap_box("6.3  Parliament — Lok Sabha vs Rajya Sabha")
+en.chap_box("6.3  Parliament — Lok Sabha vs Rajya Sabha")
 
-pn.section("Parliament of India")
-pn.definition(
+en.section("Parliament of India")
+en.definition(
     "<b>Parliament (Art. 79):</b> The Union Legislature consists of the President and two Houses: "
     "the <b>Council of States (Rajya Sabha)</b> and the <b>House of the People (Lok Sabha)</b>."
 )
 
-pn.info_table(
+en.info_table(
     ["Basis", "Lok Sabha (Lower House)", "Rajya Sabha (Upper House)"],
     [
         ["Also Called", "House of the People", "Council of States"],
@@ -1798,24 +1798,24 @@ pn.info_table(
     ],
 )
 
-pn.section("Why is Rajya Sabha called a Permanent Chamber?")
-pn.body(
+en.section("Why is Rajya Sabha called a Permanent Chamber?")
+en.body(
     "Rajya Sabha is a permanent body because it is never dissolved. Its members are elected for "
     "6-year terms and one-third of its members retire every two years. This ensures continuity "
     "of legislative work even when the Lok Sabha is dissolved. The Rajya Sabha thus provides "
     "stability and acts as a revising chamber that cannot be suddenly swept away by popular sentiment."
 )
 
-pn.section("Zero Hour of Indian Parliament")
-pn.definition(
+en.section("Zero Hour of Indian Parliament")
+en.definition(
     "<b>Zero Hour:</b> The time immediately following Question Hour (at 12 noon) in Parliament. "
     "It is not mentioned in the Constitution or Parliamentary Rules; it is an informal parliamentary "
     "innovation. Members raise matters of urgent public importance during Zero Hour without giving "
     "prior notice. It allows MPs to raise current and urgent issues immediately."
 )
 
-pn.section("Parliamentary Committees")
-pn.info_table(
+en.section("Parliamentary Committees")
+en.info_table(
     ["Committee", "Composition & Function"],
     [
         [
@@ -1836,22 +1836,22 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "PYQ: 'Difference between Rajya Sabha and Lok Sabha' (Nov-Dec 2024, 3 marks). "
     "'Compare powers of Lok Sabha and Rajya Sabha' (May-June 2024, 10 marks). "
     "'Why is Rajya Sabha called permanent chamber?' (June-July 2025, 10 marks). "
     "'What is Zero Hour?' (May-June 2024, 3 marks). "
     "'Note on Parliamentary Accounts Committee and Estimates Committee' (May-June 2024, 10 marks)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  6.4  INTER-STATE COUNCIL, NITI AAYOG, ATTORNEY GENERAL
 # =============================================================================
-pn.chap_box("6.4  Inter-State Council | NITI Aayog | Attorney General of India")
+en.chap_box("6.4  Inter-State Council | NITI Aayog | Attorney General of India")
 
-pn.section("Inter-State Council (Article 263)")
-pn.definition(
+en.section("Inter-State Council (Article 263)")
+en.definition(
     "<b>Inter-State Council (Art. 263):</b> A body established to promote coordination between "
     "the States and between States and the Centre. "
     "Established in 1990 on the recommendation of Sarkaria Commission. "
@@ -1861,8 +1861,8 @@ pn.definition(
     "Discusses and recommends policies on matters of common interest — though its recommendations are non-binding."
 )
 
-pn.section("NITI Aayog")
-pn.definition(
+en.section("NITI Aayog")
+en.definition(
     "<b>NITI Aayog (National Institution for Transforming India):</b> Established on 1 January 2015 "
     "to replace the Planning Commission. It is a government think tank and policy advisory body. "
     "Chaired by the Prime Minister. CEO is appointed by the Prime Minister. "
@@ -1872,8 +1872,8 @@ pn.definition(
     "Key bodies: Governing Council (all CMs and LGs of UTs), Regional Councils, Full-time members."
 )
 
-pn.section("Attorney General of India (Article 76)")
-pn.definition(
+en.section("Attorney General of India (Article 76)")
+en.definition(
     "<b>Attorney General of India (Art. 76):</b> The first law officer of the Government of India. "
     "Appointed by the President. Must be qualified to be a judge of the Supreme Court. "
     "<b>Functions:</b> Give advice to the Government of India on legal matters; "
@@ -1883,7 +1883,7 @@ pn.definition(
     "The AG is not a full-time government servant — he can also appear in private cases (provided no conflict of interest)."
 )
 
-pn.exam(
+en.exam(
     "PYQ: 'Write a short note on Inter-state Council' (May-June 2024, 4 marks). "
     "'What do you understand by NITI Aayog?' (Nov-Dec 2024, 3 marks). "
     "'Attorney General is the chief legal adviser of GoI — Discuss' (Nov-Dec 2024, 10 marks)."
@@ -1892,16 +1892,16 @@ pn.exam(
 # =============================================================================
 #  6.5  CITIZENSHIP
 # =============================================================================
-pn.chap_box("6.5  Citizenship — Methods of Acquisition and Termination")
+en.chap_box("6.5  Citizenship — Methods of Acquisition and Termination")
 
-pn.section("Citizenship in India")
-pn.body(
+en.section("Citizenship in India")
+en.body(
     "Part II (Articles 5–11) of the Constitution deals with citizenship at the commencement "
     "of the Constitution. The Citizenship Act, 1955 governs citizenship thereafter."
 )
 
-pn.section("Acquisition of Citizenship")
-pn.info_table(
+en.section("Acquisition of Citizenship")
+en.info_table(
     ["Mode", "Provision"],
     [
         [
@@ -1928,8 +1928,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Termination / Loss of Citizenship")
-pn.info_table(
+en.section("Termination / Loss of Citizenship")
+en.info_table(
     ["Mode", "How it Occurs"],
     [
         [
@@ -1947,22 +1947,22 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "PYQ (June-July 2025): 'Write notes on methods of termination of Indian citizenship' (4 marks)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  6.6  SUPREME COURT & HIGH COURT
 # =============================================================================
-pn.chap_box("6.6  Supreme Court and High Court — Jurisdictions & Qualifications")
+en.chap_box("6.6  Supreme Court and High Court — Jurisdictions & Qualifications")
 
-pn.section("Jurisdictions of the Supreme Court of India")
-pn.definition(
+en.section("Jurisdictions of the Supreme Court of India")
+en.definition(
     "<b>Supreme Court (Articles 124–147):</b> The apex court of the Indian judicial system. "
     "It has vast powers and holds different types of jurisdictions:"
 )
-pn.info_table(
+en.info_table(
     ["Jurisdiction Type", "Article", "Scope and Key Provisions"],
     [
         [
@@ -1993,12 +1993,12 @@ pn.info_table(
     ],
 )
 
-pn.section("High Court Constitution and Judges Qualifications")
-pn.definition(
+en.section("High Court Constitution and Judges Qualifications")
+en.definition(
     "<b>High Court (Articles 214–231):</b> The highest judicial organ in a State. "
     "Consists of a Chief Justice and such other Judges as the President may appoint."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Essential Qualifications (Art. 217(2)):</b> A person is qualified for appointment as a High Court Judge if: "
         "(1) He is a citizen of India; and "
@@ -2008,26 +2008,26 @@ pn.bullet(
     ]
 )
 
-pn.section("Veto Power of the Governor")
-pn.definition(
+en.section("Veto Power of the Governor")
+en.definition(
     "<b>Governor's Veto Power (Article 200):</b> When a Bill passed by the State Legislature is presented to the Governor, he can: "
     "(1) Give assent to the Bill; (2) Withhold assent; (3) Return the Bill (if not a Money Bill) for reconsideration; "
     "(4) Reserve the Bill for the consideration of the President (compulsory if it endangers the High Court's position)."
 )
-pn.exam(
+en.exam(
     "PYQ (June-July 2025): 'Explain the scope of original jurisdiction of the Supreme Court' (4 marks), "
     "'Explain the constitution of High Court and qualifications of HC Judge' (10 marks), "
     "and 'Explain the Veto power of the Governor' (10 marks)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  6.7  ORDINARY BILL vs MONEY BILL & LEGISLATIVE PROCESS
 # =============================================================================
-pn.chap_box("6.7  Legislative Bills — Ordinary Bill vs Money Bill & Passing Procedure")
+en.chap_box("6.7  Legislative Bills — Ordinary Bill vs Money Bill & Passing Procedure")
 
-pn.section("Differences between Ordinary Bill and Money Bill")
-pn.info_table(
+en.section("Differences between Ordinary Bill and Money Bill")
+en.info_table(
     ["Basis", "Ordinary Bill", "Money Bill (Article 110)"],
     [
         [
@@ -2058,11 +2058,11 @@ pn.info_table(
     ],
 )
 
-pn.section("Procedure for Passing an Ordinary Bill")
-pn.body(
+en.section("Procedure for Passing an Ordinary Bill")
+en.body(
     "The passage of an Ordinary Bill involves five distinct stages in each House of Parliament:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>1. First Reading:</b> Introduction of the Bill and publication in the Gazette. No discussion takes place.",
         "<b>2. Second Reading:</b> Detailed clause-by-clause consideration. The Bill is discussed generally, then referred to a Select Committee or discussed in detail, and amendments are proposed and voted on.",
@@ -2072,11 +2072,11 @@ pn.bullet(
     ]
 )
 
-pn.section("Parliamentary Legislation in the State Field")
-pn.body(
+en.section("Parliamentary Legislation in the State Field")
+en.body(
     "Under normal circumstances, Parliament cannot make laws on State List subjects. However, under five extraordinary situations, Parliament acquires this power:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>1. National Interest (Art. 249):</b> If Rajya Sabha passes a resolution supported by 2/3 of members present and voting.",
         "<b>2. National Emergency (Art. 250):</b> While a proclamation of National Emergency is in operation.",
@@ -2085,24 +2085,24 @@ pn.bullet(
         "<b>5. President's Rule (Art. 357):</b> When President's Rule (Art. 356) is imposed in a State.",
     ]
 )
-pn.exam(
+en.exam(
     "PYQ (May/June 2023): 'Distinguish between Ordinary Bill and Money Bill. Discuss the procedure for passing an Ordinary Bill' (10 marks) "
     "and 'Explain parliamentary legislation in the state field' (10 marks)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  6.8  ADMINISTRATIVE STRUCTURE & GOVERNANCE ORGANS
 # =============================================================================
-pn.chap_box("6.8  Administrative Governance — Cabinet Secretariat & Cabinet vs CoM")
+en.chap_box("6.8  Administrative Governance — Cabinet Secretariat & Cabinet vs CoM")
 
-pn.section("Cabinet Secretariat — Role and Functions")
-pn.definition(
+en.section("Cabinet Secretariat — Role and Functions")
+en.definition(
     "<b>Cabinet Secretariat:</b> An administrative organ of the Government of India operating "
     "directly under the Prime Minister. Its administrative head is the <b>Cabinet Secretary</b>, "
     "who is the senior-most civil servant in India."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Secretariat Assistance:</b> Prepares agenda for Cabinet and Cabinet Committees, records and circulates minutes of meetings, and tracks implementation of decisions.",
         "<b>Inter-Ministerial Coordination:</b> Resolves differences between ministries and coordinates major inter-departmental policies.",
@@ -2111,8 +2111,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Differences between Cabinet and Council of Ministers (CoM)")
-pn.info_table(
+en.section("Differences between Cabinet and Council of Ministers (CoM)")
+en.info_table(
     ["Basis", "Council of Ministers (Articles 74, 75)", "Cabinet"],
     [
         [
@@ -2138,45 +2138,45 @@ pn.info_table(
     ],
 )
 
-pn.section("Delegated Legislation")
-pn.definition(
+en.section("Delegated Legislation")
+en.definition(
     "<b>Delegated Legislation (Subordinate Legislation):</b> The law-making power delegated "
     "by the Legislature to the Executive (administrative authorities). The Legislature drafts the "
     "broad policy framework, and the Executive drafts the detailed rules, regulations, and bye-laws."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Importance for Administrative Efficiency:</b> (1) Saves parliamentary time; (2) Deals with highly technical matters (e.g., taxation, environment rules); (3) Provides flexibility to adapt rules quickly without amending acts; (4) Essential for handling emergencies.",
         "<b>Safeguards:</b> Subject to: (1) Judicial control (can be declared void if ultra vires), and (2) Parliamentary control (must be laid before Parliament for review).",
     ]
 )
 
-pn.section("Governor's Rule vs President's Rule")
-pn.body(
+en.section("Governor's Rule vs President's Rule")
+en.body(
     "In normal states, failure of constitutional machinery immediately results in President's Rule under Article 356. "
     "However, under the former Constitution of Jammu & Kashmir (Section 92), if the state machinery failed, "
     "<b>Governor's Rule</b> was first imposed for a maximum of 6 months. "
     "If the machinery was not restored within 6 months, President's Rule (Art. 356) was then proclaimed. "
     "Post the abrogation of Article 370 in 2019, J&K is a Union Territory and comes directly under the standard central provisions."
 )
-pn.exam(
+en.exam(
     "PYQ (Nov-Dec 2024): 'Discuss the role and functions of Cabinet Secretariat' (4 marks), "
     "'Discuss the difference between Cabinet and Council of Ministers' (4 marks), "
     "'Define delegated legislation and discuss its importance' (10 marks), "
     "and 'What do you understand by Governor Rule?' (4 marks)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  6.9  LSG CHALLENGES, NGOs & ENVIRONMENTAL ISSUES
 # =============================================================================
-pn.chap_box("6.9  Governance Challenges — LSG Constraints, NGOs & Environment")
+en.chap_box("6.9  Governance Challenges — LSG Constraints, NGOs & Environment")
 
-pn.section("Major Challenges Confronting Local Self-Government (LSGs)")
-pn.body(
+en.section("Major Challenges Confronting Local Self-Government (LSGs)")
+en.body(
     "Despite the 73rd and 74th Amendments, Panchayati Raj Institutions (PRIs) face several challenges:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>1. Financial Constraints (3 Fs):</b> Lack of independent financial resources. LSGs depend heavily on state/union grants; state governments are often reluctant to devolve taxing powers (Funds, Functions, Functionaries).",
         "<b>2. Bureaucratic Interference:</b> Local officials and district administration often dominate over elected local representatives.",
@@ -2185,12 +2185,12 @@ pn.bullet(
     ]
 )
 
-pn.section("Role of NGOs in Environmental Protection")
-pn.definition(
+en.section("Role of NGOs in Environmental Protection")
+en.definition(
     "<b>NGOs (Non-Governmental Organisations):</b> Voluntary, non-profit citizen groups "
     "that play a crucial role in environmental advocacy, research, and resource management."
 )
-pn.info_table(
+en.info_table(
     ["Role / Contribution", "Key Constraints & Barriers"],
     [
         [
@@ -2211,23 +2211,23 @@ pn.info_table(
         ],
     ],
 )
-pn.exam(
+en.exam(
     "PYQ (Nov-Dec 2024 / June-July 2025): 'What are the major challenges confronting Local Self-Government?' (4 marks), "
     "'In the absence of organized local level government, Panchayats have remained mainly political institutions... Critically discuss' (10 marks), "
     "and 'Discuss the role of NGOs to protect the environment and their constraints' (10 marks)."
 )
-pn.br()
+en.br()
 
 # #############################################################################
 #  RAPID REVISION & FLASHCARDS
 # #############################################################################
-pn.br()
-pn.part_box("RAPID REVISION — KEY ARTICLES, CASES & PYQ ANSWERS")
+en.br()
+en.part_box("RAPID REVISION — KEY ARTICLES, CASES & PYQ ANSWERS")
 
-pn.chap_box("Master Reference: All Important Articles")
+en.chap_box("Master Reference: All Important Articles")
 
-pn.section("Quick Article Reference Card")
-pn.info_table(
+en.section("Quick Article Reference Card")
+en.info_table(
     ["Article(s)", "Topic"],
     [
         ["Art. 1", "India — that is Bharat — shall be a Union of States."],
@@ -2309,8 +2309,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Landmark Supreme Court Cases")
-pn.info_table(
+en.section("Landmark Supreme Court Cases")
+en.info_table(
     ["Case (Year)", "Significance"],
     [
         [
@@ -2364,10 +2364,10 @@ pn.info_table(
     ],
 )
 
-pn.chap_box("PYQ Model Answers — 3/4-Mark Questions")
+en.chap_box("PYQ Model Answers — 3/4-Mark Questions")
 
-pn.section("(3 Marks) What do you mean by Universal Adult Franchise?")
-pn.highlight(
+en.section("(3 Marks) What do you mean by Universal Adult Franchise?")
+en.highlight(
     "<b>Universal Adult Franchise:</b> It means the right of every adult citizen of India to vote "
     "in elections, irrespective of caste, religion, sex, literacy, economic status, or place of birth. "
     "In India, every citizen who is 18 years of age or above has the right to vote (Art. 326). "
@@ -2375,8 +2375,8 @@ pn.highlight(
     "It ensures that every person has an equal say in electing representatives, making democracy truly representative."
 )
 
-pn.section("(3 Marks) What do you mean by Public Account of India?")
-pn.highlight(
+en.section("(3 Marks) What do you mean by Public Account of India?")
+en.highlight(
     "<b>Public Account of India (Art. 266(2)):</b> All other public moneys received by or on behalf "
     "of the Government of India, OTHER than those credited to the Consolidated Fund of India, "
     "are part of the Public Account. "
@@ -2385,8 +2385,8 @@ pn.highlight(
     "The Comptroller and Auditor General (CAG) audits the Public Account."
 )
 
-pn.section("(4 Marks) Judicial Review")
-pn.highlight(
+en.section("(4 Marks) Judicial Review")
+en.highlight(
     "<b>Judicial Review:</b> The power of the Supreme Court (and High Courts) to examine the constitutionality "
     "of laws enacted by the Legislature and actions taken by the Executive, and to declare them void "
     "if they are found to be unconstitutional (ultra vires). "
@@ -2396,8 +2396,8 @@ pn.highlight(
     "Landmark cases: Marbury v. Madison (USA, 1803 — origin), Kesavananda Bharati (India, 1973)."
 )
 
-pn.section("(4 Marks) President's Rule / Governor's Rule")
-pn.highlight(
+en.section("(4 Marks) President's Rule / Governor's Rule")
+en.highlight(
     "<b>President's Rule (Art. 356):</b> When the President, acting on the Governor's report "
     "or otherwise, is satisfied that the government of a state cannot be carried on in accordance "
     "with the provisions of the Constitution, the President can assume to himself the functions of "
@@ -2409,8 +2409,8 @@ pn.highlight(
     "S.R. Bommai Case (1994) — imposition is subject to judicial review."
 )
 
-pn.section("(4 Marks) Discuss Centre-State Legislative Relations")
-pn.highlight(
+en.section("(4 Marks) Discuss Centre-State Legislative Relations")
+en.highlight(
     "<b>Centre-State Legislative Relations:</b> "
     "Arts. 245–255 deal with distribution of legislative powers. "
     "(1) Union List (List I) — 100 subjects — Parliament has exclusive power. "
@@ -2425,9 +2425,9 @@ pn.highlight(
     "(e) Failure of constitutional machinery — President's Rule (Art. 356)."
 )
 
-pn.chap_box("Quick Revision — Key Points for Exam")
+en.chap_box("Quick Revision — Key Points for Exam")
 
-pn.revision_card(
+en.revision_card(
     "CO1 — Constitution & History",
     [
         "3 methods of Constitutional Amendment: Simple majority, Special majority (Art. 368), Special majority + State ratification.",
@@ -2438,7 +2438,7 @@ pn.revision_card(
     ],
 )
 
-pn.revision_card(
+en.revision_card(
     "CO2 — Fundamental Duties & DPSP",
     [
         "11 Fundamental Duties under Art. 51A. Added by 42nd Amendment (1976). 11th added by 86th Amendment (2002).",
@@ -2449,7 +2449,7 @@ pn.revision_card(
     ],
 )
 
-pn.revision_card(
+en.revision_card(
     "CO3 — Federal Structure & President",
     [
         "Federal features: Written constitution, Dual polity, Division of powers, Supreme Constitution, Rigid constitution.",
@@ -2460,7 +2460,7 @@ pn.revision_card(
     ],
 )
 
-pn.revision_card(
+en.revision_card(
     "CO4 — Emergency & Local Self Government",
     [
         "National Emergency (Art. 352): War/External Aggression/Armed Rebellion. Art. 19 suspended. Never Art. 20 & 21.",
@@ -2471,7 +2471,7 @@ pn.revision_card(
     ],
 )
 
-pn.revision_card(
+en.revision_card(
     "CO5 — Fundamental Rights",
     [
         "6 Fundamental Rights (Part III, Art. 12–35). Right to Property removed by 44th Amendment — now legal right (Art. 300A).",
@@ -2482,42 +2482,42 @@ pn.revision_card(
     ],
 )
 
-pn.section("Flashcards — Most Asked 3-Mark Answers")
-pn.flashcard(
+en.section("Flashcards — Most Asked 3-Mark Answers")
+en.flashcard(
     "What is constitutionalism?",
     "The political principle that government authority is derived from and limited by a fundamental law (Constitution). "
     "Emphasises: limited government, rule of law, separation of powers, and protection of fundamental rights.",
 )
-pn.flashcard(
+en.flashcard(
     "What are the 3 organs of Indian Government?",
     "1. Legislature (Parliament — Lok Sabha + Rajya Sabha): makes laws. "
     "2. Executive (President + Council of Ministers): implements laws. "
     "3. Judiciary (Supreme Court + High Courts): interprets laws and settles disputes.",
 )
-pn.flashcard(
+en.flashcard(
     "What is Judicial Review?",
     "Power of SC/HC to examine constitutionality of laws and executive actions. "
     "Void if inconsistent with Constitution (Art. 13). Key cases: Marbury v. Madison (USA), Kesavananda Bharati (India, 1973).",
 )
-pn.flashcard(
+en.flashcard(
     "3 types of Emergency in India",
     "1. National Emergency (Art. 352) — War/External Aggression/Armed Rebellion. "
     "2. President's Rule (Art. 356) — Failure of Constitutional Machinery in State. "
     "3. Financial Emergency (Art. 360) — Threat to Financial Stability. Only #3 has never been proclaimed.",
 )
-pn.flashcard(
+en.flashcard(
     "What is Panchayati Raj?",
     "System of rural local self-government in India. Constitutional status given by 73rd Amendment (1992). "
     "3-tier: Village (Gram Panchayat), Block (Panchayat Samiti), District (Zila Parishad). "
     "Reservation for SC/ST and minimum 1/3 for women.",
 )
-pn.flashcard(
+en.flashcard(
     "Article 21 — Key Cases",
     "Maneka Gandhi v. UoI (1978) — procedure must be fair, just, reasonable. "
     "K.S. Puttaswamy v. UoI (2017) — Right to Privacy is a fundamental right. "
     "Olga Tellis v. BMC (1985) — Right to Livelihood.",
 )
-pn.flashcard(
+en.flashcard(
     "Difference: Hard Link vs Soft Link (Analogy in Constitution)",
     "Not applicable to Constitution. But for FRs vs DPSPs: "
     "FRs = justiciable (hard enforcement). DPSPs = non-justiciable (soft guidance). "
@@ -2527,11 +2527,11 @@ pn.flashcard(
 # =============================================================================
 #  EXAM STRATEGY SECTION
 # =============================================================================
-pn.br()
-pn.chap_box("Exam Strategy & Unit-wise High-Frequency Questions")
+en.br()
+en.chap_box("Exam Strategy & Unit-wise High-Frequency Questions")
 
-pn.section("Mark Distribution Analysis from PYQs (2022–2025)")
-pn.info_table(
+en.section("Mark Distribution Analysis from PYQs (2022–2025)")
+en.info_table(
     ["Question Pattern", "Topic (appears every year)", "Marks"],
     [
         [
@@ -2562,8 +2562,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Top 10 Most Important Topics (attempt ALL of these)")
-pn.bullet(
+en.section("Top 10 Most Important Topics (attempt ALL of these)")
+en.bullet(
     [
         "<b>1.</b> Salient features of the Indian Constitution — write 10+ features for 10-mark question.",
         "<b>2.</b> Fundamental Rights — all 6 categories with Article numbers (Art. 14–32).",
@@ -2578,7 +2578,7 @@ pn.bullet(
     ]
 )
 
-pn.exam(
+en.exam(
     "EXAM TIP: For 10-mark questions, always write: (1) Introduction/Definition, "
     "(2) Historical background or constitutional provision, (3) Detailed explanation with sub-points/table, "
     "(4) Landmark Supreme Court cases where applicable, (5) Brief critical analysis or conclusion. "
@@ -2588,6 +2588,6 @@ pn.exam(
 # =============================================================================
 #  BUILD DOCUMENT
 # =============================================================================
-pn.build_doc("IndianConstitution_IT410_Notes.pdf")
+en.build_doc("IndianConstitution_IT410_Notes.pdf")
 
 print("Generated: IndianConstitution_IT410_Notes.pdf")

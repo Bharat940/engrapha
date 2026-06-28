@@ -3,40 +3,40 @@
 Academic chapter with sections, citations, formulas, index entries, and an embedded diagram.
 
 ```python title="thesis_chapter.py"
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-pn.set_theme(pn.DARK)
-pn.set_global_header(left="Thesis", center="Chapter 3", right="Draft 0.1")
+en.set_theme(en.DARK)
+en.set_global_header(left="Thesis", center="Chapter 3", right="Draft 0.1")
 
-pn.chap_box("3. Distributed Consensus via Raft")
+en.chap_box("3. Distributed Consensus via Raft")
 
-pn.body(
+en.body(
     "Raft achieves consensus by electing a single leader that manages "
     "replicated log entries. Safety is guaranteed by the restriction that "
     "only the current leader can commit entries."
 )
 
-pn.index_entry("Raft")
-pn.index_entry("Consensus")
+en.index_entry("Raft")
+en.index_entry("Consensus")
 
-pn.section("Leader Election")
+en.section("Leader Election")
 
-pn.body(
+en.body(
     "Quotes from Ongaro and Ousterhout [1] describe randomised election "
     "timeouts as the mechanism for split-vote resolution."
 )
 
 # Inline formula + advanced paragraph
-pn.body(
+en.body(
     "The election timeout range is typically chosen from \\\\(T \\in [150, 300] ms\\\\) "
     "to reduce collision probability."
 )
 
-pn.section("Log Replication")
+en.section("Log Replication")
 
 # Diagram
-seq = pd.SequenceDiagram(
+seq = ed.SequenceDiagram(
     width=340, height=200,
     caption="Fig 3.1: Client request → majority commit",
 )
@@ -54,13 +54,14 @@ seq.message("f1", "ldr", "ACK", arrow="dashed")
 seq.message("ldr", "client", "COMMIT", arrow="dashed")
 seq.deactivate("ldr")
 
-pn.add(seq.as_flowable())
+en.add(seq.as_flowable())
 
 # References section
-pn.section("References")
-pn.body("[1] Diego Ongaro and John Ousterhout. *In Search of an Understandable Consensus Algorithm.* USENIX ATC 2014.")
+en.section("References")
+en.body("[1] Diego Ongaro and John Ousterhout. *In Search of an Understandable Consensus Algorithm.* USENIX ATC 2014.")
 
-pn.build_doc("thesis_chapter.pdf")
+en.build_doc("thesis_chapter.pdf")
 ```
 
 ![Screenshot placeholder](../assets/screenshots/notes_thesis.png)
+

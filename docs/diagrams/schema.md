@@ -5,10 +5,10 @@ Schema diagrams display database table structures: columns, data types, primary 
 ## Minimal example
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-schema = pd.SchemaDiagram(
+schema = ed.SchemaDiagram(
     width=450, height=200, caption="Fig 4: Blog Schema"
 )
 
@@ -27,7 +27,7 @@ schema.table("posts", [
 
 schema.relation("posts", "user_id", "users", "id")
 
-pn.add(schema.as_flowable())
+en.add(schema.as_flowable())
 ```
 
 ## Column flags
@@ -73,3 +73,4 @@ Use `SchemaDiagram` when you care about:
 
 - [ER Diagram](er.md)
 - [Architecture](architecture.md)
+

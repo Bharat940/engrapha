@@ -1,6 +1,6 @@
 # Themes
 
-PaperForge comes with **10 preset themes** for `paperforge_diagrams` and **15 preset themes** for `paperforge_notes`.
+Engrapha comes with **10 preset themes** for `engrapha_diagrams` and **15 preset themes** for `engrapha_notes`.
 
 ## Preset themes
 
@@ -25,8 +25,8 @@ PaperForge comes with **10 preset themes** for `paperforge_diagrams` and **15 pr
 ## Apply a theme
 
 ```python
-import paperforge_notes as pn
-pn.set_theme(pn.OCEAN_DARK)
+import engrapha_notes as en
+en.set_theme(en.OCEAN_DARK)
 ```
 
 ## Match Diagrams to Notes
@@ -34,8 +34,8 @@ pn.set_theme(pn.OCEAN_DARK)
 Every diagram accepts a theme. To make diagrams inherit the active notes theme:
 
 ```python
-import paperforge_diagrams as pd
-fc = pd.Flowchart(theme=pd.DiagramTheme.from_notes_theme(pn.get_theme()))
+import engrapha_diagrams as ed
+fc = ed.Flowchart(theme=ed.DiagramTheme.from_notes_theme(en.get_theme()))
 ```
 
 All element colors (fill, stroke, text) carry over from the notes theme to the diagram.
@@ -45,8 +45,8 @@ All element colors (fill, stroke, text) carry over from the notes theme to the d
 Use the fluent `ThemeBuilder` to construct a custom theme:
 
 ```python
-import paperforge_notes as pn
-from paperforge_notes import ThemeBuilder
+import engrapha_notes as en
+from engrapha_notes import ThemeBuilder
 
 custom = (
     ThemeBuilder()
@@ -59,7 +59,7 @@ custom = (
     .set_header_footer(show_headers=True, divider_thickness=0.6)
     .build()
 )
-pn.set_theme(custom)
+en.set_theme(custom)
 ```
 
 ### Builder methods
@@ -77,18 +77,18 @@ pn.set_theme(custom)
 For quick experimentation, build a theme from a single accent color:
 
 ```python
-from paperforge_notes.theme import NotesTheme
+from engrapha_notes.theme import NotesTheme
 custom = NotesTheme.from_accent("#22d3ee", dark=True, name="My Cyan")
-pn.set_theme(custom)
+en.set_theme(custom)
 ```
 
 ## Predefined templates
 
-`paperforge_notes` ships with two named template helpers:
+`engrapha_notes` ships with two named template helpers:
 
 ```python
-pn.EngineeringNotes()  # Helvetica body, dark mode
-pn.QuestionBank()      # Times-Roman, light mode, exam-friendly
+en.EngineeringNotes()  # Helvetica body, dark mode
+en.QuestionBank()      # Times-Roman, light mode, exam-friendly
 ```
 
 These are ready-to-use helpers that call `set_theme()` for you.
@@ -98,7 +98,7 @@ These are ready-to-use helpers that call `set_theme()` for you.
 For ink-saving printouts, you can override the print theme:
 
 ```python
-print_theme = pn.LIGHT.copy_with(
+print_theme = en.LIGHT.copy_with(
     name="Print Light",
     body_font="Times-Roman",
     heading_font="Times-Bold",
@@ -107,13 +107,13 @@ print_theme = pn.LIGHT.copy_with(
     page_border_gap=3.0,
     plain_questions=True,
 )
-pn.set_theme(print_theme)
+en.set_theme(print_theme)
 ```
 
 ## Inspecting the active theme
 
 ```python
-t = pn.get_theme()
+t = en.get_theme()
 print(t.name)
 print(t.accent, t.text, t.bg)
 ```
@@ -122,3 +122,4 @@ print(t.accent, t.text, t.bg)
 
 - [Notes basics](notes/basics.md)
 - [Diagram overview](diagrams/overview.md)
+

@@ -10,8 +10,8 @@ Output: OS_Unit2_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 from reportlab.platypus import Table
 
 # =============================================================================
@@ -19,40 +19,40 @@ from reportlab.platypus import Table
 #  Using FOREST_DARK — deep green accent, earthy tones
 #  Distinct from Unit I (CATPPUCCIN_MOCHA)
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.FOREST_DARK)
+en.set_story([])
+en.set_theme(en.FOREST_DARK)
 
-pn.set_global_footer(
+en.set_global_footer(
     left="Operating Systems (IT412) — Unit II",
     right="UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
     show_page_num=True,
 )
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(26)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(26)
 
-pn.cover_card(
+en.cover_card(
     "OPERATING SYSTEMS",
     "Unit II — CPU Scheduling, IPC & Process Synchronization",
 )
-# pn.cover_subtitle(
+# en.cover_subtitle(
 #     [
 #         "Subject Code: IT412  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
 #         "CPU Scheduling Criteria & Algorithms, Multiple Processor Scheduling,",
 #         "IPC, Critical Section, Semaphores & Classical Synchronization Problems",
 #     ]
 # )
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(8)
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(8)
 
-pn.info_table(
+en.info_table(
     ["Section", "Syllabus Topics Covered"],
     [
         [
@@ -120,22 +120,22 @@ pn.info_table(
 # =============================================================================
 #  TABLE OF CONTENTS
 # =============================================================================
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  UNIT DIVIDER
 # =============================================================================
-pn.part_box("UNIT II — CPU SCHEDULING & PROCESS MANAGEMENT")
+en.part_box("UNIT II — CPU SCHEDULING & PROCESS MANAGEMENT")
 
 # =============================================================================
 #  2.1  PROCESS MANAGEMENT
 # =============================================================================
-pn.chap_box("2.1  Process Management")
+en.chap_box("2.1  Process Management")
 
-pn.section("Process Creation")
-pn.definition(
+en.section("Process Creation")
+en.definition(
     "<b>Process Creation:</b> A new process is created by an existing process using a system call. "
     "The creating process is the <b>parent</b>; the new process is the <b>child</b>. "
     "Children can themselves create further processes, forming a <b>process tree</b>. "
@@ -145,7 +145,7 @@ pn.definition(
     "<code>exec()</code> replaces the process image with a new program."
 )
 
-pn.info_table(
+en.info_table(
     ["Resource Sharing Option", "Description"],
     [
         [
@@ -160,8 +160,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Independent vs Cooperating Processes")
-pn.info_table(
+en.section("Independent vs Cooperating Processes")
+en.info_table(
     ["Aspect", "Independent Process", "Cooperating Process"],
     [
         [
@@ -193,8 +193,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Reasons for Cooperating Processes")
-pn.bullet(
+en.section("Reasons for Cooperating Processes")
+en.bullet(
     [
         "<b>Information Sharing:</b> Multiple processes need access to the same data (e.g., shared database records, files).",
         "<b>Computation Speedup:</b> Divide a task into subtasks and run them on multiple processors simultaneously.",
@@ -202,16 +202,16 @@ pn.bullet(
         "<b>Convenience:</b> User may work on multiple tasks — editing, compiling, printing at the same time.",
     ]
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.2  CPU SCHEDULING CONCEPTS
 # =============================================================================
-pn.part_box("UNIT II — CPU SCHEDULING")
-pn.chap_box("2.2  CPU Scheduling — Core Concepts")
+en.part_box("UNIT II — CPU SCHEDULING")
+en.chap_box("2.2  CPU Scheduling — Core Concepts")
 
-pn.section("The CPU–I/O Burst Cycle")
-pn.definition(
+en.section("The CPU–I/O Burst Cycle")
+en.definition(
     "<b>CPU–I/O Burst Cycle:</b> Process execution alternates between periods of CPU computation "
     "(<b>CPU burst</b>) and waiting for I/O (<b>I/O burst</b>). "
     "A process begins with a CPU burst, then an I/O burst, then another CPU burst, and so on, "
@@ -221,8 +221,8 @@ pn.definition(
     "<b>CPU-bound processes</b> have few long CPU bursts (e.g., scientific computations)."
 )
 
-td_burst = pd.TimingDiagram(
-    width=pn.CW,
+td_burst = ed.TimingDiagram(
+    width=en.CW,
     height=160,
     theme=diag_theme,
     caption="Fig 2.1: CPU–I/O burst cycle — alternating CPU and I/O periods",
@@ -233,10 +233,10 @@ td_burst.signal(
 td_burst.signal(
     "I/O Burst", transitions=[(0, 0), (30, 1), (60, 0), (100, 1), (130, 0), (160, 1)]
 )
-pn.story.extend(td_burst.as_flowable())
+en.story.extend(td_burst.as_flowable())
 
-pn.section("Preemptive vs Non-Preemptive Scheduling")
-pn.definition(
+en.section("Preemptive vs Non-Preemptive Scheduling")
+en.definition(
     "<b>Non-Preemptive Scheduling:</b> Once the CPU is allocated to a process, it keeps the CPU "
     "until it releases it voluntarily — either by terminating or by switching to waiting state (I/O). "
     "Simple to implement; no race conditions on kernel data structures. "
@@ -247,7 +247,7 @@ pn.definition(
     "Requires careful synchronization — a process can be preempted in the middle of updating shared data."
 )
 
-pn.info_table(
+en.info_table(
     ["Feature", "Non-Preemptive", "Preemptive"],
     [
         [
@@ -283,29 +283,29 @@ pn.info_table(
     ],
 )
 
-pn.section("The Dispatcher")
-pn.definition(
+en.section("The Dispatcher")
+en.definition(
     "<b>Dispatcher:</b> The OS module that gives CPU control to the process selected by the "
     "short-term scheduler. It performs: (1) context switching, (2) switching to user mode, "
     "(3) jumping to the correct location in the user program to restart it. "
     "<b>Dispatch latency</b> is the time the dispatcher takes to stop one process and start another — "
     "this must be minimized as it is pure overhead."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.3  SCHEDULING CRITERIA
 # =============================================================================
-pn.chap_box("2.3  CPU Scheduling Criteria")
+en.chap_box("2.3  CPU Scheduling Criteria")
 
-pn.section("The Five Scheduling Criteria")
-pn.definition(
+en.section("The Five Scheduling Criteria")
+en.definition(
     "Scheduling criteria are the metrics used to evaluate and compare CPU scheduling algorithms. "
     "Different algorithms optimize different criteria. "
     "There is no universally optimal algorithm — the right choice depends on system goals."
 )
 
-pn.info_table(
+en.info_table(
     ["Criterion", "Goal", "Formula / Meaning"],
     [
         [
@@ -336,21 +336,21 @@ pn.info_table(
     ],
 )
 
-pn.note(
+en.note(
     "Key formula: <b>TAT = Completion Time − Arrival Time</b>  |  "
     "<b>WT = TAT − Burst Time</b>  |  "
     "<b>Avg WT = Sum of all WT / Number of processes</b>  |  "
     "<b>Avg TAT = Sum of all TAT / Number of processes</b>"
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.4  FCFS
 # =============================================================================
-pn.chap_box("2.4  First-Come First-Served (FCFS)")
+en.chap_box("2.4  First-Come First-Served (FCFS)")
 
-pn.section("FCFS — Definition and Mechanism")
-pn.definition(
+en.section("FCFS — Definition and Mechanism")
+en.definition(
     "<b>FCFS (First-Come First-Served):</b> The simplest CPU scheduling algorithm. "
     "Processes are assigned the CPU in the order they arrive in the ready queue. "
     "It is implemented using a FIFO queue. "
@@ -360,12 +360,12 @@ pn.definition(
     "(or until it blocks on I/O)."
 )
 
-pn.section("FCFS — Worked Example")
-pn.body(
+en.section("FCFS — Worked Example")
+en.body(
     "Given: P1 (Arrival=0, Burst=24ms), P2 (Arrival=0, Burst=3ms), P3 (Arrival=0, Burst=3ms). "
     "All arrive at time 0. Order: P1, P2, P3."
 )
-pn.info_table(
+en.info_table(
     [
         "Process",
         "Arrival Time",
@@ -381,13 +381,13 @@ pn.info_table(
         ["<b>Average</b>", "—", "—", "—", "<b>27.0 ms</b>", "<b>17.0 ms</b>"],
     ],
 )
-pn.tip(
+en.tip(
     "Average Waiting Time = (0 + 24 + 27) / 3 = 17 ms. "
     "The <b>Convoy Effect</b>: short processes behind a very long process wait a long time. "
     "If P2, P3 ran first: Avg WT = (0 + 3 + 6) / 3 = 3 ms — much better!"
 )
 
-pn.info_table(
+en.info_table(
     ["Aspect", "FCFS"],
     [
         ["Type", "Non-preemptive"],
@@ -398,15 +398,15 @@ pn.info_table(
         ["Worst for", "Interactive / time-sharing systems"],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.5  SJF
 # =============================================================================
-pn.chap_box("2.5  Shortest Job First (SJF / SRTF)")
+en.chap_box("2.5  Shortest Job First (SJF / SRTF)")
 
-pn.section("SJF — Definition")
-pn.definition(
+en.section("SJF — Definition")
+en.definition(
     "<b>SJF (Shortest Job First):</b> Assigns CPU to the process with the smallest next CPU burst. "
     "If two processes have the same burst, FCFS breaks the tie. "
     "SJF is provably <b>optimal</b> — it gives the minimum average waiting time for a given set "
@@ -415,9 +415,9 @@ pn.definition(
     "it must be predicted using an exponential average of past burst lengths."
 )
 
-pn.section("Predicting Next CPU Burst — Exponential Average")
-pn.formula_block(r"\tau_{n+1} = \alpha \cdot t_n + (1 - \alpha) \cdot \tau_n")
-pn.bullet(
+en.section("Predicting Next CPU Burst — Exponential Average")
+en.formula_block(r"\tau_{n+1} = \alpha \cdot t_n + (1 - \alpha) \cdot \tau_n")
+en.bullet(
     [
         r"<b>τ(n+1)</b>: predicted value of the next CPU burst.",
         r"<b>t(n)</b>: length of the nth (most recent actual) CPU burst.",
@@ -427,8 +427,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Non-Preemptive SJF — Worked Example")
-pn.info_table(
+en.section("Non-Preemptive SJF — Worked Example")
+en.info_table(
     ["Process", "Arrival Time", "Burst Time", "Completion", "TAT", "WT"],
     [
         ["P1", "0", "6 ms", "6", "6", "0"],
@@ -438,32 +438,32 @@ pn.info_table(
         ["<b>Average</b>", "—", "—", "—", "<b>12.25 ms</b>", "<b>6.5 ms</b>"],
     ],
 )
-pn.note(
+en.note(
     "Execution order: P1 (arrives 0, burst 6) → P3 (arrives 2, burst 4) → "
     "P4 (arrives 3, burst 5) → P2 (arrives 0, burst 8). "
     "At time 6: ready queue has P2 (8ms), P3 (4ms), P4 (5ms) — P3 is shortest."
 )
 
-pn.section("Preemptive SJF — SRTF (Shortest Remaining Time First)")
-pn.definition(
+en.section("Preemptive SJF — SRTF (Shortest Remaining Time First)")
+en.definition(
     "<b>SRTF (Shortest Remaining Time First):</b> The preemptive version of SJF. "
     "When a new process arrives, if its burst time is less than the <b>remaining time</b> "
     "of the currently running process, the current process is preempted and the new process runs. "
     "SRTF gives the minimum average waiting time among ALL scheduling algorithms (preemptive and non-preemptive)."
 )
 
-pn.info_table(
+en.info_table(
     ["Process", "Arrival", "Burst"],
     [["P1", "0", "8"], ["P2", "1", "4"], ["P3", "2", "9"], ["P4", "3", "5"]],
 )
-pn.body(
+en.body(
     "SRTF Gantt: P1 runs 0→1, P2 preempts at t=1 (4 < 7 remaining), P2 runs 1→5, "
     "P4 arrives t=3 (5ms) but P2 has only 2ms left — P2 continues, P4 runs 5→10, "
     "P1 resumes 10→17, P3 runs 17→26. "
     "Avg WT = (9 + 0 + 15 + 2) / 4 = 6.5 ms."
 )
 
-pn.info_table(
+en.info_table(
     ["Aspect", "Non-Preemptive SJF", "SRTF (Preemptive SJF)"],
     [
         ["Preemption", "No", "Yes — on new arrival if shorter remaining"],
@@ -481,15 +481,15 @@ pn.info_table(
         ["Overhead", "Low", "Higher — more context switches"],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.6  PRIORITY SCHEDULING
 # =============================================================================
-pn.chap_box("2.6  Priority Scheduling")
+en.chap_box("2.6  Priority Scheduling")
 
-pn.section("Priority Scheduling — Definition")
-pn.definition(
+en.section("Priority Scheduling — Definition")
+en.definition(
     "<b>Priority Scheduling:</b> Each process is assigned a priority number (integer). "
     "The CPU is allocated to the process with the highest priority. "
     "Convention varies: in some systems, lower number = higher priority (Linux: -20 highest); "
@@ -498,8 +498,8 @@ pn.definition(
     "Can be preemptive (arriving higher-priority process preempts current) or non-preemptive."
 )
 
-pn.section("Starvation and Aging")
-pn.definition(
+en.section("Starvation and Aging")
+en.definition(
     "<b>Starvation (Indefinite Blocking):</b> Low-priority processes may never get the CPU "
     "because high-priority processes keep arriving. A process can wait indefinitely — "
     "in 1973, an MIT system shut down and found a process that had been waiting for 10 years! "
@@ -508,9 +508,9 @@ pn.definition(
     "processes by 1 — ensures even the lowest-priority process will eventually run."
 )
 
-pn.section("Priority Scheduling — Worked Example")
-pn.body("Given processes (all arrive at time 0). Priority: 1 = highest.")
-pn.info_table(
+en.section("Priority Scheduling — Worked Example")
+en.body("Given processes (all arrive at time 0). Priority: 1 = highest.")
+en.info_table(
     ["Process", "Burst Time", "Priority", "Completion", "TAT", "WT"],
     [
         ["P2", "1 ms", "1 (highest)", "1", "1", "0"],
@@ -521,15 +521,15 @@ pn.info_table(
         ["<b>Average</b>", "—", "—", "—", "<b>12.0 ms</b>", "<b>8.2 ms</b>"],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.7  ROUND ROBIN
 # =============================================================================
-pn.chap_box("2.7  Round Robin (RR) Scheduling")
+en.chap_box("2.7  Round Robin (RR) Scheduling")
 
-pn.section("Round Robin — Definition")
-pn.definition(
+en.section("Round Robin — Definition")
+en.definition(
     "<b>Round Robin (RR):</b> Designed specifically for time-sharing systems. "
     "Similar to FCFS but with preemption. A small time unit called a <b>time quantum</b> "
     "(or time slice) is defined — typically 10–100 milliseconds. "
@@ -539,8 +539,8 @@ pn.definition(
     "If the process has a burst ≤ quantum, it runs to completion within its quantum."
 )
 
-pn.section("Effect of Time Quantum Size")
-pn.info_table(
+en.section("Effect of Time Quantum Size")
+en.info_table(
     ["Time Quantum", "Behaviour", "Problem"],
     [
         [
@@ -561,9 +561,9 @@ pn.info_table(
     ],
 )
 
-pn.section("Round Robin — Worked Example (Quantum = 4ms)")
-pn.body("Processes: P1 (Burst=24), P2 (Burst=3), P3 (Burst=3). All arrive at t=0.")
-pn.info_table(
+en.section("Round Robin — Worked Example (Quantum = 4ms)")
+en.body("Processes: P1 (Burst=24), P2 (Burst=3), P3 (Burst=3). All arrive at t=0.")
+en.info_table(
     ["Process", "Burst Time", "Completion Time", "TAT = CT−AT", "WT = TAT−BT"],
     [
         ["P1", "24 ms", "30 ms", "30", "30 − 24 = 6"],
@@ -572,13 +572,13 @@ pn.info_table(
         ["<b>Average</b>", "—", "—", "<b>15.67 ms</b>", "<b>5.67 ms</b>"],
     ],
 )
-pn.note(
+en.note(
     "Gantt: P1(0-4) → P2(4-7) → P3(7-10) → P1(10-14) → P1(14-18) → P1(18-22) → P1(22-26) → P1(26-30). "
     "P2 and P3 finish early within their first quantum. "
     "Avg WT with FCFS was 17ms; RR gives 5.67ms — much better response."
 )
 
-pn.info_table(
+en.info_table(
     ["Aspect", "Round Robin"],
     [
         ["Type", "Preemptive (time quantum)"],
@@ -589,15 +589,15 @@ pn.info_table(
         ["Performance depends on", "Time quantum size — tune carefully"],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.8  MULTILEVEL QUEUE & FEEDBACK
 # =============================================================================
-pn.chap_box("2.8  Multilevel Queue Scheduling")
+en.chap_box("2.8  Multilevel Queue Scheduling")
 
-pn.section("Multilevel Queue Scheduling")
-pn.definition(
+en.section("Multilevel Queue Scheduling")
+en.definition(
     "<b>Multilevel Queue Scheduling:</b> The ready queue is partitioned into several separate queues "
     "based on process type or priority class. "
     "Each queue has its own scheduling algorithm. "
@@ -606,8 +606,8 @@ pn.definition(
     "Processes are <b>permanently assigned</b> to a queue — no movement between queues."
 )
 
-stack_mlq = pd.LayeredStack(
-    width=pn.CW * 0.60,
+stack_mlq = ed.LayeredStack(
+    width=en.CW * 0.60,
     height=200,
     theme=diag_theme,
     caption="Fig 2.2: Multilevel queue — 5 priority levels",
@@ -617,10 +617,10 @@ stack_mlq.layer("Interactive Processes", sublabel="Round Robin scheduling")
 stack_mlq.layer("Interactive Editing", sublabel="Round Robin scheduling")
 stack_mlq.layer("Batch Processes", sublabel="FCFS scheduling")
 stack_mlq.layer("Student Processes", sublabel="Lowest priority — FCFS")
-pn.story.extend(stack_mlq.as_flowable())
+en.story.extend(stack_mlq.as_flowable())
 
-pn.section("Multilevel Feedback Queue (MLFQ)")
-pn.definition(
+en.section("Multilevel Feedback Queue (MLFQ)")
+en.definition(
     "<b>Multilevel Feedback Queue:</b> An extension that allows processes to MOVE between queues. "
     "A process that uses too much CPU time is moved to a lower-priority queue. "
     "A process waiting too long in a low-priority queue is promoted (aging) to a higher-priority queue. "
@@ -629,7 +629,7 @@ pn.definition(
     "MLFQ is the most complex scheduling algorithm and is used in many modern systems."
 )
 
-pn.info_table(
+en.info_table(
     ["Queue", "Time Quantum", "Purpose"],
     [
         [
@@ -645,15 +645,15 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.9  ALGORITHM EVALUATION
 # =============================================================================
-pn.chap_box("2.9  Algorithm Evaluation")
+en.chap_box("2.9  Algorithm Evaluation")
 
-pn.section("Methods for Evaluating Scheduling Algorithms")
-pn.info_table(
+en.section("Methods for Evaluating Scheduling Algorithms")
+en.info_table(
     ["Method", "Description", "Pros / Cons"],
     [
         [
@@ -682,13 +682,13 @@ pn.info_table(
     ],
 )
 
-pn.section("Little's Law (Queuing Theory)")
-pn.definition(
+en.section("Little's Law (Queuing Theory)")
+en.definition(
     "<b>Little's Law:</b> A fundamental result from queuing theory that relates "
     "average queue length (n), arrival rate (λ), and average waiting time (W)."
 )
-pn.formula_block(r"n = \lambda \times W")
-pn.bullet(
+en.formula_block(r"n = \lambda \times W")
+en.bullet(
     [
         "<b>n</b>: average number of processes in the queue.",
         "<b>λ</b>: average process arrival rate (processes per second).",
@@ -696,15 +696,15 @@ pn.bullet(
         "Example: if λ = 7 processes/sec and W = 2 sec, then n = 14 processes in queue on average.",
     ]
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.10  MULTIPLE PROCESSOR SCHEDULING
 # =============================================================================
-pn.chap_box("2.10  Multiple Processor Scheduling")
+en.chap_box("2.10  Multiple Processor Scheduling")
 
-pn.section("Approaches to Multi-Processor Scheduling")
-pn.definition(
+en.section("Approaches to Multi-Processor Scheduling")
+en.definition(
     "<b>Multiple Processor Scheduling:</b> Scheduling when multiple CPUs are available. "
     "More complex than single-processor scheduling. "
     "Two main approaches: "
@@ -716,8 +716,8 @@ pn.definition(
     "Most modern systems (Linux, Windows) use SMP."
 )
 
-pn.section("Key Concepts in Multi-Processor Scheduling")
-pn.info_table(
+en.section("Key Concepts in Multi-Processor Scheduling")
+en.info_table(
     ["Concept", "Description"],
     [
         [
@@ -754,16 +754,16 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.11  IPC
 # =============================================================================
-pn.part_box("UNIT II — INTERPROCESS COMMUNICATION & SYNCHRONIZATION")
-pn.chap_box("2.11  Interprocess Communication (IPC)")
+en.part_box("UNIT II — INTERPROCESS COMMUNICATION & SYNCHRONIZATION")
+en.chap_box("2.11  Interprocess Communication (IPC)")
 
-pn.section("What is IPC?")
-pn.definition(
+en.section("What is IPC?")
+en.definition(
     "<b>Interprocess Communication (IPC):</b> A mechanism provided by the OS that allows "
     "cooperating processes to exchange data and synchronize their actions. "
     "IPC is necessary because processes in modern OS have separate address spaces — "
@@ -772,8 +772,8 @@ pn.definition(
 )
 
 # Architecture diagram showing IPC models
-arch_ipc = pd.ArchitectureDiagram(
-    width=pn.CW,
+arch_ipc = ed.ArchitectureDiagram(
+    width=en.CW,
     height=200,
     theme=diag_theme,
     caption="Fig 2.3: IPC models — Shared Memory vs Message Passing",
@@ -786,10 +786,10 @@ arch_ipc.connect("p1", "shm", "read/write")
 arch_ipc.connect("p2", "shm", "read/write")
 arch_ipc.connect("p1", "msg", "send()")
 arch_ipc.connect("p2", "msg", "receive()")
-pn.story.extend(arch_ipc.as_flowable())
+en.story.extend(arch_ipc.as_flowable())
 
-pn.section("Shared Memory vs Message Passing")
-pn.info_table(
+en.section("Shared Memory vs Message Passing")
+en.info_table(
     ["Feature", "Shared Memory", "Message Passing"],
     [
         [
@@ -830,8 +830,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Producer-Consumer Problem (Shared Memory Model)")
-pn.definition(
+en.section("Producer-Consumer Problem (Shared Memory Model)")
+en.definition(
     "<b>Producer-Consumer Problem:</b> A classic IPC scenario. "
     "The producer process produces data items and places them in a shared buffer. "
     "The consumer process takes items from the buffer and consumes them. "
@@ -839,7 +839,7 @@ pn.definition(
     "consumer must wait if buffer is empty. "
     "This requires synchronization between the two processes."
 )
-pn.code_block(
+en.code_block(
     """/* Shared Memory Producer-Consumer -- Bounded Buffer */
 #define BUFFER_SIZE 10
 typedef struct {
@@ -867,15 +867,15 @@ int consumer(shared_data *shm) {
 /* NOTE: Buffer can hold BUFFER_SIZE-1 items (one slot wasted to distinguish full from empty) */""",
     lang="c",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.12  PROCESS SYNCHRONIZATION
 # =============================================================================
-pn.chap_box("2.12  Process Synchronization")
+en.chap_box("2.12  Process Synchronization")
 
-pn.section("The Race Condition Problem")
-pn.definition(
+en.section("The Race Condition Problem")
+en.definition(
     "<b>Race Condition:</b> A situation where the outcome of concurrent processes depends on "
     "the order in which they are scheduled (interleaved). "
     "When two or more processes access shared data concurrently and try to modify it, "
@@ -884,8 +884,8 @@ pn.definition(
     "Race conditions lead to <b>data inconsistency</b> and must be prevented."
 )
 
-pn.section("Classic Race Condition — Counter Example")
-pn.code_block(
+en.section("Classic Race Condition — Counter Example")
+en.code_block(
     """/* Both producer and consumer share 'counter' */
 /* Register1 and Register2 are local CPU registers */
 
@@ -912,20 +912,20 @@ counter = register2;          /* store */
     lang="c",
 )
 
-pn.warning(
+en.warning(
     "Race conditions are extremely difficult to detect and reproduce because they depend "
     "on exact CPU scheduling timing. A program may work correctly 99% of the time and fail "
     "1% — always at the worst possible moment. Prevention through proper synchronization is essential."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.13  CRITICAL SECTION
 # =============================================================================
-pn.chap_box("2.13  The Critical Section Problem")
+en.chap_box("2.13  The Critical Section Problem")
 
-pn.section("Critical Section — Definition")
-pn.definition(
+en.section("Critical Section — Definition")
+en.definition(
     "<b>Critical Section:</b> A segment of code in which a process may be accessing "
     "and updating shared data (shared variables, files, tables). "
     "The critical section property requires that when one process is executing in its "
@@ -933,8 +933,8 @@ pn.definition(
     "the critical sections of different processes are <b>mutually exclusive</b> in time."
 )
 
-pn.section("Structure of a Process with Critical Section")
-pn.code_block(
+en.section("Structure of a Process with Critical Section")
+en.code_block(
     """/* General structure of a process Pi */
 do {
     /* --- ENTRY SECTION --- */
@@ -955,11 +955,11 @@ do {
     lang="c",
 )
 
-pn.section("Three Requirements for a Valid Solution")
-pn.definition(
+en.section("Three Requirements for a Valid Solution")
+en.definition(
     "Any correct solution to the critical section problem must satisfy all three conditions simultaneously:"
 )
-pn.info_table(
+en.info_table(
     ["Requirement", "Definition", "Implication"],
     [
         [
@@ -984,15 +984,15 @@ pn.info_table(
     ],
 )
 
-pn.section("Peterson's Solution (Two-Process Software Solution)")
-pn.definition(
+en.section("Peterson's Solution (Two-Process Software Solution)")
+en.definition(
     "<b>Peterson's Solution:</b> A classic software solution to the two-process critical section problem. "
     "Uses two shared variables: <code>turn</code> (whose turn it is to enter) and "
     "<code>flag[2]</code> (whether each process wants to enter). "
     "Satisfies all three requirements: mutual exclusion, progress, and bounded waiting. "
     "Note: On modern CPUs with instruction reordering, Peterson's may not work without memory barriers."
 )
-pn.code_block(
+en.code_block(
     """/* Shared variables */
 int turn;          /* whose turn: 0 = P0's turn, 1 = P1's turn */
 boolean flag[2];   /* flag[i] = true means Pi wants to enter */
@@ -1021,8 +1021,8 @@ do {
     lang="c",
 )
 
-pn.section("Hardware Synchronization Primitives")
-pn.info_table(
+en.section("Hardware Synchronization Primitives")
+en.info_table(
     ["Primitive", "Description", "Usage"],
     [
         [
@@ -1043,15 +1043,15 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.14  SEMAPHORES
 # =============================================================================
-pn.chap_box("2.14  Semaphores")
+en.chap_box("2.14  Semaphores")
 
-pn.section("What is a Semaphore?")
-pn.definition(
+en.section("What is a Semaphore?")
+en.definition(
     "<b>Semaphore:</b> A synchronization tool proposed by Dijkstra (1965). "
     "A semaphore S is an integer variable that, apart from initialization, "
     "is accessed only through two standard atomic operations: "
@@ -1061,8 +1061,8 @@ pn.definition(
     "no two processes can execute wait/signal on the same semaphore simultaneously."
 )
 
-pn.section("Wait and Signal Operations")
-pn.code_block(
+en.section("Wait and Signal Operations")
+en.code_block(
     """/* Classic semaphore operations */
 
 /* wait(S) -- also called P(S) or down(S) */
@@ -1083,8 +1083,8 @@ signal(S) {
     lang="c",
 )
 
-pn.section("Types of Semaphores")
-pn.info_table(
+en.section("Types of Semaphores")
+en.info_table(
     ["Type", "Initial Value", "Purpose", "Example Use"],
     [
         [
@@ -1104,8 +1104,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Semaphore as Mutex — Critical Section")
-pn.code_block(
+en.section("Semaphore as Mutex — Critical Section")
+en.code_block(
     """/* Using binary semaphore (mutex) for critical section */
 semaphore mutex;
 init(mutex, 1);   /* initialize to 1 -- resource available */
@@ -1127,8 +1127,8 @@ do {
     lang="c",
 )
 
-pn.section("Semaphore for Process Synchronization (Ordering)")
-pn.code_block(
+en.section("Semaphore for Process Synchronization (Ordering)")
+en.code_block(
     """/* Ensure S2 in P2 executes only AFTER S1 in P1 */
 semaphore sync;
 init(sync, 0);   /* initialize to 0 -- P2 must wait for P1 */
@@ -1143,8 +1143,8 @@ signal(sync);            S2;            /* runs after S1 */
     lang="c",
 )
 
-pn.section("Blocking Semaphore (Non-Busy-Wait Implementation)")
-pn.definition(
+en.section("Blocking Semaphore (Non-Busy-Wait Implementation)")
+en.definition(
     "<b>Blocking Semaphore:</b> Instead of busy-waiting (spinning), a process that finds "
     "the semaphore value ≤ 0 is placed in a <b>waiting queue</b> associated with that semaphore "
     "and blocked (state → Waiting). When another process calls signal(), one process from "
@@ -1152,7 +1152,7 @@ pn.definition(
     "This eliminates wasted CPU cycles from spinning. "
     "Modern semaphore implementations always use blocking."
 )
-pn.code_block(
+en.code_block(
     """/* Blocking semaphore data structure */
 typedef struct {
     int value;           /* semaphore counter */
@@ -1179,21 +1179,21 @@ signal(semaphore *S) {
     lang="c",
 )
 
-pn.warning(
+en.warning(
     "Deadlock with Semaphores: If P0 executes wait(S) and P1 executes wait(Q), "
     "then P0 executes wait(Q) and P1 executes wait(S) — both wait forever. "
     "This is a deadlock. Correct ordering of wait() calls prevents this."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.15  CLASSICAL SYNCHRONIZATION PROBLEMS
 # =============================================================================
-pn.part_box("UNIT II — CLASSICAL SYNCHRONIZATION PROBLEMS")
-pn.chap_box("2.15  Classical Problems of Synchronization")
+en.part_box("UNIT II — CLASSICAL SYNCHRONIZATION PROBLEMS")
+en.chap_box("2.15  Classical Problems of Synchronization")
 
-pn.section("Problem 1: Bounded Buffer (Producer-Consumer)")
-pn.definition(
+en.section("Problem 1: Bounded Buffer (Producer-Consumer)")
+en.definition(
     "<b>Bounded Buffer Problem:</b> A buffer of N slots. "
     "Producer adds items; Consumer removes items. "
     "Three semaphores: <b>mutex</b> (binary, init=1) for mutual exclusion on buffer; "
@@ -1201,7 +1201,7 @@ pn.definition(
     "<b>full</b> (counting, init=0) counts full slots. "
     "Producer waits for empty slot; Consumer waits for full slot."
 )
-pn.code_block(
+en.code_block(
     """/* Bounded Buffer -- N-slot buffer */
 semaphore mutex;   init(mutex, 1);    /* mutual exclusion on buffer */
 semaphore empty;   init(empty, N);    /* N empty slots initially */
@@ -1223,8 +1223,8 @@ do {                                 do {
     lang="c",
 )
 
-pn.section("Problem 2: Readers-Writers Problem")
-pn.definition(
+en.section("Problem 2: Readers-Writers Problem")
+en.definition(
     "<b>Readers-Writers Problem:</b> A shared database accessed by readers (read-only) "
     "and writers (read-write). Constraint: multiple readers may read simultaneously, "
     "but a writer needs exclusive access — no other reader or writer may access while writing. "
@@ -1233,7 +1233,7 @@ pn.definition(
     "<b>Second readers-writers problem:</b> Once a writer is ready, it performs its write as soon "
     "as possible (writers have priority). Both can cause starvation of the other group."
 )
-pn.code_block(
+en.code_block(
     """/* First Readers-Writers Problem (readers priority) */
 semaphore rw_mutex;    init(rw_mutex, 1);  /* writer mutual exclusion */
 semaphore mutex;       init(mutex, 1);     /* protect read_count */
@@ -1260,8 +1260,8 @@ do {                                 do {
     lang="c",
 )
 
-pn.section("Problem 3: Dining Philosophers Problem")
-pn.definition(
+en.section("Problem 3: Dining Philosophers Problem")
+en.definition(
     "<b>Dining Philosophers Problem (Dijkstra, 1965):</b> Five philosophers sit at a round table. "
     "Between each pair of philosophers is one chopstick (5 total). "
     "A philosopher alternates between thinking and eating. "
@@ -1271,7 +1271,7 @@ pn.definition(
     "without deadlock or starvation."
 )
 
-pn.code_block(
+en.code_block(
     """/* Dining Philosophers -- Naive (DEADLOCKED) solution */
 semaphore chopstick[5];  /* all initialized to 1 */
 
@@ -1300,7 +1300,7 @@ do {
     lang="c",
 )
 
-pn.code_block(
+en.code_block(
     """/* Dining Philosophers -- CORRECT solution (max 4 seated) */
 semaphore chopstick[5];   /* initialized to 1 */
 semaphore room;           /* initialized to 4 -- at most 4 sit */
@@ -1328,8 +1328,8 @@ do {
 )
 
 # State machine for philosopher states
-sm_phil = pd.StateMachine(
-    width=pn.CW * 0.70,
+sm_phil = ed.StateMachine(
+    width=en.CW * 0.70,
     height=180,
     theme=diag_theme,
     caption="Fig 2.4: Dining Philosopher state transitions",
@@ -1340,16 +1340,16 @@ sm_phil.state("eat", "Eating", accepting=True)
 sm_phil.transition("think", "hungry", label="gets hungry")
 sm_phil.transition("hungry", "eat", label="both chopsticks\navailable")
 sm_phil.transition("eat", "think", label="finishes\neating")
-pn.story.extend(sm_phil.as_flowable())
-pn.br()
+en.story.extend(sm_phil.as_flowable())
+en.br()
 
 # =============================================================================
 #  ALGORITHM COMPARISON MASTER TABLE
 # =============================================================================
-pn.chap_box("CPU Scheduling Algorithm — Master Comparison")
+en.chap_box("CPU Scheduling Algorithm — Master Comparison")
 
-pn.section("All Algorithms Side-by-Side")
-pn.info_table(
+en.section("All Algorithms Side-by-Side")
+en.info_table(
     ["Algorithm", "Type", "Selection Criterion", "Starvation", "Overhead", "Best For"],
     [
         [
@@ -1403,8 +1403,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Scheduling Formula Quick Reference")
-pn.info_table(
+en.section("Scheduling Formula Quick Reference")
+en.info_table(
     ["Formula", "Meaning"],
     [
         ["TAT = Completion Time − Arrival Time", "Total time process spends in system"],
@@ -1426,17 +1426,17 @@ pn.info_table(
         ["Throughput = N / Total time", "Processes completed per unit time"],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  2.16  EXAM QUESTIONS
 # =============================================================================
-pn.part_box("UNIT II — EXAM QUESTIONS & DETAILED ANSWERS")
-pn.chap_box("2.16  Previous-Year Style Exam Questions")
+en.part_box("UNIT II — EXAM QUESTIONS & DETAILED ANSWERS")
+en.chap_box("2.16  Previous-Year Style Exam Questions")
 
-pn.section("2-Mark Questions")
+en.section("2-Mark Questions")
 
-pn.highlight(
+en.highlight(
     "<b>Q1. What are CPU scheduling criteria? Name all five.</b><br/>"
     "A: (1) CPU Utilization — maximize % time CPU is busy. "
     "(2) Throughput — maximize processes completed per unit time. "
@@ -1445,7 +1445,7 @@ pn.highlight(
     "(5) Response Time — minimize time from request to first response (important for interactive)."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q2. What is the Convoy Effect in FCFS?</b><br/>"
     "A: Convoy Effect occurs in FCFS when a CPU-bound process (long burst) holds the CPU "
     "while many I/O-bound processes (short burst) accumulate in the ready queue. "
@@ -1454,7 +1454,7 @@ pn.highlight(
     "If order reversed: Avg WT = 3ms. FCFS is unfair to short processes."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q3. Why is SJF optimal? What is its main drawback?</b><br/>"
     "A: SJF is optimal because it minimizes the average waiting time for a given set of processes. "
     "By executing shorter jobs first, longer jobs experience less waiting overall — a mathematical minimum. "
@@ -1463,7 +1463,7 @@ pn.highlight(
     "Additionally, SJF can cause starvation of long processes."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q4. What is the critical section problem? State its three requirements.</b><br/>"
     "A: The critical section problem is how to ensure that when one process is executing "
     "shared code (critical section), no other process executes the same section simultaneously. "
@@ -1472,7 +1472,7 @@ pn.highlight(
     "(3) <b>Bounded Waiting</b> — limit on how many times others enter before a requesting process is granted."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q5. What is a semaphore? Differentiate binary and counting semaphore.</b><br/>"
     "A: A semaphore is an integer synchronization variable accessed only via atomic wait(S) and signal(S). "
     "wait(S): while(S≤0); S--; — signal(S): S++. "
@@ -1481,7 +1481,7 @@ pn.highlight(
     "Controls access to N instances of a resource. Value = number of available instances."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q6. What is a race condition? Give an example.</b><br/>"
     "A: A race condition is when multiple processes access shared data concurrently and "
     "the result depends on execution order. "
@@ -1491,7 +1491,7 @@ pn.highlight(
     "Race conditions cause data inconsistency and must be prevented using synchronization."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q7. What is preemptive vs non-preemptive scheduling?</b><br/>"
     "A: Non-preemptive: CPU held until process voluntarily releases it (terminates or I/O). "
     "Simple, no timer needed. Examples: FCFS, non-preemptive SJF. "
@@ -1500,7 +1500,7 @@ pn.highlight(
     "All modern OSes (Linux, Windows) use preemptive scheduling."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q8. What is IPC? Name two models with examples.</b><br/>"
     "A: IPC (Interprocess Communication) is the OS mechanism for cooperating processes "
     "to exchange data and synchronize. "
@@ -1511,9 +1511,9 @@ pn.highlight(
     "Examples: pipes, message queues, sockets."
 )
 
-pn.section("5-Mark Questions")
+en.section("5-Mark Questions")
 
-pn.highlight(
+en.highlight(
     "<b>Q9. Explain FCFS, SJF, and Round Robin with Gantt charts and calculate Avg WT.</b><br/>"
     "A: Given: P1(BT=6), P2(BT=8), P3(BT=7), P4(BT=3). All arrive at t=0. "
     "FCFS: P1→P2→P3→P4. CT: 6,14,21,24. WT: 0,6,14,21. Avg WT = 41/4 = 10.25ms. "
@@ -1522,7 +1522,7 @@ pn.highlight(
     "Avg WT better than FCFS, response time best."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q10. Explain Peterson's solution to the critical section problem. "
     "Prove it satisfies mutual exclusion.</b><br/>"
     "A: Uses two shared vars: turn (0 or 1) and flag[2] (boolean). "
@@ -1534,7 +1534,7 @@ pn.highlight(
     "Bounded waiting: after Pi sets flag[i], if turn=j, Pj runs then sets turn=i allowing Pi."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q11. Explain the Bounded Buffer problem with semaphore solution.</b><br/>"
     "A: N-slot buffer shared by producer and consumer. "
     "3 semaphores: mutex=1 (exclusive buffer access), empty=N (empty slots), full=0 (full slots). "
@@ -1544,7 +1544,7 @@ pn.highlight(
     "Producer blocks when empty=0 (buffer full). Consumer blocks when full=0 (buffer empty)."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q12. Explain the Dining Philosophers problem. What causes deadlock? How to prevent it?</b><br/>"
     "A: 5 philosophers, 5 chopsticks. Need both left+right chopstick to eat. "
     "Naive solution: all pick left simultaneously → wait for right → deadlock (circular wait). "
@@ -1556,9 +1556,9 @@ pn.highlight(
     "Remove any one condition to prevent deadlock."
 )
 
-pn.section("10-Mark Questions")
+en.section("10-Mark Questions")
 
-pn.highlight(
+en.highlight(
     "<b>Q13. Explain all CPU scheduling algorithms with Gantt charts, advantages/disadvantages, "
     "and calculate Avg Waiting Time for: P1(AT=0,BT=10), P2(AT=1,BT=4), "
     "P3(AT=2,BT=5), P4(AT=3,BT=2).</b><br/>"
@@ -1573,7 +1573,7 @@ pn.highlight(
     "Better response time than FCFS."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q14. Explain process synchronization in detail. "
     "Discuss critical section, race condition, semaphores, and classical problems.</b><br/>"
     "A: Process synchronization ensures correct execution of cooperating processes sharing data. "
@@ -1588,8 +1588,8 @@ pn.highlight(
     "Dining Philosophers: deadlock risk — use room semaphore or asymmetric solution."
 )
 
-pn.section("Quick Revision Table — Unit II")
-pn.info_table(
+en.section("Quick Revision Table — Unit II")
+en.info_table(
     ["Topic", "Key Exam Points"],
     [
         [
@@ -1667,7 +1667,7 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "Most asked topics in IT412 Unit II exams: "
     "(1) CPU scheduling — draw Gantt chart and calculate Avg WT and Avg TAT for FCFS, SJF, RR. "
     "(2) Semaphore definition and solution to Bounded Buffer. "
@@ -1678,7 +1678,7 @@ pn.exam(
     "Always show the Gantt chart step-by-step when calculating scheduling metrics."
 )
 
-pn.note(
+en.note(
     "Lab connection: Experiments 1–6 implement FCFS, SJF (non-preemptive), SRTF (preemptive SJF), "
     "Round Robin, Priority (non-preemptive), and Priority (preemptive) respectively. "
     "For each experiment: generate random process arrival/burst times, run the algorithm, "
@@ -1688,10 +1688,10 @@ pn.note(
 # =============================================================================
 #  FLASHCARDS & REVISION
 # =============================================================================
-pn.br()
-pn.chap_box("Rapid Revision & Flashcards")
+en.br()
+en.chap_box("Rapid Revision & Flashcards")
 
-pn.revision_card(
+en.revision_card(
     "Unit II Mastery Check",
     [
         "Draw Gantt charts and compute Avg WT for FCFS, SJF, and RR for a given process set.",
@@ -1702,39 +1702,39 @@ pn.revision_card(
     ],
 )
 
-pn.flashcard(
+en.flashcard(
     "What is a <b>Race Condition</b>?",
     "When multiple processes access shared data concurrently and the outcome depends "
     "on the exact order of execution — leading to non-deterministic, incorrect results.",
 )
-pn.flashcard(
+en.flashcard(
     "Formula: <b>Turnaround Time</b>",
     "TAT = Completion Time − Arrival Time. " "Waiting Time = TAT − Burst Time.",
 )
-pn.flashcard(
+en.flashcard(
     "What does <b>Aging</b> solve?",
     "Aging prevents starvation in Priority Scheduling by gradually increasing "
     "the priority of processes that have been waiting for a long time.",
 )
-pn.flashcard(
+en.flashcard(
     "Semaphore <b>wait(S)</b> operation",
     "while(S ≤ 0) ; (busy wait)  S--; "
     "In blocking version: S--; if(S<0) block(currentProcess);",
 )
-pn.flashcard(
+en.flashcard(
     "Bounded Buffer — three semaphores",
     "mutex (init=1): exclusive buffer access. "
     "empty (init=N): count of empty slots. "
     "full (init=0): count of full slots.",
 )
 
-pn.br()
-pn.chap_box("Index")
-pn.print_index()
+en.br()
+en.chap_box("Index")
+en.print_index()
 
 # =============================================================================
 #  BUILD DOCUMENT
 # =============================================================================
-pn.build_doc("OS_Unit2_Notes.pdf")
+en.build_doc("OS_Unit2_Notes.pdf")
 
 print("Generated: OS_Unit2_Notes.pdf")

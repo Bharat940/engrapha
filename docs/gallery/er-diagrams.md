@@ -5,10 +5,10 @@ ER and Schema diagrams built with the Chen and SQL table notations.
 ## Entity-Relationship (Chen)
 
 ```python title="er_chen.py"
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-er = pd.ERDiagram(
+er = ed.ERDiagram(
     width=550, height=260,
     caption="Fig 4: University ER"
 )
@@ -26,7 +26,7 @@ er.entity_attributes("COURSE", [("Course_ID", {"pk": True}), "Title", "Credits"]
 er.connect("STUDENT", "ENROLLS", card_from="M", card_to="N", total_from=False, total_to=True)
 er.connect("COURSE", "ENROLLS", card_from="1", card_to="N")
 
-pn.add(er.as_flowable())
+en.add(er.as_flowable())
 ```
 
 ![Screenshot placeholder](../assets/screenshots/er_chen.png)
@@ -34,10 +34,10 @@ pn.add(er.as_flowable())
 ## Database schema
 
 ```python title="er_schema.py"
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-schema = pd.SchemaDiagram(
+schema = ed.SchemaDiagram(
     width=530, height=250,
     caption="Fig 5: Blog Schema"
 )
@@ -60,7 +60,7 @@ schema.table("tags", [
 schema.relation("posts",  "user_id", "users",  "id")
 schema.relation("tags",   "name",    "posts",  "id")
 
-pn.add(schema.as_flowable())
+en.add(schema.as_flowable())
 ```
 
 ![Screenshot placeholder](../assets/screenshots/er_schema.png)
@@ -69,3 +69,4 @@ pn.add(schema.as_flowable())
 
 - [Sequence Diagrams](sequence-diagrams.md)
 - [Network Diagrams](network-diagrams.md)
+

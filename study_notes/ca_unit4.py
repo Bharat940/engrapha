@@ -8,58 +8,58 @@ Output: CA_Unit4_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 from reportlab.platypus import Paragraph, Table, TableStyle
-from paperforge_diagrams import ResponsiveDrawingFlowable
+from engrapha_diagrams import ResponsiveDrawingFlowable
 
 # =============================================================================
 #  THEME SETUP
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.OCEAN_DARK)
+en.set_story([])
+en.set_theme(en.OCEAN_DARK)
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(28)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(28)
 t = Table(
     [
-        [Paragraph("COMPUTER ARCHITECTURE", pn.COVER_H1)],
-        [Paragraph("Unit IV -- Complete Exam Notes", pn.COVER_H2)],
+        [Paragraph("COMPUTER ARCHITECTURE", en.COVER_H1)],
+        [Paragraph("Unit IV -- Complete Exam Notes", en.COVER_H2)],
     ],
-    colWidths=[pn.CW],
+    colWidths=[en.CW],
 )
 t.setStyle(
     TableStyle(
         [
-            ("BACKGROUND", (0, 0), (-1, -1), pn.get_theme().rl(pn.get_theme().surface)),
+            ("BACKGROUND", (0, 0), (-1, -1), en.get_theme().rl(en.get_theme().surface)),
             ("TOPPADDING", (0, 0), (-1, -1), 22),
             ("BOTTOMPADDING", (0, 0), (-1, -1), 22),
             ("LEFTPADDING", (0, 0), (-1, -1), 20),
             ("RIGHTPADDING", (0, 0), (-1, -1), 20),
-            ("BOX", (0, 0), (-1, -1), 2.5, pn.get_theme().rl(pn.get_theme().accent)),
+            ("BOX", (0, 0), (-1, -1), 2.5, en.get_theme().rl(en.get_theme().accent)),
         ]
     )
 )
-pn.add(t)
-pn.sp(14)
-pn.add(
+en.add(t)
+en.sp(14)
+en.add(
     Paragraph(
         "Prepared by: Bharat Dangi  |  Subject Code: IT-404  |  UIT-RGPV (Autonomous) Bhopal",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
-pn.add(Paragraph("Semester IV  |  Based on University Syllabus 2024-25", pn.COVER_SUB))
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(8)
+en.add(Paragraph("Semester IV  |  Based on University Syllabus 2024-25", en.COVER_SUB))
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(8)
 
-pn.info_table(
+en.info_table(
     ["Topic", "Coverage"],
     [
         [
@@ -126,31 +126,31 @@ pn.info_table(
         ["4.20 Quick Revision Summary", "Key formulas, tables, and exam flashcards"],
     ],
 )
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  UNIT DIVIDER
 # =============================================================================
-pn.footer(
+en.footer(
     left="IT-404: Computer Architecture", right="Unit IV Notes", show_page_num=True
 )
-pn.part_box("UNIT IV -- COMPUTER MEMORY SYSTEM")
+en.part_box("UNIT IV -- COMPUTER MEMORY SYSTEM")
 
 # =============================================================================
 #  4.1  COMPUTER MEMORY SYSTEM OVERVIEW
 # =============================================================================
-pn.chap_box("4.1  Computer Memory System Overview")
-pn.section("Classification of Memory")
-pn.definition(
+en.chap_box("4.1  Computer Memory System Overview")
+en.section("Classification of Memory")
+en.definition(
     "<b>Computer Memory:</b> Any device that can store binary information (0s and 1s) "
     "for later retrieval. Computer memories differ in speed, cost, capacity, and "
     "volatility. The memory system of a modern computer is organized as a hierarchy "
     "of different memory types to achieve the best balance of performance and cost."
 )
 
-pn.info_table(
+en.info_table(
     ["Characteristic", "Description", "Examples"],
     [
         ["Access time", "Time to read or write one word", "RAM: 5-100ns, Disk: 3-10ms"],
@@ -178,16 +178,16 @@ pn.info_table(
     ],
 )
 
-pn.section("Semiconductor Memory Classification")
-pn.body(
+en.section("Semiconductor Memory Classification")
+en.body(
     "Semiconductor memory is the primary technology for main memory and cache. "
     "It divides into two families: <b>Read/Write Memory (RAM)</b> which can be "
     "both read and written during normal operation, and <b>Read-Only Memory (ROM)</b> "
     "which is programmed once (or rarely) and only read during normal operation."
 )
 
-mem_tree = pd.NetworkDiagram(
-    width=pn.CW,
+mem_tree = ed.NetworkDiagram(
+    width=en.CW,
     height=240,
     theme=diag_theme,
     caption="Fig 1: Classification of semiconductor memory",
@@ -213,29 +213,29 @@ mem_tree.link("rom", "masked")
 mem_tree.link("rom", "prom")
 mem_tree.link("rom", "eprom")
 mem_tree.link("rom", "eeprom")
-pn.story.extend(mem_tree.as_flowable())
-pn.br()
+en.story.extend(mem_tree.as_flowable())
+en.br()
 
 # =============================================================================
 #  4.2  MEMORY HIERARCHY
 # =============================================================================
-pn.chap_box("4.2  Memory Hierarchy")
-pn.section("Why a Hierarchy?")
-pn.definition(
+en.chap_box("4.2  Memory Hierarchy")
+en.section("Why a Hierarchy?")
+en.definition(
     "<b>Memory Hierarchy:</b> A layered organisation of memory types arranged by speed, "
     "cost, and capacity. Faster memories are more expensive per bit and smaller in capacity, "
     "so they sit at the top of the hierarchy in small quantities. Slower, cheaper, larger "
     "memories sit at the bottom. The CPU sees only the top levels but benefits from the "
     "large capacity of lower levels through automatic data movement managed by hardware and OS."
 )
-pn.body(
+en.body(
     "The hierarchy works because of the <b>principle of locality of reference</b>: programs "
     "tend to access a small set of memory locations repeatedly over short periods of time "
     "(temporal locality) and to access locations near recently accessed locations (spatial locality)."
 )
 
-pn.section("Locality of Reference")
-pn.info_table(
+en.section("Locality of Reference")
+en.info_table(
     ["Type", "Definition", "Example", "Exploited By"],
     [
         [
@@ -253,9 +253,9 @@ pn.info_table(
     ],
 )
 
-pn.section("Memory Hierarchy Levels")
-hier_stack = pd.LayeredStack(
-    width=pn.CW,
+en.section("Memory Hierarchy Levels")
+hier_stack = ed.LayeredStack(
+    width=en.CW,
     height=310,
     theme=diag_theme,
     caption="Fig 2: Memory hierarchy -- speed decreases and capacity increases downward",
@@ -294,9 +294,9 @@ hier_stack.layer(
     "Magnetic Tape / Archive",
     sublabel="~100M cycles |  TB range     |  Magnetic  |  Lowest cost/bit",
 )
-pn.story.extend(hier_stack.as_flowable())
+en.story.extend(hier_stack.as_flowable())
 
-pn.info_table(
+en.info_table(
     ["Level", "Technology", "Typical Size", "Access Time", "Managed By"],
     [
         ["Registers", "SRAM FF", "Bytes", "<1 ns", "Compiler / programmer"],
@@ -309,26 +309,26 @@ pn.info_table(
         ["Tape", "Magnetic tape", "TB+", "seconds", "Operator / backup system"],
     ],
 )
-pn.tip(
+en.tip(
     "Memory hierarchy: Speed DOWN, Capacity UP, Cost DOWN as you go lower. "
     "Locality of reference is why caches work: programs reuse the same small set of locations. "
     "Each level acts as a buffer for the level below. "
     "L1 hit: ~4 cycles. L2 hit: ~12 cycles. RAM: ~200 cycles. Disk: millions of cycles."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.3  MAIN MEMORY -- RAM
 # =============================================================================
-pn.chap_box("4.3  Main Memory -- RAM (SRAM and DRAM)")
-pn.section("Static RAM (SRAM)")
-pn.definition(
+en.chap_box("4.3  Main Memory -- RAM (SRAM and DRAM)")
+en.section("Static RAM (SRAM)")
+en.definition(
     "<b>SRAM (Static Random-Access Memory):</b> Uses a <b>flip-flop</b> circuit (typically "
     "4-6 transistors per bit) to store each bit. Once written, the bit remains stable as long "
     "as power is applied -- no periodic refresh is needed. SRAM is much faster than DRAM "
     "but occupies more chip area and consumes more power per bit. Used for CPU cache memories."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Cell structure:</b> 4-transistor or 6-transistor cross-coupled inverter (bistable latch).",
         "<b>Refresh:</b> Not required. The flip-flop holds its state indefinitely while powered.",
@@ -338,15 +338,15 @@ pn.bullet(
     ]
 )
 
-pn.section("Dynamic RAM (DRAM)")
-pn.definition(
+en.section("Dynamic RAM (DRAM)")
+en.definition(
     "<b>DRAM (Dynamic Random-Access Memory):</b> Stores each bit as a charge in a "
     "<b>capacitor</b> (1 transistor + 1 capacitor per bit). The capacitor leaks charge "
     "over time (in milliseconds), so the memory must be <b>periodically refreshed</b> -- "
     "the charge is read and rewritten before it discharges to zero. DRAM is much denser "
     "and cheaper than SRAM but slower. Used for main memory."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Cell structure:</b> 1 transistor (switch) + 1 capacitor (storage).",
         "<b>Refresh:</b> Required every 8-64 ms. During refresh the row is read and rewritten.",
@@ -356,8 +356,8 @@ pn.bullet(
     ]
 )
 
-pn.section("SRAM vs DRAM Comparison")
-pn.info_table(
+en.section("SRAM vs DRAM Comparison")
+en.info_table(
     ["Property", "SRAM", "DRAM"],
     [
         [
@@ -380,13 +380,13 @@ pn.info_table(
     ],
 )
 
-pn.section("Typical RAM Chip Organization")
-pn.body(
+en.section("Typical RAM Chip Organization")
+en.body(
     "A RAM chip is characterised by its <b>word capacity</b> (number of addressable locations) "
     "and <b>word size</b> (bits per location). A 128 x 8 RAM chip has 128 locations of 8 bits each "
     "(= 1024 bits = 1 Kbit). Key external signals on a RAM chip:"
 )
-pn.info_table(
+en.info_table(
     ["Pin/Signal", "Direction", "Function"],
     [
         ["Address lines (A0-Ak)", "Input", "Selects one of the 2^k memory locations"],
@@ -413,7 +413,7 @@ pn.info_table(
         ],
     ],
 )
-pn.code_block("""
+en.code_block("""
  RAM CHIP FUNCTION TABLE (CS1=1, CS2=0 for operation):
  ======================================================
  CS1 | CS2 | RD | WR | Operation          | Data Bus State
@@ -424,28 +424,28 @@ pn.code_block("""
   1  |  0  |  0 |  1 | WRITE: bus -> RAM  | Input (latch bus into cell)
   1  |  0  |  0 |  0 | Inhibit            | High-impedance (Z)
 """)
-pn.tip(
+en.tip(
     "SRAM: flip-flop stores bit, NO refresh needed, fast, expensive. "
     "DRAM: capacitor stores bit, MUST refresh periodically, slow, cheap, dense. "
     "Main memory uses DRAM. Cache uses SRAM. "
     "Chip Select pins allow multiple chips to share the same data/address bus."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.4  MAIN MEMORY -- ROM
 # =============================================================================
-pn.chap_box("4.4  Main Memory -- ROM (Read-Only Memory)")
-pn.section("ROM Overview")
-pn.definition(
+en.chap_box("4.4  Main Memory -- ROM (Read-Only Memory)")
+en.section("ROM Overview")
+en.definition(
     "<b>ROM (Read-Only Memory):</b> A semiconductor memory whose contents are "
     "permanently or semi-permanently programmed and can only be <b>read</b> during "
     "normal CPU operation. ROM is <b>non-volatile</b> -- data is retained without "
     "power. ROM is used for firmware, BIOS, boot loaders, and look-up tables."
 )
 
-pn.section("Types of ROM")
-pn.info_table(
+en.section("Types of ROM")
+en.info_table(
     ["Type", "Full Name", "Programming Method", "Erasure", "Typical Use"],
     [
         [
@@ -485,7 +485,7 @@ pn.info_table(
         ],
     ],
 )
-pn.tip(
+en.tip(
     "ROM types: Masked (factory) -> PROM (one-time user) -> EPROM (UV erase) -> EEPROM (byte electrical erase) -> Flash (sector electrical erase). "
     "Flash is the modern standard -- SSDs and USB drives use Flash. "
     "ROM is non-volatile. RAM is volatile. "
@@ -496,23 +496,23 @@ pn.tip(
 # =============================================================================
 #  4.5  MEMORY ADDRESS MAP
 # =============================================================================
-pn.chap_box("4.5  Memory Address Map")
-pn.section("Concept")
-pn.definition(
+en.chap_box("4.5  Memory Address Map")
+en.section("Concept")
+en.definition(
     "<b>Memory Address Map:</b> A table that specifies which memory chip (RAM or ROM) "
     "responds to which range of addresses on the CPU's address bus. Each chip occupies "
     "a contiguous block of the address space determined by the chip's capacity. "
     "Address decoding hardware ensures only the chip whose address range is selected "
     "drives the data bus -- all others are in high-impedance."
 )
-pn.body(
+en.body(
     "The designer assigns address ranges to chips based on available address bus lines. "
     "High-order address bits select the chip (chip select decoding); low-order bits are "
     "connected directly to the chip's internal address lines."
 )
 
-pn.section("Memory Address Map Example (Morris Mano)")
-pn.code_block("""
+en.section("Memory Address Map Example (Morris Mano)")
+en.code_block("""
  EXAMPLE MEMORY ADDRESS MAP:
  ======================================================
  System: 512 bytes RAM (4 x 128-byte chips) + 512 bytes ROM (1 x 512-byte chip)
@@ -536,8 +536,8 @@ pn.code_block("""
    A9=1: assert CS on ROM chip, deassert RAM decoder
 """)
 
-net_mem_map = pd.NetworkDiagram(
-    width=pn.CW,
+net_mem_map = ed.NetworkDiagram(
+    width=en.CW,
     height=260,
     theme=diag_theme,
     caption="Fig 3: Memory address map -- CPU, address decoder, RAM and ROM chips",
@@ -559,30 +559,30 @@ net_mem_map.link("cpu", "databus", label="Data Bus")
 net_mem_map.link("ram1", "databus")
 net_mem_map.link("ram2", "databus")
 net_mem_map.link("rom", "databus")
-pn.story.extend(net_mem_map.as_flowable())
+en.story.extend(net_mem_map.as_flowable())
 
-pn.tip(
+en.tip(
     "Memory address map: high-order address bits go to address decoder (chip select). "
     "Low-order bits go directly to chip address inputs. "
     "Example: 128-byte chip needs 7 address bits (2^7=128). "
     "RAM/ROM distinction: one address bit differentiates RAM block from ROM block. "
     "Total address bits = log2(total memory size in bytes)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.6  AUXILIARY MEMORY
 # =============================================================================
-pn.chap_box("4.6  Auxiliary Memory")
-pn.section("Purpose")
-pn.definition(
+en.chap_box("4.6  Auxiliary Memory")
+en.section("Purpose")
+en.definition(
     "<b>Auxiliary Memory (Secondary Storage):</b> Non-volatile, large-capacity storage "
     "outside the CPU and main memory. Used to store programs and data that are too large "
     "to fit in main memory or that must be retained when power is removed. Access is much "
     "slower than main memory. Data must be loaded into RAM before the CPU can process it."
 )
 
-pn.info_table(
+en.info_table(
     ["Type", "Technology", "Access Method", "Capacity", "Speed", "Use Case"],
     [
         [
@@ -620,8 +620,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Magnetic Disk Structure")
-pn.code_block("""
+en.section("Magnetic Disk Structure")
+en.code_block("""
  MAGNETIC DISK KEY CONCEPTS:
  ======================================================
  Physical structure:
@@ -643,14 +643,14 @@ pn.code_block("""
    One full rotation: 1/120 = 8.33 ms
    Average rotational latency: 8.33/2 = 4.17 ms
 """)
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.7  ASSOCIATIVE MEMORY (CAM)
 # =============================================================================
-pn.chap_box("4.7  Associative Memory (Content-Addressable Memory)")
-pn.section("What is Associative Memory?")
-pn.definition(
+en.chap_box("4.7  Associative Memory (Content-Addressable Memory)")
+en.section("What is Associative Memory?")
+en.definition(
     "<b>Associative Memory (Content-Addressable Memory -- CAM):</b> A memory unit "
     "accessed by the <b>content</b> of the data rather than by a specific address or "
     "location. When a search key (argument) is presented, all words in memory are "
@@ -659,8 +659,8 @@ pn.definition(
     "be read out. CAM is used for TLBs, network routing tables, and cache tag arrays."
 )
 
-pn.section("Hardware Organisation")
-pn.bullet(
+en.section("Hardware Organisation")
+en.bullet(
     [
         "<b>Memory Array:</b> m words, each n bits wide.",
         "<b>Argument Register (A):</b> n-bit register holding the search key.",
@@ -670,7 +670,7 @@ pn.bullet(
     ]
 )
 
-pn.code_block("""
+en.code_block("""
  ASSOCIATIVE MEMORY OPERATION EXAMPLE:
  ======================================================
  Argument Register A = 1 1 0 1 1  0 1 0
@@ -691,8 +691,8 @@ pn.code_block("""
    Usually the match register selects which word to write.
 """)
 
-pn.section("Associative vs Random-Access Memory")
-pn.info_table(
+en.section("Associative vs Random-Access Memory")
+en.info_table(
     ["Property", "RAM (Address-Accessed)", "CAM (Content-Accessed)"],
     [
         [
@@ -719,20 +719,20 @@ pn.info_table(
         ],
     ],
 )
-pn.tip(
+en.tip(
     "CAM = Content-Addressable Memory. Search by DATA, not by address. "
     "Argument register: search key. Key register: mask (1=compare, 0=don't care). "
     "Match register: one bit per word; 1=match. "
     "Used in TLBs and cache tag arrays where fast parallel lookup is essential."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.8  CACHE MEMORY
 # =============================================================================
-pn.chap_box("4.8  Cache Memory -- Concept and Performance")
-pn.section("Why Cache?")
-pn.definition(
+en.chap_box("4.8  Cache Memory -- Concept and Performance")
+en.section("Why Cache?")
+en.definition(
     "<b>Cache Memory:</b> A small, fast SRAM memory placed between the CPU and the "
     "larger, slower DRAM main memory. When the CPU requests a word, the cache controller "
     "first checks if the word is in cache (a <b>cache hit</b>). If yes, the word is "
@@ -740,20 +740,20 @@ pn.definition(
     "is fetched from main memory AND a full <b>cache line</b> (block of 16-64 bytes) "
     "is loaded into cache for future use."
 )
-pn.body(
+en.body(
     "Cache works because of the principle of locality of reference. When the CPU fetches "
     "a word from main memory on a miss, it loads an entire <b>cache block</b> (e.g., 64 bytes) "
     "into a <b>cache line</b>. Future accesses to nearby addresses will find the data already "
     "in cache (spatial locality)."
 )
 
-pn.section("Hit Ratio and Average Access Time")
-pn.definition(
+en.section("Hit Ratio and Average Access Time")
+en.definition(
     "<b>Hit Ratio (h):</b> The fraction of all memory references that are found in cache. "
     "h = (number of cache hits) / (total memory references). "
     "Typical hit ratios: 0.85 to 0.99."
 )
-pn.code_block("""
+en.code_block("""
  AVERAGE ACCESS TIME FORMULA:
  ======================================================
  Let:
@@ -783,22 +783,22 @@ pn.code_block("""
    Tavg = Tavg(R)*PR + Tavg(W)*PW = 100*0.8 + 500*0.2 = 80 + 100 = 180 ns
    Average hit ratio = hR*PR + hW*PW = 0.9*0.8 + 0*0.2 = 0.72
 """)
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.9  DIRECT MAPPING
 # =============================================================================
-pn.chap_box("4.9  Cache Mapping -- Direct Mapping")
-pn.section("Concept")
-pn.definition(
+en.chap_box("4.9  Cache Mapping -- Direct Mapping")
+en.section("Concept")
+en.definition(
     "<b>Direct Mapping:</b> Each block of main memory is mapped to exactly ONE specific "
     "cache line. The cache line number is determined by: cache_line = block_number MOD "
     "number_of_cache_lines. If two blocks map to the same line and both are needed, "
     "they continuously replace each other (thrashing). Requires only one tag comparison."
 )
 
-pn.section("Address Partition")
-pn.frame_format(
+en.section("Address Partition")
+en.frame_format(
     "Direct Mapping -- Memory Address Partition",
     [
         ("TAG", "t bits"),
@@ -806,7 +806,7 @@ pn.frame_format(
         ("WORD (Offset)", "w bits"),
     ],
 )
-pn.code_block("""
+en.code_block("""
  DIRECT MAPPING ADDRESS FIELDS:
  ======================================================
  Word field (w bits):  Selects one word within the cache block.
@@ -832,8 +832,8 @@ pn.code_block("""
  DISADVANTAGE: Thrashing if two frequently used blocks map to same line.
 """)
 
-pn.section("Worked Example -- Direct Mapping")
-pn.code_block("""
+en.section("Worked Example -- Direct Mapping")
+en.code_block("""
  DIRECT MAPPING EXAMPLE (from Morris Mano):
  ======================================================
  Main memory: 4096 pages x 16 words = 65536 words total
@@ -859,8 +859,8 @@ pn.code_block("""
 """)
 
 # Direct mapping diagram
-net_direct = pd.NetworkDiagram(
-    width=pn.CW,
+net_direct = ed.NetworkDiagram(
+    width=en.CW,
     height=240,
     theme=diag_theme,
     caption="Fig 4: Direct mapping -- each MM block maps to exactly one cache line",
@@ -880,21 +880,21 @@ net_direct.link("cache", "cmp", label="stored tag")
 net_direct.link("addr", "cmp", label="TAG bits")
 net_direct.link("cmp", "hit", label="match")
 net_direct.link("cmp", "miss", label="mismatch")
-pn.story.extend(net_direct.as_flowable())
+en.story.extend(net_direct.as_flowable())
 
-pn.tip(
+en.tip(
     "Direct mapping: cache_line = block_number MOD number_of_lines. "
     "Address = [TAG | BLOCK | WORD]. BLOCK selects line; TAG identifies MM block. "
     "ONE comparison per lookup. Simple, fast, but susceptible to thrashing."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.10  ASSOCIATIVE MAPPING
 # =============================================================================
-pn.chap_box("4.10  Cache Mapping -- Associative Mapping")
-pn.section("Concept")
-pn.definition(
+en.chap_box("4.10  Cache Mapping -- Associative Mapping")
+en.section("Concept")
+en.definition(
     "<b>Associative (Fully-Associative) Mapping:</b> A main memory block can be placed "
     "in ANY cache line -- there is no fixed mapping. The tag of each cache line contains "
     "the full block number from main memory. To find a word, ALL cache tags are compared "
@@ -902,12 +902,12 @@ pn.definition(
     "conflicts. But expensive: requires a comparator for every cache line."
 )
 
-pn.section("Address Partition")
-pn.frame_format(
+en.section("Address Partition")
+en.frame_format(
     "Associative Mapping -- Memory Address Partition",
     [("TAG (full block number)", "t bits"), ("WORD (offset within block)", "w bits")],
 )
-pn.code_block("""
+en.code_block("""
  ASSOCIATIVE MAPPING ADDRESS FIELDS:
  ======================================================
  Word field (w bits): Same as direct -- selects word within block.
@@ -929,21 +929,21 @@ pn.code_block("""
    t = 12 bits (full 12-bit page number stored as tag)
    Address format: [ TAG(12) | WORD(4) ] = 16 bits
 """)
-pn.tip(
+en.tip(
     "Associative mapping: NO index field. Tag = full block number. "
     "Parallel CAM search of all tags simultaneously. "
     "Maximum flexibility -- no conflict misses. "
     "Hardware expensive -- 1 comparator per cache line. "
     "Used when cache is small or in TLBs."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.11  SET-ASSOCIATIVE MAPPING
 # =============================================================================
-pn.chap_box("4.11  Cache Mapping -- Set-Associative Mapping")
-pn.section("Concept")
-pn.definition(
+en.chap_box("4.11  Cache Mapping -- Set-Associative Mapping")
+en.section("Concept")
+en.definition(
     "<b>Set-Associative Mapping:</b> A compromise between direct mapping and fully "
     "associative mapping. The cache is divided into <b>sets</b>, each containing "
     "<b>k cache lines</b> (k-way set-associative). A main memory block is mapped "
@@ -952,12 +952,12 @@ pn.definition(
     "Only k tag comparisons are needed (k << number of lines)."
 )
 
-pn.section("Address Partition")
-pn.frame_format(
+en.section("Address Partition")
+en.frame_format(
     "Set-Associative Mapping -- Memory Address Partition",
     [("TAG", "t bits"), ("SET (index)", "s bits"), ("WORD (offset)", "w bits")],
 )
-pn.code_block("""
+en.code_block("""
  SET-ASSOCIATIVE MAPPING:
  ======================================================
  Word field (w bits):  Block size = 2^w words.
@@ -987,8 +987,8 @@ pn.code_block("""
  For a 4-way set-associative cache, each set has 4 lines -> 4 comparisons.
 """)
 
-pn.section("Comparison of Cache Mapping Methods")
-pn.info_table(
+en.section("Comparison of Cache Mapping Methods")
+en.info_table(
     ["Property", "Direct Mapping", "Associative Mapping", "Set-Associative"],
     [
         [
@@ -1037,8 +1037,8 @@ pn.info_table(
 )
 
 # Side-by-side mapping comparison stacks
-left_sa = pd.LayeredStack(
-    width=pn.CW * 0.44,
+left_sa = ed.LayeredStack(
+    width=en.CW * 0.44,
     height=180,
     theme=diag_theme,
     caption="2-Way Set-Associative (2 lines/set)",
@@ -1048,8 +1048,8 @@ left_sa.layer("Set 1 -- Line 0, Line 1", sublabel="2 comparisons for Set 1 looku
 left_sa.layer("Set 2 -- Line 0, Line 1", sublabel="2 comparisons for Set 2 lookup")
 left_sa.layer("...", sublabel="256 sets total (8-bit set index)")
 
-right_sa = pd.LayeredStack(
-    width=pn.CW * 0.44,
+right_sa = ed.LayeredStack(
+    width=en.CW * 0.44,
     height=180,
     theme=diag_theme,
     caption="4-Way Set-Associative (4 lines/set)",
@@ -1068,7 +1068,7 @@ tbl_sa = Table(
             ResponsiveDrawingFlowable(right_sa.drawing),
         ]
     ],
-    colWidths=[pn.CW * 0.48, pn.CW * 0.48],
+    colWidths=[en.CW * 0.48, en.CW * 0.48],
 )
 tbl_sa.setStyle(
     TableStyle(
@@ -1081,34 +1081,34 @@ tbl_sa.setStyle(
         ]
     )
 )
-pn.add(tbl_sa)
-pn.sp(6)
-pn.add(
+en.add(tbl_sa)
+en.sp(6)
+en.add(
     Paragraph(
         "Fig 5 (left): 2-way set-associative cache.  |  Fig 5 (right): 4-way set-associative cache.",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
 
-pn.tip(
+en.tip(
     "Set-associative: SET field selects set; TAG compares within set. "
     "k-way: k lines per set, k simultaneous comparisons. "
     "2-way SA: two blocks can share a set without conflict. "
     "Modern CPUs: L1 = 4-8 way, L2 = 8-16 way, L3 = 16-32 way set-associative."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.12  CACHE WRITE POLICY
 # =============================================================================
-pn.chap_box("4.12  Cache Write Policy")
-pn.section("The Cache Consistency Problem")
-pn.body(
+en.chap_box("4.12  Cache Write Policy")
+en.section("The Cache Consistency Problem")
+en.body(
     "When the CPU writes data, two copies can exist: one in cache and one in main memory. "
     "If these diverge, data inconsistency occurs. Three write policies manage this:"
 )
 
-pn.info_table(
+en.info_table(
     [
         "Policy",
         "Mechanism",
@@ -1145,7 +1145,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block("""
+en.code_block("""
  WRITE-THROUGH vs WRITE-BACK COMPARISON:
  ======================================================
  Scenario: CPU writes to location X repeatedly in a loop (1000 times)
@@ -1167,8 +1167,8 @@ pn.code_block("""
    Dirty=1: modified, cache has newer data than MM. MUST write back before eviction.
 """)
 
-fc_write = pd.Flowchart(
-    width=pn.CW,
+fc_write = ed.Flowchart(
+    width=en.CW,
     height=450,
     theme=diag_theme,
     caption="Fig 6: Write-back cache write policy flowchart",
@@ -1196,22 +1196,22 @@ fc_write.edge("wb", "fetch", orthogonal=True)
 fc_write.edge("fetch", "load")
 fc_write.edge("load", "done")
 fc_write.edge("upd_cache", "done", orthogonal=True)
-pn.story.extend(fc_write.as_flowable())
+en.story.extend(fc_write.as_flowable())
 
-pn.tip(
+en.tip(
     "Write-through: every write hits both cache AND main memory. Simple, slow. "
     "Write-back: write only cache (set dirty bit). Write to MM only on eviction. Fast. "
     "Dirty bit: 0=clean (MM up-to-date), 1=modified (cache newer than MM). "
     "Write-through preferred in multiprocessor systems (simpler coherence)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.13  CACHE PERFORMANCE
 # =============================================================================
-pn.chap_box("4.13  Cache Performance -- Worked Examples")
-pn.section("Performance Formulas")
-pn.code_block("""
+en.chap_box("4.13  Cache Performance -- Worked Examples")
+en.section("Performance Formulas")
+en.code_block("""
  CACHE PERFORMANCE KEY FORMULAS:
  ======================================================
  Hit ratio h = (number of hits) / (total accesses)
@@ -1255,14 +1255,14 @@ pn.code_block("""
    Tavg = 0.9*10 + 0.08*60 + 0.02*560
         = 9 + 4.8 + 11.2 = 25 ns
 """)
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.14  CACHE REPLACEMENT ALGORITHMS
 # =============================================================================
-pn.chap_box("4.14  Cache Replacement Algorithms")
-pn.section("Need for Replacement")
-pn.body(
+en.chap_box("4.14  Cache Replacement Algorithms")
+en.section("Need for Replacement")
+en.body(
     "When a cache miss occurs and the cache is full, an existing cache line must "
     "be replaced (evicted) to make room for the new block. For <b>direct-mapped</b> "
     "caches there is no choice -- the incoming block replaces whatever is in the "
@@ -1270,7 +1270,7 @@ pn.body(
     "a replacement policy must select which existing line to evict."
 )
 
-pn.info_table(
+en.info_table(
     ["Algorithm", "Rule", "Implementation", "Performance", "Notes"],
     [
         [
@@ -1311,8 +1311,8 @@ pn.info_table(
     ],
 )
 
-pn.section("LRU Example (2-way set-associative)")
-pn.code_block("""
+en.section("LRU Example (2-way set-associative)")
+en.code_block("""
  LRU REPLACEMENT EXAMPLE (2-way set-associative, Set 0):
  ======================================================
  Set 0 has 2 lines: Line A, Line B
@@ -1332,20 +1332,20 @@ pn.code_block("""
  Access 4 -- Block 3:  MISS. Evict B1 (first in).  Queue: [B2, B3]
  Result: Block 1 was just used but FIFO evicts it! (FIFO anomaly)
 """)
-pn.tip(
+en.tip(
     "LRU: evict least recently used. Best performance, needs usage tracking. "
     "FIFO: evict oldest loaded. Simple but ignores recent use. "
     "Optimal: evict least-soon-needed. Theoretical only. "
     "Random: surprisingly competitive with LRU in practice and simpler hardware."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.15  VIRTUAL MEMORY
 # =============================================================================
-pn.chap_box("4.15  Virtual Memory")
-pn.section("What is Virtual Memory?")
-pn.definition(
+en.chap_box("4.15  Virtual Memory")
+en.section("What is Virtual Memory?")
+en.definition(
     "<b>Virtual Memory:</b> A hardware and OS technique that gives each process the "
     "illusion of having a large, contiguous private address space (the <b>virtual address "
     "space</b> or <b>address space</b>) even though the physical main memory is smaller "
@@ -1353,15 +1353,15 @@ pn.definition(
     "virtual addresses to physical addresses on every memory access."
 )
 
-pn.section("Address Space vs Memory Space")
-pn.definition(
+en.section("Address Space vs Memory Space")
+en.definition(
     "<b>Virtual Address (Logical Address):</b> The address generated by the CPU / programmer. "
     "The set of all virtual addresses is the <b>address space</b> (size = N). "
     "<b>Physical Address:</b> The actual location in main memory. "
     "The set of all physical addresses is the <b>memory space</b> (size = M). "
     "Virtual memory allows N >> M -- the program can be LARGER than physical RAM."
 )
-pn.code_block("""
+en.code_block("""
  VIRTUAL MEMORY ADDRESS SPACE EXAMPLE (Morris Mano):
  ======================================================
  Main memory capacity: 32K words  -> physical address = 15 bits (2^15 = 32K)
@@ -1376,9 +1376,9 @@ pn.code_block("""
  Inactive pages reside in auxiliary memory (disk), fetched on demand (page fault).
 """)
 
-pn.section("Virtual-to-Physical Address Mapping Overview")
-fc_vm = pd.Flowchart(
-    width=pn.CW,
+en.section("Virtual-to-Physical Address Mapping Overview")
+fc_vm = ed.Flowchart(
+    width=en.CW,
     height=500,
     theme=diag_theme,
     caption="Fig 7: Virtual memory address translation flow",
@@ -1408,15 +1408,15 @@ fc_vm.edge("present", "pf", branch="no")
 fc_vm.edge("pf", "frame", orthogonal=True)
 fc_vm.edge("frame", "phys", orthogonal=True)
 fc_vm.edge("phys", "done")
-pn.story.extend(fc_vm.as_flowable())
-pn.br()
+en.story.extend(fc_vm.as_flowable())
+en.br()
 
 # =============================================================================
 #  4.16  ADDRESS MAPPING -- PAGING
 # =============================================================================
-pn.chap_box("4.16  Address Mapping -- Paging")
-pn.section("Paged Virtual Memory")
-pn.definition(
+en.chap_box("4.16  Address Mapping -- Paging")
+en.section("Paged Virtual Memory")
+en.definition(
     "<b>Paging:</b> Virtual memory is divided into fixed-size units called <b>pages</b>. "
     "Physical memory is divided into equal-size units called <b>frames (blocks)</b>. "
     "A page can be loaded into any free frame. A <b>page table</b> maps each page "
@@ -1424,8 +1424,8 @@ pn.definition(
     "stored in main memory (or a fast associative memory -- TLB)."
 )
 
-pn.section("Page Table Structure")
-pn.code_block("""
+en.section("Page Table Structure")
+en.code_block("""
  PAGING ADDRESS TRANSLATION:
  ======================================================
  Virtual Address: [ Page Number (p bits) | Page Offset (d bits) ]
@@ -1461,15 +1461,15 @@ pn.code_block("""
    Physical address: 00 | 0000100010 = frame 0, offset 34.
 """)
 
-pn.section("Page Fault Handling")
-pn.definition(
+en.section("Page Fault Handling")
+en.definition(
     "<b>Page Fault:</b> Occurs when the CPU references a virtual page whose presence "
     "bit is 0 (the page is not in main memory). The OS suspends the current process, "
     "locates the page on disk, finds (or frees) a physical frame, loads the page "
     "into that frame, updates the page table, and resumes the process. Page faults "
     "are handled by the OS through an interrupt-like mechanism called a <b>trap</b>."
 )
-pn.info_table(
+en.info_table(
     ["Step", "Action", "Handled By"],
     [
         [
@@ -1506,21 +1506,21 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.17  SEGMENTATION
 # =============================================================================
-pn.chap_box("4.17  Segmentation")
-pn.section("What is Segmentation?")
-pn.definition(
+en.chap_box("4.17  Segmentation")
+en.section("What is Segmentation?")
+en.definition(
     "<b>Segmentation:</b> A virtual memory technique that divides the program's address "
     "space into variable-size logical units called <b>segments</b> (e.g., code segment, "
     "data segment, stack segment, subroutine). Each segment has a name and a length. "
     "A <b>segment table</b> maps segment numbers to physical base addresses and lengths. "
     "Unlike paging (fixed-size), segments reflect the logical structure of the program."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Logical address:</b> (Segment number, Offset within segment).",
         "<b>Segment table entry:</b> Base address (where segment starts in physical memory) + Limit (segment length).",
@@ -1530,14 +1530,14 @@ pn.bullet(
     ]
 )
 
-pn.section("Segmented Paging (Combined)")
-pn.definition(
+en.section("Segmented Paging (Combined)")
+en.definition(
     "<b>Segmented Paging:</b> Combines segmentation and paging. The logical address "
     "is divided into three fields: Segment number, Page number within segment, and Word "
     "offset within page. A segment table points to a page table for each segment. "
     "The page table maps page numbers to frame numbers. Used in Intel x86 protected mode."
 )
-pn.code_block("""
+en.code_block("""
  SEGMENTED PAGING ADDRESS FORMAT:
  ======================================================
  Logical Address: [ Segment # | Page # | Word Offset ]
@@ -1555,14 +1555,14 @@ pn.code_block("""
    If (Segment #, Page #) found in TLB: only ONE memory access (the data).
    If not in TLB: full two-table lookup, then cache in TLB.
 """)
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.18  TLB -- TRANSLATION LOOKASIDE BUFFER
 # =============================================================================
-pn.chap_box("4.18  Translation Lookaside Buffer (TLB)")
-pn.section("Why TLB?")
-pn.definition(
+en.chap_box("4.18  Translation Lookaside Buffer (TLB)")
+en.section("Why TLB?")
+en.definition(
     "<b>TLB (Translation Lookaside Buffer):</b> A small, fast <b>associative memory</b> "
     "(CAM) that caches the most recently used page table entries. On every memory access, "
     "the TLB is searched in parallel for the current page number. If found (TLB hit), "
@@ -1570,14 +1570,14 @@ pn.definition(
     "table. If not found (TLB miss), the page table in main memory is accessed and the "
     "TLB is updated."
 )
-pn.body(
+en.body(
     "A TLB typically has 32-2048 entries. Each entry stores: "
     "Virtual Page Number (tag), Physical Frame Number (data), Valid bit, Dirty bit, "
     "and protection bits. TLB hit rates are typically 99%+."
 )
 
-pn.section("Effective Memory Access Time with TLB")
-pn.code_block("""
+en.section("Effective Memory Access Time with TLB")
+en.code_block("""
  TLB EFFECTIVE ACCESS TIME FORMULA:
  ======================================================
  Let:
@@ -1607,8 +1607,8 @@ pn.code_block("""
 """)
 
 # TLB architecture diagram
-net_tlb = pd.NetworkDiagram(
-    width=pn.CW,
+net_tlb = ed.NetworkDiagram(
+    width=en.CW,
     height=260,
     theme=diag_theme,
     caption="Fig 8: TLB architecture -- associative cache for page table entries",
@@ -1627,28 +1627,28 @@ net_tlb.link("cpu", "pt", label="miss: lookup page table")
 net_tlb.link("pt", "miss", label="frame #")
 net_tlb.link("miss", "tlb", label="update TLB")
 net_tlb.link("miss", "mm", label="access data")
-pn.story.extend(net_tlb.as_flowable())
+en.story.extend(net_tlb.as_flowable())
 
-pn.tip(
+en.tip(
     "TLB = fast CAM for page table entries. Hit rate typically > 99%. "
     "TLB hit: Ttlb + Tm (just data access). TLB miss: Ttlb + 2*Tm (page table + data). "
     "EAT = h*(Ttlb+Tm) + (1-h)*(Ttlb+2*Tm). "
     "TLB is flushed on context switch (process change) since virtual->physical mappings change."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.19  PAGE FAULT AND REPLACEMENT ALGORITHMS
 # =============================================================================
-pn.chap_box("4.19  Page Fault and Page Replacement Algorithms")
-pn.section("Page Replacement Overview")
-pn.body(
+en.chap_box("4.19  Page Fault and Page Replacement Algorithms")
+en.section("Page Replacement Overview")
+en.body(
     "When a page fault occurs and main memory is full, the OS must choose a "
     "<b>victim page</b> to evict from memory to disk to make room for the new page. "
     "The goal is to evict the page least likely to be referenced in the near future."
 )
 
-pn.info_table(
+en.info_table(
     ["Algorithm", "Policy", "Implementation", "Property"],
     [
         [
@@ -1684,8 +1684,8 @@ pn.info_table(
     ],
 )
 
-pn.section("FIFO and LRU Worked Example")
-pn.code_block("""
+en.section("FIFO and LRU Worked Example")
+en.code_block("""
  PAGE REPLACEMENT EXAMPLE (3 frames, reference string: 1,2,3,4,1,2,5,1,2,3,4,5)
  ======================================================
 
@@ -1723,22 +1723,22 @@ pn.code_block("""
      5     | [3,4,5]           | YES         | evict 2 (LRU)
  Total LRU page faults: 10 (for this string; LRU is better on average)
 """)
-pn.tip(
+en.tip(
     "Page replacement: choose victim when frames are full and page fault occurs. "
     "FIFO: evict oldest loaded -- simple, may thrash. "
     "LRU: evict least recently used -- best practical. "
     "Optimal: evict least-soon-needed -- theoretical, impossible online. "
     "Belady's Anomaly: only FIFO can have MORE page faults with MORE frames."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.20  QUICK REVISION SUMMARY
 # =============================================================================
-pn.part_box("UNIT IV -- QUICK REVISION SUMMARY")
-pn.chap_box("Key Concepts at a Glance")
+en.part_box("UNIT IV -- QUICK REVISION SUMMARY")
+en.chap_box("Key Concepts at a Glance")
 
-pn.info_table(
+en.info_table(
     ["Topic", "Key Point to Remember"],
     [
         [
@@ -1850,7 +1850,7 @@ pn.info_table(
     ],
 )
 
-pn.highlight(
+en.highlight(
     "<b>UNIT IV EXAM BLUEPRINT:</b>  "
     "2-mark: Differentiate SRAM and DRAM. Define hit ratio. "
     "State write-through and write-back. Define page fault. Define TLB.  "
@@ -1867,20 +1867,20 @@ pn.highlight(
     "Explain segmented paging with logical address format and translation.",
 )
 
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.0)
-pn.sp(6)
-pn.add(
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.0)
+en.sp(6)
+en.add(
     Paragraph(
         "Computer Architecture IT-404 Unit IV -- Bharat Dangi  |  UIT-RGPV (Autonomous) Bhopal | Semester IV",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
 
 # =============================================================================
 #  BUILD PDF
 # =============================================================================
-pn.build_doc(
+en.build_doc(
     "CA_Unit4_Notes.pdf",
     title="Computer Architecture - Unit IV Notes",
     author="Bharat Dangi",

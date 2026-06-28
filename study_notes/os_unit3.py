@@ -11,8 +11,8 @@ Output: OS_Unit3_Notes.pdf  |  OS_Unit3_Notes_html/  |  OS_Unit3_Notes.pptx
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 from reportlab.platypus import Table
 
 # =============================================================================
@@ -20,40 +20,40 @@ from reportlab.platypus import Table
 #  Using SUNSET_DARK — warm amber/orange accent on deep dark bg
 #  Distinct from Unit I (CATPPUCCIN_MOCHA) and Unit II (FOREST_DARK)
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.SUNSET_DARK)
+en.set_story([])
+en.set_theme(en.SUNSET_DARK)
 
-pn.set_global_footer(
+en.set_global_footer(
     left="Operating Systems (IT412) — Unit III",
     right="UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
     show_page_num=True,
 )
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(26)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(26)
 
-pn.cover_card(
+en.cover_card(
     "OPERATING SYSTEMS",
     "Unit III — Deadlock & Memory Management",
 )
-# pn.cover_subtitle(
+# en.cover_subtitle(
 #     [
 #         "Subject Code: IT412  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
 #         "Deadlock: Conditions, RAG, Prevention, Avoidance (Banker's Algorithm),",
 #         "Detection, Recovery — Memory Management: Binding, MMU, Contiguous Allocation",
 #     ]
 # )
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(8)
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(8)
 
-pn.info_table(
+en.info_table(
     ["Section", "Syllabus Topics Covered"],
     [
         ["3.1  Deadlock — Introduction", "Definition, system model, resource types"],
@@ -109,22 +109,22 @@ pn.info_table(
 # =============================================================================
 #  TABLE OF CONTENTS
 # =============================================================================
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  PART DIVIDER
 # =============================================================================
-pn.part_box("UNIT III — PART A: DEADLOCK")
+en.part_box("UNIT III — PART A: DEADLOCK")
 
 # =============================================================================
 #  3.1  DEADLOCK — INTRODUCTION
 # =============================================================================
-pn.chap_box("3.1  Deadlock — Introduction")
+en.chap_box("3.1  Deadlock — Introduction")
 
-pn.section("What is a Deadlock?")
-pn.definition(
+en.section("What is a Deadlock?")
+en.definition(
     "<b>Deadlock:</b> A situation in a multiprogramming system where two or more "
     "processes are permanently blocked, each waiting for a resource that is held by "
     "another process in the set. No process in the set can make progress — "
@@ -135,12 +135,12 @@ pn.definition(
     "the other reversing, and neither is willing to reverse."
 )
 
-pn.section("System Model")
-pn.body(
+en.section("System Model")
+en.body(
     "A system consists of a finite number of resources distributed among competing processes. "
     "Resources are classified into types: CPU cycles, memory space, I/O devices, semaphores, files."
 )
-pn.info_table(
+en.info_table(
     ["Resource Concept", "Description"],
     [
         [
@@ -171,26 +171,26 @@ pn.info_table(
     ],
 )
 
-pn.tip(
+en.tip(
     "Deadlock involves ONLY non-preemptable resources. "
     "Preemptable resources can always be reclaimed by the OS, preventing deadlock."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.2  NECESSARY CONDITIONS FOR DEADLOCK
 # =============================================================================
-pn.chap_box("3.2  Necessary Conditions for Deadlock")
+en.chap_box("3.2  Necessary Conditions for Deadlock")
 
-pn.section("Coffman's Four Necessary Conditions (1971)")
-pn.definition(
+en.section("Coffman's Four Necessary Conditions (1971)")
+en.definition(
     "<b>Coffman's Conditions:</b> Deadlock can occur if and only if ALL FOUR of the "
     "following conditions hold simultaneously. If even one condition is absent, "
     "deadlock cannot occur. These conditions were identified by Coffman, Elphick, "
     "and Shoshani in 1971 and form the theoretical foundation for all deadlock handling."
 )
 
-pn.info_table(
+en.info_table(
     ["Condition", "Definition", "Example"],
     [
         [
@@ -227,15 +227,15 @@ pn.info_table(
     ],
 )
 
-pn.warning(
+en.warning(
     "ALL FOUR conditions must hold simultaneously for deadlock to occur. "
     "Deadlock prevention works by ensuring at least one condition can NEVER hold. "
     "This is the key insight for deadlock prevention strategies."
 )
 
 # State machine showing deadlock cycle
-sm_dl = pd.StateMachine(
-    width=pn.CW * 0.72,
+sm_dl = ed.StateMachine(
+    width=en.CW * 0.72,
     height=200,
     theme=diag_theme,
     caption="Fig 3.1: Circular wait — the fourth condition shown as a process cycle",
@@ -248,16 +248,16 @@ sm_dl.transition("p0", "p1", label="waits for R1")
 sm_dl.transition("p1", "p2", label="waits for R2")
 sm_dl.transition("p2", "p3", label="waits for R3")
 sm_dl.transition("p3", "p0", label="waits for R0")
-pn.story.extend(sm_dl.as_flowable())
-pn.br()
+en.story.extend(sm_dl.as_flowable())
+en.br()
 
 # =============================================================================
 #  3.3  RESOURCE ALLOCATION GRAPH (RAG)
 # =============================================================================
-pn.chap_box("3.3  Resource Allocation Graph (RAG)")
+en.chap_box("3.3  Resource Allocation Graph (RAG)")
 
-pn.section("RAG — Definition and Notation")
-pn.definition(
+en.section("RAG — Definition and Notation")
+en.definition(
     "<b>Resource Allocation Graph (RAG):</b> A directed graph used to precisely describe "
     "the state of resource allocation in a system and to detect deadlock. "
     "Proposed by Holt (1972). "
@@ -268,8 +268,8 @@ pn.definition(
     "<b>Assignment edge</b> (R → P): An instance of resource R is assigned to process P."
 )
 
-pn.section("RAG Rules for Deadlock Detection")
-pn.info_table(
+en.section("RAG Rules for Deadlock Detection")
+en.info_table(
     ["RAG Scenario", "Conclusion"],
     [
         [
@@ -288,16 +288,16 @@ pn.info_table(
     ],
 )
 
-pn.section("RAG Example — Deadlock Case")
-pn.body(
+en.section("RAG Example — Deadlock Case")
+en.body(
     "Three processes P1, P2, P3. Three resource types R1 (1 instance), "
     "R2 (2 instances), R3 (1 instance). "
     "Assignments: R1→P1, R2→P1, R2→P2, R3→P3. "
     "Requests: P1→R2 (waiting), P2→R3 (waiting), P3→R1 (waiting)."
 )
 
-net_rag = pd.NetworkDiagram(
-    width=pn.CW,
+net_rag = ed.NetworkDiagram(
+    width=en.CW,
     height=350,
     theme=diag_theme,
     caption="Fig 3.2: RAG showing a deadlock — cycle P1→R2→P2→R3→P3→R1→P1",
@@ -315,25 +315,25 @@ net_rag.link("r2", "p2", label="assigned")
 net_rag.link("p2", "r3", label="requests")
 net_rag.link("r3", "p3", label="assigned")
 net_rag.link("p3", "r1", label="requests")
-pn.story.extend(net_rag.as_flowable())
+en.story.extend(net_rag.as_flowable())
 
-pn.section("RAG Example — No Deadlock (Cycle but Multiple Instances)")
-pn.body(
+en.section("RAG Example — No Deadlock (Cycle but Multiple Instances)")
+en.body(
     "A cycle in a RAG does NOT guarantee deadlock when resource types have multiple instances. "
     "If some process outside the cycle can complete and release resources, "
     "the cycle can be broken. "
     "Example: R2 has 2 instances. P3 holds one instance and is not in any cycle. "
     "P3 can complete → release R2 → P1 or P2 can proceed → cycle breaks → no deadlock."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.4  DEADLOCK PREVENTION
 # =============================================================================
-pn.chap_box("3.4  Deadlock Prevention")
+en.chap_box("3.4  Deadlock Prevention")
 
-pn.section("Strategy: Ensure at Least One Condition Cannot Hold")
-pn.definition(
+en.section("Strategy: Ensure at Least One Condition Cannot Hold")
+en.definition(
     "<b>Deadlock Prevention:</b> A set of methods that ensure at least one of the "
     "four necessary conditions for deadlock can never hold. "
     "By invalidating one condition system-wide, deadlock becomes structurally impossible. "
@@ -341,7 +341,7 @@ pn.definition(
     "which may reduce system efficiency or throughput."
 )
 
-pn.info_table(
+en.info_table(
     ["Condition to Attack", "Prevention Method", "How It Works", "Drawbacks"],
     [
         [
@@ -384,21 +384,21 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "Most commonly asked: Explain deadlock prevention by attacking the circular wait condition. "
     "Answer: Assign a unique total ordering to all resource types. "
     "All processes must request resources in increasing order of their assigned numbers. "
     "This makes a circular wait structurally impossible."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.5  DEADLOCK AVOIDANCE — BANKER'S ALGORITHM
 # =============================================================================
-pn.chap_box("3.5  Deadlock Avoidance — Banker's Algorithm")
+en.chap_box("3.5  Deadlock Avoidance — Banker's Algorithm")
 
-pn.section("Safe State — The Core Concept")
-pn.definition(
+en.section("Safe State — The Core Concept")
+en.definition(
     "<b>Safe State:</b> A system state is safe if there exists a <b>safe sequence</b> — "
     "an ordering of all processes such that for each process Pi in the sequence, "
     "the resources Pi still needs can be satisfied by the currently available resources "
@@ -409,7 +409,7 @@ pn.definition(
     "resource requests that keep the system safe."
 )
 
-pn.info_table(
+en.info_table(
     ["State", "Property"],
     [
         [
@@ -428,8 +428,8 @@ pn.info_table(
 )
 
 # Diagram: relationship between safe, unsafe, deadlock
-net_safe = pd.NetworkDiagram(
-    width=pn.CW,
+net_safe = ed.NetworkDiagram(
+    width=en.CW,
     height=160,
     theme=diag_theme,
     caption="Fig 3.3: Safe ⊂ Unsafe ⊂ All states — avoidance keeps system in safe region",
@@ -439,10 +439,10 @@ net_safe.node("unsafe", "UNSAFE\nStates", x=245, y=80, kind="generic")
 net_safe.node("dl", "DEADLOCK\nStates", x=365, y=80, kind="firewall")
 net_safe.link("safe", "unsafe", label="resource\ngrant may move")
 net_safe.link("unsafe", "dl", label="processes\nblock")
-pn.story.extend(net_safe.as_flowable())
+en.story.extend(net_safe.as_flowable())
 
-pn.section("Banker's Algorithm — Data Structures")
-pn.definition(
+en.section("Banker's Algorithm — Data Structures")
+en.definition(
     "<b>Banker's Algorithm (Dijkstra, 1965):</b> A deadlock avoidance algorithm for systems "
     "where each process declares its MAXIMUM resource needs in advance. "
     "Named after a bank that ensures it never allocates cash such that it can no longer "
@@ -450,10 +450,10 @@ pn.definition(
     "request if the resulting state remains safe."
 )
 
-pn.body(
+en.body(
     "For n processes and m resource types, the algorithm uses these data structures:"
 )
-pn.info_table(
+en.info_table(
     ["Structure", "Size", "Meaning"],
     [
         [
@@ -479,8 +479,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Safety Algorithm (Check if State is Safe)")
-pn.code_block(
+en.section("Safety Algorithm (Check if State is Safe)")
+en.code_block(
     """/* Safety Algorithm -- O(n^2 * m) */
 
 Work[m]   = Available[m];          /* copy of available resources */
@@ -508,8 +508,8 @@ else
     lang="c",
 )
 
-pn.section("Resource-Request Algorithm (Process Pi Requests Resources)")
-pn.code_block(
+en.section("Resource-Request Algorithm (Process Pi Requests Resources)")
+en.code_block(
     """/* Resource-Request Algorithm for process Pi */
 /* Request[i][m] = resource request vector for Pi */
 
@@ -539,12 +539,12 @@ if (Safety_Algorithm() == SAFE) {
     lang="c",
 )
 
-pn.section("Banker's Algorithm — Worked Example")
-pn.body(
+en.section("Banker's Algorithm — Worked Example")
+en.body(
     "5 processes (P0–P4), 3 resource types: A (10 instances), B (5 instances), C (7 instances). "
     "Current snapshot at time T0:"
 )
-pn.info_table(
+en.info_table(
     ["Process", "Allocation (A B C)", "Max (A B C)", "Need (A B C)"],
     [
         ["P0", "0  1  0", "7  5  3", "7  4  3"],
@@ -554,10 +554,10 @@ pn.info_table(
         ["P4", "0  0  2", "4  3  3", "4  3  1"],
     ],
 )
-pn.body(
+en.body(
     "Available = A:3, B:3, C:2  (Total − Sum of Allocation = [10,5,7] − [7,2,5] = [3,3,2])."
 )
-pn.info_table(
+en.info_table(
     ["Step", "Work (A B C)", "Process Run", "Reason Need ≤ Work?", "Finish"],
     [
         [
@@ -597,14 +597,14 @@ pn.info_table(
         ],
     ],
 )
-pn.tip(
+en.tip(
     "Safe sequence: P1 → P3 → P4 → P0 → P2. "
     "The system is in a SAFE state. "
     "All Finish[i] = true at the end, confirming safety."
 )
 
-pn.section("Banker's Algorithm — Request Example")
-pn.body(
+en.section("Banker's Algorithm — Request Example")
+en.body(
     "Now suppose P1 requests (1, 0, 2). "
     "Step 1: Request (1,0,2) ≤ Need[P1] (1,2,2) ✓. "
     "Step 2: Request (1,0,2) ≤ Available (3,3,2) ✓. "
@@ -613,7 +613,7 @@ pn.body(
     "Result: GRANT the request."
 )
 
-pn.info_table(
+en.info_table(
     ["Algorithm", "Requirement", "Pros", "Cons"],
     [
         [
@@ -625,15 +625,15 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.6  DEADLOCK DETECTION
 # =============================================================================
-pn.chap_box("3.6  Deadlock Detection")
+en.chap_box("3.6  Deadlock Detection")
 
-pn.section("When to Use Detection Instead of Prevention/Avoidance")
-pn.definition(
+en.section("When to Use Detection Instead of Prevention/Avoidance")
+en.definition(
     "<b>Deadlock Detection:</b> Allow the system to enter a deadlocked state, "
     "then detect it and recover. Used when the overhead of prevention/avoidance is "
     "too high, or when deadlock is expected to be rare. "
@@ -641,8 +641,8 @@ pn.definition(
     "(2) a recovery scheme to resolve the deadlock."
 )
 
-pn.section("Detection — Single Instance of Each Resource Type")
-pn.definition(
+en.section("Detection — Single Instance of Each Resource Type")
+en.definition(
     "<b>Wait-For Graph:</b> A simplified version of the RAG for single-instance resources. "
     "Obtained by collapsing resource nodes — only process nodes remain. "
     "An edge Pi → Pj exists if Pi is waiting for a resource held by Pj. "
@@ -650,8 +650,8 @@ pn.definition(
     "The OS periodically runs a cycle-detection algorithm (O(n²)) on this graph."
 )
 
-net_wfg = pd.NetworkDiagram(
-    width=pn.CW,
+net_wfg = ed.NetworkDiagram(
+    width=en.CW,
     height=240,
     theme=diag_theme,
     caption="Fig 3.4: Wait-for graph — cycle P1→P2→P3→P1 indicates deadlock",
@@ -664,19 +664,19 @@ net_wfg.link("p1", "p2", label="waits for")
 net_wfg.link("p2", "p3", label="waits for")
 net_wfg.link("p3", "p1", label="waits for")
 net_wfg.link("p4", "p1", label="waits for")
-pn.story.extend(net_wfg.as_flowable())
-pn.body(
+en.story.extend(net_wfg.as_flowable())
+en.body(
     "P1, P2, P3 are deadlocked (cycle). P4 is also blocked waiting for P1, "
     "but P4 is not part of the deadlock cycle itself."
 )
 
-pn.section("Detection — Multiple Instances of Each Resource Type")
-pn.definition(
+en.section("Detection — Multiple Instances of Each Resource Type")
+en.definition(
     "<b>Detection Algorithm for Multiple Instances:</b> Similar in structure to the Banker's "
     "Safety Algorithm but uses the ACTUAL current allocation (not maximum needs). "
     "Uses: Available, Allocation, and Request (= current actual requests, not maximum need)."
 )
-pn.code_block(
+en.code_block(
     """/* Deadlock Detection Algorithm -- Multiple Resource Instances */
 /* O(n^2 * m) */
 
@@ -703,8 +703,8 @@ if (some Finish[i] == false)
     lang="c",
 )
 
-pn.section("When and How Often to Run the Detection Algorithm?")
-pn.info_table(
+en.section("When and How Often to Run the Detection Algorithm?")
+en.info_table(
     ["Frequency Strategy", "Pros", "Cons"],
     [
         [
@@ -724,15 +724,15 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.7  DEADLOCK RECOVERY
 # =============================================================================
-pn.chap_box("3.7  Deadlock Recovery")
+en.chap_box("3.7  Deadlock Recovery")
 
-pn.section("Recovery Strategies")
-pn.definition(
+en.section("Recovery Strategies")
+en.definition(
     "<b>Deadlock Recovery:</b> Once a deadlock is detected, the OS must break it. "
     "There are two main approaches: (1) <b>Process Termination</b> — abort one or more processes "
     "to break the circular wait. (2) <b>Resource Preemption</b> — forcibly take resources from "
@@ -740,8 +740,8 @@ pn.definition(
     "Both approaches have costs and trade-offs."
 )
 
-pn.section("Method 1: Process Termination")
-pn.info_table(
+en.section("Method 1: Process Termination")
+en.info_table(
     ["Option", "Description", "Pros", "Cons"],
     [
         [
@@ -760,10 +760,10 @@ pn.info_table(
         ],
     ],
 )
-pn.body(
+en.body(
     "When aborting one process at a time, the OS uses these criteria to choose the victim:"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Process priority:</b> Abort the lowest-priority process first.",
         "<b>CPU time used:</b> Abort the process that has used the least CPU time (least work lost).",
@@ -774,8 +774,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Method 2: Resource Preemption")
-pn.info_table(
+en.section("Method 2: Resource Preemption")
+en.info_table(
     ["Issue", "Consideration"],
     [
         [
@@ -798,8 +798,8 @@ pn.info_table(
     ],
 )
 
-fc_recovery = pd.Flowchart(
-    width=pn.CW * 0.70,
+fc_recovery = ed.Flowchart(
+    width=en.CW * 0.70,
     height=300,
     theme=diag_theme,
     caption="Fig 3.5: Deadlock recovery decision flowchart",
@@ -818,10 +818,10 @@ fc_recovery.edge("abort_all", "resolved")
 fc_recovery.edge("select_victim", "preempt")
 fc_recovery.edge("preempt", "rollback")
 fc_recovery.edge("rollback", "resolved")
-pn.story.extend(fc_recovery.as_flowable())
+en.story.extend(fc_recovery.as_flowable())
 
-pn.section("Deadlock Handling — Strategy Comparison")
-pn.info_table(
+en.section("Deadlock Handling — Strategy Comparison")
+en.info_table(
     ["Strategy", "Approach", "Cost", "Used In"],
     [
         [
@@ -850,20 +850,20 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  PART DIVIDER
 # =============================================================================
-pn.part_box("UNIT III — PART B: MEMORY MANAGEMENT")
+en.part_box("UNIT III — PART B: MEMORY MANAGEMENT")
 
 # =============================================================================
 #  3.8  MEMORY MANAGEMENT INTRODUCTION
 # =============================================================================
-pn.chap_box("3.8  Introduction to Memory Management")
+en.chap_box("3.8  Introduction to Memory Management")
 
-pn.section("Why Memory Management?")
-pn.definition(
+en.section("Why Memory Management?")
+en.definition(
     "<b>Memory Management:</b> The OS subsystem responsible for managing the hierarchy "
     "of memory in a computer system. Its goals are: "
     "(1) <b>Protection:</b> Ensure one process cannot access another's memory. "
@@ -873,9 +873,9 @@ pn.definition(
     "(5) <b>Physical Organization:</b> Manage the transfer of information between main memory and secondary storage."
 )
 
-pn.section("Memory Hierarchy")
-stack_mem = pd.LayeredStack(
-    width=pn.CW * 0.55,
+en.section("Memory Hierarchy")
+stack_mem = ed.LayeredStack(
+    width=en.CW * 0.55,
     height=230,
     theme=diag_theme,
     caption="Fig 3.6: Memory hierarchy — speed vs capacity trade-off",
@@ -887,10 +887,10 @@ stack_mem.layer("SSD / Flash Storage", sublabel="0.1 ms  |  128 GB–4 TB")
 stack_mem.layer(
     "HDD / Magnetic Disk", sublabel="5–15 ms  |  1–20 TB  |  Slowest, cheapest"
 )
-pn.story.extend(stack_mem.as_flowable())
+en.story.extend(stack_mem.as_flowable())
 
-pn.section("Memory Terminology")
-pn.info_table(
+en.section("Memory Terminology")
+en.info_table(
     ["Term", "Definition"],
     [
         [
@@ -920,22 +920,22 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.9  ADDRESS BINDING
 # =============================================================================
-pn.chap_box("3.9  Address Binding")
+en.chap_box("3.9  Address Binding")
 
-pn.section("What is Address Binding?")
-pn.definition(
+en.section("What is Address Binding?")
+en.definition(
     "<b>Address Binding:</b> The process of mapping instructions and data to actual memory addresses. "
     "A program typically uses symbolic addresses in source code (variable names). "
     "These are bound (mapped) to actual numeric addresses at different stages. "
     "The binding can happen at three different times in a program's lifecycle."
 )
 
-pn.info_table(
+en.info_table(
     ["Binding Time", "When It Occurs", "Description", "Flexibility"],
     [
         [
@@ -970,8 +970,8 @@ pn.info_table(
     ],
 )
 
-fc_binding = pd.Flowchart(
-    width=pn.CW,
+fc_binding = ed.Flowchart(
+    width=en.CW,
     height=280,
     theme=diag_theme,
     caption="Fig 3.7: Address binding stages from source code to execution",
@@ -991,16 +991,16 @@ fc_binding.edge("src", "compile")
 fc_binding.edge("compile", "link")
 fc_binding.edge("link", "load")
 fc_binding.edge("load", "exec")
-pn.story.extend(fc_binding.as_flowable())
-pn.br()
+en.story.extend(fc_binding.as_flowable())
+en.br()
 
 # =============================================================================
 #  3.10  LOGICAL VS PHYSICAL ADDRESS, MMU
 # =============================================================================
-pn.chap_box("3.10  Logical vs Physical Address & MMU")
+en.chap_box("3.10  Logical vs Physical Address & MMU")
 
-pn.section("Logical Address vs Physical Address")
-pn.definition(
+en.section("Logical Address vs Physical Address")
+en.definition(
     "<b>Logical Address:</b> The address generated by the CPU during program execution. "
     "Also called a <b>virtual address</b>. The program only ever sees logical addresses — "
     "it has no knowledge of where in physical RAM it is located. "
@@ -1010,7 +1010,7 @@ pn.definition(
     "are the same. At execution-time binding, they differ — the MMU translates."
 )
 
-pn.info_table(
+en.info_table(
     ["Property", "Logical Address", "Physical Address"],
     [
         [
@@ -1033,8 +1033,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Memory Management Unit (MMU)")
-pn.definition(
+en.section("Memory Management Unit (MMU)")
+en.definition(
     "<b>MMU (Memory Management Unit):</b> A hardware device (often on-chip with the CPU) "
     "that maps logical addresses to physical addresses at runtime. "
     "Every memory access by the CPU goes through the MMU. "
@@ -1043,8 +1043,8 @@ pn.definition(
     "This allows the OS to place a process anywhere in RAM — just update the base register."
 )
 
-seq_mmu = pd.SequenceDiagram(
-    width=pn.CW,
+seq_mmu = ed.SequenceDiagram(
+    width=en.CW,
     height=220,
     theme=diag_theme,
     caption="Fig 3.8: MMU address translation — logical to physical",
@@ -1066,10 +1066,10 @@ seq_mmu.message("ram", "mmu", "Data at address 14346", arrow="dashed")
 seq_mmu.deactivate("ram")
 seq_mmu.message("mmu", "cpu", "Return data to CPU", arrow="dashed")
 seq_mmu.deactivate("mmu")
-pn.story.extend(seq_mmu.as_flowable())
+en.story.extend(seq_mmu.as_flowable())
 
-pn.section("Base and Limit Registers")
-pn.definition(
+en.section("Base and Limit Registers")
+en.definition(
     "<b>Base Register:</b> Holds the smallest legal physical memory address for the process. "
     "<b>Limit Register:</b> Contains the size (length) of the process's address space. "
     "<b>Address validation:</b> If logical address ≥ limit → trap to OS (memory protection violation). "
@@ -1078,25 +1078,25 @@ pn.definition(
     "User mode programs cannot modify base/limit registers (privileged instructions)."
 )
 
-pn.formula_block(
+en.formula_block(
     r"\text{Physical Address} = \text{Base Register} + \text{Logical Address}"
 )
-pn.formula_block(r"\text{Valid if: Logical Address} < \text{Limit Register}")
+en.formula_block(r"\text{Valid if: Logical Address} < \text{Limit Register}")
 
-pn.note(
+en.note(
     "The base-limit register scheme is the foundation of contiguous memory allocation. "
     "Modern systems use paging and segmentation (Unit IV) which extend this concept "
     "to non-contiguous allocation with page tables instead of a single base register."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.11  CONTIGUOUS MEMORY ALLOCATION
 # =============================================================================
-pn.chap_box("3.11  Contiguous Memory Allocation")
+en.chap_box("3.11  Contiguous Memory Allocation")
 
-pn.section("What is Contiguous Allocation?")
-pn.definition(
+en.section("What is Contiguous Allocation?")
+en.definition(
     "<b>Contiguous Memory Allocation:</b> Each process is allocated a single, "
     "contiguous (uninterrupted) block of physical memory. "
     "The process occupies one region of RAM from start address to end address with "
@@ -1104,8 +1104,8 @@ pn.definition(
     "Simple to implement and manage, but suffers from fragmentation problems."
 )
 
-pn.section("Single-Partition Allocation")
-pn.definition(
+en.section("Single-Partition Allocation")
+en.definition(
     "<b>Single-Partition Allocation:</b> One user process in memory at a time. "
     "Memory is divided into two regions: OS (resident in low memory at fixed address) "
     "and user process (occupies all remaining memory). "
@@ -1114,8 +1114,8 @@ pn.definition(
     "Used in early batch systems (MS-DOS style)."
 )
 
-stack_single = pd.LayeredStack(
-    width=pn.CW * 0.45,
+stack_single = ed.LayeredStack(
+    width=en.CW * 0.45,
     height=190,
     theme=diag_theme,
     caption="Fig 3.9: Single-partition allocation",
@@ -1123,18 +1123,18 @@ stack_single = pd.LayeredStack(
 stack_single.layer("User Process", sublabel="One process at a time")
 stack_single.divider()
 stack_single.layer("OS Kernel", sublabel="Fixed low-memory region")
-pn.story.extend(stack_single.as_flowable())
+en.story.extend(stack_single.as_flowable())
 
-pn.section("Multiple-Partition Allocation")
-pn.definition(
+en.section("Multiple-Partition Allocation")
+en.definition(
     "<b>Multiple-Partition Allocation:</b> Memory is divided into multiple partitions "
     "so that several processes can reside in memory simultaneously (multiprogramming). "
     "Two approaches: <b>Fixed Partitioning</b> (partitions of fixed sizes decided at boot) "
     "and <b>Variable Partitioning</b> (partitions created dynamically to fit each process exactly)."
 )
 
-pn.section("Fixed Partitioning")
-pn.info_table(
+en.section("Fixed Partitioning")
+en.info_table(
     ["Property", "Fixed Partitioning"],
     [
         [
@@ -1161,15 +1161,15 @@ pn.info_table(
     ],
 )
 
-pn.section("Variable (Dynamic) Partitioning")
-pn.definition(
+en.section("Variable (Dynamic) Partitioning")
+en.definition(
     "<b>Variable Partitioning:</b> Partitions are created dynamically as processes arrive. "
     "Each process gets a partition of EXACTLY the size it needs. "
     "Initially, all memory is one large free block (hole). "
     "As processes are allocated and freed, holes of various sizes appear throughout memory. "
     "The OS maintains a list of free holes and searches for a fit when a new process arrives."
 )
-pn.info_table(
+en.info_table(
     ["Property", "Variable Partitioning"],
     [
         [
@@ -1196,8 +1196,8 @@ pn.info_table(
 )
 
 # Visual showing memory states
-stack_var = pd.LayeredStack(
-    width=pn.CW * 0.40,
+stack_var = ed.LayeredStack(
+    width=en.CW * 0.40,
     height=270,
     theme=diag_theme,
     caption="Variable partitioning: external fragmentation",
@@ -1208,23 +1208,23 @@ stack_var.layer("P2  (120 KB)", sublabel="")
 stack_var.layer("FREE  (40 KB)", sublabel="← hole")
 stack_var.layer("P4  (160 KB)", sublabel="")
 stack_var.layer("OS  (100 KB)", sublabel="")
-pn.story.extend(stack_var.as_flowable())
-pn.br()
+en.story.extend(stack_var.as_flowable())
+en.br()
 
 # =============================================================================
 #  3.12  PARTITION PLACEMENT STRATEGIES
 # =============================================================================
-pn.chap_box("3.12  Partition Placement Strategies")
+en.chap_box("3.12  Partition Placement Strategies")
 
-pn.section("Overview of Hole Selection Strategies")
-pn.definition(
+en.section("Overview of Hole Selection Strategies")
+en.definition(
     "When a process needs memory and multiple free holes are available, "
     "which hole should the OS choose? Three classical strategies exist. "
     "The OS maintains a list of free holes (sorted by address or size depending on strategy). "
     "The choice affects performance, fragmentation, and search time."
 )
 
-pn.info_table(
+en.info_table(
     ["Strategy", "Selection Rule", "Implementation", "Produces"],
     [
         [
@@ -1253,13 +1253,13 @@ pn.info_table(
     ],
 )
 
-pn.section("Worked Example — First Fit, Best Fit, Worst Fit")
-pn.body(
+en.section("Worked Example — First Fit, Best Fit, Worst Fit")
+en.body(
     "Free holes (in order of address): 600 KB, 500 KB, 200 KB, 300 KB, 700 KB. "
     "Process requests in order: P1=212 KB, P2=417 KB, P3=112 KB, P4=426 KB."
 )
 
-pn.info_table(
+en.info_table(
     [
         "Process",
         "Request",
@@ -1299,15 +1299,15 @@ pn.info_table(
     ],
 )
 
-pn.note(
+en.note(
     "First Fit and Best Fit are generally better than Worst Fit in terms of "
     "storage utilization and speed. Simulations show First Fit is best in speed; "
     "Best Fit produces the least wasted space on average in many workloads. "
     "In practice, First Fit is most commonly implemented."
 )
 
-pn.section("Fragmentation — Summary")
-pn.info_table(
+en.section("Fragmentation — Summary")
+en.info_table(
     ["Type", "Where", "Caused By", "Solution"],
     [
         [
@@ -1327,23 +1327,23 @@ pn.info_table(
     ],
 )
 
-pn.formula_block(
+en.formula_block(
     r"\text{50-percent rule: } \frac{1}{3} \text{ of memory wasted on average with First Fit}"
 )
-pn.note(
+en.note(
     "The 50-percent rule states that given N allocated blocks, approximately 0.5N more blocks "
     "will be lost to fragmentation with First Fit. About 1/3 of all memory is unusable due to "
     "external fragmentation in variable partitioning. This motivates paging (Unit IV)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  DEADLOCK & MEMORY — MASTER COMPARISON TABLES
 # =============================================================================
-pn.chap_box("Unit III — Master Summary Tables")
+en.chap_box("Unit III — Master Summary Tables")
 
-pn.section("Deadlock Handling Strategies — Quick Reference")
-pn.info_table(
+en.section("Deadlock Handling Strategies — Quick Reference")
+en.info_table(
     ["Method", "Core Idea", "Overhead", "Starvation?", "Used In"],
     [
         [
@@ -1398,8 +1398,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Memory Allocation Strategies — Quick Reference")
-pn.info_table(
+en.section("Memory Allocation Strategies — Quick Reference")
+en.info_table(
     ["Strategy", "Rule", "Internal Frag", "External Frag", "Speed"],
     [
         [
@@ -1429,8 +1429,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Key Formulas — Unit III Quick Reference")
-pn.info_table(
+en.section("Key Formulas — Unit III Quick Reference")
+en.info_table(
     ["Formula / Rule", "Application"],
     [
         [
@@ -1455,17 +1455,17 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.13  EXAM QUESTIONS & ANSWERS
 # =============================================================================
-pn.part_box("UNIT III — EXAM QUESTIONS & DETAILED ANSWERS")
-pn.chap_box("3.13  Previous-Year Style Exam Questions")
+en.part_box("UNIT III — EXAM QUESTIONS & DETAILED ANSWERS")
+en.chap_box("3.13  Previous-Year Style Exam Questions")
 
-pn.section("2-Mark Questions")
+en.section("2-Mark Questions")
 
-pn.highlight(
+en.highlight(
     "<b>Q1. What is a deadlock? State the four necessary conditions.</b><br/>"
     "A: Deadlock = a situation where a set of processes are permanently blocked, "
     "each waiting for a resource held by another in the set. "
@@ -1476,7 +1476,7 @@ pn.highlight(
     "(4) Circular Wait — circular chain of processes, each waiting for the next's resource."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q2. What is a Resource Allocation Graph (RAG)? How is deadlock detected using it?</b><br/>"
     "A: RAG is a directed graph with two types of nodes: processes (circles) and "
     "resources (rectangles, dots = instances). "
@@ -1486,7 +1486,7 @@ pn.highlight(
     "If cycle exists AND resources have multiple instances → deadlock possible (further analysis needed)."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q3. What is a safe state? How does it relate to deadlock avoidance?</b><br/>"
     "A: A safe state is one where a safe sequence of processes exists — "
     "each process can eventually complete using currently available + future released resources. "
@@ -1495,7 +1495,7 @@ pn.highlight(
     "Safe → No deadlock possible. Unsafe → deadlock is possible (not guaranteed)."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q4. Differentiate between deadlock prevention and deadlock avoidance.</b><br/>"
     "A: Prevention: ensures at least one of the four necessary conditions NEVER holds — "
     "system-wide policy (e.g., total ordering of resources to prevent circular wait). "
@@ -1505,7 +1505,7 @@ pn.highlight(
     "Requires advance declaration of maximum resource needs. Dynamic per-request checking."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q5. What is address binding? Name its three types.</b><br/>"
     "A: Address binding = mapping program instructions and data to memory addresses. "
     "(1) Compile-time: compiler generates absolute addresses — process must load at fixed address. "
@@ -1514,7 +1514,7 @@ pn.highlight(
     "during execution — requires hardware support. Modern OS uses execution-time binding."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q6. What is the difference between logical and physical address?</b><br/>"
     "A: Logical (virtual) address: generated by CPU — what the process sees. "
     "Physical address: actual location in RAM — what the memory hardware sees. "
@@ -1523,7 +1523,7 @@ pn.highlight(
     "The user program only works with logical addresses; MMU is invisible to it."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q7. What is the MMU? Explain its role in memory management.</b><br/>"
     "A: MMU (Memory Management Unit) = hardware device that translates logical addresses "
     "to physical addresses at runtime. Every CPU memory access passes through the MMU. "
@@ -1532,7 +1532,7 @@ pn.highlight(
     "The OS sets the base and limit registers during context switch to isolate processes."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q8. What is fragmentation? Distinguish between internal and external fragmentation.</b><br/>"
     "A: Fragmentation = wasted memory space. "
     "Internal fragmentation: wasted space INSIDE an allocated block — "
@@ -1543,9 +1543,9 @@ pn.highlight(
     "Solution: compaction (expensive) or paging/segmentation (Unit IV)."
 )
 
-pn.section("5-Mark Questions")
+en.section("5-Mark Questions")
 
-pn.highlight(
+en.highlight(
     "<b>Q9. Explain the Banker's Algorithm with a worked example.</b><br/>"
     "A: Banker's Algorithm avoids deadlock by only granting resource requests that keep "
     "the system in a safe state. Data structures: Available, Max, Allocation, Need (= Max − Allocation). "
@@ -1558,7 +1558,7 @@ pn.highlight(
     "P2: Need(2)≤6 → Work=6+3=9. Safe sequence: P1→P0→P2."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q10. Explain deadlock recovery methods.</b><br/>"
     "A: Once deadlock is detected, two recovery approaches: "
     "<b>Process Termination:</b> "
@@ -1573,7 +1573,7 @@ pn.highlight(
     "Solution: include rollback count in cost calculation."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q11. Compare First Fit, Best Fit, and Worst Fit memory allocation strategies with examples.</b><br/>"
     "A: All three search a list of free holes. "
     "<b>First Fit:</b> Allocates the FIRST hole ≥ request size. Fastest. "
@@ -1587,7 +1587,7 @@ pn.highlight(
     "First Fit and Best Fit are generally better than Worst Fit."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q12. Explain contiguous memory allocation — fixed and variable partitioning.</b><br/>"
     "A: Contiguous allocation: each process occupies a single contiguous block of RAM. "
     "<b>Fixed Partitioning:</b> Memory divided into fixed-size partitions at boot. "
@@ -1600,9 +1600,9 @@ pn.highlight(
     "(3) Better placement strategy (First Fit / Best Fit)."
 )
 
-pn.section("10-Mark Questions")
+en.section("10-Mark Questions")
 
-pn.highlight(
+en.highlight(
     "<b>Q13. Explain all aspects of deadlock: definition, conditions, RAG, prevention, "
     "avoidance (Banker's Algorithm), detection, and recovery.</b><br/>"
     "A: <b>Definition:</b> Permanent blocking of processes — each holds resources another needs. "
@@ -1618,7 +1618,7 @@ pn.highlight(
     "Choose victim by cost (priority, CPU time, resources held)."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q14. Explain memory management in OS. Discuss address binding, logical vs physical "
     "address, MMU, and contiguous allocation strategies in detail.</b><br/>"
     "A: <b>Memory management goals:</b> Protection, relocation, sharing, organization. "
@@ -1635,8 +1635,8 @@ pn.highlight(
     "Solved by First Fit / Best Fit and compaction."
 )
 
-pn.section("Quick Revision Table — Unit III")
-pn.info_table(
+en.section("Quick Revision Table — Unit III")
+en.info_table(
     ["Topic", "Key Exam Points"],
     [
         [
@@ -1722,7 +1722,7 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "Most asked topics in IT412 Unit III exams: "
     "(1) State and explain Coffman's four necessary conditions for deadlock with examples. "
     "(2) Explain the Banker's Algorithm (Safety + Resource-Request) with a worked example. "
@@ -1733,7 +1733,7 @@ pn.exam(
     "Always show the Banker's safety sequence step-by-step when working examples."
 )
 
-pn.note(
+en.note(
     "Unit III connects to Unit IV (Paging eliminates external fragmentation from Unit III) "
     "and Unit II (Semaphores from Unit II are the resources that cause deadlock — "
     "the dining philosophers deadlock from Section 2.15 is a perfect Unit III example). "
@@ -1743,10 +1743,10 @@ pn.note(
 # =============================================================================
 #  FLASHCARDS & REVISION
 # =============================================================================
-pn.br()
-pn.chap_box("Rapid Revision & Flashcards")
+en.br()
+en.chap_box("Rapid Revision & Flashcards")
 
-pn.revision_card(
+en.revision_card(
     "Unit III Mastery Check",
     [
         "State all four Coffman necessary conditions and give a real-world example of each.",
@@ -1757,47 +1757,47 @@ pn.revision_card(
     ],
 )
 
-pn.flashcard(
+en.flashcard(
     "Coffman's 4 conditions for <b>Deadlock</b>",
     "1. Mutual Exclusion — non-shareable resource. "
     "2. Hold and Wait — holds one, waits for another. "
     "3. No Preemption — cannot forcibly take resource. "
     "4. Circular Wait — P0→P1→P2→...→P0 wait chain.",
 )
-pn.flashcard(
+en.flashcard(
     "Banker's Algorithm: <b>Need</b> formula",
     "Need[i][j] = Max[i][j] − Allocation[i][j]. "
     "It is the remaining resource need of process i for resource j.",
 )
-pn.flashcard(
+en.flashcard(
     "<b>Safe State</b> definition",
     "A state where a safe sequence exists — every process can eventually complete "
     "using available + future released resources. Deadlock impossible in safe state.",
 )
-pn.flashcard(
+en.flashcard(
     "<b>First Fit</b> vs <b>Best Fit</b>",
     "First Fit: first hole large enough — fastest, good overall. "
     "Best Fit: smallest sufficient hole — least internal waste per allocation, "
     "but creates many tiny unusable leftover holes.",
 )
-pn.flashcard(
+en.flashcard(
     "<b>MMU</b> address translation",
     "Physical Address = Logical Address + Base Register. "
     "Protection: Logical Address &lt; Limit Register (else trap).",
 )
-pn.flashcard(
+en.flashcard(
     "Internal vs External <b>Fragmentation</b>",
     "Internal: wasted space INSIDE a partition (fixed partitioning, paging last page). "
     "External: wasted space BETWEEN partitions — free but scattered (variable partitioning).",
 )
 
-pn.br()
-pn.chap_box("Index")
-pn.print_index()
+en.br()
+en.chap_box("Index")
+en.print_index()
 
 # =============================================================================
 #  BUILD DOCUMENT
 # =============================================================================
-pn.build_doc("OS_Unit3_Notes.pdf")
+en.build_doc("OS_Unit3_Notes.pdf")
 
 print("Generated: OS_Unit3_Notes.pdf")

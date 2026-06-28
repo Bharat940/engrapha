@@ -5,10 +5,10 @@ LayeredStack draws horizontal layers and dividers. Ideal for OSI/TCP-IP stacks, 
 ## Minimal example
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-stack = pd.LayeredStack(
+stack = ed.LayeredStack(
     width=300, height=260,
     caption="Fig 12: OSI Reference Model",
 )
@@ -23,7 +23,7 @@ stack.layer("Layer 3: Network",    sublabel="IP, ICMP, ARP")
 stack.layer("Layer 2: Data Link",  sublabel="Ethernet, PPP, HDLC")
 stack.layer("Layer 1: Physical",   sublabel="Cables, Fiber, Radio")
 
-pn.add(stack.as_flowable())
+en.add(stack.as_flowable())
 ```
 
 ## Layer colors
@@ -64,3 +64,4 @@ If the total layer height exceeds the canvas minus margins, stacking scales unif
 
 - [Timing](timing.md)
 - [Git](git.md)
+

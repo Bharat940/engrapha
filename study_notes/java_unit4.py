@@ -8,49 +8,49 @@ Output: Java_Unit4_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
 # =============================================================================
 #  THEME & GLOBAL FOOTER SETUP
 #  Using SUNSET_DARK -- warm orange accent on deep midnight-purple background
 #  Distinct from Unit I (Catppuccin Mocha), II (Midnight Dark), III (Forest Dark)
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.SUNSET_DARK)
+en.set_story([])
+en.set_theme(en.SUNSET_DARK)
 
-pn.set_global_footer(
+en.set_global_footer(
     left="Java Programming (IT408) -- Unit IV",
     right="UIT-RGPV (Autonomous) Bhopal",
     show_page_num=True,
 )
 
 # Sync diagram theme with active notes theme
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(26)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(26)
 
-pn.cover_card(
+en.cover_card(
     "JAVA PROGRAMMING",
     "Unit IV -- AWT, GUI Controls, Layout Managers, Swing & Servlet",
 )
-# pn.cover_subtitle(
+# en.cover_subtitle(
 #     [
 #         "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
 #         "Complete Exam Notes: AWT Hierarchy, Frame, Controls, Layouts, Menus,",
 #         "Introduction to Swing Components and Java Servlets with Code Examples",
 #     ]
 # )
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(8)
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(8)
 
-pn.info_table(
+en.info_table(
     ["Section", "Syllabus Topics Covered"],
     [
         [
@@ -108,21 +108,21 @@ pn.info_table(
 # =============================================================================
 #  TABLE OF CONTENTS
 # =============================================================================
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  UNIT DIVIDER
 # =============================================================================
-pn.part_box("UNIT IV -- AWT, GUI PROGRAMMING, SWING & SERVLET")
+en.part_box("UNIT IV -- AWT, GUI PROGRAMMING, SWING & SERVLET")
 
 # =============================================================================
 #  4.1  INTRODUCING THE AWT
 # =============================================================================
-pn.chap_box("4.1  Introducing the AWT")
-pn.section("What is the Abstract Window Toolkit?")
-pn.definition(
+en.chap_box("4.1  Introducing the AWT")
+en.section("What is the Abstract Window Toolkit?")
+en.definition(
     "<b>AWT (Abstract Window Toolkit):</b> Java's original platform-independent "
     "windowing, graphics, and user-interface widget toolkit, introduced in Java 1.0. "
     "Located in the <code>java.awt</code> package, AWT provides classes for creating "
@@ -134,8 +134,8 @@ pn.definition(
     "slightly across platforms."
 )
 
-pn.section("AWT vs Swing -- Key Differences")
-pn.info_table(
+en.section("AWT vs Swing -- Key Differences")
+en.info_table(
     ["Feature", "AWT", "Swing"],
     [
         ["Package", "java.awt", "javax.swing"],
@@ -178,28 +178,28 @@ pn.info_table(
     ],
 )
 
-pn.note(
+en.note(
     "In the IT408 syllabus, AWT (Unit IV) is taught first because it is the foundation "
     "of all Java GUI programming. Swing components extend AWT containers. "
     "Understanding AWT Component, Container, Frame, and LayoutManager is mandatory "
     "before studying Swing effectively."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.2  AWT CLASS HIERARCHY
 # =============================================================================
-pn.chap_box("4.2  AWT Class Hierarchy")
-pn.section("The Complete AWT Component Tree")
-pn.body(
+en.chap_box("4.2  AWT Class Hierarchy")
+en.section("The Complete AWT Component Tree")
+en.body(
     "Every AWT visual element inherits from <code>java.awt.Component</code>. "
     "Understanding this hierarchy is essential for knowing which methods are "
     "available at each level and how containers hold other components."
 )
 
 # UML class diagram showing the full AWT hierarchy
-cd_awt = pd.ClassDiagram(
-    width=pn.CW,
+cd_awt = ed.ClassDiagram(
+    width=en.CW,
     height=260,
     theme=diag_theme,
     caption="Fig 4.1: AWT Class Hierarchy -- Component to Frame to Applet",
@@ -257,10 +257,10 @@ cd_awt.relate("Panel", "Container", kind="inheritance")
 cd_awt.relate("Frame", "Window", kind="inheritance")
 cd_awt.relate("Dialog", "Window", kind="inheritance")
 cd_awt.relate("Applet", "Panel", kind="inheritance")
-pn.story.extend(cd_awt.as_flowable())
+en.story.extend(cd_awt.as_flowable())
 
-pn.section("Key Classes in the AWT Hierarchy")
-pn.info_table(
+en.section("Key Classes in the AWT Hierarchy")
+en.info_table(
     ["Class", "Package", "Description"],
     [
         [
@@ -300,21 +300,21 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.3  WINDOW FUNDAMENTALS -- COMPONENT, CONTAINER, PANEL, FRAME
 # =============================================================================
-pn.chap_box("4.3  Window Fundamentals")
-pn.section("The Component Class")
-pn.definition(
+en.chap_box("4.3  Window Fundamentals")
+en.section("The Component Class")
+en.definition(
     "<b>Component:</b> The abstract superclass of all AWT UI elements. "
     "Every button, label, text field, panel, and frame is a Component. "
     "It provides the fundamental infrastructure for display and interaction: "
     "painting on screen, receiving events, and managing visual properties. "
     "You cannot instantiate Component directly -- you use one of its subclasses."
 )
-pn.info_table(
+en.info_table(
     ["Component Method", "Description"],
     [
         ["setSize(int w, int h)", "Sets the component's pixel width and height."],
@@ -357,14 +357,14 @@ pn.info_table(
     ],
 )
 
-pn.section("The Container Class")
-pn.definition(
+en.section("The Container Class")
+en.definition(
     "<b>Container:</b> A Component that can contain other Components. "
     "When you call <code>add(Component)</code> on a Container, the component becomes "
     "a child and is positioned according to the Container's <code>LayoutManager</code>. "
     "Containers can be nested: a Panel inside a Frame, a Panel inside another Panel."
 )
-pn.code_block(
+en.code_block(
     """
 // Container usage -- adding components to a Panel
 import java.awt.*;
@@ -392,8 +392,8 @@ public class ContainerDemo {
     lang="java",
 )
 
-pn.section("The Panel Class")
-pn.definition(
+en.section("The Panel Class")
+en.definition(
     "<b>Panel:</b> The simplest concrete Container. It has no title bar, "
     "borders, or window chrome -- it is just a rectangular area that can "
     "hold and arrange other components. Panels are used to: "
@@ -403,15 +403,15 @@ pn.definition(
     "Default layout manager: FlowLayout."
 )
 
-pn.section("The Frame Class")
-pn.definition(
+en.section("The Frame Class")
+en.definition(
     "<b>Frame:</b> A top-level application window with a title bar, "
     "system-provided minimize/maximize/close buttons, optional menu bar, "
     "and a resizable border. It is the most commonly used AWT container for "
     "standalone GUI applications. Default layout manager: BorderLayout. "
     "A Frame is NOT visible by default -- you must call <code>setVisible(true)</code>."
 )
-pn.info_table(
+en.info_table(
     ["Frame Method", "Description"],
     [
         [
@@ -447,16 +447,16 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.4  WORKING WITH FRAME WINDOWS
 # =============================================================================
-pn.chap_box("4.4  Working with Frame Windows")
-pn.section("Creating a Frame -- Three Approaches")
+en.chap_box("4.4  Working with Frame Windows")
+en.section("Creating a Frame -- Three Approaches")
 
-pn.body("<b>Approach 1: Directly Instantiate Frame</b>")
-pn.code_block(
+en.body("<b>Approach 1: Directly Instantiate Frame</b>")
+en.code_block(
     """
 // DirectFrameDemo.java -- simplest way to create a Frame window
 import java.awt.*;
@@ -494,8 +494,8 @@ public class DirectFrameDemo {
     lang="java",
 )
 
-pn.body("<b>Approach 2: Extend Frame (Recommended for OOP design)</b>")
-pn.code_block(
+en.body("<b>Approach 2: Extend Frame (Recommended for OOP design)</b>")
+en.code_block(
     """
 // ExtendFrameDemo.java -- extend Frame for reusable window classes
 import java.awt.*;
@@ -567,15 +567,15 @@ public class ExtendFrameDemo extends Frame {
     lang="java",
 )
 
-pn.section("WindowListener and WindowAdapter")
-pn.definition(
+en.section("WindowListener and WindowAdapter")
+en.definition(
     "<b>WindowListener:</b> An interface with 7 callback methods for window events. "
     "You must implement ALL 7 methods even if you only need one. "
     "<b>WindowAdapter:</b> A convenience adapter class that provides empty "
     "implementations of all 7 WindowListener methods. Extend WindowAdapter and "
     "override only the methods you need -- this is the standard approach."
 )
-pn.info_table(
+en.info_table(
     ["WindowListener Method", "Triggered When"],
     [
         [
@@ -599,14 +599,14 @@ pn.info_table(
         ["windowDeactivated(WindowEvent e)", "Window loses focus."],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.5  GRAPHICS AND TEXT IN AWT
 # =============================================================================
-pn.chap_box("4.5  Graphics and Text in AWT Frame")
-pn.section("Drawing in a Frame using paint()")
-pn.body(
+en.chap_box("4.5  Graphics and Text in AWT Frame")
+en.section("Drawing in a Frame using paint()")
+en.body(
     "Unlike an Applet where AWT automatically calls paint(Graphics g), "
     "in a Frame you override paint() directly to draw custom graphics. "
     "The Graphics object is provided by the AWT system. "
@@ -614,7 +614,7 @@ pn.body(
     "(below the title bar)."
 )
 
-pn.code_block(
+en.code_block(
     """
 // GraphicsFrameDemo.java -- Drawing text, shapes, and colors in a Frame
 import java.awt.*;
@@ -716,20 +716,20 @@ public class GraphicsFrameDemo extends Frame {
     lang="java",
 )
 
-pn.tip(
+en.tip(
     "In a Frame, use getInsets() to find the exact height of the title bar. "
     "This prevents drawing underneath the title. "
     "getInsets().top is the title bar height in pixels. "
     "Always add getInsets() offsets to x,y coordinates in paint()."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.6  HANDLING EVENTS IN A FRAME WINDOW
 # =============================================================================
-pn.chap_box("4.6  Handling Events in a Frame Window")
-pn.section("Event Handling in AWT -- Overview")
-pn.definition(
+en.chap_box("4.6  Handling Events in a Frame Window")
+en.section("Event Handling in AWT -- Overview")
+en.definition(
     "<b>Event Handling:</b> The mechanism by which a program responds to user actions "
     "(button clicks, key presses, mouse movement, window operations). "
     "In modern AWT (Java 1.1+), the <b>Delegation Event Model</b> is used: "
@@ -738,8 +738,8 @@ pn.definition(
     "This separates the UI component from the business logic that handles it."
 )
 
-pn.section("Common AWT Event Listeners")
-pn.info_table(
+en.section("Common AWT Event Listeners")
+en.info_table(
     ["Listener Interface", "Event Type", "Key Methods", "Adapter Class"],
     [
         [
@@ -799,9 +799,9 @@ pn.info_table(
     ],
 )
 
-pn.section("Four Ways to Handle Events")
-pn.body("<b>Method 1: Named inner class (most readable, classic approach)</b>")
-pn.code_block(
+en.section("Four Ways to Handle Events")
+en.body("<b>Method 1: Named inner class (most readable, classic approach)</b>")
+en.code_block(
     """
 // Method 1: Named inner class listener -- classic and most readable approach
 import java.awt.*;
@@ -848,8 +848,8 @@ public class InnerClassEventDemo extends Frame {
     lang="java",
 )
 
-pn.body("<b>Method 2: Anonymous inner class (most common in practice)</b>")
-pn.code_block(
+en.body("<b>Method 2: Anonymous inner class (most common in practice)</b>")
+en.code_block(
     """
 // Method 2: Anonymous inner class listener -- most common in AWT code
 // The listener is defined exactly where it is registered
@@ -863,10 +863,10 @@ btnClick.addActionListener(new ActionListener() {
     lang="java",
 )
 
-pn.body(
+en.body(
     "<b>Method 3: Lambda expression (Java 8+, only for single-method interfaces)</b>"
 )
-pn.code_block(
+en.code_block(
     """
 // Method 3: Lambda -- compact syntax for single-method (functional) interfaces
 // ActionListener has exactly one method (actionPerformed), so lambdas work
@@ -880,8 +880,8 @@ addWindowListener(new WindowAdapter() {
     lang="java",
 )
 
-pn.body("<b>Method 4: The outer class implements the listener (self-registration)</b>")
-pn.code_block(
+en.body("<b>Method 4: The outer class implements the listener (self-registration)</b>")
+en.code_block(
     """
 // Method 4: Frame itself implements ActionListener
 // 'this' is passed as the listener -- clean but mixes concerns for large UIs
@@ -935,9 +935,9 @@ public class SelfHandlerDemo extends Frame implements ActionListener, WindowList
     lang="java",
 )
 
-pn.section("Event Delegation Model Flow")
-fc_event = pd.Flowchart(
-    width=pn.CW,
+en.section("Event Delegation Model Flow")
+fc_event = ed.Flowchart(
+    width=en.CW,
     height=280,
     theme=diag_theme,
     caption="Fig 4.2: AWT Delegation Event Model -- source generates event, listener handles it",
@@ -966,21 +966,21 @@ fc_event.edge("listeners", "call", branch="yes")
 fc_event.edge("listeners", "ignore", branch="no")
 fc_event.edge("call", "handler")
 fc_event.edge("handler", "done")
-pn.story.extend(fc_event.as_flowable())
-pn.br()
+en.story.extend(fc_event.as_flowable())
+en.br()
 
 # =============================================================================
 #  4.7  AWT CONTROLS
 # =============================================================================
-pn.chap_box("4.7  AWT Controls")
-pn.section("Overview of AWT Controls")
-pn.body(
+en.chap_box("4.7  AWT Controls")
+en.section("Overview of AWT Controls")
+en.body(
     "AWT provides a set of ready-made UI controls (also called widgets or components). "
     "Each control is a class in <code>java.awt</code>. They are all subclasses of "
     "<code>Component</code> and can be added to any Container."
 )
 
-pn.info_table(
+en.info_table(
     ["Control Class", "Description", "Key Methods / Properties"],
     [
         [
@@ -1036,8 +1036,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Complete AWT Controls Demo")
-pn.code_block(
+en.section("Complete AWT Controls Demo")
+en.code_block(
     """
 // AWTControlsDemo.java -- demonstrates Button, Label, TextField, Checkbox, Choice, List
 import java.awt.*;
@@ -1161,8 +1161,8 @@ public class AWTControlsDemo extends Frame implements ActionListener, ItemListen
     lang="java",
 )
 
-pn.section("Scrollbar Control")
-pn.code_block(
+en.section("Scrollbar Control")
+en.code_block(
     """
 // ScrollbarDemo.java -- AWT Scrollbar with AdjustmentListener
 import java.awt.*;
@@ -1209,14 +1209,14 @@ public class ScrollbarDemo extends Frame implements AdjustmentListener {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.8  LAYOUT MANAGERS
 # =============================================================================
-pn.chap_box("4.8  Layout Managers")
-pn.section("What is a Layout Manager?")
-pn.definition(
+en.chap_box("4.8  Layout Managers")
+en.section("What is a Layout Manager?")
+en.definition(
     "<b>Layout Manager:</b> An object that implements the <code>java.awt.LayoutManager</code> "
     "interface and controls the size and position of components inside a Container. "
     "Instead of placing components at absolute pixel coordinates (which breaks when the "
@@ -1226,7 +1226,7 @@ pn.definition(
     "Passing <code>null</code> to setLayout() enables absolute positioning."
 )
 
-pn.info_table(
+en.info_table(
     ["Layout Manager", "Default for", "How it Arranges Components"],
     [
         [
@@ -1262,8 +1262,8 @@ pn.info_table(
     ],
 )
 
-pn.section("FlowLayout")
-pn.code_block(
+en.section("FlowLayout")
+en.code_block(
     """
 // FlowLayout: components flow left-to-right, then wrap to next row
 // Constructor: new FlowLayout(alignment, hgap, vgap)
@@ -1283,8 +1283,8 @@ p.add(new Button("Four"));
     lang="java",
 )
 
-pn.section("BorderLayout")
-pn.code_block(
+en.section("BorderLayout")
+en.code_block(
     """
 // BorderLayout: five regions -- NORTH, SOUTH, EAST, WEST, CENTER
 // Constructor: new BorderLayout(hgap, vgap)
@@ -1305,8 +1305,8 @@ f.add(new TextArea(),       BorderLayout.CENTER);  // fills remaining middle are
     lang="java",
 )
 
-pn.section("GridLayout")
-pn.code_block(
+en.section("GridLayout")
+en.code_block(
     """
 // GridLayout: creates a grid where all cells are EXACTLY the same size
 // Constructor: new GridLayout(rows, cols, hgap, vgap)
@@ -1327,8 +1327,8 @@ for (String k : keys) {
     lang="java",
 )
 
-pn.section("Full Layout Manager Demo")
-pn.code_block(
+en.section("Full Layout Manager Demo")
+en.code_block(
     """
 // LayoutDemo.java -- demonstrates FlowLayout, BorderLayout, and GridLayout together
 import java.awt.*;
@@ -1395,10 +1395,10 @@ public class LayoutDemo extends Frame {
     lang="java",
 )
 
-pn.section("Layout Manager Comparison Diagram")
+en.section("Layout Manager Comparison Diagram")
 # Layered stack showing layout manager characteristics
-stack_layout = pd.LayeredStack(
-    width=pn.CW,
+stack_layout = ed.LayeredStack(
+    width=en.CW,
     height=200,
     theme=diag_theme,
     caption="Fig 4.3: Layout Manager selection guide -- from simplest to most powerful",
@@ -1421,15 +1421,15 @@ stack_layout.layer(
     "GridBagLayout",
     sublabel="Most powerful. Rows, cols, spans, weights. Complex to configure.",
 )
-pn.story.extend(stack_layout.as_flowable())
-pn.br()
+en.story.extend(stack_layout.as_flowable())
+en.br()
 
 # =============================================================================
 #  4.9  MENUS IN AWT
 # =============================================================================
-pn.chap_box("4.9  Menus in AWT")
-pn.section("AWT Menu Hierarchy")
-pn.definition(
+en.chap_box("4.9  Menus in AWT")
+en.section("AWT Menu Hierarchy")
+en.definition(
     "<b>Menu System:</b> AWT provides a complete menu infrastructure. "
     "A <code>MenuBar</code> is attached to a Frame. "
     "Each <code>Menu</code> is added to the MenuBar (File, Edit, Help...). "
@@ -1438,7 +1438,7 @@ pn.definition(
     "A separator line is added with <code>menu.addSeparator()</code>."
 )
 
-pn.info_table(
+en.info_table(
     ["Menu Class", "Description"],
     [
         [
@@ -1464,7 +1464,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block(
+en.code_block(
     """
 // MenuDemo.java -- Complete menu bar with File, Edit, Help menus and event handling
 import java.awt.*;
@@ -1587,14 +1587,14 @@ public class MenuDemo extends Frame implements ActionListener, ItemListener {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.10  INTRODUCTION TO SWING
 # =============================================================================
-pn.chap_box("4.10  Introduction to Swing")
-pn.section("What is Swing?")
-pn.definition(
+en.chap_box("4.10  Introduction to Swing")
+en.section("What is Swing?")
+en.definition(
     "<b>Swing:</b> A GUI widget toolkit introduced in Java 1.2 as part of the "
     "Java Foundation Classes (JFC). Swing is built on top of AWT but provides "
     "<b>lightweight</b> components (drawn entirely in Java, not OS native widgets). "
@@ -1604,8 +1604,8 @@ pn.definition(
     "It follows the <b>Model-View-Controller (MVC)</b> design pattern internally."
 )
 
-pn.section("Swing Component Equivalents")
-pn.info_table(
+en.section("Swing Component Equivalents")
+en.info_table(
     ["AWT Control", "Swing Equivalent", "Key Improvements in Swing Version"],
     [
         [
@@ -1681,8 +1681,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Key Differences: Creating a Frame in AWT vs Swing")
-pn.code_block(
+en.section("Key Differences: Creating a Frame in AWT vs Swing")
+en.code_block(
     """
 // ============================================================
 // AWT Frame (java.awt.Frame) -- Unit IV reference
@@ -1743,8 +1743,8 @@ public class SwingFrameExample extends JFrame {
     lang="java",
 )
 
-pn.section("Key Swing Components Demo")
-pn.code_block(
+en.section("Key Swing Components Demo")
+en.code_block(
     """
 // SwingComponentsDemo.java -- JButton, JLabel, JTextField, JComboBox, JTable
 import javax.swing.*;
@@ -1820,19 +1820,19 @@ public class SwingComponentsDemo extends JFrame {
     lang="java",
 )
 
-pn.tip(
+en.tip(
     "Swing thread rule: always create and modify Swing components on the Event Dispatch Thread (EDT). "
     "Use SwingUtilities.invokeLater(() -> { ... }) in main() to ensure this. "
     "AWT and Swing components should NEVER be mixed in the same container."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.11  INTRODUCTION TO SERVLETS
 # =============================================================================
-pn.chap_box("4.11  Introduction to Servlets")
-pn.section("What is a Java Servlet?")
-pn.definition(
+en.chap_box("4.11  Introduction to Servlets")
+en.section("What is a Java Servlet?")
+en.definition(
     "<b>Servlet:</b> A Java class that runs on a web server and handles HTTP requests "
     "from web browsers or other HTTP clients. Servlets are the server-side counterpart "
     "to Applets (which run on the client). They extend "
@@ -1844,8 +1844,8 @@ pn.definition(
     "dispatching, and unloading."
 )
 
-pn.section("Servlet vs Applet vs Application")
-pn.info_table(
+en.section("Servlet vs Applet vs Application")
+en.info_table(
     ["Feature", "Java Applet", "Java Servlet", "Standalone Application"],
     [
         ["Runs on", "Client browser", "Web server (Tomcat/Jetty)", "Local JVM"],
@@ -1883,8 +1883,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Servlet Lifecycle")
-pn.definition(
+en.section("Servlet Lifecycle")
+en.definition(
     "<b>Servlet Lifecycle:</b> Managed by the Servlet Container. Three phases: "
     "(1) <b>init(ServletConfig):</b> Called ONCE when the servlet is first loaded. "
     "Initialize resources (DB connections, config reading). "
@@ -1896,8 +1896,8 @@ pn.definition(
 )
 
 # Servlet lifecycle state machine
-sm_servlet = pd.StateMachine(
-    width=pn.CW,
+sm_servlet = ed.StateMachine(
+    width=en.CW,
     height=200,
     theme=diag_theme,
     caption="Fig 4.4: Servlet Lifecycle -- init, service (doGet/doPost), destroy",
@@ -1913,10 +1913,10 @@ sm_servlet.transition("init", "ready", label="ready for\nrequests")
 sm_servlet.transition("ready", "serving", label="HTTP request\narrives")
 sm_servlet.transition("serving", "ready", label="response sent\nto client")
 sm_servlet.transition("ready", "destroyed", label="server shutdown\nor undeploy")
-pn.story.extend(sm_servlet.as_flowable())
+en.story.extend(sm_servlet.as_flowable())
 
-pn.section("A Complete Servlet Example")
-pn.code_block(
+en.section("A Complete Servlet Example")
+en.code_block(
     """
 // HelloServlet.java -- A minimal but complete HTTP Servlet
 // Requires: javax.servlet-api.jar in classpath (provided by Tomcat/Jetty)
@@ -2035,8 +2035,8 @@ public class HelloServlet extends HttpServlet {
     lang="java",
 )
 
-pn.section("Servlet Request and Response Objects")
-pn.info_table(
+en.section("Servlet Request and Response Objects")
+en.info_table(
     ["Object / Method", "Description"],
     [
         [
@@ -2098,8 +2098,8 @@ pn.info_table(
     ],
 )
 
-pn.section("web.xml -- Servlet Deployment Descriptor (Traditional)")
-pn.code_block(
+en.section("web.xml -- Servlet Deployment Descriptor (Traditional)")
+en.code_block(
     """
 <!-- web.xml -- Place in WEB-INF/ directory of the web application -->
 <!-- This is the traditional (pre-Servlet-3.0) way to configure servlets -->
@@ -2149,9 +2149,9 @@ pn.code_block(
     lang="java",
 )
 
-pn.section("Servlet Architecture Diagram")
-net_servlet = pd.NetworkDiagram(
-    width=pn.CW,
+en.section("Servlet Architecture Diagram")
+net_servlet = ed.NetworkDiagram(
+    width=en.CW,
     height=260,
     theme=diag_theme,
     caption="Fig 4.5: Servlet Architecture -- browser sends HTTP request, container dispatches to servlet",
@@ -2173,18 +2173,18 @@ net_servlet.link("container", "servlet", label="init/service", bidirectional=Fal
 net_servlet.link("servlet", "db", label="JDBC query", bidirectional=True)
 net_servlet.link("servlet", "response", label="generates HTML", bidirectional=False)
 net_servlet.link("response", "browser", label="sends back", bidirectional=False)
-pn.story.extend(net_servlet.as_flowable())
-pn.br()
+en.story.extend(net_servlet.as_flowable())
+en.br()
 
 # =============================================================================
 #  4.12  EXAM QUESTIONS & ANSWERS
 # =============================================================================
-pn.part_box("UNIT IV -- EXAM QUESTIONS & DETAILED ANSWERS")
-pn.chap_box("4.12  Previous-Year Style Exam Questions")
+en.part_box("UNIT IV -- EXAM QUESTIONS & DETAILED ANSWERS")
+en.chap_box("4.12  Previous-Year Style Exam Questions")
 
-pn.section("2-Mark Questions (Short Answer)")
+en.section("2-Mark Questions (Short Answer)")
 
-pn.highlight(
+en.highlight(
     "<b>Q1. What is AWT? Which package does it belong to?</b><br/>"
     "A: AWT (Abstract Window Toolkit) is Java's original GUI toolkit for creating "
     "platform-independent graphical user interfaces. It is in the <code>java.awt</code> package. "
@@ -2192,7 +2192,7 @@ pn.highlight(
     "graphics, and event handling. AWT components are heavyweight -- each wraps a native OS widget."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q2. What is the difference between AWT and Swing?</b><br/>"
     "A: AWT is in java.awt; components are heavyweight (native OS widgets). "
     "Swing is in javax.swing; components are lightweight (drawn by Java 2D). "
@@ -2201,7 +2201,7 @@ pn.highlight(
     "Swing components are prefixed with 'J': JButton instead of Button."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q3. What is a Frame? How do you create one?</b><br/>"
     "A: Frame (java.awt.Frame) is a top-level AWT container with a title bar, "
     "minimize/maximize/close buttons, and an optional menu bar. "
@@ -2211,7 +2211,7 @@ pn.highlight(
     "public void windowClosing(WindowEvent e) { f.dispose(); System.exit(0); } });</code>"
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q4. Explain the difference between FlowLayout and BorderLayout.</b><br/>"
     "A: FlowLayout places components left-to-right and wraps to the next row when the "
     "row is full (like words in a paragraph). It is the default layout for Panel. "
@@ -2220,7 +2220,7 @@ pn.highlight(
     "BorderLayout is the default for Frame and Dialog."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q5. What is GridLayout? When is it useful?</b><br/>"
     "A: GridLayout arranges components in a grid of equal-sized cells. "
     "All cells are the same width and height regardless of component preferred size. "
@@ -2229,7 +2229,7 @@ pn.highlight(
     "or icon grids. Components fill cells left-to-right, top-to-bottom."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q6. What is a MenuBar in AWT? Explain its structure.</b><br/>"
     "A: A MenuBar is the horizontal bar attached to a Frame's top edge via setMenuBar(). "
     "Structure: MenuBar contains Menu objects (File, Edit, Help). "
@@ -2238,7 +2238,7 @@ pn.highlight(
     "addSeparator() adds a horizontal line separator between items."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q7. What is a Servlet? How does it differ from an Applet?</b><br/>"
     "A: A Servlet is a Java class that runs on a web server and handles HTTP requests. "
     "An Applet runs on the client (browser) side. "
@@ -2248,7 +2248,7 @@ pn.highlight(
     "Servlets are actively used; Applets are deprecated."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q8. What are the lifecycle methods of a Servlet?</b><br/>"
     "A: Three lifecycle methods managed by the container: "
     "(1) init(ServletConfig): Called ONCE when servlet loads. Initialize resources. "
@@ -2258,7 +2258,7 @@ pn.highlight(
     "Order: init() -> service() [multiple times] -> destroy()."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q9. What is the difference between doGet() and doPost() in a Servlet?</b><br/>"
     "A: doGet() handles HTTP GET requests -- parameters appear in URL query string "
     "(visible, bookmarkable, max ~2000 chars, not for sensitive data). "
@@ -2267,7 +2267,7 @@ pn.highlight(
     "Both receive HttpServletRequest and HttpServletResponse objects."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q10. What is a Layout Manager? Why is it preferred over absolute positioning?</b><br/>"
     "A: A LayoutManager controls automatic positioning and sizing of components inside a Container. "
     "It is preferred over absolute positioning (setBounds) because it: "
@@ -2277,9 +2277,9 @@ pn.highlight(
     "and handles component preferred sizes automatically."
 )
 
-pn.section("5-Mark Questions (Explain with Code)")
+en.section("5-Mark Questions (Explain with Code)")
 
-pn.highlight(
+en.highlight(
     "<b>Q11. Explain the AWT Component hierarchy with a diagram.</b><br/>"
     "A: Root: java.lang.Object -> java.awt.Component (all UI elements) -> "
     "java.awt.Container (holds other components) -> java.awt.Window (top-level with no title) -> "
@@ -2288,7 +2288,7 @@ pn.highlight(
     "See Fig 4.1 for the complete UML hierarchy diagram."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q12. Write a Java program to create a Frame with buttons and handle button click events.</b><br/>"
     "A: Extend Frame; declare Button and Label fields; set layout (FlowLayout); "
     "create buttons; add ActionListener via addActionListener(); "
@@ -2296,7 +2296,7 @@ pn.highlight(
     "call setVisible(true). See ExtendFrameDemo in Section 4.4 for the full code."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q13. Write an AWT program demonstrating FlowLayout, BorderLayout, and GridLayout.</b><br/>"
     "A: (1) FlowLayout: panel.setLayout(new FlowLayout(FlowLayout.LEFT)); add buttons. "
     "(2) BorderLayout: frame.setLayout(new BorderLayout()); frame.add(component, BorderLayout.NORTH/SOUTH/EAST/WEST/CENTER). "
@@ -2304,7 +2304,7 @@ pn.highlight(
     "See LayoutDemo in Section 4.8 for a combined example."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q14. Explain AWT controls with code: Button, TextField, Checkbox, Choice, List.</b><br/>"
     "A: Button: new Button('label'); add ActionListener. "
     "TextField: new TextField(columns); getText(); setText(). "
@@ -2315,7 +2315,7 @@ pn.highlight(
     "See AWTControlsDemo in Section 4.7 for the full demo."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q15. Write a Servlet that handles a student login form.</b><br/>"
     "A: HTML form with action='/login' method='post' containing username and password fields. "
     "Servlet extends HttpServlet; doPost() reads request.getParameter('username') and 'password'. "
@@ -2324,9 +2324,9 @@ pn.highlight(
     "See HelloServlet Section 4.11 for the complete code including web.xml."
 )
 
-pn.section("10-Mark Questions (Detailed Programs)")
+en.section("10-Mark Questions (Detailed Programs)")
 
-pn.highlight(
+en.highlight(
     "<b>Q16. Write a complete AWT application for a Student Registration Form with "
     "at least 6 different controls, layout managers, and event handling.</b><br/>"
     "A: Use BorderLayout for Frame. NORTH: Title Label. "
@@ -2338,7 +2338,7 @@ pn.highlight(
     "WindowAdapter for close. See AWTControlsDemo in Section 4.7."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q17. Write an AWT program to create a Menu Bar with File, Edit, and View menus. "
     "Add items including CheckboxMenuItem and submenus. Handle all menu events.</b><br/>"
     "A: Create MenuBar; add Menu('File'), Menu('Edit'), Menu('View'). "
@@ -2348,7 +2348,7 @@ pn.highlight(
     "ItemListener for CheckboxMenuItem. See MenuDemo in Section 4.9."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q18. Compare Swing and AWT. Write a Swing program showing JFrame, JButton, "
     "JLabel, JTextField, and JTable.</b><br/>"
     "A: AWT = heavyweight, OS native, java.awt. "
@@ -2358,7 +2358,7 @@ pn.highlight(
     "SwingUtilities.invokeLater() for thread safety. See SwingComponentsDemo Section 4.10."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q19. Explain the Servlet lifecycle and write a Servlet to handle HTTP GET and POST "
     "requests. Include the web.xml configuration.</b><br/>"
     "A: Lifecycle: init() [once] -> service() [per request -> doGet/doPost] -> destroy() [once]. "
@@ -2368,7 +2368,7 @@ pn.highlight(
     "See HelloServlet Section 4.11 for complete code + web.xml."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q20. Write an AWT program demonstrating all four event handling approaches: "
     "named inner class, anonymous inner class, lambda, and self-implementing listener. "
     "Use Button, TextField, and Label components.</b><br/>"
@@ -2379,8 +2379,8 @@ pn.highlight(
     "See all four methods in Section 4.6 with complete code."
 )
 
-pn.section("Quick Revision Summary Table")
-pn.info_table(
+en.section("Quick Revision Summary Table")
+en.info_table(
     ["Topic", "Key Exam Points"],
     [
         [
@@ -2471,7 +2471,7 @@ pn.info_table(
     ],
 )
 
-pn.note(
+en.note(
     "For exam: Always show the import statements in AWT programs. "
     "Always add a WindowAdapter/WindowListener to handle the close button. "
     "For Servlet questions, always show the HTML form AND the Servlet class. "
@@ -2482,5 +2482,5 @@ pn.note(
 # =============================================================================
 #  BUILD DOCUMENT
 # =============================================================================
-pn.build_doc("Java_Unit4_Notes.pdf")
+en.build_doc("Java_Unit4_Notes.pdf")
 print("Generated: Java_Unit4_Notes.pdf")

@@ -1,11 +1,11 @@
 # Notes: Export Formats
 
-Once your story is assembled, PaperForge can emit PDF, HTML, PPTX, and Anki packages.
+Once your story is assembled, Engrapha can emit PDF, HTML, PPTX, and Anki packages.
 
 ## PDF
 
 ```python
-pn.build_doc("output.pdf", title="Algorithms Notes", author="Bharat Dangi")
+en.build_doc("output.pdf", title="Algorithms Notes", author="Bharat Dangi")
 ```
 
 Produces a multi-page A4 PDF with the active theme's background, headers, and footers.
@@ -13,7 +13,7 @@ Produces a multi-page A4 PDF with the active theme's background, headers, and fo
 ## HTML
 
 ```python
-pn.build_html("output/")
+en.build_html("output/")
 ```
 
 Writes `index.html` (plus assets) into the output directory. The HTML renderer preserves the active theme's color palette and converts frames, tables, code blocks, and paragraphs into equivalent HTML5. Diagrams become inline-SVG.
@@ -21,14 +21,14 @@ Writes `index.html` (plus assets) into the output directory. The HTML renderer p
 ## PowerPoint (PPTX)
 
 ```python
-pn.build_pptx("output.pptx")
+en.build_pptx("output.pptx")
 ```
 
 PPTX export detects Part/Chapter boxes, sections, body paragraphs, code blocks, tables, and callouts and reconstructs each as a rich-text slide.
 
 ## Anki Flashcards
 
-Flashcard exports are automatic. Calling `pn.flashcard()` three times registers three cards. On `build_doc()` three extra files are written beside the final output:
+Flashcard exports are automatic. Calling `en.flashcard()` three times registers three cards. On `build_doc()` three extra files are written beside the final output:
 
 ```
 output.pdf
@@ -37,20 +37,20 @@ output_flashcards.json     # Structured JSON
 output.apkg                # Anki deck (genanki required, or ZIP fallback)
 ```
 
-If `genanki` is not installed, PaperForge produces a bundled ZIP with the JSON payload and a README so the export never fails silently.
+If `genanki` is not installed, Engrapha produces a bundled ZIP with the JSON payload and a README so the export never fails silently.
 
 ## Modular split
 
 ```python
-pn.build_split_doc("unit_", split_by="chapter")
+en.build_split_doc("unit_", split_by="chapter")
 ```
 
-Splitting by `"chapter"` cuts on every `chap_box()`. Passing an integer (for example, `split_by=1`) splits per chapter unit. Each chunk gets its own `pn.build_doc()` call.
+Splitting by `"chapter"` cuts on every `chap_box()`. Passing an integer (for example, `split_by=1`) splits per chapter unit. Each chunk gets its own `en.build_doc()` call.
 
 ## Helpers used across all formats
 
 ```python
-from paperforge_notes.document import (
+from engrapha_notes.document import (
     CW, PM, PAGE_W, PAGE_H,
 )
 
@@ -61,3 +61,4 @@ from paperforge_notes.document import (
 ## Next
 
 - [Gallery](../gallery/index.md)
+

@@ -1,11 +1,11 @@
 # Notes: Templates
 
-PaperForge ships built-in helpers for common document types. Each returns a ready-to-use `NotesTheme`, so you do not have to configure fonts, colors, and layout manually.
+Engrapha ships built-in helpers for common document types. Each returns a ready-to-use `NotesTheme`, so you do not have to configure fonts, colors, and layout manually.
 
 ## EngineeringNotes
 
 ```python
-pn.EngineeringNotes(dark=True)
+en.EngineeringNotes(dark=True)
 ```
 
 Dark-themed, monospaced-code-friendly, optimized for CS/IT lecture notes.
@@ -13,7 +13,7 @@ Dark-themed, monospaced-code-friendly, optimized for CS/IT lecture notes.
 ## QuestionBank
 
 ```python
-pn.QuestionBank(dark=False)
+en.QuestionBank(dark=False)
 ```
 
 Light-mode, Times-Roman serif, exam-paper aesthetic.
@@ -24,7 +24,7 @@ Use the fluent `ThemeBuilder` to construct a custom theme from scratch:
 
 ```python
 custom = (
-    pn.ThemeBuilder()
+    en.ThemeBuilder()
     .set_colors(bg="#0a0e27", surface="#1b2540", accent="#fbbf24")
     .set_fonts(body_font="Times-Roman", heading_font="Times-Bold",
                size_body=10.0, size_question=11.5)
@@ -34,17 +34,17 @@ custom = (
     .set_header_footer(show_headers=True, divider_thickness=0.6)
     .build()
 )
-pn.set_theme(custom)
+en.set_theme(custom)
 ```
 
 ## Code block syntax themes
 
-Pass a theme name string to `pn.code_block()` for syntax highlighting:
+Pass a theme name string to `en.code_block()` for syntax highlighting:
 
 ```python
-pn.code_block("print('hello')", lang="python", theme="dracula")
-pn.code_block("fn main() {}", lang="rust", theme="monokai")
-pn.code_block("SELECT * FROM users", lang="sql", theme="github-dark")
+en.code_block("print('hello')", lang="python", theme="dracula")
+en.code_block("fn main() {}", lang="rust", theme="monokai")
+en.code_block("SELECT * FROM users", lang="sql", theme="github-dark")
 ```
 
 Available option strings: `dracula`, `monokai`, `github-dark`. Any built-in theme preset name (e.g. `DARK`, `LIGHT`, `CATPPUCCIN_MOCHA`) also works.
@@ -54,7 +54,7 @@ Available option strings: `dracula`, `monokai`, `github-dark`. Any built-in them
 Extend any existing preset with `copy_with`:
 
 ```python
-print_theme = pn.LIGHT.copy_with(
+print_theme = en.LIGHT.copy_with(
     name="Print Light",
     body_font="Times-Roman",
     heading_font="Times-Bold",
@@ -63,7 +63,7 @@ print_theme = pn.LIGHT.copy_with(
     page_border_gap=3.0,
     plain_questions=True,
 )
-pn.set_theme(print_theme)
+en.set_theme(print_theme)
 ```
 
 ## Expected templates (coming soon)
@@ -81,3 +81,4 @@ Open issues requesting these are tracked on GitHub.
 ## Next
 
 - [Export formats](export.md)
+

@@ -1,4 +1,4 @@
-# API Reference: paperforge_diagrams
+# API Reference: engrapha_diagrams
 
 All public classes and their constructors. Every diagram inherits from `DiagramBase` which exposes `save(filename)`, `as_flowable()`, and `theme`.
 
@@ -227,7 +227,8 @@ GitDiagram(width, height, theme=None, caption=None, commit_spacing=65)
 ## Theme matching
 
 ```python
-pd.DiagramTheme.from_notes_theme(notes_theme)  # returns DiagramTheme
+ed.DiagramTheme.from_notes_theme(notes_theme)  # returns DiagramTheme
 ```
 
-Theme presets: `pd.DARK`, `pd.LIGHT`, plus ten augmented presets available only via the notes pathway (`OCEAN_DARK`, `FOREST_DARK`, etc.).
+Theme presets: `ed.DARK`, `ed.LIGHT`, plus ten augmented presets available only via the notes pathway (`OCEAN_DARK`, `FOREST_DARK`, etc.).
+

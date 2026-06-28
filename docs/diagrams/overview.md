@@ -1,6 +1,6 @@
 # Diagrams: Overview
 
-PaperForge ships with 13 vector-native diagram types. This page helps you pick the right one.
+Engrapha ships with 13 vector-native diagram types. This page helps you pick the right one.
 
 ## Quick selection table
 
@@ -24,20 +24,20 @@ PaperForge ships with 13 vector-native diagram types. This page helps you pick t
 
 All diagrams:
 
-- Accept a `theme` kwarg. Use `pd.DiagramTheme.from_notes_theme(pn.get_theme())` to auto-match.
+- Accept a `theme` kwarg. Use `ed.DiagramTheme.from_notes_theme(en.get_theme())` to auto-match.
 - Render as ReportLab `Drawing` → `ResponsiveDrawingFlowable` when embedded in PDFs.
 - Support standalone `save("output.pdf")` for raster/vector export.
 
 ## Theme matching
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-pn.set_theme(pn.OCEAN_DARK)
-t = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+en.set_theme(en.OCEAN_DARK)
+t = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
-fc = pd.Flowchart(width=pn.CW, height=180, theme=t)
+fc = ed.Flowchart(width=en.CW, height=180, theme=t)
 ```
 
 ## Diagram sizes
@@ -56,23 +56,23 @@ fc = pd.Flowchart(width=pn.CW, height=180, theme=t)
 | State Machine | 380 | 180 | Auto switches TB/LR |
 | Timing | 400 | 150 | Stacked signals |
 
-Use your document's `pn.CW` for a flush layout with notes content.
+Use your document's `en.CW` for a flush layout with notes content.
 
 ## Layout integration
 
 The pattern is the same everywhere:
 
 ```python
-diagram = pd.<Diagram>(width=pn.CW, height=180, theme=<theme>)
+diagram = ed.<Diagram>(width=en.CW, height=180, theme=<theme>)
 # ... add nodes / edges / messages ...
-pn.add(diagram.as_flowable())
+en.add(diagram.as_flowable())
 ```
 
 For side-by-side rendering in a table, use the raw drawing:
 
 ```python
-from paperforge_diagrams import ResponsiveDrawingFlowable
-pn.add(Table([[ResponsiveDrawingFlowable(diagram.drawing)]]))
+from engrapha_diagrams import ResponsiveDrawingFlowable
+en.add(Table([[ResponsiveDrawingFlowable(diagram.drawing)]]))
 ```
 
 ## Customizing themes
@@ -81,7 +81,7 @@ Modify any theme parameters dynamically by creating a copy of the theme with ove
 
 ```python
 # Create a print-optimized black-and-white theme
-bw_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme()).model_copy(
+bw_theme = ed.DiagramTheme.from_notes_theme(en.get_theme()).model_copy(
     update={
         "bg": "#ffffff",
         "text": "#000000",
@@ -92,7 +92,7 @@ bw_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme()).model_copy(
     }
 )
 # Apply custom theme to diagram
-stack = pd.LayeredStack(width=300, height=180, theme=bw_theme)
+stack = ed.LayeredStack(width=300, height=180, theme=bw_theme)
 ```
 
 ## Standalone export
@@ -100,7 +100,7 @@ stack = pd.LayeredStack(width=300, height=180, theme=bw_theme)
 Export diagrams directly to vector or raster formats without embedding them in a notes document:
 
 ```python
-diagram = pd.Flowchart(width=300, height=200)
+diagram = ed.Flowchart(width=300, height=200)
 diagram.terminal("s", "START").terminal("e", "END").edge("s", "e")
 
 # Export to PDF (Vector)
@@ -116,3 +116,4 @@ diagram.save("output.png")
 ## Next
 
 [Flowchart](flowchart.md) · [Sequence](sequence.md) · [ER Diagram](er.md) · [Schema](schema.md) · [Network](network.md) · [Architecture](architecture.md) · [C4 Container](c4.md) · [AWS Cloud](cloud.md) · [Stack](stack.md) · [Git](git.md)
+

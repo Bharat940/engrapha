@@ -1,20 +1,35 @@
 """
-PaperForge Logo Generator
-=========================
+Engrapha Logo Generator
+========================
 Generates SVG assets with transparent backgrounds:
 
-  assets/paperforge_icon.svg    — 500×500 square icon  (PyPI / GitHub avatar / favicon)
-  assets/paperforge_logo.svg    — 700×200 horizontal wordmark  (README header)
-  assets/paperforge_banner.svg  — 1280×640 banner  (GitHub social preview)
+  assets/engrapha_icon.svg          — 500×500 square icon  (PyPI / GitHub avatar / favicon)
+  assets/engrapha_logo.svg          — 700×200 horizontal wordmark  (README header)
+  assets/engrapha_banner.svg        — 1280×640 banner  (GitHub social preview)
+
+  assets/engrapha_icon_black.svg    — ink variant (for light backgrounds)
+  assets/engrapha_logo_black.svg
+  assets/engrapha_banner_black.svg
 
 Design
 ------
-A PF monogram where P and F share one vertical backbone stem.
-  • WHITE (#F9FAFB)  P-bowl  → Paper / document / content
-  • BLUE  (#2563EB)  F-arms  → Forge / flow / diagram output
+A single, bold "E". The stem, middle arm, and bottom arm are plain flat
+bars. The TOP arm only is shaped like a sharpened pencil: it runs as a
+bar, then tapers into a wood-toned cone, ending in a dark graphite point —
+the literal writing tool, attached to the letter itself, rather than a
+separate icon placed next to it.
 
-All assets have a transparent background so they work on any dark or light surface.
-The icon variant adds a rounded square container for contexts that need one.
+  • MAIN     (#2563EB)  The E itself (stem + all three arms)
+  • WOOD     (#E8B84B)  Pencil cone, top arm only
+  • GRAPHITE (#1F2937)  Pencil tip point, top arm only
+  • WHITE    (#F9FAFB)  Wordmark text on dark surfaces
+  • INK      (#111827)  Wordmark text on light surfaces
+
+WOOD and GRAPHITE stay fixed regardless of light/dark variant — a pencil's
+wood and graphite tones don't invert the way flat brand-color fills might.
+
+All assets have a transparent background so they work on any dark or light
+surface.
 """
 
 import os
@@ -23,117 +38,109 @@ from reportlab.graphics import renderSVG
 from reportlab.lib.colors import HexColor
 
 # ── Palette ───────────────────────────────────────────────────────────────────
-BLUE = HexColor("#2563EB")  # F-arms   — forge / flow
-WHITE = HexColor("#F9FAFB")  # P-bowl   — paper / content
-INK = HexColor("#111827")  # container bg (icon only, not banner/logo)
-FOLD = HexColor("#1E3A8A")  # dog-ear shadow
+MAIN = HexColor("#2563EB")
+WOOD = HexColor("#E8B84B")
+GRAPHITE = HexColor("#1F2937")
+WHITE = HexColor("#F9FAFB")
+INK = HexColor("#111827")
+TAG_GREY = HexColor("#9CA3AF")
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
 
-def R(x, y, w, h, color):
-    """Stroke-less filled rectangle."""
-    r = Rect(x, y, w, h)
-    r.fillColor = color
-    r.strokeColor = None
-    r.strokeWidth = 0
-    return r
-
-
 def P(pts, fill):
-    """Filled polygon, no stroke."""
-    p = Polygon(pts)
+    """Filled polygon, no stroke. pts: list of (x, y) tuples."""
+    flat = [coord for point in pts for coord in point]
+    p = Polygon(flat)
     p.fillColor = fill
     p.strokeColor = None
     p.strokeWidth = 0
     return p
 
 
+def R(x, y, w, h, fill):
+    r = Rect(x, y, w, h)
+    r.fillColor = fill
+    r.strokeColor = None
+    r.strokeWidth = 0
+    return r
+
+
 def postprocess_svg(path: str) -> None:
-    """
-    ReportLab SVG renderer writes fill-rule:evenodd on the root <g>.
-    This can cause the P counter (negative space) to accidentally punch through
-    shapes beneath it.  We switch it to nonzero so our solid rects stack cleanly.
-    Also ensures no stray white background rect sneaks in.
-    """
     svg = open(path, encoding="utf-8").read()
     svg = svg.replace("fill-rule: evenodd", "fill-rule: nonzero")
     svg = svg.replace('fill-rule="evenodd"', 'fill-rule="nonzero"')
     open(path, "w", encoding="utf-8").write(svg)
 
 
-# ── Monogram geometry (500×500 canvas, Y-up ReportLab coords) ─────────────────
-
-_MX = 155  # monogram left edge
-_SW = 40  # stem width
-_MY = 100  # monogram bottom (Shifted down to make room for the F)
-_MH = 290  # monogram height (→ top remains exactly at 390)
+# ── Monogram geometry (400×400 local box, Y-up ReportLab coords) ──────────────
+# Local geometry is fixed; callers scale/offset via `s`/`ox`/`oy`.
 
 
-def _monogram(g: Group, ox: float, oy: float, s: float):
-    """
-    Draw the PF monogram into group g.
-    ox, oy = origin offset (bottom-left of monogram in drawing coords)
-    s      = uniform scale factor
-    """
-
-    def rr(x, y, w, h, c):
+def _draw_mark(g: Group, ox: float, oy: float, s: float, main_color):
+    def r(x, y, w, h, c):
         g.add(R(ox + x * s, oy + y * s, w * s, h * s, c))
 
+    def poly(pts, c):
+        g.add(P([(ox + x * s, oy + y * s) for x, y in pts], c))
+
     # Stem
-    rr(_MX, _MY, _SW, _MH, WHITE)
-
-    # P – top bar
-    rr(_MX + _SW, 355, 115, 35, WHITE)
-
-    # P – right post (Height adjusted to meet the newly shifted mid-bar)
-    rr(_MX + _SW + 80, 270, 35, 85, WHITE)
-
-    # P – mid bar (Shifted UP 5px to y=235)
-    rr(_MX + _SW, 235, 115, 35, WHITE)
-
-    # ── Increased Negative Space ──
-    # F – upper arm (Shifted DOWN 10px to y=160).
-    # This creates a massive 40px gap between the top of this arm and the bottom of the P!
-    rr(_MX + _SW, 160, 150, 35, BLUE)
-
-    # F – lower arm (Shifted DOWN 10px to y=100).
-    # Maintains the exact 25px internal gap between the two blue F arms.
-    rr(_MX + _SW, 100, 90, 35, BLUE)
+    r(80, 40, 60, 320, main_color)
+    # Bottom arm — plain flat bar
+    r(80, 40, 190, 64, main_color)
+    # Middle arm — plain flat bar, shorter, set low
+    r(80, 160, 130, 60, main_color)
+    # Top arm — shorter blue bar, then pencil replaces the rest
+    r(120, 296, 80, 64, main_color)
+    poly([(200, 296), (200, 360), (250, 336), (250, 320)], WOOD)
+    poly([(250, 320), (250, 336), (265, 328)], GRAPHITE)
 
 
 # ── 1. Icon  500 × 500 ────────────────────────────────────────────────────────
 
 
-def build_icon() -> Drawing:
+def build_icon(main_color=MAIN) -> Drawing:
     W = H = 500.0
     d = Drawing(W, H)
     g = Group()
 
-    _monogram(g, ox=17.5, oy=5.0, s=1.0)
+    mark_size = 340.0
+    s = mark_size / 400.0
+    ox = (W - mark_size) / 2.0
+    oy = (H - mark_size) / 2.0
+    _draw_mark(g, ox=ox, oy=oy, s=s, main_color=main_color)
 
     d.add(g)
     return d
 
 
-def build_logo() -> Drawing:
+# ── 2. Logo  700 × 200 (horizontal wordmark) ──────────────────────────────────
+
+
+def build_logo(main_color=MAIN, text_color=None) -> Drawing:
     W, H = 700.0, 200.0
     d = Drawing(W, H)
     g = Group()
 
-    s = 0.45
-    _monogram(g, ox=0.0, oy=10.0, s=s)
+    if text_color is None:
+        text_color = WHITE
 
-    tx = 180.0
-    fs = 76
+    mark_size = 168.0
+    s = mark_size / 400.0
+    ox = 20.0
+    oy = (H - mark_size) / 2.0
+    _draw_mark(g, ox=ox, oy=oy, s=s, main_color=main_color)
 
-    cap_height = fs * 0.72
-    ty = (H - cap_height) / 2.0
+    tx = ox + mark_size + 34.0
+    fs = 74
 
-    title = String(tx, ty, "PaperForge")
+    cap_height = fs * 0.717
+    ty = H / 2.0 - cap_height / 2.0
+
+    title = String(tx, ty, "Engrapha")
     title.fontName = "Helvetica-Bold"
     title.fontSize = fs
-    title.fillColor = WHITE
+    title.fillColor = text_color
     title.textAnchor = "start"
     g.add(title)
 
@@ -141,10 +148,16 @@ def build_logo() -> Drawing:
     return d
 
 
-def build_banner(dots: bool = True) -> Drawing:
+# ── 3. Banner  1280 × 640 ──────────────────────────────────────────────────────
+
+
+def build_banner(dots: bool = True, main_color=MAIN, text_color=None) -> Drawing:
     W, H = 1280.0, 640.0
     d = Drawing(W, H)
     g = Group()
+
+    if text_color is None:
+        text_color = WHITE
 
     if dots:
         dot_step = 48.0
@@ -154,29 +167,44 @@ def build_banner(dots: bool = True) -> Drawing:
         while x < W:
             y = dot_step
             while y < H:
-                dot = R(x - dot_r, y - dot_r, dot_r * 2, dot_r * 2, dot_c)
-                g.add(dot)
+                r = Rect(x - dot_r, y - dot_r, dot_r * 2, dot_r * 2)
+                r.fillColor = dot_c
+                r.strokeColor = None
+                g.add(r)
                 y += dot_step
             x += dot_step
 
-    s = 1.17
-    _monogram(g, ox=20.0, oy=33.0, s=s)
+    mark_size = 360.0
+    s = mark_size / 400.0
+    ox = 130.0
+    oy = (H - mark_size) / 2.0
+    _draw_mark(g, ox=ox, oy=oy, s=s, main_color=main_color)
 
-    tx = 460.0
-    ty = 340.0
-    fs = 140
+    tx = ox + mark_size + 70.0
+    fs = 130
+    tag_fs = 36
+    gap = 34.0
 
-    title = String(tx, ty, "PaperForge")
+    cap_height = fs * 0.717
+    tag_cap_height = tag_fs * 0.717
+
+    block_height = cap_height + gap + tag_cap_height
+    block_top = H / 2.0 + block_height / 2.0
+
+    ty = block_top - cap_height
+    tag_ty = ty - gap - tag_cap_height
+
+    title = String(tx, ty, "Engrapha")
     title.fontName = "Helvetica-Bold"
     title.fontSize = fs
-    title.fillColor = WHITE
+    title.fillColor = text_color
     title.textAnchor = "start"
     g.add(title)
 
-    tag = String(tx, ty - 182.0, "Technical Publishing for Python")
+    tag = String(tx, tag_ty, "Technical Publishing for Python")
     tag.fontName = "Helvetica"
-    tag.fontSize = 42
-    tag.fillColor = HexColor("#9CA3AF")
+    tag.fontSize = tag_fs
+    tag.fillColor = TAG_GREY
     tag.textAnchor = "start"
     g.add(tag)
 
@@ -191,14 +219,10 @@ def generate_assets():
     out = "assets"
     os.makedirs(out, exist_ok=True)
 
-    global WHITE
-    original_white = WHITE
-
-    # Generate White variants
     assets = [
-        ("paperforge_icon.svg", build_icon()),
-        ("paperforge_logo.svg", build_logo()),
-        ("paperforge_banner.svg", build_banner()),
+        ("engrapha_icon.svg", build_icon()),
+        ("engrapha_logo.svg", build_logo(text_color=WHITE)),
+        ("engrapha_banner.svg", build_banner(dots=True, text_color=WHITE)),
     ]
 
     for name, drawing in assets:
@@ -207,12 +231,10 @@ def generate_assets():
         postprocess_svg(path)
         print(f"OK {path}")
 
-    # Generate Black variants
-    WHITE = HexColor("#111827")  # INK color (black)
     assets_black = [
-        ("paperforge_icon_black.svg", build_icon()),
-        ("paperforge_logo_black.svg", build_logo()),
-        ("paperforge_banner_black.svg", build_banner(dots=False)),
+        ("engrapha_icon_black.svg", build_icon()),
+        ("engrapha_logo_black.svg", build_logo(text_color=INK)),
+        ("engrapha_banner_black.svg", build_banner(dots=False, text_color=INK)),
     ]
 
     for name, drawing in assets_black:
@@ -220,8 +242,6 @@ def generate_assets():
         renderSVG.drawToFile(drawing, path)
         postprocess_svg(path)
         print(f"OK {path}")
-
-    WHITE = original_white
 
     print()
     print("Tip — PNG export (requires cairosvg):")

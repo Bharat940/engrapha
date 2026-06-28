@@ -5,10 +5,10 @@ Network topology diagrams render hosts, switches, routers, clouds, firewalls, da
 ## Minimal example
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-net = pd.NetworkDiagram(width=500, height=220, caption="Fig 8: LAN")
+net = ed.NetworkDiagram(width=500, height=220, caption="Fig 8: LAN")
 
 net.node("inet",  "Internet",   x=50,  y=110, kind="cloud")
 net.node("fw",    "Firewall",   x=160, y=110, kind="firewall")
@@ -21,7 +21,7 @@ net.link("fw",   "sw")
 net.link("sw",   "srv")
 net.link("sw",   "db")
 
-pn.add(net.as_flowable())
+en.add(net.as_flowable())
 ```
 
 ## Node kinds
@@ -85,3 +85,4 @@ net.node("id", "Label", kind="custom", custom_draw=my_drawer)
 
 - [Architecture](architecture.md)
 - [Stack](stack.md)
+

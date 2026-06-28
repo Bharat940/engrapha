@@ -5,10 +5,10 @@ State machines are suitable for DFAs, process states, and life-cycle flows. Stat
 ## Minimal example
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-sm = pd.StateMachine(width=380, height=180,
+sm = ed.StateMachine(width=380, height=180,
                       caption="Fig 6: Connection States")
 
 sm.state("closed", "CLOSED", initial=True)
@@ -20,8 +20,8 @@ sm.transition("listen", "estab",  label="receive SYN")
 sm.transition("estab",  "closed", label="RST received")
 sm.transition("listen", "listen", label="retransmit")
 
-pn.add(sm.as_flowable())
-pn.build_doc("state.pdf")
+en.add(sm.as_flowable())
+en.build_doc("state.pdf")
 ```
 
 ## Curved transitions
@@ -81,3 +81,4 @@ auto_layout() tries to fit transitions without overlap and switches to vertical 
 
 - [Network](network.md)
 - [Timing](timing.md)
+

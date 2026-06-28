@@ -1,12 +1,12 @@
 # Getting Started
 
-PaperForge lets you produce themed academic PDFs, vector diagrams, and flashcards with just a few lines of Python.
+Engrapha lets you produce themed academic PDFs, vector diagrams, and flashcards with just a few lines of Python.
 
 ## Requirements
 
 - **Python** >= 3.11
 - **reportlab** >= 4.5.1
-- **pydantic** >= 2.13.4 (transitive via `paperforge-diagrams`)
+- **pydantic** >= 2.13.4 (transitive via `Engrapha-diagrams`)
 - **pygments** >= 2.20.0 (included in core install)
 
 Optional (for extended features):
@@ -16,80 +16,81 @@ Optional (for extended features):
 ## Install
 
 ```bash
-# Everything in one package
-pip install paperforge
+# Everything in one package (notes + diagrams + all extras)
+pip install engrapha
 
 # Or pick what you need
-pip install paperforge_notes
-pip install paperforge_notes[full]
-pip install paperforge_diagrams
+pip install engrapha_notes
+# Or with specific extras: [flashcards], [split], [pptx], [svg], or [all]
+pip install engrapha_notes[all]
+pip install engrapha_diagrams
 ```
 
 ### Editable installs for local development
 
 ```bash
-pip install -e ./paperforge -e ./paperforge_diagrams -e ./paperforge_notes[dev]
+pip install -e ./packages/engrapha -e ./packages/engrapha_diagrams -e ./packages/engrapha_notes[dev]
 ```
 
 ## Package Feature Comparison
 
 The monorepo is split into two packages. You can install them separately depending on your project needs:
 
-| Feature / Capability | `paperforge_diagrams` | `paperforge_notes` |
+| Feature / Capability | `engrapha_diagrams` | `engrapha_notes` |
 | :--- | :---: | :---: |
 | **Primary Focus** | Native vector diagramming for ReportLab | Semantic document layout & theming engine |
-| **Dependencies** | `reportlab`, `pydantic` | `reportlab`, `pygments`, `paperforge-diagrams` |
+| **Dependencies** | `reportlab`, `pydantic` | `reportlab`, `pygments`, `Engrapha-diagrams` |
 | **Output formats** | Standalone vector PDF, SVG, PNG | Multi-page PDF, HTML pages, PPTX slides, Anki decks |
-| **Vector Drawings** | Yes (13 diagram types, connectors, auto-routing) | No (uses `paperforge_diagrams` for rendering) |
+| **Vector Drawings** | Yes (13 diagram types, connectors, auto-routing) | No (uses `engrapha_diagrams` for rendering) |
 | **Topologies & Layouts**| Yes (Star, bus, ring, tree, mesh layout methods) | No |
 | **Textbook Callouts** | No | Yes (note, tip, warning, theorem, proof, definition) |
 | **Theming Engine** | Base theme (colors, fonts) | Full document themes, presets, ThemeBuilder |
 | **Math Formatting** | No | Yes (LaTeX math inline & block equation formats) |
 | **Study & Flashcards** | No | Yes (questions, answers, MCQs, revision cards, flashcards) |
-| **CLI Compiler** | No | Yes (`paperforge` / `pdfnotes` compiling markdown to PDF) |
+| **CLI Compiler** | No | Yes (`Engrapha` / `pdfnotes` compiling markdown to PDF) |
 
 
 ## 5-Line Quickstart
 
 ```python
-import paperforge_notes as pn
+import engrapha_notes as en
 
-pn.set_theme(pn.DARK)
-pn.footer(left="Quickstart", show_page_num=True)
-pn.cover_preset("engineering", title="My First Document")
-pn.body("PaperForge builds themed academic notes in 5 lines.")
-pn.build_doc("quickstart.pdf")
+en.set_theme(en.DARK)
+en.footer(left="Quickstart", show_page_num=True)
+en.cover_preset("engineering", title="My First Document")
+en.body("Engrapha builds themed academic notes in 5 lines.")
+en.build_doc("quickstart.pdf")
 ```
 
 ## Full Quickstart Example
 
 ```python title="quickstart.py"
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
 # 1. Initialize theme and footer
-pn.set_theme(pn.OCEAN_DARK)
-pn.footer(left="Algorithms", right="Unit I", show_page_num=True)
-pn.cover_preset("course-notes", title="Algorithms", subtitle="Unit I: Basics")
+en.set_theme(en.OCEAN_DARK)
+en.footer(left="Algorithms", right="Unit I", show_page_num=True)
+en.cover_preset("course-notes", title="Algorithms", subtitle="Unit I: Basics")
 
 # 2. Add content
-pn.part_box("Unit I: Basic Algorithms")
-pn.chap_box("1.1 Sorting Fundamentals")
-pn.section("Insertion Sort")
-pn.body("Insertion Sort builds a sorted array one item at a time.")
-pn.tip("Time complexity: O(N²) worst case, O(N) best case.")
-pn.note("Worst case occurs when the array is reverse sorted.")
+en.part_box("Unit I: Basic Algorithms")
+en.chap_box("1.1 Sorting Fundamentals")
+en.section("Insertion Sort")
+en.body("Insertion Sort builds a sorted array one item at a time.")
+en.tip("Time complexity: O(N²) worst case, O(N) best case.")
+en.note("Worst case occurs when the array is reverse sorted.")
 
 # 3. Create and embed a vector diagram
-fc = pd.Flowchart(width=pn.CW, height=180, caption="Fig 1: Loop invariant step")
+fc = ed.Flowchart(width=en.CW, height=180, caption="Fig 1: Loop invariant step")
 fc.terminal("start", "START")
 fc.process("step", "Compare Key with element")
 fc.terminal("end", "END")
 fc.edge("start", "step").edge("step", "end")
-pn.add(fc.as_flowable())
+en.add(fc.as_flowable())
 
 # 4. Build the document
-pn.build_doc("quickstart.pdf")
+en.build_doc("quickstart.pdf")
 ```
 
 Run it:
@@ -105,7 +106,7 @@ python quickstart.py
 -   :material-image-multiple: **[Browse the diagram gallery](gallery/index.md)**
 -   :material-book-open-page-variant: **[Notes basics](notes/basics.md)**
 -   :material-graph: **[Diagrams overview](diagrams/overview.md)**
--   :material-puzzle: **[Why PaperForge?](why-paperforge.md)**
+-   :material-puzzle: **[Why Engrapha?](why-engrapha.md)**
 
 </div>
 
@@ -113,4 +114,5 @@ python quickstart.py
 
 Themed notes → [Notes: Basics](notes/basics.md)
 Diagrams only → [Diagrams: Overview](diagrams/overview.md)
-Full comparison → [Why PaperForge?](why-paperforge.md)
+Full comparison → [Why Engrapha?](why-engrapha.md)
+

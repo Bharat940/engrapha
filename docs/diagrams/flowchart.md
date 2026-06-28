@@ -17,17 +17,17 @@ Draw ANSI/ISO flowchart symbols: terminals (pills), rectangles, decisions (diamo
 ## Minimal example
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-fc = pd.Flowchart(width=400, height=180, caption="Fig 1: Hello World")
+fc = ed.Flowchart(width=400, height=180, caption="Fig 1: Hello World")
 fc.terminal("start", "START")
 fc.process("step", "Say hello")
 fc.terminal("end", "END")
 fc.edge("start", "step").edge("step", "end")
 
-pn.add(fc.as_flowable())
-pn.build_doc("flow.pdf")
+en.add(fc.as_flowable())
+en.build_doc("flow.pdf")
 ```
 
 ## Branches and labels
@@ -58,8 +58,8 @@ def star_drawer(diagram, cx, cy, w, h, fill, stroke):
     for i in range(5):
         angle = math.radians(90 + i * 72)
         pts += [cx + 10 * math.cos(angle), cy + 10 * math.sin(angle)]
-    # Access shapes via `pd.shapes` (or `from paperforge_diagrams import shapes as S`)
-    diagram._add(pd.shapes.polygon(pts, fill=fill, stroke=stroke))
+    # Access shapes via `ed.shapes` (or `from engrapha_diagrams import shapes as S`)
+    diagram._add(ed.shapes.polygon(pts, fill=fill, stroke=stroke))
 
     fc.custom("icon", "Star", custom_draw=star_drawer)
 ```
@@ -69,7 +69,7 @@ def star_drawer(diagram, cx, cy, w, h, fill, stroke):
 Leave x, y as `None` and let `auto_layout()` position everything. Only the nodes with `None` coordinates are auto-placed; you can freely mix manual and auto positions:
 
 ```python
-flow = pd.Flowchart(width=450, height=220, direction="LR")
+flow = ed.Flowchart(width=450, height=220, direction="LR")
 flow.terminal("s", "START")
 flow.process("a", "A")
 flow.process("b", "B")
@@ -108,9 +108,10 @@ Auto-layout only works when every x, y is `None`. If you specify even one coordi
 
 ## Output
 
-Call `diagram.save("file.pdf")` for vector-only exports. Use `pn.add(diagram.as_flowable())` for PDF embedding.
+Call `diagram.save("file.pdf")` for vector-only exports. Use `en.add(diagram.as_flowable())` for PDF embedding.
 
 ## Next
 
 - [Sequence](sequence.md)
 - [ER and Schema](er.md)
+

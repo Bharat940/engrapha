@@ -8,49 +8,49 @@ Output: Java_Unit3_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
 # =============================================================================
 #  THEME & GLOBAL FOOTER SETUP
 #  Using FOREST_DARK theme -- green accent on dark charcoal
 #  Different from Unit I (Catppuccin Mocha) and Unit II (Midnight Dark)
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.FOREST_DARK)
+en.set_story([])
+en.set_theme(en.FOREST_DARK)
 
-pn.set_global_footer(
+en.set_global_footer(
     left="Java Programming (IT408) -- Unit III",
     right="UIT-RGPV (Autonomous) Bhopal",
     show_page_num=True,
 )
 
 # Sync diagram theme with notes theme
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(26)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(26)
 
-pn.cover_card(
+en.cover_card(
     "JAVA PROGRAMMING",
     "Unit III -- The Applet Class & Applet Programming",
 )
-# pn.cover_subtitle(
+# en.cover_subtitle(
 #     [
 #         "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
 #         "Complete Exam Notes: Applet Basics, Lifecycle, Architecture, HTML Tag,",
 #         "Display Methods, Banner Applet, Status Window, Parameters, and Exam Questions",
 #     ]
 # )
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(8)
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(8)
 
-pn.info_table(
+en.info_table(
     ["Section", "Syllabus Topics Covered"],
     [
         [
@@ -104,21 +104,21 @@ pn.info_table(
 # =============================================================================
 #  TABLE OF CONTENTS
 # =============================================================================
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  UNIT DIVIDER
 # =============================================================================
-pn.part_box("UNIT III -- THE APPLET CLASS & APPLET PROGRAMMING")
+en.part_box("UNIT III -- THE APPLET CLASS & APPLET PROGRAMMING")
 
 # =============================================================================
 #  3.1  APPLET BASICS
 # =============================================================================
-pn.chap_box("3.1  Applet Basics")
-pn.section("What is a Java Applet?")
-pn.definition(
+en.chap_box("3.1  Applet Basics")
+en.section("What is a Java Applet?")
+en.definition(
     "<b>Applet:</b> A small Java program designed to be embedded inside a web page "
     "and executed by a Java-enabled web browser or the <code>appletviewer</code> tool. "
     "Applets are downloaded over the internet along with the HTML page and run on the "
@@ -129,8 +129,8 @@ pn.definition(
     "Applets are declared <b>deprecated since Java 9</b> and <b>removed in Java 17</b>."
 )
 
-pn.section("Applet vs Java Application -- Key Differences")
-pn.info_table(
+en.section("Applet vs Java Application -- Key Differences")
+en.info_table(
     ["Feature", "Java Applet", "Standalone Java Application"],
     [
         [
@@ -172,8 +172,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Brief History and Context")
-pn.bullet(
+en.section("Brief History and Context")
+en.bullet(
     [
         "<b>1995:</b> Java 1.0 introduced Applets as the defining feature for interactive web content.",
         "<b>1996-2000:</b> Peak popularity -- animations, games, and interactive forms used Applets widely.",
@@ -184,26 +184,26 @@ pn.bullet(
     ]
 )
 
-pn.note(
+en.note(
     "Despite being deprecated, Java Applets remain a core topic in the IT408 syllabus at UIT-RGPV. "
     "All exam questions should be answered using the classic <code>java.applet.Applet</code> API "
     "with AWT Graphics. Use <code>appletviewer</code> to test applet code on your local machine."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.2  THE APPLET CLASS
 # =============================================================================
-pn.chap_box("3.2  The Applet Class")
-pn.section("Class Hierarchy")
-pn.body(
+en.chap_box("3.2  The Applet Class")
+en.section("Class Hierarchy")
+en.body(
     "Every applet must directly or indirectly extend the <code>java.applet.Applet</code> class. "
     "This class itself inherits from the AWT component hierarchy, which is why an applet "
     "automatically has a visual panel and can use Graphics drawing methods."
 )
 
-pn.section("Key Methods of the Applet Class")
-pn.info_table(
+en.section("Key Methods of the Applet Class")
+en.info_table(
     ["Method", "Return Type", "Description"],
     [
         [
@@ -282,8 +282,8 @@ pn.info_table(
 )
 
 # UML class diagram showing Applet hierarchy
-cd_hier = pd.ClassDiagram(
-    width=pn.CW,
+cd_hier = ed.ClassDiagram(
+    width=en.CW,
     height=None,
     theme=diag_theme,
     caption="Fig 3.1: Java Applet class inheritance hierarchy",
@@ -335,10 +335,10 @@ cd_hier.relate("Container", "Component", kind="inheritance")
 cd_hier.relate("Panel", "Container", kind="inheritance")
 cd_hier.relate("Applet", "Panel", kind="inheritance")
 cd_hier.relate("MyApplet", "Applet", kind="inheritance")
-pn.story.extend(cd_hier.as_flowable())
+en.story.extend(cd_hier.as_flowable())
 
-pn.section("Minimal Applet Structure")
-pn.code_block(
+en.section("Minimal Applet Structure")
+en.code_block(
     """
 // MinimalApplet.java -- The bare minimum structure of every Java applet
 // Step 1: Import required packages
@@ -386,14 +386,14 @@ public class MinimalApplet extends Applet {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.3  APPLET ARCHITECTURE
 # =============================================================================
-pn.chap_box("3.3  Applet Architecture")
-pn.section("Browser-JVM-Applet Interaction")
-pn.definition(
+en.chap_box("3.3  Applet Architecture")
+en.section("Browser-JVM-Applet Interaction")
+en.definition(
     "<b>Applet Architecture:</b> The structural design describing how a web browser, "
     "the Java Virtual Machine (JVM), and the applet code interact. "
     "When a browser encounters the <code>&lt;applet&gt;</code> tag in an HTML page, "
@@ -403,8 +403,8 @@ pn.definition(
 )
 
 # Network diagram showing the full applet architecture
-net_arch = pd.NetworkDiagram(
-    width=pn.CW,
+net_arch = ed.NetworkDiagram(
+    width=en.CW,
     height=320,
     theme=diag_theme,
     caption="Fig 3.2: Complete Applet Architecture -- browser downloads, JVM runs, AWT renders",
@@ -421,17 +421,17 @@ net_arch.link("browser", "websvr", label="GET files")
 net_arch.link("browser", "jvm", label="loads plugin")
 net_arch.link("jvm", "applet", label="creates object")
 net_arch.link("applet", "awt", label="paint(g)")
-pn.story.extend(net_arch.as_flowable())
+en.story.extend(net_arch.as_flowable())
 
-pn.section("Event-Driven Model")
-pn.body(
+en.section("Event-Driven Model")
+en.body(
     "Applets follow an <b>event-driven programming model</b> -- rather than running sequentially "
     "from top to bottom like a script, an applet sits idle waiting for events. "
     "Events can be triggered by the browser (lifecycle events), by the user (mouse clicks, "
     "key presses), or by internal timers (threads calling repaint). "
     "The AWT system dispatches events to registered listener methods."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Lifecycle Events:</b> Triggered by browser -- init, start, stop, destroy called automatically.",
         "<b>Paint Events:</b> Triggered by AWT when applet needs to redraw -- calls update() -> paint().",
@@ -442,12 +442,12 @@ pn.bullet(
     ]
 )
 
-pn.section("The paint() and repaint() Relationship")
-pn.body(
+en.section("The paint() and repaint() Relationship")
+en.body(
     "Understanding the difference between <code>paint()</code>, <code>update()</code>, "
     "and <code>repaint()</code> is critical for writing smooth applets."
 )
-pn.info_table(
+en.info_table(
     ["Method", "Who Calls It", "What It Does"],
     [
         [
@@ -468,7 +468,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block(
+en.code_block(
     """
 // FlickerFix.java -- Override update() to prevent flickering in animations
 public class FlickerFix extends java.applet.Applet implements Runnable {
@@ -506,14 +506,14 @@ public class FlickerFix extends java.applet.Applet implements Runnable {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.4  APPLET LIFECYCLE -- INIT, START, STOP, DESTROY
 # =============================================================================
-pn.chap_box("3.4  Applet Initialization and Termination")
-pn.section("The Four Lifecycle Methods")
-pn.definition(
+en.chap_box("3.4  Applet Initialization and Termination")
+en.section("The Four Lifecycle Methods")
+en.definition(
     "<b>Applet Lifecycle:</b> The sequence of states and transitions an applet goes through "
     "from the moment it is first loaded into the browser to the moment it is permanently "
     "removed from memory. The browser (or appletviewer) controls this lifecycle by calling "
@@ -521,7 +521,7 @@ pn.definition(
     "writing correct applets that properly initialize, run, pause, and clean up."
 )
 
-pn.info_table(
+en.info_table(
     ["Method", "Called When", "Purpose", "Call Frequency"],
     [
         [
@@ -551,11 +551,11 @@ pn.info_table(
     ],
 )
 
-pn.section("Complete Lifecycle State Diagram")
+en.section("Complete Lifecycle State Diagram")
 
 # State machine showing full applet lifecycle
-sm_life = pd.StateMachine(
-    width=pn.CW,
+sm_life = ed.StateMachine(
+    width=en.CW,
     height=250,
     theme=diag_theme,
     caption="Fig 3.3: Applet lifecycle state transitions -- init, start, stop, destroy",
@@ -574,10 +574,10 @@ sm_life.transition("stopped", "destroyed", label="tab closed\nbrowser calls\ndes
 sm_life.transition(
     "running", "destroyed", label="direct close\ncalls stop() +\ndestroy()"
 )
-pn.story.extend(sm_life.as_flowable())
+en.story.extend(sm_life.as_flowable())
 
-pn.section("Lifecycle in Code -- Full Demonstration")
-pn.code_block(
+en.section("Lifecycle in Code -- Full Demonstration")
+en.code_block(
     """
 // LifecycleDemo.java -- Demonstrates all four lifecycle methods
 import java.applet.Applet;
@@ -675,10 +675,10 @@ public class LifecycleDemo extends Applet {
     lang="java",
 )
 
-pn.section("Lifecycle Sequence Diagram")
+en.section("Lifecycle Sequence Diagram")
 # Sequence diagram showing browser-to-applet calls
-seq_life = pd.SequenceDiagram(
-    width=pn.CW,
+seq_life = ed.SequenceDiagram(
+    width=en.CW,
     height=310,
     theme=diag_theme,
     caption="Fig 3.4: Browser calling applet lifecycle methods in sequence",
@@ -709,22 +709,22 @@ seq_life.message("browser", "jvm", "tab/window closed", arrow="solid")
 seq_life.message("jvm", "applet", "stop()", arrow="solid")
 seq_life.message("jvm", "applet", "destroy()", arrow="solid")
 seq_life.deactivate("applet")
-pn.story.extend(seq_life.as_flowable())
+en.story.extend(seq_life.as_flowable())
 
-pn.tip(
+en.tip(
     "Lifecycle order: init() -> start() -> [stop() -> start()] -> stop() -> destroy(). "
     "init() and destroy() are called EXACTLY ONCE each. "
     "start() and stop() can be called MULTIPLE TIMES. "
     "Always stop threads in stop() and set them to null to allow restart in start()."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.5  SIMPLE APPLET DISPLAY METHODS
 # =============================================================================
-pn.chap_box("3.5  Simple Applet Display Methods")
-pn.section("The Graphics Class")
-pn.definition(
+en.chap_box("3.5  Simple Applet Display Methods")
+en.section("The Graphics Class")
+en.definition(
     "<b>Graphics (java.awt.Graphics):</b> The abstract base class for all "
     "graphics contexts. A Graphics object provides the drawing tools to render "
     "text, shapes, images, and colors onto a component's screen area. "
@@ -734,14 +734,14 @@ pn.definition(
     "the <b>top-left corner</b>, with x increasing rightward and y increasing downward."
 )
 
-pn.section("Coordinate System")
-pn.body(
+en.section("Coordinate System")
+en.body(
     "Java's AWT coordinate system places the origin at the TOP-LEFT corner of the applet panel. "
     "X increases to the RIGHT. Y increases DOWNWARD. "
     "This is different from standard mathematical coordinates where Y increases upward."
 )
 
-pn.code_block(
+en.code_block(
     """
 // Coordinate System Reference:
 // =============================================
@@ -758,8 +758,8 @@ pn.code_block(
     lang="java",
 )
 
-pn.section("Complete Graphics Method Reference")
-pn.info_table(
+en.section("Complete Graphics Method Reference")
+en.info_table(
     ["Method", "Syntax / Signature", "Description"],
     [
         [
@@ -841,8 +841,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Graphics Demo -- Shapes and Colors")
-pn.code_block(
+en.section("Graphics Demo -- Shapes and Colors")
+en.code_block(
     """
 // GraphicsDemo.java -- Demonstrates all major drawing methods
 import java.applet.Applet;
@@ -931,8 +931,8 @@ public class GraphicsDemo extends Applet {
     lang="java",
 )
 
-pn.section("The Font Class")
-pn.info_table(
+en.section("The Font Class")
+en.info_table(
     ["Font Style Constant", "Value", "Appearance"],
     [
         ["Font.PLAIN", "0", "Normal weight, normal style text"],
@@ -941,7 +941,7 @@ pn.info_table(
         ["Font.BOLD + Font.ITALIC", "3", "Bold and italic combined"],
     ],
 )
-pn.code_block(
+en.code_block(
     """
 // Font creation syntax:
 //   new Font(String name, int style, int size)
@@ -958,14 +958,14 @@ g.drawString("Bold text at size 16", 30, 50);
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.6  SIMPLE BANNER APPLET
 # =============================================================================
-pn.chap_box("3.6  Simple Banner Applet")
-pn.section("What is a Banner Applet?")
-pn.definition(
+en.chap_box("3.6  Simple Banner Applet")
+en.section("What is a Banner Applet?")
+en.definition(
     "<b>Banner Applet:</b> An applet that continuously scrolls text horizontally "
     "across the screen -- like a news ticker or advertising marquee. "
     "It is the classic example of combining <b>threads</b> (for continuous animation) "
@@ -974,8 +974,8 @@ pn.definition(
     "position and calls <code>repaint()</code> at regular intervals using <code>Thread.sleep()</code>."
 )
 
-pn.section("How the Banner Works -- Key Concepts")
-pn.bullet(
+en.section("How the Banner Works -- Key Concepts")
+en.bullet(
     [
         "<b>Thread:</b> A separate thread of execution that runs the scrolling loop in the background while the applet stays responsive. The applet implements Runnable and passes itself to a new Thread.",
         "<b>xPos variable:</b> Tracks the current horizontal position of the message. Starts at the right edge (getWidth()) and decreases each iteration to move text leftward.",
@@ -986,8 +986,8 @@ pn.bullet(
 )
 
 # Banner Applet Flowchart
-fc_banner = pd.Flowchart(
-    width=pn.CW,
+fc_banner = ed.Flowchart(
+    width=en.CW,
     height=540,
     theme=diag_theme,
     caption="Fig 3.5: Banner Applet execution flow -- init, start, thread loop, repaint",
@@ -1020,10 +1020,10 @@ fc_banner.edge("reset", "repaint")
 fc_banner.edge("repaint", "paint")
 fc_banner.edge("paint", "sleep")
 fc_banner.edge("sleep", "run", orthogonal=True)
-pn.story.extend(fc_banner.as_flowable())
+en.story.extend(fc_banner.as_flowable())
 
-pn.section("Simple Banner Applet Code")
-pn.code_block(
+en.section("Simple Banner Applet Code")
+en.code_block(
     """
 // SimpleBannerApplet.java -- Classic scrolling text banner
 import java.applet.Applet;
@@ -1126,14 +1126,14 @@ public class SimpleBannerApplet extends Applet implements Runnable {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.7  USING THE STATUS WINDOW
 # =============================================================================
-pn.chap_box("3.7  Using the Status Window")
-pn.section("What is the Status Window?")
-pn.definition(
+en.chap_box("3.7  Using the Status Window")
+en.section("What is the Status Window?")
+en.definition(
     "<b>Status Window (Status Bar):</b> The narrow strip at the very bottom of a "
     "web browser or AppletViewer window that displays short informational messages. "
     "An applet can write to this area using the <code>showStatus(String message)</code> "
@@ -1143,7 +1143,7 @@ pn.definition(
     "The status message is temporary and may be overwritten by the browser itself."
 )
 
-pn.bullet(
+en.bullet(
     [
         "<b>Syntax:</b> <code>showStatus(String message)</code> -- no return value.",
         "<b>Where it appears:</b> Bottom of the browser window or AppletViewer tool bar.",
@@ -1153,7 +1153,7 @@ pn.bullet(
     ]
 )
 
-pn.code_block(
+en.code_block(
     """
 // StatusWindowDemo.java -- Show mouse position and lifecycle info in status bar
 import java.applet.Applet;
@@ -1233,14 +1233,14 @@ public class StatusWindowDemo extends Applet
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.8  THE HTML APPLET TAG
 # =============================================================================
-pn.chap_box("3.8  The HTML APPLET Tag")
-pn.section("APPLET Tag Syntax and Attributes")
-pn.definition(
+en.chap_box("3.8  The HTML APPLET Tag")
+en.section("APPLET Tag Syntax and Attributes")
+en.definition(
     "<b>The &lt;applet&gt; Tag:</b> An HTML element that embeds a Java applet "
     "inside a web page. The browser reads this tag to determine which .class file "
     "to download, what size panel to allocate, where to find the files, and what "
@@ -1248,7 +1248,7 @@ pn.definition(
     "and <code>height</code> attributes are REQUIRED; all others are optional."
 )
 
-pn.info_table(
+en.info_table(
     ["Attribute", "Required?", "Description", "Example"],
     [
         [
@@ -1315,8 +1315,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Complete HTML Example with All Attributes")
-pn.code_block(
+en.section("Complete HTML Example with All Attributes")
+en.code_block(
     """
 <!-- BannerPage.html -- Full HTML page embedding an applet with all attributes -->
 <!DOCTYPE html>
@@ -1378,8 +1378,8 @@ pn.code_block(
     lang="java",
 )
 
-pn.section("Alternative: Embedding Applet Tag in Java Source File")
-pn.code_block(
+en.section("Alternative: Embedding Applet Tag in Java Source File")
+en.code_block(
     """
 // You can also embed the HTML applet tag as a comment in the Java source file
 // Then appletviewer can be run directly on the .java file
@@ -1411,14 +1411,14 @@ public class QuickApplet extends Applet {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.9  PASSING PARAMETERS TO APPLETS
 # =============================================================================
-pn.chap_box("3.9  Passing Parameters to Applets")
-pn.section("The getParameter() Method")
-pn.definition(
+en.chap_box("3.9  Passing Parameters to Applets")
+en.section("The getParameter() Method")
+en.definition(
     "<b>Passing Parameters:</b> HTML <code>&lt;param&gt;</code> tags inside the "
     "<code>&lt;applet&gt;</code> block allow the HTML author to pass "
     "configuration data to the applet without recompiling the Java code. "
@@ -1429,7 +1429,7 @@ pn.definition(
     "<code>Double.parseDouble()</code>, etc."
 )
 
-pn.info_table(
+en.info_table(
     ["Step", "HTML Side (in .html file)", "Java Side (in applet init())"],
     [
         ["1. Declare param", '<param name="fontSize" value="18">', "--"],
@@ -1440,7 +1440,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block(
+en.code_block(
     """
 // ParameterDemo.java -- Complete parameter reading demonstration
 import java.applet.Applet;
@@ -1529,8 +1529,8 @@ public class ParameterDemo extends Applet {
 )
 
 # Parameter Reading Flow
-fc_param = pd.Flowchart(
-    width=pn.CW,
+fc_param = ed.Flowchart(
+    width=en.CW,
     height=500,
     theme=diag_theme,
     caption="Fig 3.6: Parameter reading flow -- HTML to applet via getParameter()",
@@ -1557,15 +1557,15 @@ fc_param.edge("valid", "error", branch="no")
 fc_param.edge("default", "use", orthogonal=True)
 fc_param.edge("error", "use", orthogonal=True)
 fc_param.edge("use", "done")
-pn.story.extend(fc_param.as_flowable())
-pn.br()
+en.story.extend(fc_param.as_flowable())
+en.br()
 
 # =============================================================================
 #  3.10  IMPROVING THE BANNER APPLET
 # =============================================================================
-pn.chap_box("3.10  Improving the Banner Applet")
-pn.section("Enhancements Over the Simple Banner")
-pn.bullet(
+en.chap_box("3.10  Improving the Banner Applet")
+en.section("Enhancements Over the Simple Banner")
+en.bullet(
     [
         "<b>Configurable via HTML params:</b> Speed, text color, font size, and message text are all controlled by HTML &lt;param&gt; tags -- no recompilation needed.",
         "<b>Pause/Resume on mouse click:</b> MouseListener toggles a boolean flag. The thread loop checks the flag -- if paused, it skips the scroll and repaint, saving CPU.",
@@ -1575,8 +1575,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Improved Banner Applet -- Full Code")
-pn.code_block(
+en.section("Improved Banner Applet -- Full Code")
+en.code_block(
     """
 // ImprovedBannerApplet.java -- Full-featured banner with all improvements
 import java.applet.Applet;
@@ -1718,8 +1718,8 @@ public class ImprovedBannerApplet extends Applet
     lang="java",
 )
 
-pn.section("Comparison: Simple vs Improved Banner")
-pn.info_table(
+en.section("Comparison: Simple vs Improved Banner")
+en.info_table(
     ["Feature", "Simple Banner", "Improved Banner"],
     [
         [
@@ -1751,17 +1751,17 @@ pn.info_table(
         ["Status bar", "Not used", "showStatus() shows pause/resume hints"],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  3.11  EXAM QUESTIONS WITH ANSWERS
 # =============================================================================
-pn.part_box("UNIT III -- EXAM QUESTIONS & DETAILED ANSWERS")
-pn.chap_box("3.11  Previous-Year Style Exam Questions")
+en.part_box("UNIT III -- EXAM QUESTIONS & DETAILED ANSWERS")
+en.chap_box("3.11  Previous-Year Style Exam Questions")
 
-pn.section("2-Mark Questions (Short Answer)")
+en.section("2-Mark Questions (Short Answer)")
 
-pn.highlight(
+en.highlight(
     "<b>Q1. Define Java Applet. How is it different from a Java Application?</b><br/>"
     "A: A Java Applet is a small Java program embedded in a web page and executed by a "
     "Java-enabled browser. Unlike a standalone application, an applet has no main() method; "
@@ -1770,7 +1770,7 @@ pn.highlight(
     "and browser/appletviewer. Applications have full system access; applets run in a security sandbox."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q2. What package contains the Applet class? Write its full class hierarchy.</b><br/>"
     "A: The Applet class is in the <code>java.applet</code> package. "
     "Hierarchy: java.lang.Object -> java.awt.Component -> java.awt.Container -> "
@@ -1778,7 +1778,7 @@ pn.highlight(
     "This hierarchy means every applet is also an AWT Panel, giving it a graphical display area."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q3. What is the role of the paint() method in an applet?</b><br/>"
     "A: paint(Graphics g) is responsible for drawing the applet's visual output on screen. "
     "It is called by the AWT system whenever the applet needs to be rendered: on first display, "
@@ -1787,7 +1787,7 @@ pn.highlight(
     "The Graphics object 'g' provides all drawing tools (drawString, drawRect, setColor, etc.)."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q4. Differentiate between init() and start() in an applet.</b><br/>"
     "A: init() is called EXACTLY ONCE when the applet class is first loaded -- it performs "
     "one-time initialization (set background, initialize variables, add listeners). "
@@ -1796,7 +1796,7 @@ pn.highlight(
     "Key difference: init() = once only; start() = multiple times per applet lifetime."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q5. What is the purpose of showStatus() in an applet?</b><br/>"
     "A: showStatus(String message) displays a short text message in the status bar "
     "(the strip at the very bottom of the browser or AppletViewer window). "
@@ -1805,7 +1805,7 @@ pn.highlight(
     "The message may be overwritten by browser's own status messages."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q6. What is the HTML tag for embedding a Java applet? Name three of its attributes.</b><br/>"
     "A: The HTML tag is &lt;applet&gt;. Three key attributes: "
     "(1) <b>code</b> -- name of the compiled .class file (required). "
@@ -1815,7 +1815,7 @@ pn.highlight(
     "name (identifier for applet), alt (text if Java not supported)."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q7. How are parameters passed to an applet from HTML?</b><br/>"
     "A: Parameters are passed using &lt;param&gt; child tags inside the &lt;applet&gt; tag: "
     "<code>&lt;param name='speed' value='5'&gt;</code>. "
@@ -1824,7 +1824,7 @@ pn.highlight(
     "and provide a default. Parse to int/double using Integer.parseInt() or Double.parseDouble()."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q8. Why is update() overridden in a banner applet?</b><br/>"
     "A: The default AWT update() method erases the entire applet panel with the background color "
     "before calling paint(). In animations this causes a visible white-flash flicker between frames. "
@@ -1832,7 +1832,7 @@ pn.highlight(
     "we control exactly what gets erased, eliminating the flicker and producing smooth animation."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q9. What is the difference between repaint() and paint()?</b><br/>"
     "A: paint(Graphics g) is the actual drawing method -- you override it and draw in it; "
     "never call it directly. repaint() is a request method -- you call it when your data changes "
@@ -1840,7 +1840,7 @@ pn.highlight(
     "Direct calls to paint() are dangerous because they may not have a valid Graphics context."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q10. What is AppletViewer and when is it used?</b><br/>"
     "A: AppletViewer is a command-line tool included in the JDK that simulates the browser "
     "environment for testing applets locally without needing a browser with Java plugin. "
@@ -1849,9 +1849,9 @@ pn.highlight(
     "It was the standard way to test and debug applets before browser plugins became obsolete."
 )
 
-pn.section("5-Mark Questions (Explain with Code/Diagram)")
+en.section("5-Mark Questions (Explain with Code/Diagram)")
 
-pn.highlight(
+en.highlight(
     "<b>Q11. Explain the complete lifecycle of a Java Applet with a diagram.</b><br/>"
     "A: The Java Applet lifecycle consists of four methods called by the browser in sequence:<br/>"
     "<b>1. init():</b> Called once when applet loads. One-time setup (variables, UI, listeners).<br/>"
@@ -1862,7 +1862,7 @@ pn.highlight(
     "See Fig 3.3 and Fig 3.4 for the state machine and sequence diagrams."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q12. Write a Java Applet to draw a rectangle, oval, and display text with different colors.</b><br/>"
     "A: See GraphicsDemo code in Section 3.5. Key points: "
     "(1) import java.applet.Applet; import java.awt.*; "
@@ -1873,7 +1873,7 @@ pn.highlight(
     "HTML: &lt;applet code='GraphicsDemo.class' width='400' height='300'&gt;&lt;/applet&gt;"
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q13. Explain the Simple Banner Applet with Runnable thread. Write its code.</b><br/>"
     "A: A banner applet scrolls text using a background Thread. "
     "The class implements both Applet and Runnable. "
@@ -1885,7 +1885,7 @@ pn.highlight(
     "See the complete SimpleBannerApplet code in Section 3.6."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q14. Explain the HTML APPLET tag with all its attributes and a complete example.</b><br/>"
     "A: The &lt;applet&gt; tag embeds Java applets. Required: code (class file name), width, height. "
     "Optional: codebase (class directory), archive (JAR files), name (applet identifier), "
@@ -1896,7 +1896,7 @@ pn.highlight(
     "See Section 3.8 for the complete HTML file example."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q15. How do you pass and read parameters in an applet? Write a program to display student info from HTML parameters.</b><br/>"
     "A: HTML side: use &lt;param name='name' value='Rahul'&gt; inside &lt;applet&gt; block. "
     "Java side (in init()): String name = getParameter('name'); if(name==null) name='Unknown'; "
@@ -1906,9 +1906,9 @@ pn.highlight(
     "See complete ParameterDemo code in Section 3.9."
 )
 
-pn.section("10-Mark Questions (Detailed Programs)")
+en.section("10-Mark Questions (Detailed Programs)")
 
-pn.highlight(
+en.highlight(
     "<b>Q16. Write a complete Java Applet program for a scrolling banner. "
     "Include HTML file. Add pause/resume on mouse click and configurable speed/color via parameters.</b><br/>"
     "A: See the ImprovedBannerApplet code in Section 3.10 -- it covers ALL these requirements: "
@@ -1921,7 +1921,7 @@ pn.highlight(
     "HTML: code='ImprovedBannerApplet.class' with &lt;param name='speed' value='4'&gt; etc."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q17. Write an applet that draws various geometric shapes (rectangle, circle, line, polygon) "
     "with filled and unfilled versions, using multiple colors.</b><br/>"
     "A: See GraphicsDemo in Section 3.5 for the complete implementation. "
@@ -1932,7 +1932,7 @@ pn.highlight(
     "Font: new Font('Arial', Font.BOLD, 16) set via g.setFont()."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q18. Explain Applet Architecture. Describe how a browser, JVM, and the applet class interact "
     "from page load to execution.</b><br/>"
     "A: (1) User opens HTML page in browser. "
@@ -1948,7 +1948,7 @@ pn.highlight(
     "See Fig 3.2 for the complete architecture diagram."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q19. Write an applet that displays mouse click coordinates and draws a marker at each click position. "
     "Also use the Status Window to show current mouse position.</b><br/>"
     "A: (1) Implement MouseListener and MouseMotionListener. "
@@ -1959,7 +1959,7 @@ pn.highlight(
     "See StatusWindowDemo in Section 3.7 and MouseCoordApplet in the reference examples."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q20. Compare Java Applet, Java Application, and Java Servlet. "
     "Why are Applets deprecated? What are the modern alternatives?</b><br/>"
     "A: <b>Applet:</b> Client-side, runs in browser, sandboxed, extends Applet, no main(). "
@@ -1971,7 +1971,7 @@ pn.highlight(
     "JavaFX for desktop GUI; Spring Boot / Servlets for web backend; React/Angular for web UI."
 )
 
-pn.section("Assignment Question Bank Coverage")
+en.section("Assignment Question Bank Coverage")
 assignment_questions = [
     (
         "Q1. What is a Java Applet? How is it different from a standalone Java application?",
@@ -2108,10 +2108,10 @@ assignment_questions = [
 ]
 
 for question, answer in assignment_questions:
-    pn.highlight(f"<b>{question}</b><br/>A: {answer}")
+    en.highlight(f"<b>{question}</b><br/>A: {answer}")
 
-pn.section("Quick Revision Summary Table")
-pn.info_table(
+en.section("Quick Revision Summary Table")
+en.info_table(
     ["Topic", "Key Exam Point"],
     [
         [
@@ -2189,7 +2189,7 @@ pn.info_table(
     ],
 )
 
-pn.note(
+en.note(
     "For exam: Always write the APPLET TAG COMMENT in your code when asked to write an applet program. "
     "Always show the corresponding HTML file. "
     "Always override both start() and stop() when using threads (null the thread in stop()). "
@@ -2199,5 +2199,5 @@ pn.note(
 # =============================================================================
 #  BUILD DOCUMENT
 # =============================================================================
-pn.build_doc("Java_Unit3_Notes.pdf")
+en.build_doc("Java_Unit3_Notes.pdf")
 print("Generated: Java_Unit3_Notes.pdf")

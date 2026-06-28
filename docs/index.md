@@ -5,20 +5,20 @@ description: Generate beautiful PDFs, notes, diagrams, slides, and flashcards fr
 
 <div align="center" style="margin-bottom: 2rem;" markdown="1">
 
-# <span class="logo-light"><img src="assets/paperforge_logo_black.svg" alt="PaperForge" width="320"/></span><span class="logo-dark"><img src="assets/paperforge_logo.svg" alt="PaperForge" width="320"/></span> PaperForge
+# <span class="logo-light"><img src="assets/engrapha_logo_black.svg" alt="Engrapha" width="320"/></span><span class="logo-dark"><img src="assets/engrapha_logo.svg" alt="Engrapha" width="320"/></span> Engrapha
 
 ### Beautiful PDFs from Python or Markdown
 <br>
 
 [Get Started](getting-started.md){ .md-button .md-button--primary }
 [Browse Gallery](gallery/index.md){ .md-button }
-[:material-github: GitHub](https://github.com/Bharat940/paperforge){ .md-button }
+[:material-github: GitHub](https://github.com/Bharat940/Engrapha){ .md-button }
 
 </div>
 
 ---
 
-## Why PaperForge?
+## Why Engrapha?
 
 <div class="grid cards" markdown>
 
@@ -36,7 +36,7 @@ description: Generate beautiful PDFs, notes, diagrams, slides, and flashcards fr
 
 -   :material-language-markdown: **Markdown CLI**
 
-    `paperforge notes.md --theme catppuccin-mocha` — no Python required
+    `Engrapha notes.md --theme catppuccin-mocha` — no Python required
 
 -   :material-lock: **Zero Dependencies**
 
@@ -53,35 +53,35 @@ description: Generate beautiful PDFs, notes, diagrams, slides, and flashcards fr
 ## Quick Start
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-pn.set_theme(pn.OCEAN_DARK)
-pn.footer(left="Intro to Algorithms", show_page_num=True)
+en.set_theme(en.OCEAN_DARK)
+en.footer(left="Intro to Algorithms", show_page_num=True)
 
-pn.part_box("Unit I: Basic Algorithms")
-pn.chap_box("1.1 Sorting Fundamentals")
-pn.section("Insertion Sort")
-pn.body("Insertion Sort builds a sorted array one item at a time.")
-pn.tip("Time complexity: O(N²) worst case, O(N) best case.")
+en.part_box("Unit I: Basic Algorithms")
+en.chap_box("1.1 Sorting Fundamentals")
+en.section("Insertion Sort")
+en.body("Insertion Sort builds a sorted array one item at a time.")
+en.tip("Time complexity: O(N²) worst case, O(N) best case.")
 
-fc = pd.Flowchart(width=pn.CW, height=180, caption="Fig 1: Loop invariant step")
+fc = ed.Flowchart(width=en.CW, height=180, caption="Fig 1: Loop invariant step")
 fc.terminal("start", "START").process("step", "Compare").terminal("end", "END")
 fc.edge("start", "step").edge("step", "end")
 
-pn.add(fc.as_flowable())
-pn.build_doc("quickstart.pdf")
+en.add(fc.as_flowable())
+en.build_doc("quickstart.pdf")
 ```
 
 ## Ecosystem
 
 <div class="grid cards" markdown>
 
--   :material-book-open-page-variant: **[paperforge_notes](notes/basics.md)**
+-   :material-book-open-page-variant: **[engrapha_notes](notes/basics.md)**
 
     Semantic layout · Theming engine · Typography · ReportLab Platypus
 
--   :material-graph: **[paperforge_diagrams](diagrams/overview.md)**
+-   :material-graph: **[engrapha_diagrams](diagrams/overview.md)**
 
     Vector-native diagram library · No external compilers · Theme-matched
 
@@ -91,7 +91,7 @@ pn.build_doc("quickstart.pdf")
 
 ## Feature Matrix
 
-| Capability | PaperForge | ReportLab | Mermaid | Pandoc | LaTeX |
+| Capability | Engrapha | ReportLab | Mermaid | Pandoc | LaTeX |
 |:---|:---:|:---:|:---:|:---:|:---:|
 | Themed PDF notes | :material-check: | :material-close: | :material-close: | Partial | :material-check: |
 | Vector diagrams | :material-check: | :material-close: | :material-check: | Partial | Partial |
@@ -111,7 +111,7 @@ pn.build_doc("quickstart.pdf")
 -   :material-rocket-launch: **[Getting Started](getting-started.md)**
 -   :material-book-open-page-variant: **[Notes Basics](notes/basics.md)**
 -   :material-image-multiple: **[Diagram Gallery](gallery/index.md)**
--   :material-puzzle: **[Why PaperForge?](why-paperforge.md)**
+-   :material-puzzle: **[Why Engrapha?](why-engrapha.md)**
 -   :material-code-tags: **[API Reference](api/notes.md)**
 
 </div>
@@ -128,4 +128,5 @@ For an index of all available documentation, see [llms.txt](llms.txt).
 
 ## License
 
-MIT — see [LICENSE](https://github.com/Bharat940/paperforge/blob/main/LICENSE).
+MIT — see [LICENSE](https://github.com/Bharat940/Engrapha/blob/main/LICENSE).
+

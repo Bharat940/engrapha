@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to PaperForge are documented here. PaperForge follows [Semantic Versioning](https://semver.org/).
+All notable changes to Engrapha are documented here. Engrapha follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
@@ -10,9 +10,9 @@ All notable changes to PaperForge are documented here. PaperForge follows [Seman
 
 ## [0.1.0] - 2026
 
-Initial public release of PaperForge. Both packages contain feature-complete implementations:
+Initial public release of Engrapha. Both packages contain feature-complete implementations:
 
-### PaperForge Diagrams — `paperforge_diagrams`
+### Engrapha Diagrams — `engrapha_diagrams`
 - **Flowchart**: ANSI/ISO shapes with orthogonal routing
 - **SequenceDiagram**: UML sequence with activation bars
 - **ClassDiagram**: UML class with inheritance, composition, etc.
@@ -30,7 +30,7 @@ Initial public release of PaperForge. Both packages contain feature-complete imp
 - `DiagramTheme.from_notes_theme()` for theme matching
 - Vector-native PDF/SVG/PNG export
 
-### PaperForge Notes — `paperforge_notes`
+### Engrapha Notes — `engrapha_notes`
   - 15 preset themes + ThemeBuilder + print-light theme
   - Cover cards, part / chap / section / subsection blocks
   - Callouts: tip, note, warning, important, exam, theorem, proof
@@ -51,3 +51,4 @@ Initial public release of PaperForge. Both packages contain feature-complete imp
   - No external network or binaries required
   - No raster fallbacks
   - Standard fonts only by default
+

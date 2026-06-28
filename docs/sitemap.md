@@ -1,25 +1,25 @@
 # Sitemap
 
-A semantic map of all documentation pages for PaperForge, helping both users and AI agents navigate the codebase tools.
+A semantic map of all documentation pages for Engrapha, helping both users and AI agents navigate the codebase tools.
 
 
 ## Home
 - [Home](index.md) - Generate beautiful PDFs, notes, diagrams, slides, and flashcards from Python or Markdown.
 
 ## Getting Started
-- [Getting Started](getting-started.md) - PaperForge lets you produce themed academic PDFs, vector diagrams, and flashcards with just a few lines of Python.
-- [Why PaperForge?](why-paperforge.md) - Several tools can help you produce diagrams or notes. PaperForge's value is combining all of them into one Python toolkit with vector-native graphics,...
+- [Getting Started](getting-started.md) - Engrapha lets you produce themed academic PDFs, vector diagrams, and flashcards with just a few lines of Python.
+- [Why Engrapha?](why-engrapha.md) - Several tools can help you produce diagrams or notes. Engrapha's value is combining all of them into one Python toolkit with vector-native graphics,...
 
 ## Notes
-- [Notes: Basics](notes/basics.md) - This page covers the core API of `paperforge_notes`: themes, headings, body, and footers. By the end of this page you'll be able to construct a struct...
-- [Notes: Callouts and Highlights](notes/callouts.md) - PaperForge ships with semantic callout blocks for all the most common exam-note situations.
-- [Notes: Study and Revision Helpers](notes/study.md) - PaperForge ships several blocks specifically for preparation: question, qbox, mcq, revision card, and flashcard.
+- [Notes: Basics](notes/basics.md) - This page covers the core API of `engrapha_notes`: themes, headings, body, and footers. By the end of this page you'll be able to construct a struct...
+- [Notes: Callouts and Highlights](notes/callouts.md) - Engrapha ships with semantic callout blocks for all the most common exam-note situations.
+- [Notes: Study and Revision Helpers](notes/study.md) - Engrapha ships several blocks specifically for preparation: question, qbox, mcq, revision card, and flashcard.
 - [Notes: Advanced](notes/advanced.md) - Advanced ingredients you will need for full-length textbooks, lab reports, and research notes.
-- [Notes: Templates](notes/templates.md) - PaperForge ships built-in helpers for common document types. Each returns a ready-to-use `NotesTheme`, so you do not have to configure fonts, colors, ...
-- [Notes: Export Formats](notes/export.md) - Once your story is assembled, PaperForge can emit PDF, HTML, PPTX, and Anki packages.
+- [Notes: Templates](notes/templates.md) - Engrapha ships built-in helpers for common document types. Each returns a ready-to-use `NotesTheme`, so you do not have to configure fonts, colors, ...
+- [Notes: Export Formats](notes/export.md) - Once your story is assembled, Engrapha can emit PDF, HTML, PPTX, and Anki packages.
 
 ## Diagrams
-- [Diagrams: Overview](diagrams/overview.md) - PaperForge ships with 13 vector-native diagram types. This page helps you pick the right one.
+- [Diagrams: Overview](diagrams/overview.md) - Engrapha ships with 13 vector-native diagram types. This page helps you pick the right one.
 - [Diagram: Flowchart](diagrams/flowchart.md) - Draw ANSI/ISO flowchart symbols: terminals (pills), rectangles, decisions (diamonds), I/O (parallelograms), connectors (circles), and predefined-proce...
 - [Diagram: Sequence](diagrams/sequence.md) - A UML sequence diagram maps ordered message arrows over lifelines. Each actor is placed left-to-right at the top. A dashed lifeline drops down. Activa...
 - [Diagrams: ER and Schema](diagrams/er.md) - This page covers `ERDiagram` (Chen notation -professional- style) and `SchemaDiagram` (plain database table with FK lines).
@@ -36,40 +36,41 @@ A semantic map of all documentation pages for PaperForge, helping both users and
 
 ## Gallery
 - [Gallery](gallery/index.md) - Screenshots and examples for each diagram type and theme combination. Screenshots will be added later; placeholder markers are in place.
-- [Gallery: Flowcharts](gallery/flowcharts.md) - Flowcharts are the most frequently used diagram type in PaperForge. This page shows standard variations.
+- [Gallery: Flowcharts](gallery/flowcharts.md) - Flowcharts are the most frequently used diagram type in Engrapha. This page shows standard variations.
 - [Gallery: ER Diagrams](gallery/er-diagrams.md) - ER and Schema diagrams built with the Chen and SQL table notations.
 - [Gallery: Sequence Diagrams](gallery/sequence-diagrams.md) - Sequence diagrams express API calls, handshake protocols, and event ordering.
 - [Gallery: Network Diagrams](gallery/network-diagrams.md) - Network topology examples: simple LAN, bus topology, star, mesh, and tree.
 - [Gallery: Architecture Diagrams](gallery/architectures.md) - System architecture and cloud topology examples.
-- [Gallery: Themes](gallery/themes.md) - The same diagram rendered in every preset PaperForge theme. This page shows the power and clean auto-matching of the theme system.
-- [Gallery: Notes Pages](gallery/notes-pages.md) - Full page screenshots of notes documents generated by PaperForge. Each entry shows a representative document-type alongside the Python that generates ...
+- [Gallery: Themes](gallery/themes.md) - The same diagram rendered in every preset Engrapha theme. This page shows the power and clean auto-matching of the theme system.
+- [Gallery: Notes Pages](gallery/notes-pages.md) - Full page screenshots of notes documents generated by Engrapha. Each entry shows a representative document-type alongside the Python that generates ...
 
 ## Examples
-- [Example: Engineering Notes](examples/engineering-notes.md) - A complete engineering-notes session using PaperForge.
-- [Example: Resume](examples/resume.md) - A single-page resume using PaperForge's section blocks, bullet lists, and timeline blocks.
+- [Example: Engineering Notes](examples/engineering-notes.md) - A complete engineering-notes session using Engrapha.
+- [Example: Resume](examples/resume.md) - A single-page resume using Engrapha's section blocks, bullet lists, and timeline blocks.
 - [Example: Assignment](examples/assignment.md) - Assignment sheet with question numbers, code blocks, marking rubrics, and MCQs.
 - [Example: Thesis Chapter](examples/thesis.md) - Academic chapter with sections, citations, formulas, index entries, and an embedded diagram.
 - [Example: Networking Notes](examples/networking-notes.md) - Networking notes using OSI-layer stacks, packet header diagrams, and sequence diagrams to show the stack holistically.
 
 ## API Reference
-- [API Reference: paperforge_notes](api/notes.md) - Quick reference grouped by purpose. Full docstrings are in the source.
-- [API Reference: paperforge_diagrams](api/diagrams.md) - All public classes and their constructors. Every diagram inherits from `DiagramBase` which exposes `save(filename)`, `as_flowable()`, and `theme`.
+- [API Reference: engrapha_notes](api/notes.md) - Quick reference grouped by purpose. Full docstrings are in the source.
+- [API Reference: engrapha_diagrams](api/diagrams.md) - All public classes and their constructors. Every diagram inherits from `DiagramBase` which exposes `save(filename)`, `as_flowable()`, and `theme`.
 
 ## Themes
-- [Themes](themes.md) - PaperForge comes with **10 preset themes** for `paperforge_diagrams` and **15 preset themes** for `paperforge_notes`.
+- [Themes](themes.md) - Engrapha comes with **10 preset themes** for `engrapha_diagrams` and **15 preset themes** for `engrapha_notes`.
 
 ## Markdown
-- [Markdown Compiler](markdown.md) - PaperForge ships with a CLI tool that compiles standard Markdown files into themed PDFs. Two commands, `paperforge` and `pdfnotes`, are installed by t...
+- [Markdown Compiler](markdown.md) - Engrapha ships with a CLI tool that compiles standard Markdown files into themed PDFs. Two commands, `engrapha` and `pdfnotes`, are installed by t...
 
 ## Changelog
-- [Changelog](changelog.md) - All notable changes to PaperForge are documented here. PaperForge follows [Semantic Versioning](https://semver.org/).
+- [Changelog](changelog.md) - All notable changes to Engrapha are documented here. Engrapha follows [Semantic Versioning](https://semver.org/).
 
 ## Contributing
-- [Contributing](contributing.md) - Thank you for considering contributing to PaperForge! This page explains how to set up a development environment, run tests, and submit changes.
+- [Contributing](contributing.md) - Thank you for considering contributing to Engrapha! This page explains how to set up a development environment, run tests, and submit changes.
 
 ## Sitemap
-- [Sitemap](sitemap.md) - A semantic map of all documentation pages for PaperForge, helping both users and AI agents navigate the codebase tools.
+- [Sitemap](sitemap.md) - A semantic map of all documentation pages for Engrapha, helping both users and AI agents navigate the codebase tools.
 
 ---
 
 For a structured index optimized for LLMs, see [llms.txt](llms.txt).
+

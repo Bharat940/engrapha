@@ -30,7 +30,7 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-import paperforge_diagrams as pd
+import engrapha_diagrams as ed
 
 PAGE_W, PAGE_H = A4
 PM = 1.8 * cm
@@ -793,7 +793,7 @@ bullet(
 )
 
 # Pure ALOHA timeline sequence diagram
-seq_aloha = pd.SequenceDiagram(
+seq_aloha = ed.SequenceDiagram(
     width=CW,
     height=240,
     caption="Fig 1: Pure ALOHA -- Station A collides with Station B, both retransmit after random backoff",
@@ -1087,7 +1087,7 @@ info_table(
 )
 
 # CSMA flowchart
-fc_csma = pd.Flowchart(
+fc_csma = ed.Flowchart(
     width=CW,
     height=400,
     caption="Fig 2: p-Persistent CSMA Protocol Flowchart (generalises all three variants)",
@@ -1197,7 +1197,7 @@ code_block("""
 
 section("CSMA/CA Flowchart")
 
-fc = pd.Flowchart(
+fc = ed.Flowchart(
     width=CW, height=650, caption="Fig 4: IEEE 802.11 CSMA/CA (DCF) Working Procedure"
 )
 
@@ -1369,7 +1369,7 @@ bullet(
 )
 
 # Wi-Fi RTS/CTS sequence diagram
-seq_wifi = pd.SequenceDiagram(
+seq_wifi = ed.SequenceDiagram(
     width=CW,
     height=270,
     caption="Fig 4: CSMA/CA with RTS/CTS -- resolves hidden node problem",
@@ -1394,7 +1394,7 @@ story.extend(seq_wifi.as_flowable())
 
 section("CSMA/CA Flowchart")
 
-fc = pd.Flowchart(
+fc = ed.Flowchart(
     width=CW, height=800, caption="Fig 4: IEEE 802.11 CSMA/CA (DCF) Working Procedure"
 )
 
@@ -1874,7 +1874,7 @@ tip(
 )
 
 # Token Ring state machine diagram
-sm_tr = pd.StateMachine(
+sm_tr = ed.StateMachine(
     width=CW,
     height=200,
     caption="Fig 5: Token Ring station state machine -- idle, transmitting, draining",
@@ -1928,7 +1928,7 @@ definition(
 )
 
 # FDDI dual ring network diagram
-fddi_net = pd.NetworkDiagram(
+fddi_net = ed.NetworkDiagram(
     width=CW,
     height=200,
     caption="Fig 6: FDDI Dual Counter-Rotating Ring -- Primary (solid) and Secondary (dashed backup)",

@@ -5,10 +5,10 @@ System architecture and cloud topology examples.
 ## Horizontal architecture
 
 ```python title="arch_h.py"
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-arch = pd.ArchitectureDiagram(
+arch = ed.ArchitectureDiagram(
     width=480, height=220,
     orientation="horizontal",
     caption="Fig 10: Web Application",
@@ -27,7 +27,7 @@ arch.connect("gw",   "svc",  "gRPC")
 arch.connect("svc",  "db",   "SQL/5432")
 arch.connect("svc",  "q",    "AMQP")
 
-pn.add(arch.as_flowable())
+en.add(arch.as_flowable())
 ```
 
 ![Screenshot placeholder](../assets/screenshots/arch_horizontal.png)
@@ -35,10 +35,10 @@ pn.add(arch.as_flowable())
 ## C4 container view
 
 ```python title="arch_c4.py"
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-c4 = pd.C4ContainerDiagram(
+c4 = ed.C4ContainerDiagram(
     width=460, height=220,
     caption="Fig 11: Shop System - C4",
 )
@@ -51,7 +51,7 @@ c4.relate("user", "web", "browses")
 c4.relate("web",  "api", "API calls")
 c4.relate("api",  "db",  "writes")
 
-pn.add(c4.as_flowable())
+en.add(c4.as_flowable())
 ```
 
 ![Screenshot placeholder](../assets/screenshots/arch_c4.png)
@@ -59,10 +59,10 @@ pn.add(c4.as_flowable())
 ## AWS stack
 
 ```python title="arch_aws.py"
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-aws = pd.AWSDiagram(
+aws = ed.AWSDiagram(
     width=480, height=220, orientation="horizontal",
     caption="Fig 12: AWS Infrastructure",
 )
@@ -78,7 +78,7 @@ aws.connect("app",   "assets", "Upload")
 aws.connect("app",   "queue",  "Events")
 aws.connect("app",   "fn",     "Trigger")
 
-pn.add(aws.as_flowable())
+en.add(aws.as_flowable())
 ```
 
 ![Screenshot placeholder](../assets/screenshots/arch_aws.png)
@@ -86,3 +86,4 @@ pn.add(aws.as_flowable())
 ## Next
 
 - [Themes](themes.md)
+

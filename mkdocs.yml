@@ -1,18 +1,18 @@
-site_name: PaperForge
-site_url: https://bharat940.github.io/paperforge
-repo_url: https://github.com/Bharat940/paperforge
+site_name: Engrapha
+site_url: https://bharat940.github.io/engrapha
+repo_url: https://github.com/Bharat940/engrapha
 edit_uri: blob/main/docs/
 
 extra:
   social:
     - icon: material/github
-      link: https://github.com/Bharat940/paperforge
+      link: https://github.com/Bharat940/engrapha
   generator: false
 
 theme:
   name: material
-  logo: assets/paperforge_icon.svg
-  favicon: assets/paperforge_icon.svg
+  logo: assets/engrapha_icon.svg
+  favicon: assets/engrapha_icon.svg
   palette:
     # Dark mode (default on first visit)
     - scheme: slate
@@ -103,7 +103,7 @@ nav:
   - Home: index.md
   - Getting Started:
       - getting-started.md
-      - why-paperforge.md
+      - why-engrapha.md
   - Notes:
       - notes/basics.md
       - notes/callouts.md
@@ -150,3 +150,5 @@ nav:
   - Contributing: contributing.md
   - Sitemap: sitemap.md
   - LLMs Index: llms.txt
+
+

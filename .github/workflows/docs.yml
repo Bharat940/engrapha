@@ -22,7 +22,7 @@ jobs:
 
       - name: Install packages
         run: |
-          pip install -e ./paperforge_diagrams -e ./paperforge_notes
+          pip install -e ./packages/engrapha_diagrams -e ./packages/engrapha_notes
           pip install "mkdocs-material[imaging]"
 
       - name: Build docs

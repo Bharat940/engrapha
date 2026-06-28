@@ -8,13 +8,13 @@ Covers:
   - Best Practices    (Checklists, Anti-patterns)
 """
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
 # ---------------------------------------------------------------------------
 # CUSTOM DEVELOPER DARK THEME
 # ---------------------------------------------------------------------------
-dev_dark = pn.DARK.copy_with(
+dev_dark = en.DARK.copy_with(
     name="React Next Developer Dark",
     bg="#090d16",  # Premium slate-midnight background
     surface="#121824",  # Dark slate-gray card surface
@@ -46,17 +46,17 @@ dev_dark = pn.DARK.copy_with(
     size_question=10.0,
 )
 
-pn.set_theme(dev_dark)
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+en.set_theme(dev_dark)
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
-CW = pn.CW
+CW = en.CW
 
-pn.set_global_header(
+en.set_global_header(
     left="React.js & Next.js Industry Guide",
     center="Frontend Reference Booklet",
     right="2026 Edition",
 )
-pn.set_global_footer(
+en.set_global_footer(
     left="React 19  -  Next.js 16  -  Tailwind CSS v4",
     show_page_num=True,
 )
@@ -64,19 +64,19 @@ pn.set_global_footer(
 # ---------------------------------------------------------------------------
 # COVER PAGE
 # ---------------------------------------------------------------------------
-pn.bookmark("Cover Page")
-pn.suppress_header(page_only=True)
-pn.suppress_footer(page_only=True)
-pn.sp(20)
-pn.cover_card("React.js & Next.js", "Fundamentals with Tailwind CSS")
-# pn.cover_subtitle(
+en.bookmark("Cover Page")
+en.suppress_header(page_only=True)
+en.suppress_footer(page_only=True)
+en.sp(20)
+en.cover_card("React.js & Next.js", "Fundamentals with Tailwind CSS")
+# en.cover_subtitle(
 #     [
 #         "A COMPLETE DEVELOPER GUIDE  -  INDUSTRY EDITION 2026",
 #         "React 19  -  Next.js 16 (App Router, Turbopack)  -  Tailwind CSS v4",
 #     ]
 # )
-pn.sp(20)
-pn.image(
+en.sp(20)
+en.image(
     "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&h=300&q=80",
     width=320,
     height=160,
@@ -85,32 +85,32 @@ pn.image(
         "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&h=300&q=80"
     ],
 )
-pn.sp(15)
-pn.br()
+en.sp(15)
+en.br()
 
 # ---------------------------------------------------------------------------
 # TABLE OF CONTENTS
 # ---------------------------------------------------------------------------
-pn.suppress_header(page_only=True)
-pn.suppress_footer(page_only=True)
-pn.toc(style="standard")
+en.suppress_header(page_only=True)
+en.suppress_footer(page_only=True)
+en.toc(style="standard")
 
 # ===========================================================================
 # PART I -- REACT.JS FUNDAMENTALS
 # ===========================================================================
-pn.part_box("Part I: React.js Fundamentals (React 19)")
+en.part_box("Part I: React.js Fundamentals (React 19)")
 
 # ---------------------------------------------------------------------------
 # 1.1 JSX, Virtual DOM & Component Architecture
 # ---------------------------------------------------------------------------
-pn.chap_box("1.1 JSX, Virtual DOM & Component Architecture")
+en.chap_box("1.1 JSX, Virtual DOM & Component Architecture")
 
-pn.section("Project Setup: React 19 with Vite")
-pn.body(
+en.section("Project Setup: React 19 with Vite")
+en.body(
     "Vite is the recommended modern build tool for creating standalone React applications. "
     "To scaffold a new React 19 project, follow these shell commands in your terminal:"
 )
-pn.code_block(
+en.code_block(
     """# 1. Scaffold a new Vite project (choose React and TypeScript/JavaScript)
 npm create vite@latest my-react-app -- --template react-ts
 
@@ -129,15 +129,15 @@ npm run dev""",
     lang="bash",
 )
 
-pn.section("What is JSX?")
-pn.body(
+en.section("What is JSX?")
+en.body(
     "JSX is a syntax extension for JavaScript that allows you to write HTML-like "
     "markup directly inside JavaScript/TypeScript files. It compiles down to plain "
     "React.createElement(...) calls (or the automatic JSX runtime transform) and is "
     "not parsed directly by browsers. Bundling engines (like Turbopack or SWC/esbuild) "
     "transpile this syntax at build time."
 )
-pn.code_block(
+en.code_block(
     """function Greeting({ name }) {
   // JSX compiles to react/jsx-runtime calls
   return <h1 className="text-xl font-semibold">Hello, {name}!</h1>;
@@ -147,13 +147,13 @@ export default Greeting;""",
     lang="jsx",
 )
 
-pn.section("Component Architecture & Props")
-pn.definition(
+en.section("Component Architecture & Props")
+en.definition(
     "A component is a JavaScript function returning JSX that defines a piece of UI. "
     "Props (properties) are read-only configuration arguments passed from a parent component "
     "down to a child, forming a strict one-way data flow."
 )
-pn.bullet(
+en.bullet(
     [
         "Component names must start with a capital letter (PascalCase) to distinguish them from native HTML tags.",
         "Props are immutable. A component must never modify its own props; instead, it triggers state changes in the parent.",
@@ -162,8 +162,8 @@ pn.bullet(
     ]
 )
 
-pn.subsection("Composition Example")
-pn.code_block(
+en.subsection("Composition Example")
+en.code_block(
     """function Card({ title, children }) {
   return (
     <div className="rounded-lg border p-4 shadow-premium bg-slate-900">
@@ -183,7 +183,7 @@ function App() {
     lang="jsx",
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> For further details, see the official <a href='https://react.dev'><font color='#00d8ff'>React 19 Documentation</font></a> "
     "and <a href='https://vite.dev'><font color='#00d8ff'>Vite Project Scaffolding Guide</font></a>."
 )
@@ -191,14 +191,14 @@ pn.note(
 # ---------------------------------------------------------------------------
 # 1.2 State Management & Core Hooks
 # ---------------------------------------------------------------------------
-pn.chap_box("1.2 State Management & Core Hooks")
+en.chap_box("1.2 State Management & Core Hooks")
 
-pn.body(
+en.body(
     "Hooks let functional components manage state, refs, context, and side effects. "
     "They must always be called in the same order on every render -- never inside "
     "loops, conditionals, or nested functions."
 )
-pn.info_table(
+en.info_table(
     ["Hook Name", "Purpose & Execution Context", "Hook Signature Example"],
     [
         [
@@ -229,7 +229,7 @@ pn.info_table(
     ],
     col_widths=["18%", "45%", "37%"],
 )
-pn.code_block(
+en.code_block(
     """import { useState, useRef } from "react";
 
 function Timer() {
@@ -259,20 +259,20 @@ function Timer() {
     lang="jsx",
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> Read the complete <a href='https://react.dev/reference/react'><font color='#00d8ff'>React Hooks API Reference</font></a>."
 )
 
 # ---------------------------------------------------------------------------
 # 1.3 Side Effects & Lifecycle Rules
 # ---------------------------------------------------------------------------
-pn.chap_box("1.3 Side Effects & Lifecycle Rules")
+en.chap_box("1.3 Side Effects & Lifecycle Rules")
 
-pn.body(
+en.body(
     "Side effects (like API requests, DOM manipulation, or subscriptions) should "
     "be managed using useEffect. The dependency array dictates when the effect re-runs."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>No Dependency Array:</b> Runs after <i>every single render</i>. Avoid this, as it causes performance degradation.",
         "<b>Empty Array []:</b> Runs only <i>once</i>, immediately after the component mounts.",
@@ -280,7 +280,7 @@ pn.bullet(
         "<b>Cleanup Function:</b> Returning a function from useEffect executes it when the component unmounts or before re-running the effect, clearing intervals and event listeners.",
     ]
 )
-pn.code_block(
+en.code_block(
     """import { useEffect, useState } from "react";
 
 function WindowResizeListener() {
@@ -301,21 +301,21 @@ function WindowResizeListener() {
     lang="jsx",
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> For a deep dive into side effects, read the official <a href='https://react.dev/reference/react/useEffect'><font color='#00d8ff'>useEffect API Guide</font></a>."
 )
 
 # ---------------------------------------------------------------------------
 # 1.4 React 19 Actions & Forms
 # ---------------------------------------------------------------------------
-pn.chap_box("1.4 React 19 Actions & Forms")
+en.chap_box("1.4 React 19 Actions & Forms")
 
-pn.body(
+en.body(
     "React 19 simplifies async operations by integrating Actions directly with forms. "
     "Instead of writing manual state hooks for loading, error, and validation, Actions "
     "manage this automatically via native HTML &lt;form&gt; elements."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Uncontrolled Forms:</b> Input elements use standard 'name' properties. The action receives a native 'FormData' object directly.",
         "<b>useActionState:</b> Takes an action handler and returns `[state, formAction, isPending]`, managing the action's response and state transitions.",
@@ -323,7 +323,7 @@ pn.bullet(
         "<b>useOptimistic:</b> Shows temporary optimistic UI values during async resolution.",
     ]
 )
-pn.code_block(
+en.code_block(
     """// submit-button.jsx
 import { useFormStatus } from "react-dom";
 
@@ -365,7 +365,7 @@ export function UserForm() {
     lang="jsx",
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> For React 19 Actions, check <a href='https://react.dev/reference/react/useActionState'><font color='#00d8ff'>useActionState API</font></a> "
     "and <a href='https://react.dev/reference/react-dom/hooks/useFormStatus'><font color='#00d8ff'>useFormStatus Reference</font></a>."
 )
@@ -373,14 +373,14 @@ pn.note(
 # ---------------------------------------------------------------------------
 # 1.5 The use() Hook & Conditional Resources
 # ---------------------------------------------------------------------------
-pn.chap_box("1.5 The use() Hook & Conditional Resources")
+en.chap_box("1.5 The use() Hook & Conditional Resources")
 
-pn.body(
+en.body(
     "The use() hook is a new React 19 API designed to resolve Promises or Context values "
     "conditionally during rendering. Unlike standard hooks, use() can be placed "
     "inside conditionals (if blocks) or loops, integrating natively with React Suspense."
 )
-pn.code_block(
+en.code_block(
     """import { use, Suspense } from "react";
 
 function UserProfile({ fetchPromise }) {
@@ -400,22 +400,22 @@ export default function App() {
     lang="jsx",
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> For conditional resource loading, check the <a href='https://react.dev/reference/react/use'><font color='#00d8ff'>use() Hook Documentation</font></a>."
 )
 
 # ---------------------------------------------------------------------------
 # 1.6 Document Metadata & Asset Hoisting
 # ---------------------------------------------------------------------------
-pn.chap_box("1.6 Document Metadata & Asset Hoisting")
+en.chap_box("1.6 Document Metadata & Asset Hoisting")
 
-pn.body(
+en.body(
     "React 19 includes native hoisting support for metadata tags. You can render "
     "&lt;title&gt;, &lt;meta&gt;, and &lt;link&gt; tags anywhere within the component "
     "tree, and React automatically hoists them to the HTML &lt;head&gt; section of the document, "
     "simplifying dynamic SEO configurations."
 )
-pn.code_block(
+en.code_block(
     """export function ArticlePage({ article }) {
   return (
     <article className="prose">
@@ -432,22 +432,22 @@ pn.code_block(
     lang="jsx",
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> Read more about React 19's native metadata hoisting in the <a href='https://react.dev/reference/react-dom/components/title'><font color='#00d8ff'>Document Metadata Guide</font></a>."
 )
 
 # ---------------------------------------------------------------------------
 # 1.7 Component Tree & Reconciliation Flow
 # ---------------------------------------------------------------------------
-pn.chap_box("1.7 Component Tree & Reconciliation Flow")
+en.chap_box("1.7 Component Tree & Reconciliation Flow")
 
-pn.body(
+en.body(
     "React constructs a virtual component representation. When a state update is triggered, "
     "React calculates the modifications top-down (reconciliation) and commits only the minimal "
     "set of changes to the real browser DOM."
 )
 
-fc_tree = pd.Flowchart(
+fc_tree = ed.Flowchart(
     width=CW,
     height=260,
     caption="Fig 1: Sample Component Tree Layout",
@@ -466,9 +466,9 @@ fc_tree.edge("app", "footer")
 fc_tree.edge("header", "nav")
 fc_tree.edge("main", "card1")
 fc_tree.edge("main", "card2")
-pn.add(fc_tree.as_flowable())
+en.add(fc_tree.as_flowable())
 
-fc_render = pd.Flowchart(
+fc_render = ed.Flowchart(
     width=CW,
     height=300,
     caption="Fig 2: Render & Reconciliation Flow",
@@ -485,27 +485,27 @@ fc_render.edge("render", "vdom")
 fc_render.edge("vdom", "diff")
 fc_render.edge("diff", "commit")
 fc_render.edge("commit", "paint")
-pn.add(fc_render.as_flowable())
+en.add(fc_render.as_flowable())
 
-pn.rule()
-pn.br()
+en.rule()
+en.br()
 
 # ===========================================================================
 # PART II -- NEXT.JS APP ROUTER
 # ===========================================================================
-pn.part_box("Part II: Next.js App Router (Next.js 16)")
+en.part_box("Part II: Next.js App Router (Next.js 16)")
 
 # ---------------------------------------------------------------------------
 # 2.1 File-System Routing
 # ---------------------------------------------------------------------------
-pn.chap_box("2.1 App Router File-System Routing")
+en.chap_box("2.1 App Router File-System Routing")
 
-pn.section("Project Setup: Next.js 16 App Router")
-pn.body(
+en.section("Project Setup: Next.js 16 App Router")
+en.body(
     "Next.js provides an automated CLI utility that configures TypeScript, Tailwind CSS, ESLint, "
     "and the app/ directory router out of the box. Run this command to initialize a new project:"
 )
-pn.code_block(
+en.code_block(
     """# Scaffold a new Next.js 16 project with modern defaults
 npx create-next-app@latest my-next-app \\
   --typescript \\
@@ -520,11 +520,11 @@ npm run dev""",
     lang="bash",
 )
 
-pn.body(
+en.body(
     "Next.js uses a directory-based router inside the app/ directory. Folders "
     "define URL path segments, while special files define layout and page behavior."
 )
-pn.info_table(
+en.info_table(
     ["Special File", "Role & Layout Purpose", "Rendering Context"],
     [
         [
@@ -561,8 +561,8 @@ pn.info_table(
     col_widths=["20%", "52%", "28%"],
 )
 
-pn.subsection("Dynamic, Catch-All & Route Groups")
-pn.bullet(
+en.subsection("Dynamic, Catch-All & Route Groups")
+en.bullet(
     [
         "<b>Dynamic Segments [slug]:</b> Maps a dynamic folder path, e.g. app/posts/[slug]/page.tsx matches /posts/hello-world.",
         "<b>Catch-All [...slug]:</b> Maps all nested path segments, e.g. app/docs/[...slug]/page.tsx matches /docs/api/v1/auth.",
@@ -571,19 +571,19 @@ pn.bullet(
     ]
 )
 
-pn.section("How Routes and Pages are Created")
-pn.body(
+en.section("How Routes and Pages are Created")
+en.body(
     "To define a route segment in the Next.js App Router, you create a folder inside the "
     "<b>app/</b> directory. To make that route publicly accessible, you place a "
     "<b>page.tsx</b> (or page.jsx) file inside that folder. Nested folders automatically "
     "create nested path segments. For example, <b>app/blog/page.tsx</b> maps to <b>/blog</b>, "
     "while <b>app/blog/details/page.tsx</b> maps to <b>/blog/details</b>."
 )
-pn.body(
+en.body(
     "Here is an example ASCII folder structure of a typical Next.js project showing App Router "
     "route nesting, special files (like layouts, error states, and proxy handlers), and configuration:"
 )
-pn.code_block(
+en.code_block(
     r"""my-next-app/
 |-- app/
 |   |-- layout.tsx         # Global Root Layout
@@ -605,14 +605,14 @@ pn.code_block(
     lang="text",
 )
 
-pn.section("Dynamic Routes & Async Parameter Resolution (Next.js 16)")
-pn.body(
+en.section("Dynamic Routes & Async Parameter Resolution (Next.js 16)")
+en.body(
     "Dynamic segments are defined using square brackets: <b>[segmentName]</b>. In Next.js 16, "
     "synchronous access to <b>params</b> and <b>searchParams</b> is fully removed. Both fields "
     "are now returned as Promises and must be explicitly awaited in Server Components (Page, Layout, "
     "and Route Handlers) or unwrapped using React's <b>use()</b> hook in Client Components."
 )
-pn.code_block(
+en.code_block(
     """// app/posts/[slug]/page.tsx (Next.js 16 Asynchronous Params)
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -637,7 +637,7 @@ export default async function PostPage({ params, searchParams }: PageProps) {
     lang="tsx",
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> Read the official <a href='https://nextjs.org/docs'><font color='#00d8ff'>Next.js Documentation</font></a> "
     "and the <a href='https://nextjs.org/docs/app/getting-started/project-structure'><font color='#00d8ff'>Project Structure & Organization Guide</font></a>."
 )
@@ -645,15 +645,15 @@ pn.note(
 # ---------------------------------------------------------------------------
 # 2.2 Server vs Client Components
 # ---------------------------------------------------------------------------
-pn.chap_box("2.2 Server Components vs Client Components")
+en.chap_box("2.2 Server Components vs Client Components")
 
-pn.definition(
+en.definition(
     "Every component inside the App Router is a Server Component by default, rendering "
     "completely on the server, accessing databases directly, and shipping zero JS. "
     "Adding the 'use client' directive at the very top of a file declares it (and its imports) "
     "as a Client Component, enabling browser-only hook execution."
 )
-pn.info_table(
+en.info_table(
     ["Capability", "Server Component (Default)", "Client Component ('use client')"],
     [
         ["Access Server Resources (DB, secrets)", "Yes (direct)", "No"],
@@ -664,20 +664,20 @@ pn.info_table(
     col_widths=["30%", "35%", "35%"],
 )
 
-pn.subsection("Data Serialization Boundary")
-pn.body(
+en.subsection("Data Serialization Boundary")
+en.body(
     "When a Server Component passes props down to a Client Component, the data "
     "must cross the server-client network bridge. Therefore, all props passed across "
     "this boundary must be JSON-serializable."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Allowed:</b> Primitives, plain arrays/objects, Map, Set, FormData, and Promises (resolved on the client).",
         "<b>Forbidden:</b> Functions, class instances with methods, React element trees, and browser DOM elements.",
     ]
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> Read more about <a href='https://nextjs.org/docs/app/building-your-application/rendering/server-components'><font color='#00d8ff'>React Server Components (RSC)</font></a> "
     "and Client Components in the Next.js documentation."
 )
@@ -685,13 +685,13 @@ pn.note(
 # ---------------------------------------------------------------------------
 # 2.3 Data Fetching & Caching
 # ---------------------------------------------------------------------------
-pn.chap_box("2.3 Data Fetching & Caching")
+en.chap_box("2.3 Data Fetching & Caching")
 
-pn.body(
+en.body(
     "Next.js extends the web fetch() API to enable granular caching control. "
     "Next.js 16 introduces the stable 'use cache' directive for function-level caching."
 )
-pn.code_block(
+en.code_block(
     """// app/services/products.ts
 export async function getCachedProduct(productId: string) {
   'use cache'; // Function-level caching! Caches return value automatically.
@@ -714,8 +714,8 @@ async function Products() {
     lang="tsx",
 )
 
-pn.subsection("The Four Caching Tiers")
-pn.info_table(
+en.subsection("The Four Caching Tiers")
+en.info_table(
     ["Cache Tier", "Storage Location", "Scope & Invalidation", "Control Override"],
     [
         [
@@ -746,27 +746,27 @@ pn.info_table(
     col_widths=["20%", "20%", "30%", "30%"],
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> Read more about data fetching and caching directives in the <a href='https://nextjs.org/docs/app/building-your-application/data-fetching'><font color='#00d8ff'>Next.js Data Fetching Guide</font></a>."
 )
 
 # ---------------------------------------------------------------------------
 # 2.4 Server Actions & Security
 # ---------------------------------------------------------------------------
-pn.chap_box("2.4 Server Actions & Security")
+en.chap_box("2.4 Server Actions & Security")
 
-pn.body(
+en.body(
     "Server Actions are async functions compiled as secure POST endpoints. "
     "Because they are publicly accessible, actions must implement strict validation checks."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Zod Input Validation:</b> Never trust incoming arguments directly. Always validate payloads using schemas.",
         "<b>Authentication Checks:</b> Verify caller identity using session credentials (cookies(), headers()) inside the action body.",
         "<b>Rate Limiting:</b> Restrict execution frequencies on sensitive API triggers to prevent abuse and DDoS attacks.",
     ]
 )
-pn.code_block(
+en.code_block(
     """// app/actions/comment.ts
 'use server';
 
@@ -797,23 +797,23 @@ export async function addComment(rawInput: unknown) {
     lang="tsx",
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> Read more about action security in the <a href='https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations'><font color='#00d8ff'>Next.js Server Actions Guide</font></a>."
 )
 
 # ---------------------------------------------------------------------------
 # 2.5 Rendering Strategies & Streaming
 # ---------------------------------------------------------------------------
-pn.chap_box("2.5 Rendering Strategies & Streaming")
+en.chap_box("2.5 Rendering Strategies & Streaming")
 
-pn.body(
+en.body(
     "Next.js supports multiple rendering models: Static (SSG), Incremental Static "
     "Regeneration (ISR), Dynamic (SSR), and Client-Side Rendering (CSR). "
     "Partial Prerendering (PPR) acts as a hybrid by merging static layout shells with "
     "streamed dynamic content."
 )
 
-seq = pd.SequenceDiagram(
+seq = ed.SequenceDiagram(
     width=CW,
     height=300,
     caption="Fig 3: Streaming Request Lifecycle",
@@ -837,25 +837,25 @@ seq.deactivate("server")
 seq.message(
     "browser", "browser", "Hydrate client interaction hooks", arrow="solid_open"
 )
-pn.add(seq.as_flowable())
+en.add(seq.as_flowable())
 
-pn.note(
+en.note(
     "<b>Reference:</b> Read more about Partial Prerendering and streaming in the <a href='https://nextjs.org/docs/app/building-your-application/rendering/partial-prerendering'><font color='#00d8ff'>Next.js PPR Guide</font></a>."
 )
 
 # ---------------------------------------------------------------------------
 # 2.6 Middleware & Route Handlers
 # ---------------------------------------------------------------------------
-pn.chap_box("2.6 Middleware & Route Handlers")
+en.chap_box("2.6 Middleware & Route Handlers")
 
-pn.section("Middleware & Network Proxy (proxy.ts)")
-pn.body(
+en.section("Middleware & Network Proxy (proxy.ts)")
+en.body(
     "Next.js 16 introduces <b>proxy.ts</b> as the network proxy layer running on the "
     "Node.js runtime, permitting full database access and standard Node.js APIs. "
     "The entry function is exported as <b>proxy</b>. If Edge-only features are needed "
     "(like geolocation and low-latency rewrites), <b>middleware.ts</b> can still be used."
 )
-pn.code_block(
+en.code_block(
     """// proxy.ts (Next.js 16 Node.js network proxy)
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
@@ -879,12 +879,12 @@ export const config = {
     lang="tsx",
 )
 
-pn.section("Route Handlers")
-pn.body(
+en.section("Route Handlers")
+en.body(
     "Route Handlers (route.ts) execute custom request handlers on the server side, "
     "replacing the legacy pages/api structure."
 )
-pn.code_block(
+en.code_block(
     """// app/api/users/route.ts
 import { NextResponse } from "next/server";
 
@@ -901,28 +901,28 @@ export async function POST(request: Request) {
     lang="tsx",
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> Read more about proxy routing in <a href='https://nextjs.org/docs/app/api-reference/file-conventions/proxy'><font color='#00d8ff'>Next.js Proxy API Reference</font></a> "
     "and custom APIs in the <a href='https://nextjs.org/docs/app/building-your-application/routing/route-handlers'><font color='#00d8ff'>Route Handlers Guide</font></a>."
 )
-pn.br()
+en.br()
 
 # ===========================================================================
 # PART III -- TAILWIND CSS V4
 # ===========================================================================
-pn.part_box("Part III: Tailwind CSS v4 Basics")
+en.part_box("Part III: Tailwind CSS v4 Basics")
 
 # ---------------------------------------------------------------------------
 # 3.1 Utility-First & CSS-First Setup
 # ---------------------------------------------------------------------------
-pn.chap_box("3.1 Utility-First & CSS-First Setup")
+en.chap_box("3.1 Utility-First & CSS-First Setup")
 
-pn.section("Project Setup: Tailwind CSS v4 Integration")
-pn.body(
+en.section("Project Setup: Tailwind CSS v4 Integration")
+en.body(
     "If you are adding Tailwind CSS v4 manually to a custom or existing bundler project (such as Next.js "
     "without auto-config), follow these installation and config steps:"
 )
-pn.code_block(
+en.code_block(
     """# 1. Install Tailwind CSS v4 and its corresponding PostCSS wrapper
 npm install tailwindcss @tailwindcss/postcss postcss
 
@@ -940,13 +940,13 @@ export default {
     lang="bash",
 )
 
-pn.body(
+en.body(
     "Tailwind CSS v4 introduces a completely rewritten Rust compilation engine (Oxide) "
     "designed to increase build performance up to 10x. Config has shifted from "
     "javascript configurations (tailwind.config.js) to CSS-first styling configs using standard "
     "@theme directives."
 )
-pn.code_block(
+en.code_block(
     """/* app/globals.css */
 @import "tailwindcss";
 
@@ -961,7 +961,7 @@ pn.code_block(
 }""",
     lang="css",
 )
-pn.note(
+en.note(
     "Tailwind v4 features automatic content scanning out of the box, meaning you "
     "no longer need to configure path lists manually."
 )
@@ -969,13 +969,13 @@ pn.note(
 # ---------------------------------------------------------------------------
 # 3.2 Spacing, Sizing & Typography
 # ---------------------------------------------------------------------------
-pn.chap_box("3.2 Spacing, Sizing & Typography")
+en.chap_box("3.2 Spacing, Sizing & Typography")
 
-pn.body(
+en.body(
     "Tailwind layout designs are composed using granular utilities. This cheat sheet "
     "summarizes the core utility categories used daily in frontend mockups."
 )
-pn.info_table(
+en.info_table(
     ["Category", "CSS Properties Mapped", "Utility Classes Examples"],
     [
         [
@@ -1008,7 +1008,7 @@ pn.info_table(
     col_widths=["22%", "43%", "35%"],
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> For styling setup, check the <a href='https://tailwindcss.com/docs'><font color='#00d8ff'>Tailwind CSS v4 Documentation</font></a> "
     "and <a href='https://tailwindcss.com/docs/utility-first-fundamentals'><font color='#00d8ff'>Utility-First Fundamentals</font></a>."
 )
@@ -1016,20 +1016,20 @@ pn.note(
 # ---------------------------------------------------------------------------
 # 3.3 Responsive & State Variants
 # ---------------------------------------------------------------------------
-pn.chap_box("3.3 Responsive & State Variants")
+en.chap_box("3.3 Responsive & State Variants")
 
-pn.body(
+en.body(
     "Tailwind prefixes utilities with variants to apply them conditionally—for "
     "different screen widths (mobile-first design) or pseudo-states like hover and active."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Responsive Breakpoints:</b> Mobile-first schema: sm (640px), md (768px), lg (1024px), xl (1280px), 2xl (1536px). md:px-6 applies only on md screens and wider.",
         "<b>User States:</b> hover, focus, active, disabled, focus-visible.",
         "<b>Advanced Variants:</b> group-hover and peer-focus allow styling children or adjacent siblings based on active parent or peer interactions.",
     ]
 )
-pn.code_block(
+en.code_block(
     """<div className="group border p-4 hover:border-brand-primary">
   <h3 className="text-gray-400 group-hover:text-white">
     Hovering parent changes title color!
@@ -1045,14 +1045,14 @@ pn.code_block(
 # ---------------------------------------------------------------------------
 # 3.4 Container Queries & Named Containers
 # ---------------------------------------------------------------------------
-pn.chap_box("3.4 Container Queries & Named Containers")
+en.chap_box("3.4 Container Queries & Named Containers")
 
-pn.body(
+en.body(
     "Tailwind v4 introduces built-in container queries via `@container` and `@min-*` / `@max-*` variants. "
     "Instead of styling elements based on the overall browser window size, you style elements "
     "based on the parent wrapper's width, enabling modular components."
 )
-pn.code_block(
+en.code_block(
     """// Parent container sets container context
 <div className="@container border p-4">
   {/* Elements layout shifts based on parent width, not screen width */}
@@ -1073,27 +1073,27 @@ pn.code_block(
     lang="jsx",
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> For state styling and queries, see <a href='https://tailwindcss.com/docs/hover-focus-and-other-states'><font color='#00d8ff'>Breakpoints & State Hover Variants</font></a> "
     "and <a href='https://tailwindcss.com/docs/container-queries'><font color='#00d8ff'>Named Container Queries</font></a>."
 )
-pn.br()
+en.br()
 
 # ===========================================================================
 # PART IV -- BEST PRACTICES & ANTI-PATTERNS
 # ===========================================================================
-pn.part_box("Part IV: Production Best Practices & Anti-Patterns")
+en.part_box("Part IV: Production Best Practices & Anti-Patterns")
 
 # ---------------------------------------------------------------------------
 # 4.1 Production Checklist
 # ---------------------------------------------------------------------------
-pn.chap_box("4.1 Production Checklist")
+en.chap_box("4.1 Production Checklist")
 
-pn.body(
+en.body(
     "To deploy highly optimized React/Next.js/Tailwind applications, teams must "
     "enforce strict bundle size, layout shift (CLS), and SEO audits before staging."
 )
-pn.info_table(
+en.info_table(
     [
         "Verification Layer",
         "Audit Objective & Best Practice Check",
@@ -1127,13 +1127,13 @@ pn.info_table(
 # ---------------------------------------------------------------------------
 # 4.2 Common Front-End Anti-Patterns
 # ---------------------------------------------------------------------------
-pn.chap_box("4.2 Common Front-End Anti-Patterns")
+en.chap_box("4.2 Common Front-End Anti-Patterns")
 
-pn.body(
+en.body(
     "Avoiding common software design pitfalls prevents rendering bugs and "
     "maintains pipeline code health."
 )
-pn.bullet(
+en.bullet(
     [
         "<b>Prop Drilling:</b> Passing state down through 5 layers of unused parent components. Solution: Use useContext or state libraries.",
         "<b>useEffect Loop:</b> Triggering a state update inside useEffect without a dependency array, causing infinite render cycles.",
@@ -1142,16 +1142,16 @@ pn.bullet(
     ]
 )
 
-pn.note(
+en.note(
     "<b>Reference:</b> For production preparation guidelines, see <a href='https://nextjs.org/docs/app/building-your-application/deploying'><font color='#00d8ff'>Next.js Deployment Checklist</font></a>."
 )
 
 # ===========================================================================
 # QUICK REVISION
 # ===========================================================================
-pn.chap_box("Quick Revision: React vs Next.js vs Tailwind")
+en.chap_box("Quick Revision: React vs Next.js vs Tailwind")
 
-pn.info_table(
+en.info_table(
     ["Framework / Library", "Primary Problem Solved", "Core Architecture Idea"],
     [
         [
@@ -1176,4 +1176,4 @@ pn.info_table(
 # ---------------------------------------------------------------------------
 # BUILD DOCUMENT
 # ---------------------------------------------------------------------------
-pn.build_doc("react_nextjs_tailwind_notes.pdf")
+en.build_doc("react_nextjs_tailwind_notes.pdf")

@@ -30,7 +30,7 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-import paperforge_diagrams as pd
+import engrapha_diagrams as ed
 
 PAGE_W, PAGE_H = A4
 PM = 1.8 * cm
@@ -590,7 +590,7 @@ bullet(
 )
 
 # Circuit switching sequence diagram
-seq_cs = pd.SequenceDiagram(
+seq_cs = ed.SequenceDiagram(
     width=CW,
     height=230,
     caption="Fig 1: Circuit Switching -- three phases (setup, transfer, teardown)",
@@ -652,7 +652,7 @@ code_block("""
 """)
 
 # Packet switching network diagram
-ps_net = pd.NetworkDiagram(
+ps_net = ed.NetworkDiagram(
     width=CW,
     height=180,
     caption="Fig 2: Packet Switching -- packets routed independently through the network",
@@ -1196,7 +1196,7 @@ bullet(
 )
 
 # Stop-and-Wait timing diagram
-seq_sw = pd.SequenceDiagram(
+seq_sw = ed.SequenceDiagram(
     width=CW,
     height=290,
     caption="Fig 3: Stop-and-Wait -- normal operation and timeout-retransmit",
@@ -1311,7 +1311,7 @@ code_block("""
 """)
 
 # Go-Back-N sequence diagram
-seq_gbn = pd.SequenceDiagram(
+seq_gbn = ed.SequenceDiagram(
     width=CW,
     height=310,
     caption="Fig 4: Go-Back-N ARQ -- frame 3 lost, sender goes back and retransmits 3,4,5,6",
@@ -1379,7 +1379,7 @@ code_block("""
 """)
 
 # Selective Repeat is shown separately to contrast its single retransmission with GBN.
-seq_sr = pd.SequenceDiagram(
+seq_sr = ed.SequenceDiagram(
     width=CW,
     height=300,
     caption="Fig 5: Selective Repeat ARQ -- only the missing frame is retransmitted",
@@ -1572,7 +1572,7 @@ bullet(
 )
 
 # ARP sequence diagram
-seq_arp = pd.SequenceDiagram(
+seq_arp = ed.SequenceDiagram(
     width=CW,
     height=230,
     caption="Fig 6: ARP operation -- broadcast request, unicast reply",
@@ -1771,7 +1771,7 @@ definition(
 )
 
 # LAN stack layered diagram
-lan_stack = pd.LayeredStack(
+lan_stack = ed.LayeredStack(
     width=CW * 0.6, height=280, caption="Fig 7: IEEE 802 LAN Protocol Stack"
 )
 lan_stack.layer(

@@ -8,58 +8,58 @@ Output: CA_Unit5_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 from reportlab.platypus import Paragraph, Table, TableStyle
-from paperforge_diagrams import ResponsiveDrawingFlowable
+from engrapha_diagrams import ResponsiveDrawingFlowable
 
 # =============================================================================
 #  THEME SETUP
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.MIDNIGHT_DARK)
+en.set_story([])
+en.set_theme(en.MIDNIGHT_DARK)
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(12)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(12)
 t = Table(
     [
-        [Paragraph("COMPUTER ARCHITECTURE", pn.COVER_H1)],
-        [Paragraph("Unit V -- Complete Exam Notes", pn.COVER_H2)],
+        [Paragraph("COMPUTER ARCHITECTURE", en.COVER_H1)],
+        [Paragraph("Unit V -- Complete Exam Notes", en.COVER_H2)],
     ],
-    colWidths=[pn.CW],
+    colWidths=[en.CW],
 )
 t.setStyle(
     TableStyle(
         [
-            ("BACKGROUND", (0, 0), (-1, -1), pn.get_theme().rl(pn.get_theme().surface)),
+            ("BACKGROUND", (0, 0), (-1, -1), en.get_theme().rl(en.get_theme().surface)),
             ("TOPPADDING", (0, 0), (-1, -1), 12),
             ("BOTTOMPADDING", (0, 0), (-1, -1), 12),
             ("LEFTPADDING", (0, 0), (-1, -1), 20),
             ("RIGHTPADDING", (0, 0), (-1, -1), 20),
-            ("BOX", (0, 0), (-1, -1), 2.5, pn.get_theme().rl(pn.get_theme().accent)),
+            ("BOX", (0, 0), (-1, -1), 2.5, en.get_theme().rl(en.get_theme().accent)),
         ]
     )
 )
-pn.add(t)
-pn.sp(8)
-pn.add(
+en.add(t)
+en.sp(8)
+en.add(
     Paragraph(
         "Prepared by: Bharat Dangi  |  Subject Code: IT-404  |  UIT-RGPV (Autonomous) Bhopal",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
-pn.add(Paragraph("Semester IV  |  Based on University Syllabus 2024-25", pn.COVER_SUB))
-pn.sp(4)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(4)
+en.add(Paragraph("Semester IV  |  Based on University Syllabus 2024-25", en.COVER_SUB))
+en.sp(4)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(4)
 
-pn.info_table(
+en.info_table(
     ["Topic", "Coverage"],
     [
         [
@@ -109,24 +109,24 @@ pn.info_table(
         ["5.12 Quick Revision Summary", "Key formulas, tables, and exam flashcards"],
     ],
 )
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  UNIT DIVIDER
 # =============================================================================
-pn.footer(
+en.footer(
     left="IT-404: Computer Architecture", right="Unit V Notes", show_page_num=True
 )
-pn.part_box("UNIT V -- PARALLEL PROCESSING")
+en.part_box("UNIT V -- PARALLEL PROCESSING")
 
 # =============================================================================
 #  5.1  PARALLEL PROCESSING OVERVIEW
 # =============================================================================
-pn.chap_box("5.1  Parallel Processing Overview")
-pn.section("What is Parallel Processing?")
-pn.definition(
+en.chap_box("5.1  Parallel Processing Overview")
+en.section("What is Parallel Processing?")
+en.definition(
     "<b>Parallel Processing:</b> A large class of techniques used to provide simultaneous "
     "data-processing tasks for the purpose of increasing the computational speed of a "
     "computer system. Instead of processing each instruction sequentially (as in a "
@@ -134,8 +134,8 @@ pn.definition(
     "processing to achieve faster execution time. The key metric improved is "
     "<b>throughput</b> -- the amount of processing accomplished during a given time interval."
 )
-pn.body("Three classic forms of parallelism found in modern computers:")
-pn.bullet(
+en.body("Three classic forms of parallelism found in modern computers:")
+en.bullet(
     [
         "<b>Instruction-level parallelism:</b> While an instruction is being executed in the ALU, the next instruction is fetched from memory (pipeline overlap).",
         "<b>Functional-unit parallelism:</b> The system has two or more ALUs and executes two or more instructions simultaneously.",
@@ -143,15 +143,15 @@ pn.bullet(
     ]
 )
 
-pn.section("Flynn's Classification")
-pn.definition(
+en.section("Flynn's Classification")
+en.definition(
     "<b>Flynn's Classification (1966):</b> A taxonomy introduced by M. J. Flynn that "
     "categorizes computer organizations by the number of simultaneous <b>instruction streams</b> "
     "and <b>data streams</b>. An <b>instruction stream</b> is the sequence of instructions "
     "read from memory. A <b>data stream</b> is the sequence of data operated upon in the processor."
 )
 
-pn.info_table(
+en.info_table(
     ["Class", "Full Name", "Description", "Examples"],
     [
         [
@@ -186,7 +186,7 @@ pn.info_table(
 )
 
 # Flynn's classification network diagram
-net_flynn = pd.NetworkDiagram(
+net_flynn = ed.NetworkDiagram(
     width=650,
     height=280,
     theme=diag_theme,
@@ -236,22 +236,22 @@ net_flynn.link("sisd", "sisd_ex", label="e.g.")
 net_flynn.link("simd", "simd_ex", label="e.g.")
 net_flynn.link("misd", "misd_ex", label="e.g.")
 net_flynn.link("mimd", "mimd_ex", label="e.g.")
-pn.story.extend(net_flynn.as_flowable())
+en.story.extend(net_flynn.as_flowable())
 
-pn.tip(
+en.tip(
     "Flynn's classification: IS = Instruction Stream, DS = Data Stream. "
     "SISD = sequential (traditional). SIMD = vector/GPU. MISD = theoretical only. "
     "MIMD = multiprocessor (most powerful, most common today). "
     "Modern multi-core processors are MIMD at the core level."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.2  PIPELINING -- GENERAL CONCEPTS
 # =============================================================================
-pn.chap_box("5.2  Pipelining -- General Concepts")
-pn.section("What is Pipelining?")
-pn.definition(
+en.chap_box("5.2  Pipelining -- General Concepts")
+en.section("What is Pipelining?")
+en.definition(
     "<b>Pipelining:</b> A technique of decomposing a sequential process into "
     "sub-operations (stages), with each sub-process being executed in a special "
     "dedicated segment that operates concurrently with all other segments. A pipeline "
@@ -260,8 +260,8 @@ pn.definition(
     "computation is made possible by associating a <b>pipeline register</b> with "
     "each segment, which holds intermediate results and provides isolation between stages."
 )
-pn.body("The general structure of a pipeline consists of:")
-pn.bullet(
+en.body("The general structure of a pipeline consists of:")
+en.bullet(
     [
         "<b>Combinational segments (S1, S2, ..., Sk):</b> Each performs a sub-operation on the data passing through.",
         "<b>Inter-stage registers (R1, R2, ..., Rk-1):</b> Latch the output of one stage and feed the next. Clocked simultaneously.",
@@ -270,8 +270,8 @@ pn.bullet(
 )
 
 # 4-segment pipeline structure
-pipe_stack = pd.LayeredStack(
-    width=pn.CW,
+pipe_stack = ed.LayeredStack(
+    width=en.CW,
     height=200,
     theme=diag_theme,
     caption="Fig 2: General structure of a 4-segment pipeline with inter-stage registers",
@@ -293,16 +293,16 @@ pipe_stack.layer(
     "Segment S4  -->  Output",
     sublabel="Sub-operation 4: final result produced every clock cycle once full",
 )
-pn.story.extend(pipe_stack.as_flowable())
+en.story.extend(pipe_stack.as_flowable())
 
-pn.section("Space-Time Diagram")
-pn.definition(
+en.section("Space-Time Diagram")
+en.definition(
     "<b>Space-Time Diagram:</b> A diagram that shows the segment utilization as a "
     "function of time. The horizontal axis represents time in clock cycles and the "
     "vertical axis gives the segment number. It is used to visualize pipeline "
     "behavior and identify when the pipe is full and producing one result per cycle."
 )
-pn.code_block("""
+en.code_block("""
  SPACE-TIME DIAGRAM -- 4-SEGMENT PIPELINE, 6 TASKS (T1 to T6):
  ======================================================
  Segment | Clk1 | Clk2 | Clk3 | Clk4 | Clk5 | Clk6 | Clk7 | Clk8 | Clk9
@@ -319,14 +319,14 @@ pn.code_block("""
    - Once full: one output every clock cycle, regardless of number of stages.
 """)
 
-pn.section("Clock Cycle Determination")
-pn.definition(
+en.section("Clock Cycle Determination")
+en.definition(
     "<b>Clock Cycle (Tp):</b> The time period of the pipeline clock. It must be long "
     "enough for the slowest segment to complete its computation PLUS the inter-stage "
     "register delay. Let <b>tm</b> = maximum stage delay (slowest segment), "
     "<b>d</b> = inter-stage register delay. Then:"
 )
-pn.code_block("""
+en.code_block("""
  CLOCK CYCLE FORMULA:
  ======================================================
  Tp = tm + d
@@ -348,20 +348,20 @@ pn.code_block("""
    This adds one more stage but reduces Tp.
 """)
 
-pn.tip(
+en.tip(
     "Pipeline clock = slowest stage delay + register overhead. "
     "Once pipeline is full: 1 result per clock cycle. "
     "Total cycles for n tasks in k-stage pipeline = k + (n - 1). "
     "Split the bottleneck segment to reduce clock period and boost throughput."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.3  PIPELINE PERFORMANCE
 # =============================================================================
-pn.chap_box("5.3  Pipeline Performance -- Speedup, Efficiency, Throughput")
-pn.section("Performance Formulas")
-pn.code_block("""
+en.chap_box("5.3  Pipeline Performance -- Speedup, Efficiency, Throughput")
+en.section("Performance Formulas")
+en.code_block("""
  PIPELINE PERFORMANCE FORMULAS:
  ======================================================
  Notation:
@@ -393,8 +393,8 @@ pn.code_block("""
    Throughput = n / Tk = n / ([k + (n-1)] * Tp)  [tasks per unit time]
 """)
 
-pn.section("Worked Example 1 (Standard)")
-pn.code_block("""
+en.section("Worked Example 1 (Standard)")
+en.code_block("""
  EXAMPLE 1:
  ======================================================
  Given: Non-pipelined time Tn = 100 ns
@@ -421,8 +421,8 @@ pn.code_block("""
                = 48.78 million tasks/second
 """)
 
-pn.section("Worked Example 2 (Segment Splitting)")
-pn.code_block("""
+en.section("Worked Example 2 (Segment Splitting)")
+en.code_block("""
  EXAMPLE 2 (Arithmetic Pipeline Segment Splitting):
  ======================================================
  Given:  Stage delays: t1=50ns, t2=30ns, t3=95ns, t4=45ns
@@ -448,8 +448,8 @@ pn.code_block("""
    we reduced Tp from 100ns to 55ns, nearly doubling the speedup (2.18 -> 3.93).
 """)
 
-pn.section("Space-Time Diagram -- 6-Stage Pipeline, 8 Tasks")
-pn.code_block("""
+en.section("Space-Time Diagram -- 6-Stage Pipeline, 8 Tasks")
+en.code_block("""
  SPACE-TIME DIAGRAM -- 6-SEGMENT PIPELINE, 8 TASKS (T1 to T8):
  ======================================================
  k=6, n=8
@@ -468,27 +468,27 @@ pn.code_block("""
  After that: one output per cycle (T2 at C7, T3 at C8, ..., T8 at C13).
 """)
 
-pn.tip(
+en.tip(
     "Speedup = (n * Tn) / ([k + n - 1] * Tp). Maximum speedup = k (number of stages). "
     "Efficiency = Speedup / k. Throughput = n / total_time. "
     "Split bottleneck stages to reduce clock period. "
     "Total cycles = k + n - 1 (k to fill, then 1 per task)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.4  PIPELINE HAZARDS
 # =============================================================================
-pn.chap_box("5.4  Pipeline Hazards")
-pn.section("What is a Pipeline Hazard?")
-pn.definition(
+en.chap_box("5.4  Pipeline Hazards")
+en.section("What is a Pipeline Hazard?")
+en.definition(
     "<b>Pipeline Hazard (Conflict):</b> A situation that prevents an instruction "
     "from executing during its designated clock cycle in the pipeline. Hazards reduce "
     "pipeline performance by causing <b>stalls</b> (also called bubbles) -- idle cycles "
     "where a stage cannot proceed and must wait. There are three major categories."
 )
 
-pn.info_table(
+en.info_table(
     ["Hazard Type", "Cause", "Example", "Solutions"],
     [
         [
@@ -523,8 +523,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Structural Hazard -- Von Neumann vs Harvard Architecture")
-pn.body(
+en.section("Structural Hazard -- Von Neumann vs Harvard Architecture")
+en.body(
     "A Von Neumann computer has a <b>single memory</b> for both instructions and data. "
     "A pipelined von Neumann processor suffers from structural hazard because the IF "
     "stage and the MEM stage cannot both access memory in the same cycle. "
@@ -532,8 +532,8 @@ pn.body(
     "memory and data memory</b> with separate buses, allowing simultaneous access."
 )
 
-left_vn = pd.LayeredStack(
-    width=pn.CW * 0.44,
+left_vn = ed.LayeredStack(
+    width=en.CW * 0.44,
     height=180,
     theme=diag_theme,
     caption="Von Neumann: Single Memory (Structural Hazard Risk)",
@@ -544,8 +544,8 @@ left_vn.layer(
     "Unified Memory (Instructions + Data)", sublabel="All data in one address space"
 )
 
-right_ha = pd.LayeredStack(
-    width=pn.CW * 0.44,
+right_ha = ed.LayeredStack(
+    width=en.CW * 0.44,
     height=180,
     theme=diag_theme,
     caption="Harvard: Separate Memories (No Structural Hazard)",
@@ -568,7 +568,7 @@ tbl_arch = Table(
             ResponsiveDrawingFlowable(right_ha.drawing),
         ]
     ],
-    colWidths=[pn.CW * 0.48, pn.CW * 0.48],
+    colWidths=[en.CW * 0.48, en.CW * 0.48],
 )
 tbl_arch.setStyle(
     TableStyle(
@@ -581,26 +581,26 @@ tbl_arch.setStyle(
         ]
     )
 )
-pn.add(tbl_arch)
-pn.sp(6)
-pn.add(
+en.add(tbl_arch)
+en.sp(6)
+en.add(
     Paragraph(
         "Fig 3 (left): Von Neumann -- shared memory causes structural hazard.  |  "
         "Fig 3 (right): Harvard -- separate memories eliminate structural hazard.",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
-pn.sp(8)
+en.sp(8)
 
-pn.section("Data Hazard -- Operand Forwarding")
-pn.body(
+en.section("Data Hazard -- Operand Forwarding")
+en.body(
     "The simplest solution to a data hazard is to <b>stall the pipeline</b> by inserting "
     "NOP (no-operation) bubbles until the required data is available. A faster solution is "
     "<b>operand forwarding (bypassing)</b>: the ALU result is fed directly back to the ALU "
     "input through a multiplexer, bypassing the register file write-back. This avoids stalls "
     "in most cases and requires only extra multiplexers and forwarding detection logic."
 )
-pn.code_block("""
+en.code_block("""
  DATA HAZARD EXAMPLE AND SOLUTIONS:
  ======================================================
  Code sequence:
@@ -622,8 +622,8 @@ pn.code_block("""
    No stalls needed! Forwarding logic detects dependency and routes data.
 """)
 
-pn.section("Control Hazard -- Branch Handling")
-pn.code_block("""
+en.section("Control Hazard -- Branch Handling")
+en.code_block("""
  CONTROL HAZARD EXAMPLE:
  ======================================================
  Instruction pipeline (4 stages: IF, ID, EX, WB):
@@ -652,20 +652,20 @@ pn.code_block("""
     Used in MIPS architecture (1 delay slot).
 """)
 
-pn.tip(
+en.tip(
     "Three hazard types: Structural (resource conflict), Data (dependency), Control (branch). "
     "Structural: fix with Harvard architecture (separate I-cache and D-cache). "
     "Data: fix with forwarding/bypassing (no stall) or stall insertion. "
     "Control: fix with branch prediction, delayed branching, or stall+flush."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.5  ARITHMETIC PIPELINE
 # =============================================================================
-pn.chap_box("5.5  Arithmetic Pipeline")
-pn.section("Overview")
-pn.definition(
+en.chap_box("5.5  Arithmetic Pipeline")
+en.section("Overview")
+en.definition(
     "<b>Arithmetic Pipeline:</b> A pipeline unit designed to perform arithmetic "
     "operations (typically floating-point) by decomposing the computation into "
     "sequential sub-operations executed in dedicated pipeline stages. Arithmetic "
@@ -675,15 +675,15 @@ pn.definition(
     "(as opposed to instruction stream pipelining)."
 )
 
-pn.section("Floating-Point Adder/Subtractor Pipeline (4 Segments)")
-pn.body(
+en.section("Floating-Point Adder/Subtractor Pipeline (4 Segments)")
+en.body(
     "Floating-point addition and subtraction can be decomposed into four natural sub-operations, "
     "each implemented as one pipeline stage. Given two normalized floating-point numbers:<br/>"
     "<b>X = A x 2<super>a</super></b> and <b>Y = B x 2<super>b</super></b> where A, B are mantissas "
     "and a, b are exponents, the four pipeline stages are:"
 )
 
-pn.info_table(
+en.info_table(
     ["Stage", "Segment", "Operation", "Details"],
     [
         [
@@ -716,7 +716,7 @@ pn.info_table(
 )
 
 # Floating-point pipeline diagram
-net_fp = pd.NetworkDiagram(
+net_fp = ed.NetworkDiagram(
     width=800,
     height=200,
     theme=diag_theme,
@@ -740,10 +740,10 @@ net_fp.link("r2", "s3", bidirectional=False)
 net_fp.link("s3", "r3", bidirectional=False)
 net_fp.link("r3", "s4", bidirectional=False)
 net_fp.link("s4", "out", bidirectional=False)
-pn.story.extend(net_fp.as_flowable())
+en.story.extend(net_fp.as_flowable())
 
-pn.section("Numerical Example -- FP Addition Pipeline")
-pn.code_block("""
+en.section("Numerical Example -- FP Addition Pipeline")
+en.code_block("""
  FLOATING-POINT PIPELINE NUMERICAL EXAMPLE:
  ======================================================
  Inputs (decimal for clarity):
@@ -775,8 +775,8 @@ pn.code_block("""
    Speedup (for large n): Tn / Tp = 320 / 110 = 2.91
 """)
 
-pn.section("FP Pipeline Worked Example -- Total Time and Speedup")
-pn.code_block("""
+en.section("FP Pipeline Worked Example -- Total Time and Speedup")
+en.code_block("""
  EXAMPLE: t1=50ns, t2=30ns, t3=95ns, t4=45ns, tr=5ns, n=100 pairs
 
  PART (a): 4-segment pipeline
@@ -796,21 +796,21 @@ pn.code_block("""
              The cost is one additional pipeline register and slightly more complex control.
 """)
 
-pn.tip(
+en.tip(
     "FP pipeline stages: (1) Compare exponents, (2) Align mantissas, "
     "(3) Add/subtract mantissas, (4) Normalize result. "
     "Clock = slowest stage + register delay. "
     "Split bottleneck stages to reduce clock period. "
     "Non-pipeline time Tn = sum of all stage delays."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.6  INSTRUCTION PIPELINE
 # =============================================================================
-pn.chap_box("5.6  Instruction Pipeline")
-pn.section("Overview")
-pn.definition(
+en.chap_box("5.6  Instruction Pipeline")
+en.section("Overview")
+en.definition(
     "<b>Instruction Pipeline:</b> A pipeline that processes the instruction stream "
     "itself (rather than data). Consecutive instructions are read from memory while "
     "previous instructions are being executed in other segments. This causes the "
@@ -819,13 +819,13 @@ pn.definition(
     "(4) Execute, (5) Store result."
 )
 
-pn.section("Four-Segment Instruction Pipeline")
-pn.body(
+en.section("Four-Segment Instruction Pipeline")
+en.body(
     "By combining decode with effective address calculation (segment 2) and combining "
     "execution with result storage (segment 4), the instruction cycle reduces to "
     "four natural pipeline stages:"
 )
-pn.info_table(
+en.info_table(
     ["Stage", "Abbreviation", "Operation", "Details"],
     [
         [
@@ -859,7 +859,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block("""
+en.code_block("""
  FOUR-SEGMENT INSTRUCTION PIPELINE SPACE-TIME DIAGRAM:
  ======================================================
  Assumption: Separate instruction and data memories (Harvard-style).
@@ -888,8 +888,8 @@ pn.code_block("""
 """)
 
 # 4-segment instruction pipeline flowchart
-fc_ipipe = pd.Flowchart(
-    width=pn.CW,
+fc_ipipe = ed.Flowchart(
+    width=en.CW,
     height=600,
     theme=diag_theme,
     caption="Fig 5: Four-segment instruction pipeline operation and branch handling",
@@ -923,22 +923,22 @@ fc_ipipe.edge("branch", "flush", branch="yes")
 fc_ipipe.edge("branch", "fi", branch="no", orthogonal=True)
 fc_ipipe.edge("flush", "newpc")
 fc_ipipe.edge("newpc", "done")
-pn.story.extend(fc_ipipe.as_flowable())
+en.story.extend(fc_ipipe.as_flowable())
 
-pn.tip(
+en.tip(
     "Instruction pipeline: FI -> DA -> FO -> EX. Four stages, 4 instructions in progress. "
     "FIFO instruction buffer smooths memory fetch. "
     "Branch/interrupt: flush buffer, restart from new address (branch penalty = pipeline depth - 1). "
     "Separate instruction and data memory prevents structural hazard between FI and FO."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.7  VECTOR PROCESSING
 # =============================================================================
-pn.chap_box("5.7  Vector Processing")
-pn.section("What is Vector Processing?")
-pn.definition(
+en.chap_box("5.7  Vector Processing")
+en.section("What is Vector Processing?")
+en.definition(
     "<b>Vector Processing:</b> An approach to high-performance computation that "
     "performs arithmetic operations on entire <b>arrays (vectors)</b> of integers or "
     "floating-point numbers simultaneously, avoiding the overhead of loop control "
@@ -946,14 +946,14 @@ pn.definition(
     "operand is a scalar quantity (integer, float, logical value, or character). "
     "This is a form of SIMD -- Single Instruction, Multiple Data."
 )
-pn.body(
+en.body(
     "A general-purpose computer adds two arrays using a loop (one element at a time). "
     "A vector processor adds both arrays in a <b>single vector instruction</b>, "
     "operating on all elements in parallel. For this to work, the operations on "
     "different elements must be <b>independent</b> (no data dependency between elements)."
 )
 
-pn.info_table(
+en.info_table(
     ["Property", "Scalar Processing", "Vector Processing"],
     [
         [
@@ -981,12 +981,12 @@ pn.info_table(
     ],
 )
 
-pn.section("Vector Instruction Types")
-pn.body(
+en.section("Vector Instruction Types")
+en.body(
     "Vector instructions fall into four classes based on operand type (V = vector, S = scalar) "
     "and number of operands:"
 )
-pn.info_table(
+en.info_table(
     ["Type", "Example", "Operation", "Description"],
     [
         [
@@ -1016,13 +1016,13 @@ pn.info_table(
     ],
 )
 
-pn.section("Vector Register Architecture")
-pn.body(
+en.section("Vector Register Architecture")
+en.body(
     "Vector processors use <b>vector registers</b> -- special-purpose registers that hold "
     "multiple data elements. The number of elements a vector register holds is the "
     "<b>vector length</b> (or <b>n</b>). Two architectural styles exist:"
 )
-pn.info_table(
+en.info_table(
     ["Architecture", "Description", "Operand Source", "Examples"],
     [
         [
@@ -1042,14 +1042,14 @@ pn.info_table(
     ],
 )
 
-pn.section("Pipelined Vector Processor")
-pn.body(
+en.section("Pipelined Vector Processor")
+en.body(
     "Most vector instructions are pipelined because they perform the same operation "
     "repeatedly on different data elements. The pipeline has a <b>start-up latency</b> "
     "(filling the pipe) but once full, produces one result per clock cycle. "
     "Longer vectors amortize the start-up delay over more elements, yielding better efficiency."
 )
-pn.code_block("""
+en.code_block("""
  VECTOR PIPELINE EXAMPLE: VADD V1, V2, V3  (n=8 elements, k=4 stage FP pipeline)
  ======================================================
  Stage: FP add pipeline has 4 stages (compare, align, add, normalize)
@@ -1074,8 +1074,8 @@ pn.code_block("""
           Used for conditional vector operations (e.g., only add positive elements).
 """)
 
-net_vpipe = pd.NetworkDiagram(
-    width=pn.CW,
+net_vpipe = ed.NetworkDiagram(
+    width=en.CW,
     height=200,
     theme=diag_theme,
     caption="Fig 6: Pipelined vector processor -- vector register file feeds FP pipeline units",
@@ -1102,31 +1102,31 @@ net_vpipe.link("vrf", "fpmul", label="Src 1\nSrc 2", bidirectional=False)
 net_vpipe.link("fpadd", "out", label="Result", bidirectional=False)
 net_vpipe.link("fpmul", "out", label="Result", bidirectional=False)
 net_vpipe.link("out", "vrf", label="Write back", bidirectional=False)
-pn.story.extend(net_vpipe.as_flowable())
+en.story.extend(net_vpipe.as_flowable())
 
-pn.tip(
+en.tip(
     "Vector processing: single instruction operates on all array elements. "
     "Vector register holds n elements (vector length). "
     "Register-to-register: operations on registers (fast). Memory-to-memory: slower. "
     "Masking: bit vector controls which elements participate. "
     "Pipelining within vector unit gives 1 result/cycle after startup."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.8  MATRIX MULTIPLICATION
 # =============================================================================
-pn.chap_box("5.8  Matrix Multiplication")
-pn.section("Overview")
-pn.definition(
+en.chap_box("5.8  Matrix Multiplication")
+en.section("Overview")
+en.definition(
     "<b>Matrix Multiplication:</b> One of the most computationally intensive operations "
     "in scientific computing. Multiplying two n x n matrices requires n<super>3</super> "
     "multiply-add (linked multiply-accumulate) operations and produces n<super>2</super> "
     "inner products. It is an ideal workload for pipelined vector processors."
 )
 
-pn.section("Mathematical Definition")
-pn.code_block("""
+en.section("Mathematical Definition")
+en.code_block("""
  MATRIX MULTIPLICATION: C = A x B  (3x3 example)
 
  A = | a11  a12  a13 |     B = | b11  b12  b13 |
@@ -1146,14 +1146,14 @@ pn.code_block("""
    1000x1000: 1,000,000,000 operations (1 billion!)
 """)
 
-pn.section("Pipeline Execution of Matrix Multiplication")
-pn.body(
+en.section("Pipeline Execution of Matrix Multiplication")
+en.body(
     "A pipelined vector processor executes matrix multiplication using linked FP multiply "
     "and FP add pipelines. Assume each pipeline has 4 stages. The pairs (Ai, Bi) are "
     "fed into the multiplier at one pair per cycle. The multiplier output feeds directly "
     "into the adder (chained pipelines), and the running sum is accumulated."
 )
-pn.code_block("""
+en.code_block("""
  PIPELINED MATRIX MULTIPLY (3x3, computing one row of C):
  ======================================================
  Computing C[1][j] for all j simultaneously using pipelined inner products.
@@ -1182,8 +1182,8 @@ pn.code_block("""
 """)
 
 # Matrix multiply pipeline
-net_matmul = pd.NetworkDiagram(
-    width=pn.CW,
+net_matmul = ed.NetworkDiagram(
+    width=en.CW,
     height=240,
     theme=diag_theme,
     caption="Fig 7: Chained FP multiply + FP add pipeline for matrix multiplication",
@@ -1208,23 +1208,23 @@ net_matmul.link("mul", "acc", label="Ai*Bi (chained)", bidirectional=False)
 net_matmul.link("init", "acc", bidirectional=False)
 net_matmul.link("acc", "res", label="Running sum", bidirectional=False)
 net_matmul.link("res", "acc", label="C += Ai*Bi", bidirectional=False)
-pn.story.extend(net_matmul.as_flowable())
+en.story.extend(net_matmul.as_flowable())
 
-pn.tip(
+en.tip(
     "Matrix multiply: n^3 multiply-add operations for n x n matrices. "
     "Pipeline chaining: multiplier output directly feeds adder input. "
     "Pipelined execution: feed one (Ai, Bi) pair per cycle. "
     "Both pipelines run concurrently -- maximum throughput. "
     "Supercomputer performance measured in FLOPS (floating-point operations per second)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.9  MEMORY INTERLEAVING
 # =============================================================================
-pn.chap_box("5.9  Memory Interleaving")
-pn.section("Need for Memory Interleaving")
-pn.definition(
+en.chap_box("5.9  Memory Interleaving")
+en.section("Need for Memory Interleaving")
+en.definition(
     "<b>Memory Interleaving:</b> A technique for increasing effective memory bandwidth "
     "by dividing memory into multiple independent modules, each with its own address "
     "and data registers, so that multiple memory accesses can proceed in parallel. "
@@ -1233,8 +1233,8 @@ pn.definition(
     "instruction and an operand at the same time."
 )
 
-pn.section("Memory Module Organization")
-pn.body(
+en.section("Memory Module Organization")
+en.body(
     "The memory is partitioned into a number of modules, each connected to a common "
     "address bus and data bus. A memory module consists of a memory array with its "
     "own Address Register (AR) and Data Register (DR). The two least significant "
@@ -1242,7 +1242,7 @@ pn.body(
     "can honor a memory request independently of the state of other modules."
 )
 
-pn.code_block("""
+en.code_block("""
  MEMORY MODULE ORGANIZATION (4-Module Example):
  ======================================================
  Address bits: A[31:2] = word address within module, A[1:0] = module select
@@ -1264,8 +1264,8 @@ pn.code_block("""
    Effective memory cycle time reduced by factor of 4.
 """)
 
-net_inter = pd.NetworkDiagram(
-    width=pn.CW,
+net_inter = ed.NetworkDiagram(
+    width=en.CW,
     height=260,
     theme=diag_theme,
     caption="Fig 8: Four-module interleaved memory -- parallel access for vector/pipeline processors",
@@ -1322,10 +1322,10 @@ net_inter.link("m0", "dbus")
 net_inter.link("m1", "dbus")
 net_inter.link("m2", "dbus")
 net_inter.link("m3", "dbus")
-pn.story.extend(net_inter.as_flowable())
+en.story.extend(net_inter.as_flowable())
 
-pn.section("Interleaved Access -- Staggered Timing")
-pn.code_block("""
+en.section("Interleaved Access -- Staggered Timing")
+en.code_block("""
  INTERLEAVED MEMORY ACCESS TIMING (4-way interleaved, memory cycle = 4T):
  ======================================================
  Requests to Module 0, 1, 2, 3 are staggered by T each:
@@ -1351,21 +1351,21 @@ pn.code_block("""
    Two requests to same module in same cycle still cause conflict.
 """)
 
-pn.tip(
+en.tip(
     "Memory interleaving: n modules, consecutive addresses distributed across modules. "
     "Module selected by least significant address bits. "
     "Parallel access: n consecutive words fetched in ~1 memory cycle time. "
     "Effective bandwidth up to n times higher for sequential access. "
     "Essential for vector processors that need to stream array elements."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.10  ARRAY PROCESSORS
 # =============================================================================
-pn.chap_box("5.10  Array Processors")
-pn.section("Types of Array Processors")
-pn.definition(
+en.chap_box("5.10  Array Processors")
+en.section("Types of Array Processors")
+en.definition(
     "<b>Array Processor:</b> A processor that performs computations on large arrays "
     "of data. There are two distinct types:<br/>"
     "1. <b>Attached Array Processor:</b> An auxiliary co-processor attached to a general-purpose "
@@ -1376,9 +1376,9 @@ pn.definition(
     "but on different data -- a true SIMD organization."
 )
 
-pn.section("SIMD Array Processor Organization")
-pn.body("The general block diagram of an SIMD array processor contains:")
-pn.bullet(
+en.section("SIMD Array Processor Organization")
+en.body("The general block diagram of an SIMD array processor contains:")
+en.bullet(
     [
         "<b>Master Control Unit (MCU):</b> Decodes instructions and determines how each is executed. "
         "Scalar and program control instructions execute within the MCU. "
@@ -1395,8 +1395,8 @@ pn.bullet(
     ]
 )
 
-pn.section("SIMD Array Processor Example")
-pn.code_block("""
+en.section("SIMD Array Processor Example")
+en.code_block("""
  SIMD ARRAY PROCESSOR EXAMPLE: Vector Addition C = A + B
  ======================================================
  Assume 64 Processing Elements (PEs), vector length = 64.
@@ -1422,8 +1422,8 @@ pn.code_block("""
      Pass 3: PE 0-39 handle elements 128-199 (masking PE 40-63).
 """)
 
-net_simd = pd.NetworkDiagram(
-    width=pn.CW,
+net_simd = ed.NetworkDiagram(
+    width=en.CW,
     height=280,
     theme=diag_theme,
     caption="Fig 9: SIMD Array Processor -- MCU broadcasts to all PEs simultaneously",
@@ -1456,10 +1456,10 @@ net_simd.link("ibc", "pe0")
 net_simd.link("ibc", "pe1")
 net_simd.link("ibc", "pe2")
 net_simd.link("ibc", "pen")
-pn.story.extend(net_simd.as_flowable())
+en.story.extend(net_simd.as_flowable())
 
-pn.section("Comparison: Attached Array Processor vs SIMD Array Processor")
-pn.info_table(
+en.section("Comparison: Attached Array Processor vs SIMD Array Processor")
+en.info_table(
     ["Feature", "Attached Array Processor", "SIMD Array Processor"],
     [
         [
@@ -1495,20 +1495,20 @@ pn.info_table(
     ],
 )
 
-pn.tip(
+en.tip(
     "SIMD array processor: one MCU + many identical PEs. "
     "Same instruction broadcast to all PEs; each operates on its own local data. "
     "Masking: flag per PE controls participation (vector length < PE count). "
     "Limitations: poor at irregular data access, branching, and non-vector code."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.11  MULTIPROCESSORS
 # =============================================================================
-pn.chap_box("5.11  Multiprocessors")
-pn.section("What is a Multiprocessor?")
-pn.definition(
+en.chap_box("5.11  Multiprocessors")
+en.section("What is a Multiprocessor?")
+en.definition(
     "<b>Multiprocessor System:</b> An interconnection of two or more CPUs with "
     "shared memory and I/O equipment, controlled by a single operating system "
     "that provides interaction among all processors. Unlike a computer network "
@@ -1517,8 +1517,8 @@ pn.definition(
     "Multiprocessors are classified as MIMD -- Multiple Instruction, Multiple Data."
 )
 
-pn.section("Characteristics of Multiprocessors")
-pn.bullet(
+en.section("Characteristics of Multiprocessors")
+en.bullet(
     [
         "<b>MIMD Organization:</b> Each processor has its own instruction stream and data stream. "
         "Processors operate concurrently but independently on different parts of a task.",
@@ -1535,8 +1535,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Tightly Coupled vs Loosely Coupled Multiprocessors")
-pn.info_table(
+en.section("Tightly Coupled vs Loosely Coupled Multiprocessors")
+en.info_table(
     [
         "Feature",
         "Tightly Coupled\n(Shared Memory)",
@@ -1587,8 +1587,8 @@ pn.info_table(
 )
 
 # Tightly vs loosely coupled diagram
-left_tight = pd.NetworkDiagram(
-    width=pn.CW * 0.44,
+left_tight = ed.NetworkDiagram(
+    width=en.CW * 0.44,
     height=200,
     theme=diag_theme,
     caption="Tightly Coupled Multiprocessor",
@@ -1603,8 +1603,8 @@ left_tight.link("c2", "bus")
 left_tight.link("c3", "bus")
 left_tight.link("bus", "mem")
 
-right_loose = pd.NetworkDiagram(
-    width=pn.CW * 0.44,
+right_loose = ed.NetworkDiagram(
+    width=en.CW * 0.44,
     height=200,
     theme=diag_theme,
     caption="Loosely Coupled Multiprocessor",
@@ -1627,7 +1627,7 @@ tbl_mp = Table(
             ResponsiveDrawingFlowable(right_loose.drawing),
         ]
     ],
-    colWidths=[pn.CW * 0.48, pn.CW * 0.48],
+    colWidths=[en.CW * 0.48, en.CW * 0.48],
 )
 tbl_mp.setStyle(
     TableStyle(
@@ -1640,19 +1640,19 @@ tbl_mp.setStyle(
         ]
     )
 )
-pn.add(tbl_mp)
-pn.sp(6)
-pn.add(
+en.add(tbl_mp)
+en.sp(6)
+en.add(
     Paragraph(
         "Fig 10 (left): Tightly coupled -- shared global memory via bus.  |  "
         "Fig 10 (right): Loosely coupled -- private memory with message-passing network.",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
-pn.sp(8)
+en.sp(8)
 
-pn.section("Multiprocessor vs Multicomputer")
-pn.info_table(
+en.section("Multiprocessor vs Multicomputer")
+en.info_table(
     ["Aspect", "Multiprocessor", "Multicomputer (Network)"],
     [
         [
@@ -1688,21 +1688,21 @@ pn.info_table(
     ],
 )
 
-pn.tip(
+en.tip(
     "Multiprocessor: multiple CPUs, single OS, shared memory, MIMD. "
     "Tightly coupled: shared global memory (fast but limited scalability). "
     "Loosely coupled: private memory + message passing (scalable). "
     "Distinguishing feature vs multicomputer: one shared OS vs multiple independent OSes."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.12  QUICK REVISION SUMMARY
 # =============================================================================
-pn.part_box("UNIT V -- QUICK REVISION SUMMARY")
-pn.chap_box("Key Concepts at a Glance")
+en.part_box("UNIT V -- QUICK REVISION SUMMARY")
+en.chap_box("Key Concepts at a Glance")
 
-pn.info_table(
+en.info_table(
     ["Topic", "Key Point to Remember"],
     [
         [
@@ -1811,7 +1811,7 @@ pn.info_table(
     ],
 )
 
-pn.highlight(
+en.highlight(
     "<b>UNIT V EXAM BLUEPRINT:</b>  "
     "2-mark: State Flynn's classification. Define pipeline hazard. "
     "Define speedup factor. Distinguish tightly vs loosely coupled multiprocessor. "
@@ -1828,20 +1828,20 @@ pn.highlight(
     "Explain multiprocessor characteristics with tightly vs loosely coupled comparison.",
 )
 
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.0)
-pn.sp(6)
-pn.add(
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.0)
+en.sp(6)
+en.add(
     Paragraph(
         "Computer Architecture IT-404 Unit V -- Bharat Dangi  |  UIT-RGPV (Autonomous) Bhopal | Semester IV",
-        pn.COVER_SUB,
+        en.COVER_SUB,
     )
 )
 
 # =============================================================================
 #  BUILD PDF
 # =============================================================================
-pn.build_doc(
+en.build_doc(
     "CA_Unit5_Notes.pdf",
     title="Computer Architecture - Unit V Notes",
     author="Bharat Dangi",

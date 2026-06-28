@@ -9,10 +9,10 @@ Entity-Relationship diagrams use Chen notation: rectangles for entities, diamond
 ### Quick example
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-er = pd.ERDiagram(width=450, height=220, caption="Fig 3: University ER Model")
+er = ed.ERDiagram(width=450, height=220, caption="Fig 3: University ER Model")
 
 er.entity("STUDENT")
 er.entity("COURSE")
@@ -30,8 +30,8 @@ er.entity_attributes(
 er.connect("STUDENT", "ENROLLS", card_from="1", card_to="N")
 er.connect("COURSE", "ENROLLS", card_from="1", card_to="N")
 
-pn.add(er.as_flowable())
-pn.build_doc("er.pdf")
+en.add(er.as_flowable())
+en.build_doc("er.pdf")
 ```
 
 ### Entities
@@ -89,10 +89,10 @@ Schema diagrams display table structures: columns, types, primary and foreign ke
 ### Quick example
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-schema = pd.SchemaDiagram(
+schema = ed.SchemaDiagram(
     width=450, height=200, caption="Fig 4: Blog Schema"
 )
 
@@ -111,8 +111,8 @@ schema.table("posts", [
 
 schema.relation("posts", "user_id", "users", "id")
 
-pn.add(schema.as_flowable())
-pn.build_doc("schema.pdf")
+en.add(schema.as_flowable())
+en.build_doc("schema.pdf")
 ```
 
 ### Column flags
@@ -158,3 +158,4 @@ Use `SchemaDiagram` when you care about:
 
 - [Schema](schema.md)
 - [Class](class.md)
+

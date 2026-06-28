@@ -5,10 +5,10 @@ AWS diagrams render vector-native AWS resource icons on top of the standard Arch
 ## Minimal example
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-aws = pd.AWSDiagram(
+aws = ed.AWSDiagram(
     width=450, height=220,
     caption="Fig 11: AWS Stack",
     orientation="horizontal",
@@ -25,7 +25,7 @@ aws.connect("app", "assets", "Uploads")
 aws.connect("app", "fn",     "Invoke")
 aws.connect("app", "queue",  "Events")
 
-pn.add(aws.as_flowable())
+en.add(aws.as_flowable())
 ```
 
 ## Node types
@@ -52,3 +52,4 @@ Nodes are auto-positioned when added without x, y. Only specify coordinates if n
 
 - [Architecture](architecture.md)
 - [C4 Container](c4.md)
+

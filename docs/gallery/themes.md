@@ -1,38 +1,38 @@
 # Gallery: Themes
 
-The same diagram rendered in every preset PaperForge theme. This page shows the power and clean auto-matching of the theme system.
+The same diagram rendered in every preset Engrapha theme. This page shows the power and clean auto-matching of the theme system.
 
 Set up:
 
 ```python title="gallery_themes.py"
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-fc = pd.Flowchart(width=340, height=180)
+fc = ed.Flowchart(width=340, height=180)
 fc.terminal("s", "START").process("w", "Work").terminal("e", "END")
 fc.edge("s", "w").edge("w", "e")
 
 for tname, theme in [
-    ("DARK",             pn.DARK),
-    ("LIGHT",            pn.LIGHT),
-    ("OCEAN_DARK",       pn.OCEAN_DARK),
-    ("FOREST_DARK",      pn.FOREST_DARK),
-    ("SUNSET_DARK",      pn.SUNSET_DARK),
-    ("MIDNIGHT_DARK",    pn.MIDNIGHT_DARK),
-    ("OCEAN_LIGHT",      pn.OCEAN_LIGHT),
-    ("SEPIA",            pn.SEPIA),
-    ("CATPPUCCIN_LATTE", pn.CATPPUCCIN_LATTE),
-    ("CATPPUCCIN_MOCHA", pn.CATPPUCCIN_MOCHA),
+    ("DARK",             en.DARK),
+    ("LIGHT",            en.LIGHT),
+    ("OCEAN_DARK",       en.OCEAN_DARK),
+    ("FOREST_DARK",      en.FOREST_DARK),
+    ("SUNSET_DARK",      en.SUNSET_DARK),
+    ("MIDNIGHT_DARK",    en.MIDNIGHT_DARK),
+    ("OCEAN_LIGHT",      en.OCEAN_LIGHT),
+    ("SEPIA",            en.SEPIA),
+    ("CATPPUCCIN_LATTE", en.CATPPUCCIN_LATTE),
+    ("CATPPUCCIN_MOCHA", en.CATPPUCCIN_MOCHA),
 ]:
-    pn.set_theme(theme)
-    diag_t = pd.DiagramTheme.from_notes_theme(pn.get_theme())
-    fc2 = pd.Flowchart(width=340, height=180, theme=diag_t, caption=f"Theme: {tname}")
+    en.set_theme(theme)
+    diag_t = ed.DiagramTheme.from_notes_theme(en.get_theme())
+    fc2 = ed.Flowchart(width=340, height=180, theme=diag_t, caption=f"Theme: {tname}")
     fc2.terminal("s", "START").process("w", "Work").terminal("e", "END")
     fc2.edge("s", "w").edge("w", "e")
-    pn.add(fc2.as_flowable())
-    pn.sp(6)
+    en.add(fc2.as_flowable())
+    en.sp(6)
 
-pn.build_doc("gallery_themes.pdf")
+en.build_doc("gallery_themes.pdf")
 ```
 
 ## Theme comparison grid
@@ -56,3 +56,4 @@ pn.build_doc("gallery_themes.pdf")
 
 - [Notes pages](notes-pages.md)
 - [Examples](../examples/engineering-notes.md)
+

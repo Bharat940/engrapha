@@ -10,51 +10,51 @@ Output: OS_Unit1_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
 # =============================================================================
 #  THEME & GLOBAL SETUP
 #  Using CATPPUCCIN_MOCHA -- warm mauve/lavender palette on deep dark bg
 #  Distinct from Java units (OCEAN_DARK, MIDNIGHT_DARK, FOREST_DARK, SUNSET_DARK)
 # =============================================================================
-pn.set_story([])
-my_theme = pn.CATPPUCCIN_MOCHA
+en.set_story([])
+my_theme = en.CATPPUCCIN_MOCHA
 my_theme.body_font = "Times-Roman"
 my_theme.heading_font = "Courier-Bold"
-pn.set_theme(my_theme)
+en.set_theme(my_theme)
 
-pn.set_global_footer(
+en.set_global_footer(
     left="Operating Systems (IT412) — Unit I",
     right="UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
     show_page_num=True,
 )
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(26)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(26)
 
-pn.cover_card(
+en.cover_card(
     "OPERATING SYSTEMS",
     "Unit I — Introduction, Processes, Scheduling & Threads",
 )
-# pn.cover_subtitle(
+# en.cover_subtitle(
 #     [
 #         "Subject Code: IT412  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
 #         "Software Types, OS Functions & Services, Kernel, System Calls,",
 #         "Process States, PCB, Schedulers, Context Switching, Threads & Multithreading",
 #     ]
 # )
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(8)
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(8)
 
-pn.info_table(
+en.info_table(
     ["Section", "Syllabus Topics Covered"],
     [
         [
@@ -115,23 +115,23 @@ pn.info_table(
 # =============================================================================
 #  TABLE OF CONTENTS
 # =============================================================================
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  UNIT DIVIDER
 # =============================================================================
-pn.part_box("UNIT I — INTRODUCTION TO OPERATING SYSTEMS & PROCESSES")
+en.part_box("UNIT I — INTRODUCTION TO OPERATING SYSTEMS & PROCESSES")
 
 # =============================================================================
 #  1.1  SOFTWARE & TYPES
 # =============================================================================
-pn.chap_box("1.1  Software and Its Types")
+en.chap_box("1.1  Software and Its Types")
 
 
-pn.section("What is Software?")
-pn.definition(
+en.section("What is Software?")
+en.definition(
     "<b>Software:</b> A collection of programs, data, and instructions that tell "
     "a computer what to do. Software is the non-physical, logical component of a "
     "computer system, as opposed to hardware which is the physical component. "
@@ -139,8 +139,8 @@ pn.definition(
     "with no useful purpose."
 )
 
-pn.section("Classification of Software")
-pn.info_table(
+en.section("Classification of Software")
+en.info_table(
     ["Category", "Description", "Examples"],
     [
         [
@@ -171,15 +171,15 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "Exam point: OS is system software that acts as an INTERFACE between the user and "
     "hardware, and as a RESOURCE MANAGER. Always distinguish between system software "
     "(manages hardware) and application software (serves users)."
 )
 
 # Layered stack showing software categories
-stack_sw = pd.LayeredStack(
-    width=pn.CW * 0.55,
+stack_sw = ed.LayeredStack(
+    width=en.CW * 0.55,
     height=200,
     theme=diag_theme,
     caption="Fig 1.1: Software Hierarchy Layers",
@@ -192,17 +192,17 @@ stack_sw.layer(
 )
 stack_sw.layer("Operating System", sublabel="Kernel, shell, system services")
 stack_sw.layer("Hardware", sublabel="CPU, RAM, Disk, I/O devices")
-pn.story.extend(stack_sw.as_flowable())
-pn.br()
+en.story.extend(stack_sw.as_flowable())
+en.br()
 
 # =============================================================================
 #  1.2  INTRODUCTION TO OPERATING SYSTEM
 # =============================================================================
-pn.chap_box("1.2  Introduction to Operating Systems")
+en.chap_box("1.2  Introduction to Operating Systems")
 
 
-pn.section("Definition and Goals")
-pn.definition(
+en.section("Definition and Goals")
+en.definition(
     "<b>Operating System (OS):</b> A system software program (or set of programs) "
     "that manages computer hardware and software resources and provides a common "
     "set of services to application programs. The OS acts as: "
@@ -214,7 +214,7 @@ pn.definition(
     "provides a clean, abstract, easy-to-use machine for programs and users."
 )
 
-pn.body(
+en.body(
     "The two primary goals of an OS are: "
     "<b>Convenience</b> — making the computer easier to use (high-level abstractions "
     "hide hardware details); and "
@@ -222,8 +222,8 @@ pn.body(
     "utilization, minimize response time, maximize throughput)."
 )
 
-pn.section("OS as Resource Manager")
-pn.info_table(
+en.section("OS as Resource Manager")
+en.info_table(
     ["Resource", "OS Management Role"],
     [
         [
@@ -258,8 +258,8 @@ pn.info_table(
 )
 
 # Network-style diagram showing OS in the center connecting everything
-net_os = pd.NetworkDiagram(
-    width=pn.CW,
+net_os = ed.NetworkDiagram(
+    width=en.CW,
     height=240,
     theme=diag_theme,
     caption="Fig 1.2: OS as the central manager between users/apps and hardware",
@@ -277,17 +277,17 @@ net_os.link("os", "cpu", label="schedules")
 net_os.link("os", "mem", label="allocates")
 net_os.link("os", "disk", label="manages")
 net_os.link("os", "io", label="controls")
-pn.story.extend(net_os.as_flowable())
-pn.br()
+en.story.extend(net_os.as_flowable())
+en.br()
 
 # =============================================================================
 #  1.3  OS FUNCTIONS & SERVICES
 # =============================================================================
-pn.chap_box("1.3  OS Functions and Services")
+en.chap_box("1.3  OS Functions and Services")
 
 
-pn.section("Core OS Functions")
-pn.bullet(
+en.section("Core OS Functions")
+en.bullet(
     [
         "<b>Process Management:</b> Creation, deletion, suspension, resumption of processes. Provides mechanisms for process synchronization and communication (IPC). Handles deadlocks.",
         "<b>Memory Management:</b> Allocating/deallocating memory to processes. Keeping track of which parts of memory are in use. Implementing virtual memory (swapping, paging).",
@@ -300,8 +300,8 @@ pn.bullet(
     ]
 )
 
-pn.section("OS Services (What the OS provides to programs)")
-pn.info_table(
+en.section("OS Services (What the OS provides to programs)")
+en.info_table(
     ["Service", "Description"],
     [
         [
@@ -338,16 +338,16 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.4  TYPES OF OPERATING SYSTEMS
 # =============================================================================
-pn.chap_box("1.4  Types of Operating Systems")
+en.chap_box("1.4  Types of Operating Systems")
 
 
-pn.section("Major OS Categories", keep_with_next=False)
-pn.info_table(
+en.section("Major OS Categories", keep_with_next=False)
+en.info_table(
     ["Type", "Description", "Key Feature", "Examples"],
     [
         [
@@ -408,8 +408,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Batch vs Multiprogramming vs Time-Sharing — Key Comparison")
-pn.info_table(
+en.section("Batch vs Multiprogramming vs Time-Sharing — Key Comparison")
+en.info_table(
     ["Feature", "Batch OS", "Multiprogramming OS", "Time-Sharing OS"],
     [
         [
@@ -430,16 +430,16 @@ pn.info_table(
         ["Job Switching", "No (sequential)", "On I/O wait", "On time quantum expiry"],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.5  KERNEL
 # =============================================================================
-pn.chap_box("1.5  The Kernel")
+en.chap_box("1.5  The Kernel")
 
 
-pn.section("What is the Kernel?")
-pn.definition(
+en.section("What is the Kernel?")
+en.definition(
     "<b>Kernel:</b> The core component of an operating system that is always resident "
     "in main memory (RAM) and has complete control over everything in the system. "
     "The kernel is the first program loaded after the bootloader and runs in "
@@ -450,8 +450,8 @@ pn.definition(
     "and must request kernel services through system calls."
 )
 
-pn.section("Kernel Mode vs User Mode")
-pn.info_table(
+en.section("Kernel Mode vs User Mode")
+en.info_table(
     ["Aspect", "Kernel Mode", "User Mode"],
     [
         [
@@ -487,8 +487,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Types of Kernel Architecture")
-pn.info_table(
+en.section("Types of Kernel Architecture")
+en.info_table(
     ["Architecture", "Design Philosophy", "Pros", "Cons", "Examples"],
     [
         [
@@ -529,8 +529,8 @@ pn.info_table(
 # Layered diagrams: Monolithic vs Microkernel side by side
 from reportlab.platypus import Table, TableStyle
 
-left_k = pd.LayeredStack(
-    width=pn.CW * 0.46,
+left_k = ed.LayeredStack(
+    width=en.CW * 0.46,
     height=200,
     theme=diag_theme,
     caption="Monolithic Kernel",
@@ -539,8 +539,8 @@ left_k.layer("User Applications")
 left_k.divider()
 left_k.layer("Kernel Space", sublabel="Scheduler + Memory + FS + Drivers (all here)")
 
-right_k = pd.LayeredStack(
-    width=pn.CW * 0.46,
+right_k = ed.LayeredStack(
+    width=en.CW * 0.46,
     height=200,
     theme=diag_theme,
     caption="Microkernel",
@@ -556,24 +556,24 @@ right_k.as_flowable()
 tbl_k = Table(
     [
         [
-            pd.ResponsiveDrawingFlowable(left_k.drawing),
-            pd.ResponsiveDrawingFlowable(right_k.drawing),
+            ed.ResponsiveDrawingFlowable(left_k.drawing),
+            ed.ResponsiveDrawingFlowable(right_k.drawing),
         ]
     ],
-    colWidths=[pn.CW * 0.48, pn.CW * 0.48],
+    colWidths=[en.CW * 0.48, en.CW * 0.48],
 )
-pn.story.append(tbl_k)
-pn.sp(6)
-pn.br()
+en.story.append(tbl_k)
+en.sp(6)
+en.br()
 
 # =============================================================================
 #  1.6  SYSTEM CALLS
 # =============================================================================
-pn.chap_box("1.6  System Calls")
+en.chap_box("1.6  System Calls")
 
 
-pn.section("What is a System Call?")
-pn.definition(
+en.section("What is a System Call?")
+en.definition(
     "<b>System Call:</b> The programmatic interface through which a user-mode program "
     "requests a service from the operating system kernel. "
     "System calls are the ONLY mechanism for user programs to switch from user mode to "
@@ -583,8 +583,8 @@ pn.definition(
     "for example, <code>printf()</code> eventually calls the <code>write()</code> system call."
 )
 
-pn.section("How a System Call Works — Step by Step")
-pn.bullet(
+en.section("How a System Call Works — Step by Step")
+en.bullet(
     [
         "<b>Step 1 (Application):</b> The application calls a library function like <code>read()</code> in C.",
         "<b>Step 2 (Trap / Software Interrupt):</b> The library places the system call number and arguments into CPU registers, then executes a TRAP instruction (INT 0x80 on x86, SYSCALL on x86-64). This triggers a software interrupt.",
@@ -595,7 +595,7 @@ pn.bullet(
     ]
 )
 
-seq_sc = pd.SequenceDiagram(
+seq_sc = ed.SequenceDiagram(
     width=650,
     height=280,
     theme=diag_theme,
@@ -628,10 +628,10 @@ seq_sc.message("hw", "lib", "mode switch → user mode\nresume execution", arrow
 seq_sc.deactivate("hw")
 seq_sc.message("lib", "app", "return bytes read", arrow="dashed")
 seq_sc.deactivate("lib")
-pn.story.extend(seq_sc.as_flowable())
+en.story.extend(seq_sc.as_flowable())
 
-pn.section("Categories of System Calls")
-pn.info_table(
+en.section("Categories of System Calls")
+en.info_table(
     ["Category", "Purpose", "Examples (Linux / Windows)"],
     [
         [
@@ -667,11 +667,11 @@ pn.info_table(
     ],
 )
 
-pn.subsection("Process Creation Example (C Language)")
-pn.body(
+en.subsection("Process Creation Example (C Language)")
+en.body(
     "Process control system calls can create complex execution trees. Below is a C code snippet illustrating how `fork()` duplicates the current process to create a child process."
 )
-pn.code_block(
+en.code_block(
     """#include <stdio.h>
 #include <unistd.h>
 #include <sys/wait.h>
@@ -694,17 +694,17 @@ int main() {
 }""",
     lang="c",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.7  PROCESS CONCEPT
 # =============================================================================
-pn.part_box("UNIT I — PROCESS MANAGEMENT")
-pn.chap_box("1.7  Process Concept")
+en.part_box("UNIT I — PROCESS MANAGEMENT")
+en.chap_box("1.7  Process Concept")
 
 
-pn.section("What is a Process?")
-pn.definition(
+en.section("What is a Process?")
+en.definition(
     "<b>Process:</b> A program in execution. A process is an active, dynamic entity — "
     "it is a program (passive, static code on disk) that has been loaded into memory "
     "and is being executed by the CPU. At any given time, a process includes: "
@@ -713,8 +713,8 @@ pn.definition(
     "data section (global variables), and heap (dynamically allocated memory)."
 )
 
-pn.section("Process vs Program — Key Distinction")
-pn.info_table(
+en.section("Process vs Program — Key Distinction")
+en.info_table(
     ["Aspect", "Program", "Process"],
     [
         [
@@ -746,14 +746,14 @@ pn.info_table(
     ],
 )
 
-pn.section("Process Memory Layout")
-pn.body(
+en.section("Process Memory Layout")
+en.body(
     "When a process is loaded into memory, the OS allocates a virtual address space "
     "divided into distinct sections, each serving a specific purpose:"
 )
 
-stack_proc = pd.LayeredStack(
-    width=pn.CW * 0.50,
+stack_proc = ed.LayeredStack(
+    width=en.CW * 0.50,
     height=240,
     theme=diag_theme,
     caption="Fig 1.4: Process virtual memory layout (high → low address, top → bottom)",
@@ -765,17 +765,17 @@ stack_proc.layer("↑  ↓  (free gap)", sublabel="Stack grows down, heap grows 
 stack_proc.layer("Heap", sublabel="Dynamic memory: malloc/new (grows ↑)")
 stack_proc.layer("Data (BSS + initialized)", sublabel="Global and static variables")
 stack_proc.layer("Text (Code)", sublabel="Read-only compiled instructions")
-pn.story.extend(stack_proc.as_flowable())
-pn.br()
+en.story.extend(stack_proc.as_flowable())
+en.br()
 
 # =============================================================================
 #  1.8  PROCESS STATES
 # =============================================================================
-pn.chap_box("1.8  Process States")
+en.chap_box("1.8  Process States")
 
 
-pn.section("The Five-State Process Model")
-pn.definition(
+en.section("The Five-State Process Model")
+en.definition(
     "<b>Process State:</b> The current activity or condition of a process at any point "
     "in time. As a process executes, it moves through a sequence of states. "
     "The OS tracks the state of every process and uses this information to make "
@@ -783,24 +783,24 @@ pn.definition(
     "New, Ready, Running, Waiting (Blocked), and Terminated."
 )
 
-pn.label("sec_context_switch")
-pn.index_entry("Context Switch")
-pn.index_entry("Process Control Block (PCB)")
+en.label("sec_context_switch")
+en.index_entry("Context Switch")
+en.index_entry("Process Control Block (PCB)")
 
-pn.body(
+en.body(
     "A <b>context switch</b> occurs when the CPU switches from executing one process to another. "
     "To do this, the OS must save the current state of the running process (so it can be resumed later) "
     "and load the saved state of the new process."
 )
 
-pn.question("Why is a context switch considered 'pure overhead'?")
-pn.answer(
+en.question("Why is a context switch considered 'pure overhead'?")
+en.answer(
     "During a context switch, the OS is doing work (saving/restoring registers, updating memory maps, flushing TLBs), but no useful user-level computation is being performed. Therefore, it is pure overhead. High context switch frequency degrades overall system throughput."
 )
 
-pn.subsection("The Process Control Block (PCB)")
+en.subsection("The Process Control Block (PCB)")
 
-pn.info_table(
+en.info_table(
     ["State", "Description", "What the OS does"],
     [
         [
@@ -831,10 +831,10 @@ pn.info_table(
     ],
 )
 
-pn.section("State Transition Diagram")
+en.section("State Transition Diagram")
 
-sm_proc = pd.StateMachine(
-    width=pn.CW,
+sm_proc = ed.StateMachine(
+    width=en.CW,
     height=260,
     theme=diag_theme,
     caption="Fig 1.5: Five-state process model — state transitions",
@@ -861,10 +861,10 @@ sm_proc.transition(
     "waiting", "ready", label="I/O complete /\nevent occurred", pill=True
 )
 sm_proc.transition("running", "term", label="exit()", pill=True)
-pn.story.extend(sm_proc.as_flowable())
+en.story.extend(sm_proc.as_flowable())
 
-pn.section("State Transition Summary")
-pn.info_table(
+en.section("State Transition Summary")
+en.info_table(
     ["Transition", "Cause"],
     [
         [
@@ -893,16 +893,16 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.9  PROCESS CONTROL BLOCK (PCB)
 # =============================================================================
-pn.chap_box("1.9  Process Control Block (PCB)")
+en.chap_box("1.9  Process Control Block (PCB)")
 
 
-pn.section("What is a PCB?")
-pn.definition(
+en.section("What is a PCB?")
+en.definition(
     "<b>Process Control Block (PCB):</b> Also called Task Control Block (TCB). "
     "A data structure maintained by the OS kernel for every process in the system. "
     "The PCB is the complete representation of a process — it stores all information "
@@ -911,8 +911,8 @@ pn.definition(
     "The PCB is stored in kernel memory and is protected from user programs."
 )
 
-pn.section("PCB Fields (Contents)")
-pn.info_table(
+en.section("PCB Fields (Contents)")
+en.info_table(
     ["PCB Field", "Contents", "Purpose"],
     [
         [
@@ -969,8 +969,8 @@ pn.info_table(
 )
 
 # Flowchart showing context switch using PCB
-fc_pcb = pd.Flowchart(
-    width=pn.CW,
+fc_pcb = ed.Flowchart(
+    width=en.CW,
     height=340,
     theme=diag_theme,
     caption="Fig 1.6: Context switch — PCB save and restore cycle",
@@ -986,15 +986,15 @@ fc_pcb.edge("interrupt", "save_p1")
 fc_pcb.edge("save_p1", "select")
 fc_pcb.edge("select", "restore_p2")
 fc_pcb.edge("restore_p2", "p2run")
-pn.story.extend(fc_pcb.as_flowable())
-pn.br()
+en.story.extend(fc_pcb.as_flowable())
+en.br()
 
-pn.subsection("Context Switch CPU Timing Diagram")
-pn.body(
+en.subsection("Context Switch CPU Timing Diagram")
+en.body(
     "The diagram below illustrates CPU burst time-slicing and the OS kernel intervening to perform context switches."
 )
-td_cs = pd.TimingDiagram(
-    width=pn.CW,
+td_cs = ed.TimingDiagram(
+    width=en.CW,
     height=180,
     caption="Fig 1.6b: CPU execution timing during context switch",
     theme=diag_theme,
@@ -1004,24 +1004,24 @@ td_cs.signal(
     "OS Kernel (Switch)", transitions=[(0, 0), (40, 1), (70, 0), (130, 1), (160, 0)]
 )
 td_cs.signal("P2 Executing", transitions=[(0, 0), (70, 1), (130, 0)])
-pn.story.extend(td_cs.as_flowable())
-pn.br()
+en.story.extend(td_cs.as_flowable())
+en.br()
 
 # =============================================================================
 #  1.10  TYPES OF SCHEDULERS
 # =============================================================================
-pn.chap_box("1.10  Types of Schedulers")
+en.chap_box("1.10  Types of Schedulers")
 
 
-pn.section("The Three Schedulers")
-pn.definition(
+en.section("The Three Schedulers")
+en.definition(
     "<b>Scheduler:</b> A component of the OS that selects which process should be "
     "given access to a resource (usually the CPU) at any given time. "
     "There are three main types of schedulers, each operating at a different "
     "time scale and controlling a different transition in the process state model."
 )
 
-pn.info_table(
+en.info_table(
     ["Scheduler", "Also Called", "Role", "Frequency", "Controls Transition"],
     [
         [
@@ -1048,8 +1048,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Scheduler Interaction Diagram")
-net_sched = pd.NetworkDiagram(
+en.section("Scheduler Interaction Diagram")
+net_sched = ed.NetworkDiagram(
     width=650,
     height=250,
     theme=diag_theme,
@@ -1067,27 +1067,27 @@ net_sched.link("lts", "rq", label="admit")
 net_sched.link("rq", "sts", label="")
 net_sched.link("sts", "cpu", label="dispatch")
 net_sched.link("mts", "rq", label="swap in")
-pn.story.extend(net_sched.as_flowable())
-pn.body(
-    f"Note: To see how these schedulers interact during a Context Switch, refer back to Page {pn.ref('sec_context_switch')}."
+en.story.extend(net_sched.as_flowable())
+en.body(
+    f"Note: To see how these schedulers interact during a Context Switch, refer back to Page {en.ref('sec_context_switch')}."
 )
 
-pn.exam(
+en.exam(
     "Exam point: Long-term scheduler controls DEGREE OF MULTIPROGRAMMING. "
     "Short-term scheduler must be VERY FAST (< 10ms) because it runs every 100ms — "
     "1/10 of CPU time wasted if it takes 10ms. "
     "Medium-term scheduler performs SWAPPING to manage memory pressure."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.11  CONTEXT SWITCHING
 # =============================================================================
-pn.chap_box("1.11  Context Switching")
+en.chap_box("1.11  Context Switching")
 
 
-pn.section("What is Context Switching?")
-pn.definition(
+en.section("What is Context Switching?")
+en.definition(
     "<b>Context Switch:</b> The process of saving the state (context) of a currently "
     "running process into its PCB and loading the saved state of another process "
     "from its PCB so that the CPU can execute the new process. "
@@ -1097,8 +1097,8 @@ pn.definition(
     "The <b>dispatcher</b> module of the short-term scheduler performs the actual context switch."
 )
 
-pn.section("Steps in a Context Switch")
-pn.bullet(
+en.section("Steps in a Context Switch")
+en.bullet(
     [
         "<b>1. Trigger:</b> An interrupt occurs (timer, I/O completion), or the running process makes a system call or voluntarily yields the CPU.",
         "<b>2. Save Context of Current Process (P1):</b> CPU registers (PC, SP, general-purpose), flags, memory management registers saved into P1's PCB. P1 state changed to Ready (if preempted) or Waiting (if blocking).",
@@ -1110,8 +1110,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Context Switch Overhead")
-pn.info_table(
+en.section("Context Switch Overhead")
+en.info_table(
     ["Factor", "Impact"],
     [
         [
@@ -1136,18 +1136,18 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.12  THREADS
 # =============================================================================
-pn.part_box("UNIT I — THREADS AND MULTITHREADING")
-pn.br()
-pn.chap_box("1.12  Threads")
+en.part_box("UNIT I — THREADS AND MULTITHREADING")
+en.br()
+en.chap_box("1.12  Threads")
 
 
-pn.section("What is a Thread?")
-pn.definition(
+en.section("What is a Thread?")
+en.definition(
     "<b>Thread:</b> The smallest unit of CPU utilization. Also called a lightweight process (LWP). "
     "A thread is a sequential flow of execution within a process. "
     "A single process can have multiple threads, all sharing the same process resources "
@@ -1157,8 +1157,8 @@ pn.definition(
     "without OS overhead, making them much more efficient than separate processes."
 )
 
-pn.section("Thread vs Process — Detailed Comparison", keep_with_next=False)
-pn.info_table(
+en.section("Thread vs Process — Detailed Comparison", keep_with_next=False)
+en.info_table(
     ["Aspect", "Process", "Thread"],
     [
         [
@@ -1204,8 +1204,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Benefits of Multithreading")
-pn.bullet(
+en.section("Benefits of Multithreading")
+en.bullet(
     [
         "<b>Responsiveness:</b> One thread handles user input while another does background computation. UI stays responsive even during long operations (e.g., web browser rendering while downloading).",
         "<b>Resource Sharing:</b> Threads share the code and data of the process by default. No need for expensive IPC mechanisms — threads can communicate via shared variables.",
@@ -1218,8 +1218,8 @@ pn.bullet(
 # Diagram: single-threaded vs multi-threaded process
 from reportlab.platypus import Table
 
-left_t = pd.LayeredStack(
-    width=pn.CW * 0.46,
+left_t = ed.LayeredStack(
+    width=en.CW * 0.46,
     height=180,
     theme=diag_theme,
     caption="Single-threaded Process",
@@ -1228,8 +1228,8 @@ left_t.layer("Thread (one)", sublabel="Own stack + registers")
 left_t.divider()
 left_t.layer("Shared: Code + Data + Files + Heap")
 
-right_t = pd.LayeredStack(
-    width=pn.CW * 0.46,
+right_t = ed.LayeredStack(
+    width=en.CW * 0.46,
     height=180,
     theme=diag_theme,
     caption="Multi-threaded Process",
@@ -1246,22 +1246,22 @@ right_t.as_flowable()
 tbl_t = Table(
     [
         [
-            pd.ResponsiveDrawingFlowable(left_t.drawing),
-            pd.ResponsiveDrawingFlowable(right_t.drawing),
+            ed.ResponsiveDrawingFlowable(left_t.drawing),
+            ed.ResponsiveDrawingFlowable(right_t.drawing),
         ]
     ],
-    colWidths=[pn.CW * 0.48, pn.CW * 0.48],
+    colWidths=[en.CW * 0.48, en.CW * 0.48],
 )
-pn.story.append(tbl_t)
-pn.sp(6)
-pn.br()
+en.story.append(tbl_t)
+en.sp(6)
+en.br()
 
-pn.section("Amdahl's Law (Theoretical Speedup)")
-pn.definition(
+en.section("Amdahl's Law (Theoretical Speedup)")
+en.definition(
     "Amdahl's Law defines the maximum theoretical speedup of a program using multiple processors in parallel computing."
 )
-pn.formula_block(r"S(N) = \frac{1}{(1 - P) + \frac{P}{N}}")
-pn.bullet(
+en.formula_block(r"S(N) = \frac{1}{(1 - P) + \frac{P}{N}}")
+en.bullet(
     [
         "<b>S(N)</b>: Maximum speedup achieved with N threads/processors.",
         "<b>P</b>: Proportion of the program that can be made parallel (0 to 1).",
@@ -1269,19 +1269,19 @@ pn.bullet(
         "<b>N</b>: Number of processor cores / threads.",
     ]
 )
-pn.exam(
+en.exam(
     "Even with infinite processors (N → ∞), speedup is limited by the serial fraction: 1 / (1 - P)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.13  TYPES OF THREADS
 # =============================================================================
-pn.chap_box("1.13  Types of Threads")
+en.chap_box("1.13  Types of Threads")
 
 
-pn.section("User-Level Threads (ULT)")
-pn.definition(
+en.section("User-Level Threads (ULT)")
+en.definition(
     "<b>User-Level Threads (ULT):</b> Threads managed entirely in user space by a "
     "thread library (e.g., POSIX pthreads in user mode, Java green threads, GNU Pth). "
     "The kernel has NO knowledge of these threads — from the kernel's perspective, "
@@ -1290,7 +1290,7 @@ pn.definition(
     "thread library without any system calls or kernel involvement."
 )
 
-pn.info_table(
+en.info_table(
     ["Aspect", "User-Level Threads (ULT)"],
     [
         ["Managed by", "User-space thread library (no kernel involvement)"],
@@ -1315,8 +1315,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Kernel-Level Threads (KLT)")
-pn.definition(
+en.section("Kernel-Level Threads (KLT)")
+en.definition(
     "<b>Kernel-Level Threads (KLT):</b> Threads managed directly by the OS kernel. "
     "The kernel maintains a thread control block (TCB) for each thread and performs "
     "all thread operations (creation, scheduling, context switching) via system calls. "
@@ -1324,7 +1324,7 @@ pn.definition(
     "This is the model used by modern OSes: Windows, Linux (pthreads via NPTL), macOS."
 )
 
-pn.info_table(
+en.info_table(
     ["Aspect", "Kernel-Level Threads (KLT)"],
     [
         ["Managed by", "OS kernel directly — kernel has a TCB for each thread"],
@@ -1346,8 +1346,8 @@ pn.info_table(
     ],
 )
 
-pn.section("ULT vs KLT — Direct Comparison")
-pn.info_table(
+en.section("ULT vs KLT — Direct Comparison")
+en.info_table(
     ["Feature", "User-Level Threads (ULT)", "Kernel-Level Threads (KLT)"],
     [
         ["Management", "Thread library in user space", "OS kernel"],
@@ -1371,16 +1371,16 @@ pn.info_table(
         ["Use today", "Rare (mostly replaced by KLT)", "Standard on all modern OSes"],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  1.14  MULTITHREADING MODELS
 # =============================================================================
-pn.chap_box("1.14  Multithreading Models")
+en.chap_box("1.14  Multithreading Models")
 
 
-pn.section("Overview")
-pn.definition(
+en.section("Overview")
+en.definition(
     "<b>Multithreading Model:</b> The relationship between User-Level Threads (ULT) "
     "and Kernel-Level Threads (KLT) in a given OS implementation. "
     "Since the kernel only schedules kernel threads, user threads must be mapped "
@@ -1389,8 +1389,8 @@ pn.definition(
     "There are four main models: Many-to-One, One-to-One, Many-to-Many, and Two-level."
 )
 
-pn.section("Model 1: Many-to-One (M:1)")
-pn.info_table(
+en.section("Model 1: Many-to-One (M:1)")
+en.info_table(
     ["Aspect", "Details"],
     [
         ["Mapping", "Many user threads → ONE kernel thread"],
@@ -1409,8 +1409,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Model 2: One-to-One (1:1)")
-pn.info_table(
+en.section("Model 2: One-to-One (1:1)")
+en.info_table(
     ["Aspect", "Details"],
     [
         ["Mapping", "Each user thread → ONE dedicated kernel thread"],
@@ -1432,8 +1432,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Model 3: Many-to-Many (M:N)")
-pn.info_table(
+en.section("Model 3: Many-to-Many (M:N)")
+en.info_table(
     ["Aspect", "Details"],
     [
         [
@@ -1458,8 +1458,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Model 4: Two-Level Model")
-pn.definition(
+en.section("Model 4: Two-Level Model")
+en.definition(
     "<b>Two-Level Model:</b> A variation of the Many-to-Many model that also allows "
     "a user thread to be BOUND to a specific kernel thread (like One-to-One). "
     "This gives maximum flexibility: most threads use the M:N pool for efficiency, "
@@ -1467,8 +1467,8 @@ pn.definition(
     "guaranteed scheduling. Used in Solaris 9+, IRIX, and some HP-UX versions."
 )
 
-pn.section("Multithreading Models — Master Comparison Table")
-pn.info_table(
+en.section("Multithreading Models — Master Comparison Table")
+en.info_table(
     ["Feature", "Many-to-One", "One-to-One", "Many-to-Many", "Two-Level"],
     [
         ["ULT : KLT ratio", "M : 1", "1 : 1", "M : N (M≥N)", "M : N + bound"],
@@ -1488,8 +1488,8 @@ pn.info_table(
 )
 
 # State machine showing thread lifecycle
-sm_thread = pd.StateMachine(
-    width=pn.CW,
+sm_thread = ed.StateMachine(
+    width=en.CW,
     height=260,
     theme=diag_theme,
     caption="Fig 1.8: Thread lifecycle (mirrors process state model)",
@@ -1508,19 +1508,19 @@ sm_thread.transition(
 sm_thread.transition("running", "blocked", label="I/O /\nwait /\nsleep", pill=True)
 sm_thread.transition("blocked", "ready", label="notify /\nI/O done", pill=True)
 sm_thread.transition("running", "dead", label="run()\ncompletes", pill=True)
-pn.story.extend(sm_thread.as_flowable())
-pn.br()
+en.story.extend(sm_thread.as_flowable())
+en.br()
 
 # =============================================================================
 #  1.15  EXAM QUESTIONS & ANSWERS
 # =============================================================================
-pn.part_box("UNIT I — EXAM QUESTIONS & DETAILED ANSWERS")
-pn.chap_box("1.15  Previous-Year Style Exam Questions")
+en.part_box("UNIT I — EXAM QUESTIONS & DETAILED ANSWERS")
+en.chap_box("1.15  Previous-Year Style Exam Questions")
 
 
-pn.section("2-Mark Questions (Short Answer)")
+en.section("2-Mark Questions (Short Answer)")
 
-pn.highlight(
+en.highlight(
     "<b>Q1. What is an Operating System? State its two main goals.</b><br/>"
     "A: An OS is system software that manages computer hardware and software resources "
     "and provides common services to programs. It acts as an interface between user/programs "
@@ -1528,7 +1528,7 @@ pn.highlight(
     "(2) <b>Efficiency</b> — maximizes resource utilization (CPU, memory, I/O)."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q2. Differentiate between system software and application software.</b><br/>"
     "A: System software manages hardware and provides a platform for other software "
     "(e.g., OS, device drivers). It runs continuously or at startup. "
@@ -1537,7 +1537,7 @@ pn.highlight(
     "application software is closer to the user."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q3. What is a kernel? What is kernel mode?</b><br/>"
     "A: Kernel is the core of the OS that is always in memory with full hardware access. "
     "It manages CPU scheduling, memory, I/O, and device drivers. "
@@ -1546,7 +1546,7 @@ pn.highlight(
     "User programs run in user mode (ring 3) with restricted access."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q4. What is a system call? Give four categories with examples.</b><br/>"
     "A: A system call is the interface through which user programs request OS kernel services. "
     "They cause a mode switch from user mode to kernel mode. "
@@ -1557,7 +1557,7 @@ pn.highlight(
     "(5) Communication — pipe(), socket(), send(), recv()."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q5. What is a process? How is it different from a program?</b><br/>"
     "A: A process is a program in execution — an active entity in memory with code, data, "
     "stack, heap, and a PCB. A program is a passive entity — code stored on disk. "
@@ -1566,7 +1566,7 @@ pn.highlight(
     "heap (dynamic memory), and current activity (PC, registers)."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q6. List and briefly explain the five states of a process.</b><br/>"
     "A: (1) <b>New:</b> Process being created, PCB allocated. "
     "(2) <b>Ready:</b> In memory, waiting for CPU; ready queue. "
@@ -1575,7 +1575,7 @@ pn.highlight(
     "(5) <b>Terminated:</b> Finished execution; resources being freed."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q7. What is a PCB? List its important fields.</b><br/>"
     "A: Process Control Block is a kernel data structure that stores all information "
     "about a process. Key fields: Process ID (PID), Process State, Program Counter, "
@@ -1584,7 +1584,7 @@ pn.highlight(
     "The PCB is the 'identity card' of a process."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q8. Differentiate between short-term, long-term, and medium-term schedulers.</b><br/>"
     "A: Long-term (job) scheduler: controls which jobs enter memory — infrequent, "
     "controls degree of multiprogramming. "
@@ -1594,7 +1594,7 @@ pn.highlight(
     "occasional."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q9. What is context switching? What is its overhead?</b><br/>"
     "A: Context switching is saving the state of the current process (into its PCB) and "
     "loading the state of the next process (from its PCB). Steps: interrupt occurs → "
@@ -1603,7 +1603,7 @@ pn.highlight(
     "cache invalidation, TLB flush when switching address spaces."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q10. What is a thread? List four benefits of multithreading.</b><br/>"
     "A: A thread is the smallest unit of CPU execution within a process. "
     "Multiple threads share process resources (code, data, heap, files) but each has "
@@ -1614,9 +1614,9 @@ pn.highlight(
     "(4) Scalability — true parallelism on multi-core CPUs."
 )
 
-pn.section("5-Mark Questions (Explain with Diagrams)")
+en.section("5-Mark Questions (Explain with Diagrams)")
 
-pn.highlight(
+en.highlight(
     "<b>Q11. Explain the different types of operating systems with examples.</b><br/>"
     "A: <b>Batch OS:</b> Jobs collected and processed without interaction (IBM OS/360). "
     "<b>Multiprogramming OS:</b> Multiple jobs in memory; CPU switches on I/O wait (early Unix). "
@@ -1627,7 +1627,7 @@ pn.highlight(
     "Time-sharing extends multiprogramming by adding rapid CPU switching to serve interactive users."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q12. Draw and explain the process state transition diagram. What triggers each transition?</b><br/>"
     "A: Five states: New, Ready, Running, Waiting, Terminated. "
     "New→Ready: process admitted (long-term scheduler). "
@@ -1639,7 +1639,7 @@ pn.highlight(
     "See Fig 1.5 for the complete state diagram."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q13. What is a PCB? Explain its role in context switching with a diagram.</b><br/>"
     "A: PCB stores complete process state. During context switch: "
     "1. OS saves running process P1's registers, PC, and memory info → P1's PCB. "
@@ -1650,7 +1650,7 @@ pn.highlight(
     "each process was. See Fig 1.6."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q14. Explain the difference between user-level threads and kernel-level threads. "
     "Which is better and why?</b><br/>"
     "A: ULT: managed by library, fast creation, no kernel knowledge → blocking I/O stops all threads, no multi-core. "
@@ -1660,7 +1660,7 @@ pn.highlight(
     "Modern Linux uses KLT (NPTL) — pthreads are kernel threads."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q15. Explain multithreading models: Many-to-One, One-to-One, Many-to-Many, Two-Level.</b><br/>"
     "A: <b>Many-to-One (M:1):</b> All user threads map to one kernel thread. Fast but no parallelism; "
     "one block = all block. Example: Solaris Green Threads. "
@@ -1671,9 +1671,9 @@ pn.highlight(
     "<b>Two-Level:</b> M:N + option to bind a specific thread 1:1. Maximum flexibility."
 )
 
-pn.section("10-Mark Questions (Detailed)")
+en.section("10-Mark Questions (Detailed)")
 
-pn.highlight(
+en.highlight(
     "<b>Q16. What is an OS? Explain its functions, services, and role as a resource manager "
     "with a diagram.</b><br/>"
     "A: OS = system software managing hardware for programs and users. "
@@ -1686,7 +1686,7 @@ pn.highlight(
     "See Fig 1.2 for the OS resource manager diagram."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q17. Explain with a neat diagram how a system call is executed, "
     "covering mode switch, trap instruction, and return.</b><br/>"
     "A: Application calls library function (e.g., read()). "
@@ -1698,7 +1698,7 @@ pn.highlight(
     "Library returns result to application. See Fig 1.3 sequence diagram."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q18. Compare monolithic kernel and microkernel. "
     "Draw their structure and explain trade-offs.</b><br/>"
     "A: <b>Monolithic:</b> Entire OS in kernel space. Fast (no IPC between components). "
@@ -1711,7 +1711,7 @@ pn.highlight(
     "See side-by-side layered diagrams in Section 1.5."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q19. Define process and explain process states, PCB, and context switching together "
     "in one comprehensive answer.</b><br/>"
     "A: Process = program in execution. Has code, data, stack, heap + PCB. "
@@ -1723,7 +1723,7 @@ pn.highlight(
     "PCB enables context switching; state diagram shows when switches happen."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q20. Explain threads, types of threads, and all multithreading models with diagrams. "
     "Compare thread vs process.</b><br/>"
     "A: Thread = lightweight execution unit inside process. "
@@ -1736,8 +1736,8 @@ pn.highlight(
     "See Section 1.12–1.14 for full comparison tables and diagrams."
 )
 
-pn.section("Quick Revision Summary — Unit I")
-pn.info_table(
+en.section("Quick Revision Summary — Unit I")
+en.info_table(
     ["Topic", "Key Exam Points"],
     [
         [
@@ -1819,7 +1819,7 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "Most asked topics in IT412 Unit I exams: "
     "(1) Process state diagram — draw and explain ALL transitions. "
     "(2) PCB contents and role in context switching. "
@@ -1830,7 +1830,7 @@ pn.exam(
     "Know these six topics thoroughly for guaranteed marks."
 )
 
-pn.note(
+en.note(
     "Reference Books: \n"
     "(1) Silberschatz — 'Operating System Concepts' (Dinosaur Book) — primary reference. \n"
     "(2) S.Haldar & A.A. Arvind — 'Operating Systems', Pearson, 2nd Edition. \n"
@@ -1838,9 +1838,9 @@ pn.note(
     "(4) Pabitra Pal Choudhury — 'Operating System: Principle and Design', PHI."
 )
 
-pn.br()
-pn.chap_box("Rapid Revision & Flashcards")
-pn.revision_card(
+en.br()
+en.chap_box("Rapid Revision & Flashcards")
+en.revision_card(
     "Unit I Mastery Check",
     [
         "Differentiate between Multiprogramming, Multitasking, and Multiprocessing.",
@@ -1851,26 +1851,26 @@ pn.revision_card(
     ],
 )
 
-pn.flashcard(
+en.flashcard(
     "What is the <b>Kernel</b>?",
     "The core of the OS that remains in memory at all times. It has complete control over everything in the system.",
 )
-pn.flashcard(
+en.flashcard(
     "What is a <b>PCB (Process Control Block)</b>?",
     "A data structure in the OS kernel containing all information needed to manage a particular process (State, PC, Registers, Memory info).",
 )
-pn.flashcard(
+en.flashcard(
     "What is <b>Context Switching</b>?",
     "The process of saving the state of the currently running process (in its PCB) and loading the state of the next process.",
 )
 
-pn.br()
-pn.chap_box("Index")
-pn.print_index()
+en.br()
+en.chap_box("Index")
+en.print_index()
 
 # =============================================================================
 #  BUILD DOCUMENT
 # =============================================================================
-pn.build_doc("OS_Unit1_Notes.pdf")
+en.build_doc("OS_Unit1_Notes.pdf")
 
 print("Generated: OS_Unit1_Notes.pdf")

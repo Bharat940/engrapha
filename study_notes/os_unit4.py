@@ -11,48 +11,48 @@ Output: OS_Unit4_Notes.pdf  |  OS_Unit4_Notes_html/  |  OS_Unit4_Notes.pptx
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 from reportlab.platypus import Table
 
 # =============================================================================
 #  THEME — OCEAN_DARK: deep teal/blue accent
 #  Unit I = CATPPUCCIN_MOCHA, II = FOREST_DARK, III = SUNSET_DARK, IV = OCEAN_DARK
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.OCEAN_DARK)
+en.set_story([])
+en.set_theme(en.OCEAN_DARK)
 
-pn.set_global_footer(
+en.set_global_footer(
     left="Operating Systems (IT412) — Unit IV",
     right="UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
     show_page_num=True,
 )
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(26)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(26)
 
-pn.cover_card(
+en.cover_card(
     "OPERATING SYSTEMS",
     "Unit IV — Virtual Memory, Paging, Segmentation & Security",
 )
-# pn.cover_subtitle(
+# en.cover_subtitle(
 #     [
 #         "Subject Code: IT412  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
 #         "Paging, TLB, Page Fault, Segmentation with Paging, EAT,",
 #         "Virtual Memory, Demand Paging, Page Replacement, Thrashing, Security",
 #     ]
 # )
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(8)
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(8)
 
-pn.info_table(
+en.info_table(
     ["Section", "Syllabus Topics Covered"],
     [
         [
@@ -107,22 +107,22 @@ pn.info_table(
 # =============================================================================
 #  TABLE OF CONTENTS
 # =============================================================================
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  PART I: PAGING & SEGMENTATION
 # =============================================================================
-pn.part_box("UNIT IV — PART A: PAGING & MEMORY MANAGEMENT")
+en.part_box("UNIT IV — PART A: PAGING & MEMORY MANAGEMENT")
 
 # =============================================================================
 #  4.1  PAGING
 # =============================================================================
-pn.chap_box("4.1  Paging")
+en.chap_box("4.1  Paging")
 
-pn.section("What is Paging?")
-pn.definition(
+en.section("What is Paging?")
+en.definition(
     "<b>Paging:</b> A memory management scheme that eliminates external fragmentation "
     "by dividing both physical memory and logical address space into fixed-size equal-sized blocks. "
     "Physical memory blocks are called <b>frames</b>. "
@@ -133,23 +133,23 @@ pn.definition(
     "The OS maintains a <b>page table</b> per process that maps page numbers to frame numbers."
 )
 
-pn.section("Paging Address Translation")
-pn.definition(
+en.section("Paging Address Translation")
+en.definition(
     "A logical address is divided into two parts by the hardware: "
     "<b>Page Number (p)</b> — used as an index into the page table to find the frame number. "
     "<b>Page Offset (d)</b> — combined with the frame number to give the physical address."
 )
 
-pn.formula_block(
+en.formula_block(
     r"\text{Logical Address} = (p,\ d) \quad \text{where } d < \text{page size}"
 )
-pn.formula_block(r"\text{Physical Address} = f \times \text{page\_size} + d")
-pn.body(
+en.formula_block(r"\text{Physical Address} = f \times \text{page\_size} + d")
+en.body(
     "Where f = frame number obtained from page_table[p], and d = page offset. "
     "If page size = 2^n bytes, then d uses the lower n bits and p uses the remaining upper bits of the logical address."
 )
 
-pn.info_table(
+en.info_table(
     ["Parameter", "Formula", "Example (page size = 4 KB = 2^12)"],
     [
         [
@@ -175,9 +175,9 @@ pn.info_table(
     ],
 )
 
-pn.section("Paging — Address Translation Diagram")
-seq_paging = pd.SequenceDiagram(
-    width=pn.CW,
+en.section("Paging — Address Translation Diagram")
+seq_paging = ed.SequenceDiagram(
+    width=en.CW,
     height=240,
     theme=diag_theme,
     caption="Fig 4.1: Paging — logical address to physical address translation",
@@ -195,10 +195,10 @@ seq_paging.message("mmu", "ram", "Access 0x7A4F", arrow="solid")
 seq_paging.message("ram", "mmu", "Data", arrow="dashed")
 seq_paging.deactivate("mmu")
 seq_paging.message("mmu", "cpu", "Return data", arrow="dashed")
-pn.story.extend(seq_paging.as_flowable())
+en.story.extend(seq_paging.as_flowable())
 
-pn.section("Paging Advantages and Disadvantages")
-pn.info_table(
+en.section("Paging Advantages and Disadvantages")
+en.info_table(
     ["Aspect", "Detail"],
     [
         [
@@ -227,15 +227,15 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.2  PAGING ISSUES — LARGE PAGE TABLES
 # =============================================================================
-pn.chap_box("4.2  Paging Issues — Page Table Size & Solutions")
+en.chap_box("4.2  Paging Issues — Page Table Size & Solutions")
 
-pn.section("The Page Table Size Problem")
-pn.definition(
+en.section("The Page Table Size Problem")
+en.definition(
     "<b>Problem:</b> For a 32-bit logical address space with 4 KB pages, "
     "the page table has 2^32 / 2^12 = 2^20 = 1,048,576 entries. "
     "If each entry is 4 bytes → page table size = 4 MB per process. "
@@ -244,8 +244,8 @@ pn.definition(
     "Three solutions: Hierarchical Paging, Hashed Page Tables, Inverted Page Tables."
 )
 
-pn.section("Solution 1: Hierarchical (Multi-Level) Paging")
-pn.definition(
+en.section("Solution 1: Hierarchical (Multi-Level) Paging")
+en.definition(
     "<b>Hierarchical Paging:</b> Divide the logical address into multiple parts, "
     "each indexing a level of a tree of page tables. "
     "Two-level example: logical address divided into outer page number (p1), "
@@ -253,10 +253,10 @@ pn.definition(
     "Only the outer page table and the inner pages actually used are loaded into RAM "
     "— unused portions of the address space consume no memory."
 )
-pn.formula_block(
+en.formula_block(
     r"\text{Two-Level: } (p_1,\ p_2,\ d) \rightarrow \text{outer\_table}[p_1][p_2] = f"
 )
-pn.info_table(
+en.info_table(
     ["Levels", "Address Space Covered", "Used By"],
     [
         ["2-level", "32-bit address space", "Intel x86-32, early MIPS"],
@@ -266,8 +266,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Solution 2: Hashed Page Tables")
-pn.definition(
+en.section("Solution 2: Hashed Page Tables")
+en.definition(
     "<b>Hashed Page Table:</b> Common in address spaces larger than 32 bits. "
     "The page number is hashed into a hash table. Each entry in the hash table contains "
     "a chain of elements: (virtual page number, frame number, next pointer). "
@@ -275,8 +275,8 @@ pn.definition(
     "Efficient for sparse address spaces."
 )
 
-pn.section("Solution 3: Inverted Page Table")
-pn.definition(
+en.section("Solution 3: Inverted Page Table")
+en.definition(
     "<b>Inverted Page Table:</b> Instead of one page table per process, "
     "there is ONE table for the entire physical memory — "
     "one entry per physical frame (not per virtual page). "
@@ -288,7 +288,7 @@ pn.definition(
     "Used by IBM PowerPC, UltraSPARC."
 )
 
-pn.info_table(
+en.info_table(
     ["Scheme", "Memory Usage", "Lookup Speed", "Sharing Support"],
     [
         [
@@ -312,15 +312,15 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.3  TLB & EFFECTIVE ACCESS TIME
 # =============================================================================
-pn.chap_box("4.3  TLB & Effective Access Time (EAT)")
+en.chap_box("4.3  TLB & Effective Access Time (EAT)")
 
-pn.section("Translation Lookaside Buffer (TLB)")
-pn.definition(
+en.section("Translation Lookaside Buffer (TLB)")
+en.definition(
     "<b>TLB (Translation Lookaside Buffer):</b> A small, fast, fully-associative cache "
     "inside the MMU that stores recent page-number to frame-number translations. "
     "Each TLB entry: (page number, frame number, valid bit, dirty bit, ASID). "
@@ -329,7 +329,7 @@ pn.definition(
     "TLBs typically hold 64–1024 entries and achieve hit ratios of 90–99%."
 )
 
-pn.info_table(
+en.info_table(
     ["Scenario", "Memory Accesses Required", "Explanation"],
     [
         [
@@ -345,8 +345,8 @@ pn.info_table(
     ],
 )
 
-pn.section("ASID — Address Space Identifiers")
-pn.definition(
+en.section("ASID — Address Space Identifiers")
+en.definition(
     "<b>ASID (Address Space Identifier):</b> A tag added to each TLB entry that identifies "
     "which process the entry belongs to. Without ASIDs, the TLB must be flushed completely "
     "on every context switch (very expensive). "
@@ -355,15 +355,15 @@ pn.definition(
     "The TLB needs flushing only when ASIDs are exhausted (typically 8-bit = 256 ASIDs)."
 )
 
-pn.section("Effective Access Time (EAT) Calculation")
-pn.definition(
+en.section("Effective Access Time (EAT) Calculation")
+en.definition(
     "<b>Effective Access Time (EAT):</b> The average time to access a memory location, "
     "taking into account TLB hit probability and the time for TLB and memory lookups."
 )
-pn.formula_block(
+en.formula_block(
     r"\text{EAT} = h \times (t_{TLB} + t_{mem}) + (1-h) \times (t_{TLB} + 2 \times t_{mem})"
 )
-pn.bullet(
+en.bullet(
     [
         "<b>h</b>: TLB hit ratio (probability that page is found in TLB).",
         "<b>t_TLB</b>: TLB access time (typically 1–5 ns).",
@@ -371,8 +371,8 @@ pn.bullet(
     ]
 )
 
-pn.section("EAT Worked Examples")
-pn.info_table(
+en.section("EAT Worked Examples")
+en.info_table(
     ["Given", "Calculation", "Result"],
     [
         [
@@ -393,21 +393,21 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "EAT Formula: EAT = h×(t_TLB + t_mem) + (1−h)×(t_TLB + 2×t_mem). "
     "Simplifies to: EAT = t_TLB + t_mem + (1−h)×t_mem = t_TLB + (2−h)×t_mem. "
     "Higher hit ratio → EAT closer to t_mem. "
     "ALWAYS include t_TLB in both hit and miss cases."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.4  PAGE FAULT
 # =============================================================================
-pn.chap_box("4.4  Page Fault")
+en.chap_box("4.4  Page Fault")
 
-pn.section("What is a Page Fault?")
-pn.definition(
+en.section("What is a Page Fault?")
+en.definition(
     "<b>Page Fault:</b> A hardware exception triggered by the MMU when a process "
     "attempts to access a page that is not currently loaded in main memory "
     "(valid bit = 0 in its page table entry). "
@@ -418,8 +418,8 @@ pn.definition(
     "processes can reference more memory than physically exists."
 )
 
-pn.section("Pure Demand Paging")
-pn.definition(
+en.section("Pure Demand Paging")
+en.definition(
     "<b>Pure Demand Paging:</b> Never load a page into memory until it is required. "
     "A process starts with NO pages in memory. The first instruction causes a page fault. "
     "Subsequent instructions cause more faults until the working set is loaded. "
@@ -427,9 +427,9 @@ pn.definition(
     "<b>Prepaging:</b> Opposite approach — load multiple pages at startup to reduce initial fault rate."
 )
 
-pn.section("Page Fault Rate and Performance")
-pn.formula_block(r"\text{EAT} = (1-p) \times t_{mem} + p \times t_{page\_fault}")
-pn.bullet(
+en.section("Page Fault Rate and Performance")
+en.formula_block(r"\text{EAT} = (1-p) \times t_{mem} + p \times t_{page\_fault}")
+en.bullet(
     [
         "<b>p</b>: probability of a page fault (fault rate, 0 ≤ p ≤ 1).",
         "<b>t_mem</b>: memory access time (ns).",
@@ -439,8 +439,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Page Fault Handling — Step by Step")
-fc_pf = pd.Flowchart(
+en.section("Page Fault Handling — Step by Step")
+fc_pf = ed.Flowchart(
     width=440,
     height=620,
     theme=diag_theme,
@@ -476,16 +476,16 @@ fc_pf.edge("dirty_check", "load", branch="no")
 fc_pf.edge("dirty", "load")
 fc_pf.edge("load", "update")
 fc_pf.edge("update", "restart")
-pn.story.extend(fc_pf.as_flowable())
-pn.br()
+en.story.extend(fc_pf.as_flowable())
+en.br()
 
 # =============================================================================
 #  4.5  SEGMENTATION
 # =============================================================================
-pn.chap_box("4.5  Segmentation")
+en.chap_box("4.5  Segmentation")
 
-pn.section("Segmentation — Overview")
-pn.definition(
+en.section("Segmentation — Overview")
+en.definition(
     "<b>Segmentation:</b> A memory management scheme that supports the user's view of memory. "
     "A program is a collection of segments: code, data, stack, heap, symbol table, shared library. "
     "Each segment has a name (or number) and a length. "
@@ -495,8 +495,8 @@ pn.definition(
     "Physical address = segment_table[s].base + d (provided d < limit)."
 )
 
-pn.section("Segmentation Address Translation")
-pn.info_table(
+en.section("Segmentation Address Translation")
+en.info_table(
     ["Step", "Operation", "Hardware Action"],
     [
         [
@@ -524,8 +524,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Segmentation Advantages and Disadvantages")
-pn.info_table(
+en.section("Segmentation Advantages and Disadvantages")
+en.info_table(
     ["Aspect", "Detail"],
     [
         [
@@ -552,8 +552,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Segmentation vs Paging")
-pn.info_table(
+en.section("Segmentation vs Paging")
+en.info_table(
     ["Feature", "Paging", "Segmentation"],
     [
         [
@@ -572,15 +572,15 @@ pn.info_table(
         ["Protection", "Per-page protection bits", "Per-segment protection bits"],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.6  SEGMENTATION WITH PAGING
 # =============================================================================
-pn.chap_box("4.6  Segmentation with Paging")
+en.chap_box("4.6  Segmentation with Paging")
 
-pn.section("Combined Segmentation and Paging")
-pn.definition(
+en.section("Combined Segmentation and Paging")
+en.definition(
     "<b>Segmentation with Paging:</b> A hybrid scheme that combines the logical structure "
     "of segmentation with the physical convenience of paging. "
     "Each segment is divided into pages. "
@@ -590,8 +590,8 @@ pn.definition(
     "Address translation: Logical address → (segment, page, offset) → physical address."
 )
 
-pn.section("Intel x86 Architecture — Logical to Physical")
-pn.body(
+en.section("Intel x86 Architecture — Logical to Physical")
+en.body(
     "Intel x86-32 uses a two-step translation: "
     "(1) Segment selector + offset → Linear (virtual) address (segmentation). "
     "(2) Linear address → Physical address (paging, using page directory + page table). "
@@ -599,8 +599,8 @@ pn.body(
     "limit to maximum — effectively disabling segmentation and using only paging."
 )
 
-fc_seg_page = pd.Flowchart(
-    width=pn.CW,
+fc_seg_page = ed.Flowchart(
+    width=en.CW,
     height=140,
     theme=diag_theme,
     caption="Fig 4.3: Intel x86 — Logical address → Linear address → Physical address",
@@ -614,13 +614,13 @@ fc_seg_page.terminal("physical", "Physical Address\n(in RAM)", x=440, y=50)
 fc_seg_page.edge("logical", "seg_unit")
 fc_seg_page.edge("seg_unit", "page_unit", label="Linear Address")
 fc_seg_page.edge("page_unit", "physical")
-pn.story.extend(fc_seg_page.as_flowable())
+en.story.extend(fc_seg_page.as_flowable())
 
-pn.section("Address Translation in Segmentation-with-Paging")
-pn.formula_block(
+en.section("Address Translation in Segmentation-with-Paging")
+en.formula_block(
     r"\text{Logical: } (s,\ p,\ d) \ \rightarrow \ \text{page table base} \ \rightarrow \ f \ \rightarrow \ f \times \text{pagesize} + d"
 )
-pn.info_table(
+en.info_table(
     ["Component", "Role"],
     [
         [
@@ -635,16 +635,16 @@ pn.info_table(
         ["Physical address", "f × page_size + d"],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.7  VIRTUAL MEMORY — CONCEPTS
 # =============================================================================
-pn.part_box("UNIT IV — PART B: VIRTUAL MEMORY & PAGE REPLACEMENT")
-pn.chap_box("4.7  Virtual Memory — Concepts")
+en.part_box("UNIT IV — PART B: VIRTUAL MEMORY & PAGE REPLACEMENT")
+en.chap_box("4.7  Virtual Memory — Concepts")
 
-pn.section("What is Virtual Memory?")
-pn.definition(
+en.section("What is Virtual Memory?")
+en.definition(
     "<b>Virtual Memory:</b> A technique that allows a process to execute even when "
     "only PART of it is loaded in main memory. "
     "The rest remains on secondary storage (disk). "
@@ -654,8 +654,8 @@ pn.definition(
     "transparently swapping pages between RAM and disk as needed."
 )
 
-pn.section("Benefits of Virtual Memory")
-pn.bullet(
+en.section("Benefits of Virtual Memory")
+en.bullet(
     [
         "<b>Programs larger than physical RAM can run:</b> Only the actively-used portion needs to be in memory.",
         "<b>More processes can run concurrently:</b> Each process uses only the frames it currently needs, freeing RAM for others.",
@@ -666,9 +666,9 @@ pn.bullet(
     ]
 )
 
-pn.section("Virtual Address Space vs Physical Memory")
-left_va = pd.LayeredStack(
-    width=pn.CW * 0.46,
+en.section("Virtual Address Space vs Physical Memory")
+left_va = ed.LayeredStack(
+    width=en.CW * 0.46,
     height=240,
     theme=diag_theme,
     caption="Virtual Address Space (per process)",
@@ -679,8 +679,8 @@ left_va.layer("Heap (grows ↑)", sublabel="Dynamic allocation")
 left_va.layer("Data + BSS", sublabel="Global variables")
 left_va.layer("Text (Code)", sublabel="Low addresses — read-only")
 
-right_va = pd.LayeredStack(
-    width=pn.CW * 0.46,
+right_va = ed.LayeredStack(
+    width=en.CW * 0.46,
     height=240,
     theme=diag_theme,
     caption="Physical Memory (shared by all)",
@@ -695,23 +695,23 @@ right_va.as_flowable()
 tbl_va = Table(
     [
         [
-            pd.ResponsiveDrawingFlowable(left_va.drawing),
-            pd.ResponsiveDrawingFlowable(right_va.drawing),
+            ed.ResponsiveDrawingFlowable(left_va.drawing),
+            ed.ResponsiveDrawingFlowable(right_va.drawing),
         ]
     ],
-    colWidths=[pn.CW * 0.48, pn.CW * 0.48],
+    colWidths=[en.CW * 0.48, en.CW * 0.48],
 )
-pn.story.append(tbl_va)
-pn.sp(6)
-pn.br()
+en.story.append(tbl_va)
+en.sp(6)
+en.br()
 
 # =============================================================================
 #  4.8  DEMAND PAGING
 # =============================================================================
-pn.chap_box("4.8  Demand Paging")
+en.chap_box("4.8  Demand Paging")
 
-pn.section("Demand Paging — Definition")
-pn.definition(
+en.section("Demand Paging — Definition")
+en.definition(
     "<b>Demand Paging:</b> A virtual memory technique where pages are loaded into RAM "
     "ONLY when they are first accessed (demanded), not when the process starts. "
     "This is a form of lazy evaluation applied to memory. "
@@ -721,8 +721,8 @@ pn.definition(
     "a swapper that never swaps a page into memory unless it will be needed."
 )
 
-pn.section("Hardware Support for Demand Paging")
-pn.info_table(
+en.section("Hardware Support for Demand Paging")
+en.info_table(
     ["Hardware Component", "Role in Demand Paging"],
     [
         [
@@ -744,8 +744,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Copy-on-Write (COW)")
-pn.definition(
+en.section("Copy-on-Write (COW)")
+en.definition(
     "<b>Copy-on-Write (COW):</b> An optimization used with fork(). "
     "When a parent process calls fork(), instead of immediately copying all parent pages, "
     "both parent and child processes share the same physical pages marked as read-only. "
@@ -755,15 +755,15 @@ pn.definition(
     "Pages that are never written are never copied — significant performance improvement. "
     "Used by Linux, macOS, Windows."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.9  DEMAND SEGMENTATION
 # =============================================================================
-pn.chap_box("4.9  Demand Segmentation")
+en.chap_box("4.9  Demand Segmentation")
 
-pn.section("Demand Segmentation — Definition")
-pn.definition(
+en.section("Demand Segmentation — Definition")
+en.definition(
     "<b>Demand Segmentation:</b> An extension of demand paging to segmented memory systems. "
     "Segments are loaded into memory on demand — only when a segment is first accessed "
     "does the OS load it from secondary storage. "
@@ -773,7 +773,7 @@ pn.definition(
     "Multics was a historical system that used demand segmentation with paging."
 )
 
-pn.info_table(
+en.info_table(
     ["Scheme", "Unit of Transfer", "Fault Name", "Common in"],
     [
         [
@@ -796,15 +796,15 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.10  PAGE REPLACEMENT ALGORITHMS
 # =============================================================================
-pn.chap_box("4.10  Page Replacement Algorithms")
+en.chap_box("4.10  Page Replacement Algorithms")
 
-pn.section("Why Page Replacement?")
-pn.definition(
+en.section("Why Page Replacement?")
+en.definition(
     "<b>Page Replacement:</b> When a page fault occurs and there are no free frames available, "
     "the OS must select a <b>victim frame</b> — an existing page to remove from RAM to make room. "
     "If the victim page has been modified (dirty bit = 1), it must be written back to disk first. "
@@ -813,8 +813,8 @@ pn.definition(
     "<b>Reference string:</b> The sequence of page accesses — used to evaluate algorithms."
 )
 
-pn.section("Algorithm 1: FIFO — First-In First-Out")
-pn.definition(
+en.section("Algorithm 1: FIFO — First-In First-Out")
+en.definition(
     "<b>FIFO:</b> Replaces the page that has been in memory the LONGEST (the oldest). "
     "Implemented using a simple queue — new pages enter at the tail; "
     "eviction removes from the head. "
@@ -822,8 +822,8 @@ pn.definition(
     "Suffers from <b>Belady's Anomaly</b>: increasing frames can increase fault count."
 )
 
-pn.section("Belady's Anomaly")
-pn.definition(
+en.section("Belady's Anomaly")
+en.definition(
     "<b>Belady's Anomaly:</b> The counter-intuitive phenomenon in FIFO where adding more "
     "frames can actually INCREASE the number of page faults. "
     "Example: Reference string 1,2,3,4,1,2,5,1,2,3,4,5 "
@@ -831,8 +831,8 @@ pn.definition(
     "Only FIFO suffers this anomaly. LRU, Optimal, and stack algorithms do not."
 )
 
-pn.section("Algorithm 2: Optimal (OPT / Bélády's)")
-pn.definition(
+en.section("Algorithm 2: Optimal (OPT / Bélády's)")
+en.definition(
     "<b>Optimal Algorithm (OPT):</b> Replace the page that will NOT be used for the "
     "LONGEST time in the future. "
     "Provably optimal — achieves the minimum possible page fault rate for any given reference string. "
@@ -840,8 +840,8 @@ pn.definition(
     "Used as a benchmark to evaluate how close other algorithms get to the optimum."
 )
 
-pn.section("Algorithm 3: LRU — Least Recently Used")
-pn.definition(
+en.section("Algorithm 3: LRU — Least Recently Used")
+en.definition(
     "<b>LRU:</b> Replace the page that was LEAST RECENTLY USED — "
     "the page not referenced for the longest time in the past. "
     "Based on the principle of temporal locality: recently-used pages are likely to be used again soon. "
@@ -851,8 +851,8 @@ pn.definition(
     "for every page on every memory reference — too expensive in hardware."
 )
 
-pn.section("LRU Implementation Approximations")
-pn.info_table(
+en.section("LRU Implementation Approximations")
+en.info_table(
     ["Implementation", "Description", "Hardware Cost"],
     [
         [
@@ -878,8 +878,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Algorithm 4: Second-Chance (Clock) Algorithm")
-pn.definition(
+en.section("Algorithm 4: Second-Chance (Clock) Algorithm")
+en.definition(
     "<b>Second-Chance (Clock) Algorithm:</b> A practical LRU approximation. "
     "Pages arranged in a circular queue (clock hand). "
     "On page fault: examine page at clock hand. "
@@ -890,10 +890,10 @@ pn.definition(
     "Enhanced Clock uses both reference bit R and dirty bit M for better decisions."
 )
 
-pn.section(
+en.section(
     "Worked Example — FIFO, LRU, Optimal (Reference String: 7,0,1,2,0,3,0,4,2,3,0,3,2, 3 frames)"
 )
-pn.info_table(
+en.info_table(
     ["Algorithm", "Total Faults", "Hits", "Notes"],
     [
         ["FIFO", "10", "3", "No Belady anomaly visible in this example."],
@@ -902,8 +902,8 @@ pn.info_table(
     ],
 )
 
-pn.subsection("FIFO Trace (3 frames) — Ref: 7,0,1,2,0,3,0,4,2,3,0,3,2")
-pn.info_table(
+en.subsection("FIFO Trace (3 frames) — Ref: 7,0,1,2,0,3,0,4,2,3,0,3,2")
+en.info_table(
     ["Ref", "Frame 0 (oldest)", "Frame 1", "Frame 2 (newest)", "Fault?"],
     [
         ["7", "7", "—", "—", "F"],
@@ -921,10 +921,10 @@ pn.info_table(
         ["2", "0", "2", "3", "Hit"],
     ],
 )
-pn.note("FIFO Faults = 10, Hits = 3")
+en.note("FIFO Faults = 10, Hits = 3")
 
-pn.subsection("LRU Trace (3 frames) — same reference string")
-pn.info_table(
+en.subsection("LRU Trace (3 frames) — same reference string")
+en.info_table(
     ["Ref", "Frames (LRU→MRU)", "Fault?"],
     [
         ["7", "[7, —, —]", "F"],
@@ -942,12 +942,12 @@ pn.info_table(
         ["2", "[0, 3, 2]  (2 hit)", "Hit"],
     ],
 )
-pn.note("LRU Faults = 9, Hits = 4  |  LRU < FIFO in this example")
+en.note("LRU Faults = 9, Hits = 4  |  LRU < FIFO in this example")
 
-pn.section(
+en.section(
     "Worked Example 2 — FIFO, LRU, Optimal (Ref: 1,2,3,4,2,1,5,6,2,1,2,3,7,6,3,2,1,2,3,6 | 3 frames)"
 )
-pn.info_table(
+en.info_table(
     ["Algorithm", "Total Faults", "Notes"],
     [
         ["FIFO", "16", "Reference Unit I PYQ answer."],
@@ -955,15 +955,15 @@ pn.info_table(
         ["Optimal", "11", "Best possible — theoretical lower bound."],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.11  ALLOCATION OF FRAMES
 # =============================================================================
-pn.chap_box("4.11  Allocation of Frames")
+en.chap_box("4.11  Allocation of Frames")
 
-pn.section("How Many Frames to Give Each Process?")
-pn.definition(
+en.section("How Many Frames to Give Each Process?")
+en.definition(
     "<b>Frame Allocation:</b> The OS must decide how many frames to allocate to each process. "
     "Minimum allocation: the minimum number of frames required to execute an instruction. "
     "(Determined by CPU architecture — e.g., indirect addressing may require 6 frames minimum.) "
@@ -971,8 +971,8 @@ pn.definition(
     "The allocation policy affects page fault rate and overall system performance."
 )
 
-pn.section("Fixed Allocation Policies")
-pn.info_table(
+en.section("Fixed Allocation Policies")
+en.info_table(
     ["Policy", "Description", "Formula", "Pros / Cons"],
     [
         [
@@ -996,8 +996,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Local vs Global Replacement")
-pn.info_table(
+en.section("Local vs Global Replacement")
+en.info_table(
     ["Strategy", "Description", "Effect"],
     [
         [
@@ -1012,15 +1012,15 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.12  THRASHING
 # =============================================================================
-pn.chap_box("4.12  Thrashing")
+en.chap_box("4.12  Thrashing")
 
-pn.section("What is Thrashing?")
-pn.definition(
+en.section("What is Thrashing?")
+en.definition(
     "<b>Thrashing:</b> A condition where a process (or the whole system) spends more time "
     "handling page faults and swapping pages than doing useful computation. "
     "A process is thrashing when it does not have enough frames for its <b>working set</b> — "
@@ -1030,8 +1030,8 @@ pn.definition(
     "(add more processes), which makes thrashing worse — a vicious cycle."
 )
 
-pn.section("Causes and Effects of Thrashing")
-pn.info_table(
+en.section("Causes and Effects of Thrashing")
+en.info_table(
     ["Cause", "Effect"],
     [
         [
@@ -1053,15 +1053,15 @@ pn.info_table(
     ],
 )
 
-pn.section("Thrashing: CPU Utilisation vs Degree of Multiprogramming")
-pn.body(
+en.section("Thrashing: CPU Utilisation vs Degree of Multiprogramming")
+en.body(
     "As the number of processes increases, CPU utilisation first rises (good — more work done), "
     "then collapses suddenly as the system enters thrashing. "
     "The OS should detect the knee of the curve and prevent adding more processes beyond it."
 )
 
-pn.section("Solution 1: Working Set Model")
-pn.definition(
+en.section("Solution 1: Working Set Model")
+en.definition(
     "<b>Working Set Model (Denning, 1968):</b> A process's working set W(t, Δ) at time t "
     "is the set of pages referenced in the last Δ memory references (working set window). "
     "The working set approximates the process's current locality — "
@@ -1070,8 +1070,8 @@ pn.definition(
     "The OS tracks working sets and suspends processes if the total frames needed "
     "exceeds physical memory."
 )
-pn.formula_block(r"W(t, \Delta) = \{ \text{pages referenced in } (t - \Delta,\ t] \}")
-pn.bullet(
+en.formula_block(r"W(t, \Delta) = \{ \text{pages referenced in } (t - \Delta,\ t] \}")
+en.bullet(
     [
         "If Σ|W(i)| > total frames → suspend a process to free frames.",
         "Δ too small → working set misses entire locality.",
@@ -1080,8 +1080,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Solution 2: Page-Fault Frequency (PFF)")
-pn.definition(
+en.section("Solution 2: Page-Fault Frequency (PFF)")
+en.definition(
     "<b>Page-Fault Frequency (PFF):</b> Monitor the actual page fault rate per process "
     "and use it as direct feedback to control frame allocation. "
     "Set an upper threshold and a lower threshold on the acceptable fault rate. "
@@ -1089,16 +1089,16 @@ pn.definition(
     "If fault rate < lower threshold → process has too many frames (take one back). "
     "If fault rate is too high and no free frames → suspend a process (reduce multiprogramming)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.13  SECURITY IN OPERATING SYSTEM
 # =============================================================================
-pn.part_box("UNIT IV — PART C: SECURITY IN OPERATING SYSTEM")
-pn.chap_box("4.13  Security in Operating Systems")
+en.part_box("UNIT IV — PART C: SECURITY IN OPERATING SYSTEM")
+en.chap_box("4.13  Security in Operating Systems")
 
-pn.section("The Security Problem")
-pn.definition(
+en.section("The Security Problem")
+en.definition(
     "<b>Security Problem:</b> A computer system is secure if its resources are used "
     "and accessed as intended under all circumstances. "
     "Security requires preventing unauthorised access, modification, destruction, or "
@@ -1108,8 +1108,8 @@ pn.definition(
     "Security involves both technical measures and organisational policies."
 )
 
-pn.section("Security Goals (CIA Triad + More)")
-pn.info_table(
+en.section("Security Goals (CIA Triad + More)")
+en.info_table(
     ["Goal", "Definition", "Example Threat"],
     [
         [
@@ -1145,8 +1145,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Common Security Threats and Attacks")
-pn.info_table(
+en.section("Common Security Threats and Attacks")
+en.info_table(
     ["Threat Category", "Description", "Examples"],
     [
         [
@@ -1192,9 +1192,9 @@ pn.info_table(
     ],
 )
 
-pn.section("Levels Where Security Must Be Implemented")
-stack_sec = pd.LayeredStack(
-    width=pn.CW * 0.55,
+en.section("Levels Where Security Must Be Implemented")
+stack_sec = ed.LayeredStack(
+    width=en.CW * 0.55,
     height=220,
     theme=diag_theme,
     caption="Fig 4.4: Security must be enforced at all layers",
@@ -1207,16 +1207,16 @@ stack_sec.layer("Network Security", sublabel="Firewalls, IDS/IPS, encryption, VP
 stack_sec.layer(
     "Hardware Security", sublabel="TPM, secure boot, physical access control"
 )
-pn.story.extend(stack_sec.as_flowable())
-pn.br()
+en.story.extend(stack_sec.as_flowable())
+en.br()
 
 # =============================================================================
 #  4.14  SECURITY TECHNIQUES
 # =============================================================================
-pn.chap_box("4.14  Security Techniques")
+en.chap_box("4.14  Security Techniques")
 
-pn.section("1. Authentication")
-pn.definition(
+en.section("1. Authentication")
+en.definition(
     "<b>Authentication:</b> The process of verifying the identity of a user, process, or device. "
     "Three factors of authentication: "
     "(1) <b>Something you know:</b> password, PIN, passphrase, security question. "
@@ -1225,7 +1225,7 @@ pn.definition(
     "<b>Multi-Factor Authentication (MFA):</b> Requires 2+ factors — significantly stronger than single-factor."
 )
 
-pn.info_table(
+en.info_table(
     ["Authentication Method", "How It Works", "Strength"],
     [
         [
@@ -1256,13 +1256,13 @@ pn.info_table(
     ],
 )
 
-pn.section("2. Cryptography / Encryption")
-pn.definition(
+en.section("2. Cryptography / Encryption")
+en.definition(
     "<b>Encryption:</b> Transforming readable plaintext into unreadable ciphertext using a key. "
     "Only authorised parties with the correct key can decrypt. "
     "Protects confidentiality of data at rest and in transit."
 )
-pn.info_table(
+en.info_table(
     ["Type", "Description", "Algorithms", "Use Cases"],
     [
         [
@@ -1286,8 +1286,8 @@ pn.info_table(
     ],
 )
 
-pn.section("3. Access Control")
-pn.definition(
+en.section("3. Access Control")
+en.definition(
     "<b>Access Control:</b> The mechanism that determines which users or processes can access "
     "which resources, and what operations they can perform. "
     "<b>DAC (Discretionary AC):</b> Resource owner controls access. Example: UNIX file permissions (rwxr-xr--). "
@@ -1296,13 +1296,13 @@ pn.definition(
     "<b>ABAC (Attribute-Based AC):</b> Access based on attributes of user, resource, and environment. Most flexible."
 )
 
-pn.section("4. Firewalls")
-pn.definition(
+en.section("4. Firewalls")
+en.definition(
     "<b>Firewall:</b> A hardware or software system that monitors and controls incoming/outgoing "
     "network traffic based on predetermined security rules. "
     "Acts as a barrier between a trusted internal network and an untrusted external network."
 )
-pn.info_table(
+en.info_table(
     ["Firewall Type", "How It Works", "Example"],
     [
         [
@@ -1328,8 +1328,8 @@ pn.info_table(
     ],
 )
 
-pn.section("5. Intrusion Detection Systems (IDS)")
-pn.definition(
+en.section("5. Intrusion Detection Systems (IDS)")
+en.definition(
     "<b>IDS (Intrusion Detection System):</b> Monitors system or network activity for signs of attacks. "
     "<b>NIDS (Network IDS):</b> Monitors network traffic packets. "
     "<b>HIDS (Host IDS):</b> Monitors system calls, file changes, log files on a single host. "
@@ -1338,8 +1338,8 @@ pn.definition(
     "<b>IPS (Intrusion Prevention System):</b> Like IDS but also actively blocks detected attacks."
 )
 
-pn.section("6. Secure Boot and TPM")
-pn.info_table(
+en.section("6. Secure Boot and TPM")
+en.info_table(
     ["Technique", "Description"],
     [
         [
@@ -1365,8 +1365,8 @@ pn.info_table(
     ],
 )
 
-pn.section("7. Security at OS Level — Summary")
-pn.info_table(
+en.section("7. Security at OS Level — Summary")
+en.info_table(
     ["OS Security Mechanism", "Purpose"],
     [
         [
@@ -1399,15 +1399,15 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  MASTER COMPARISON & FORMULA TABLES
 # =============================================================================
-pn.chap_box("Unit IV — Master Summary Tables")
+en.chap_box("Unit IV — Master Summary Tables")
 
-pn.section("Page Replacement Algorithms — Comparison")
-pn.info_table(
+en.section("Page Replacement Algorithms — Comparison")
+en.info_table(
     [
         "Algorithm",
         "Victim Selection",
@@ -1454,8 +1454,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Virtual Memory Key Formulas")
-pn.info_table(
+en.section("Virtual Memory Key Formulas")
+en.info_table(
     ["Formula", "Variables", "Use"],
     [
         [
@@ -1500,17 +1500,17 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  4.15  EXAM QUESTIONS & ANSWERS
 # =============================================================================
-pn.part_box("UNIT IV — EXAM QUESTIONS & DETAILED ANSWERS")
-pn.chap_box("4.15  Previous-Year Style Exam Questions")
+en.part_box("UNIT IV — EXAM QUESTIONS & DETAILED ANSWERS")
+en.chap_box("4.15  Previous-Year Style Exam Questions")
 
-pn.section("2-Mark Questions")
+en.section("2-Mark Questions")
 
-pn.highlight(
+en.highlight(
     "<b>Q1. What is paging? How does it avoid external fragmentation?</b><br/>"
     "A: Paging divides physical memory into fixed-size frames and logical memory into same-size pages. "
     "Any free frame can hold any page — there is no requirement for contiguous physical allocation. "
@@ -1519,7 +1519,7 @@ pn.highlight(
     "Address translation: CPU generates (page#, offset) → page table gives frame# → physical = frame×size + offset."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q2. What is a TLB? What is its purpose?</b><br/>"
     "A: TLB (Translation Lookaside Buffer) is a small, fast, fully-associative hardware cache "
     "inside the MMU that stores recent page-to-frame translations. "
@@ -1529,7 +1529,7 @@ pn.highlight(
     "Hit ratios of 90–99% give near-single-access performance."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q3. What is a page fault? List the steps to handle it.</b><br/>"
     "A: A page fault occurs when a process accesses a page with valid bit = 0 in its PTE "
     "(page not in RAM). "
@@ -1542,7 +1542,7 @@ pn.highlight(
     "(6) Restart the faulting instruction."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q4. What is virtual memory? State its benefits.</b><br/>"
     "A: Virtual memory allows a process to execute when only PART of it is in RAM — "
     "the rest resides on disk. "
@@ -1554,7 +1554,7 @@ pn.highlight(
     "(6) Memory-mapped file I/O."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q5. Differentiate between segmentation and paging.</b><br/>"
     "A: Paging: fixed-size units (pages/frames), no external fragmentation, "
     "yes internal fragmentation, programmer-invisible, hardware-managed. "
@@ -1564,7 +1564,7 @@ pn.highlight(
     "Modern systems (x86-64) use paging only — segmentation mostly disabled."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q6. What is demand paging? How does it differ from regular paging?</b><br/>"
     "A: Regular (pre-loading) paging loads all pages at process startup. "
     "Demand paging: pages loaded only when accessed for the first time — lazy loading. "
@@ -1574,7 +1574,7 @@ pn.highlight(
     "Cost: page fault overhead on first access to each page."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q7. What is Belady's Anomaly? Which algorithms suffer from it?</b><br/>"
     "A: Belady's Anomaly: increasing the number of frames can INCREASE the number of page faults. "
     "Counter-intuitive — more memory = more faults. "
@@ -1584,7 +1584,7 @@ pn.highlight(
     "LRU, Optimal, and all stack algorithms do NOT."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q8. What is thrashing? What causes it and how can it be prevented?</b><br/>"
     "A: Thrashing: a process spends more time handling page faults than executing useful code. "
     "CPU utilisation drops sharply. "
@@ -1595,7 +1595,7 @@ pn.highlight(
     "if no free frames → suspend a process."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q9. What is the CIA triad in OS security?</b><br/>"
     "A: CIA = Confidentiality, Integrity, Availability. "
     "Confidentiality: prevent unauthorised disclosure (encrypt data). "
@@ -1604,7 +1604,7 @@ pn.highlight(
     "All three must be maintained for a system to be considered secure."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q10. What is ASLR? Why is it used?</b><br/>"
     "A: ASLR (Address Space Layout Randomisation): OS randomises the base addresses of "
     "stack, heap, libraries, and executable on each run. "
@@ -1614,9 +1614,9 @@ pn.highlight(
     "Supported by Linux, Windows (Vista+), macOS."
 )
 
-pn.section("5-Mark Questions")
+en.section("5-Mark Questions")
 
-pn.highlight(
+en.highlight(
     "<b>Q11. Explain paging address translation with a diagram. "
     "Calculate physical address for: page size = 1 KB, page number = 3, "
     "offset = 100, frame number for page 3 = 7.</b><br/>"
@@ -1627,7 +1627,7 @@ pn.highlight(
     "See Fig 4.1 for full sequence diagram."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q12. Calculate EAT given: t_mem = 200 ns, t_TLB = 20 ns, hit ratio = 0.85.</b><br/>"
     "A: EAT = h × (t_TLB + t_mem) + (1−h) × (t_TLB + 2×t_mem). "
     "EAT = 0.85 × (20 + 200) + 0.15 × (20 + 400). "
@@ -1637,7 +1637,7 @@ pn.highlight(
     "TLB reduces access time from 400 ns to 250 ns — 37.5% improvement."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q13. Compare FIFO, LRU, and Optimal page replacement with a worked example. "
     "Reference string: 1,2,3,4,1,2,5,1,2,3,4,5  |  3 frames.</b><br/>"
     "A: FIFO trace: Faults when pages must be evicted. "
@@ -1649,7 +1649,7 @@ pn.highlight(
     "LRU with 4 frames: faults = 8 — no anomaly."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q14. Explain segmentation with paging. Draw the address translation diagram.</b><br/>"
     "A: Logical address = (segment s, page p, offset d). "
     "Step 1: Segment table[s] → gives base address of page table for segment s. "
@@ -1661,7 +1661,7 @@ pn.highlight(
     "and treat address space as flat, using only paging."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q15. Explain the Working Set Model for thrashing prevention. Define W(t, Δ).</b><br/>"
     "A: W(t, Δ) = set of pages referenced in the most recent Δ accesses (working set window). "
     "The working set approximates the process's current locality. "
@@ -1672,9 +1672,9 @@ pn.highlight(
     "Key insight: a process must have at least |W(i)| frames to avoid thrashing."
 )
 
-pn.section("10-Mark Questions")
+en.section("10-Mark Questions")
 
-pn.highlight(
+en.highlight(
     "<b>Q16. Explain paging and virtual memory in detail. Include: "
     "page table, TLB, EAT calculation, demand paging, page fault handling, "
     "and page replacement algorithms (FIFO, LRU, Optimal) with a numerical example.</b><br/>"
@@ -1690,7 +1690,7 @@ pn.highlight(
     "FIFO=10, LRU=9, Optimal=8 faults. See Section 4.10."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q17. Explain security in operating systems comprehensively. "
     "Cover: security goals, threats, authentication methods, encryption, "
     "access control, firewalls, and OS-level security mechanisms.</b><br/>"
@@ -1707,8 +1707,8 @@ pn.highlight(
     "See Section 4.13–4.14."
 )
 
-pn.section("Quick Revision Table — Unit IV")
-pn.info_table(
+en.section("Quick Revision Table — Unit IV")
+en.info_table(
     ["Topic", "Key Exam Points"],
     [
         [
@@ -1812,7 +1812,7 @@ pn.info_table(
     ],
 )
 
-pn.exam(
+en.exam(
     "Most asked topics in IT412 Unit IV exams: "
     "(1) Paging address translation with numerical — calculate physical address from (page#, offset, frame#). "
     "(2) TLB EAT calculation — substitute values into formula. "
@@ -1823,7 +1823,7 @@ pn.exam(
     "Always show step-by-step page table traces when solving page replacement numericals."
 )
 
-pn.note(
+en.note(
     "Unit IV builds on Unit III (paging replaces contiguous allocation; no external fragmentation). "
     "Unit IV page replacement connects to Unit II (scheduling criteria) — "
     "page fault rate = a new 'criterion' for memory performance. "
@@ -1834,10 +1834,10 @@ pn.note(
 # =============================================================================
 #  FLASHCARDS & REVISION
 # =============================================================================
-pn.br()
-pn.chap_box("Rapid Revision & Flashcards")
+en.br()
+en.chap_box("Rapid Revision & Flashcards")
 
-pn.revision_card(
+en.revision_card(
     "Unit IV Mastery Check",
     [
         "Calculate physical address given: page size, page number, offset, and frame number.",
@@ -1849,47 +1849,47 @@ pn.revision_card(
     ],
 )
 
-pn.flashcard(
+en.flashcard(
     "Paging: <b>Physical Address</b> formula",
     "Physical Address = Frame# × Page_Size + Offset. "
     "Page# = Logical_Address >> n  (upper bits, n = log2 page_size). "
     "Offset = Logical_Address & (Page_Size − 1)  (lower n bits).",
 )
-pn.flashcard(
+en.flashcard(
     "<b>TLB Effective Access Time (EAT)</b>",
     "EAT = h × (t_TLB + t_mem) + (1−h) × (t_TLB + 2×t_mem). "
     "h = hit ratio. t_TLB = TLB access time. t_mem = memory access time.",
 )
-pn.flashcard(
+en.flashcard(
     "<b>Belady's Anomaly</b>",
     "FIFO page replacement: more frames can cause MORE page faults. "
     "LRU and Optimal are stack algorithms — immune to Belady's Anomaly.",
 )
-pn.flashcard(
+en.flashcard(
     "<b>Thrashing</b> — definition and fix",
     "Thrashing: more time handling page faults than executing. "
     "Fix 1: Working Set Model — allocate |W(t,Δ)| frames. "
     "Fix 2: Page-Fault Frequency — adjust frames based on fault rate.",
 )
-pn.flashcard(
+en.flashcard(
     "<b>CIA Triad</b> in OS Security",
     "Confidentiality: prevent unauthorised disclosure. "
     "Integrity: prevent unauthorised modification. "
     "Availability: ensure authorised access is possible.",
 )
-pn.flashcard(
+en.flashcard(
     "Segmentation vs Paging: key difference",
     "Paging: fixed-size units, no external frag, programmer-invisible. "
     "Segmentation: variable-size named units (code/data/stack), external frag, programmer-visible.",
 )
 
-pn.br()
-pn.chap_box("Index")
-pn.print_index()
+en.br()
+en.chap_box("Index")
+en.print_index()
 
 # =============================================================================
 #  BUILD DOCUMENT
 # =============================================================================
-pn.build_doc("OS_Unit4_Notes.pdf")
+en.build_doc("OS_Unit4_Notes.pdf")
 
 print("Generated: OS_Unit4_Notes.pdf")

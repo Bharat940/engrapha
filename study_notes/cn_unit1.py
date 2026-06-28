@@ -31,8 +31,8 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-import paperforge_diagrams as pd
-from paperforge_diagrams.network import NodeKind
+import engrapha_diagrams as ed
+from engrapha_diagrams.network import NodeKind
 
 PAGE_W, PAGE_H = A4
 PM = 1.8 * cm
@@ -584,12 +584,12 @@ info_table(
 sp(4)
 
 # Diagram: broadcast vs point-to-point side by side
-bcast = pd.NetworkDiagram(
+bcast = ed.NetworkDiagram(
     width=CW * 0.44, height=165, caption="Fig 1a: Broadcast (Bus)"
 )
 bcast.bus_topology(["PC-A", "PC-B", "PC-C", "PC-D"])
 
-p2p = pd.NetworkDiagram(
+p2p = ed.NetworkDiagram(
     width=CW * 0.44, height=165, caption="Fig 1b: Point-to-Point (Mesh)"
 )
 p2p.mesh_topology(["R1", "R2", "R3", "R4"])
@@ -599,8 +599,8 @@ p2p.as_flowable()
 side_tbl = Table(
     [
         [
-            pd.ResponsiveDrawingFlowable(bcast.drawing),
-            pd.ResponsiveDrawingFlowable(p2p.drawing),
+            ed.ResponsiveDrawingFlowable(bcast.drawing),
+            ed.ResponsiveDrawingFlowable(p2p.drawing),
         ]
     ],
     colWidths=[CW * 0.48, CW * 0.48],
@@ -721,7 +721,7 @@ tip(
 sp(6)
 
 # Diagram: WAN connecting two LANs
-net_wan = pd.NetworkDiagram(
+net_wan = ed.NetworkDiagram(
     width=CW,
     height=180,
     caption="Fig 2: WAN connecting two remote LANs via a router cloud",
@@ -873,14 +873,14 @@ info_table(
 sp(4)
 
 # Diagram: star and ring side by side
-topo_star = pd.NetworkDiagram(
+topo_star = ed.NetworkDiagram(
     width=CW * 0.44, height=180, caption="Fig 3a: Star Topology"
 )
 topo_star.star_topology(
     "sw", "Core Switch", ["PC-A", "PC-B", "Server", "Printer"], spoke_kind="host"
 )
 
-topo_ring = pd.NetworkDiagram(
+topo_ring = ed.NetworkDiagram(
     width=CW * 0.44, height=180, caption="Fig 3b: Ring Topology"
 )
 topo_ring.ring_topology(["Node A", "Node B", "Node C", "Node D"])
@@ -890,8 +890,8 @@ topo_ring.as_flowable()
 tbl2 = Table(
     [
         [
-            pd.ResponsiveDrawingFlowable(topo_star.drawing),
-            pd.ResponsiveDrawingFlowable(topo_ring.drawing),
+            ed.ResponsiveDrawingFlowable(topo_star.drawing),
+            ed.ResponsiveDrawingFlowable(topo_ring.drawing),
         ]
     ],
     colWidths=[CW * 0.48, CW * 0.48],
@@ -917,7 +917,7 @@ add(
 sp(8)
 
 # Diagram: tree topology
-topo_tree = pd.NetworkDiagram(
+topo_tree = ed.NetworkDiagram(
     width=CW,
     height=220,
     caption="Fig 3c: Tree (Hierarchical) Topology -- typical enterprise campus design",
@@ -1146,7 +1146,7 @@ info_table(
 )
 
 # OSI layered stack diagram
-osi_stack = pd.LayeredStack(
+osi_stack = ed.LayeredStack(
     width=CW,
     height=310,
     caption="Fig 4: ISO-OSI 7-Layer Reference Model with PDUs and Protocols",
@@ -1261,7 +1261,7 @@ bullet(
 )
 
 section("TCP/IP Layer Stack Diagram")
-tcpip_stack = pd.LayeredStack(
+tcpip_stack = ed.LayeredStack(
     width=CW, height=230, caption="Fig 5: TCP/IP 4-Layer Model with Protocols"
 )
 tcpip_stack.layer(
@@ -1335,7 +1335,7 @@ info_table(
 )
 
 # Side-by-side OSI vs TCP/IP stacks
-osi_cmp = pd.LayeredStack(width=CW * 0.44, height=240, caption="OSI Model (7 Layers)")
+osi_cmp = ed.LayeredStack(width=CW * 0.44, height=240, caption="OSI Model (7 Layers)")
 osi_cmp.layer("7 Application")
 osi_cmp.layer("6 Presentation")
 osi_cmp.layer("5 Session")
@@ -1345,7 +1345,7 @@ osi_cmp.layer("3 Network")
 osi_cmp.layer("2 Data Link")
 osi_cmp.layer("1 Physical")
 
-tcp_cmp = pd.LayeredStack(
+tcp_cmp = ed.LayeredStack(
     width=CW * 0.44, height=240, caption="TCP/IP Model (4 Layers)"
 )
 tcp_cmp.layer("Application", sublabel="(OSI 5+6+7)")
@@ -1359,8 +1359,8 @@ tcp_cmp.as_flowable()
 cmp_tbl = Table(
     [
         [
-            pd.ResponsiveDrawingFlowable(osi_cmp.drawing),
-            pd.ResponsiveDrawingFlowable(tcp_cmp.drawing),
+            ed.ResponsiveDrawingFlowable(osi_cmp.drawing),
+            ed.ResponsiveDrawingFlowable(tcp_cmp.drawing),
         ]
     ],
     colWidths=[CW * 0.48, CW * 0.48],
@@ -1519,7 +1519,7 @@ body(
 )
 
 # Sequence diagram of connection setup primitives
-seq_conn = pd.SequenceDiagram(
+seq_conn = ed.SequenceDiagram(
     width=CW,
     height=230,
     caption="Fig 7: Service Primitives -- Connection-Oriented Setup",

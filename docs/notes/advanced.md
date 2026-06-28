@@ -6,10 +6,10 @@ Advanced ingredients you will need for full-length textbooks, lab reports, and r
 
 ```python
 # Automatic multi-page Table of Contents
-pn.toc(style="index")           # 'standard', 'minimal', 'detailed', 'grid', 'index'
+en.toc(style="index")           # 'standard', 'minimal', 'detailed', 'grid', 'index'
 
 # Manual bookmarks (rarely needed — most sections auto-register)
-pn.bookmark("Appendix")
+en.bookmark("Appendix")
 ```
 
 TOC styles:
@@ -26,12 +26,12 @@ TOC styles:
 
 ```python
 # Local
-pn.image("asset_images/von_neumann.png", width=200, height=120,
+en.image("asset_images/von_neumann.png", width=200, height=120,
          caption="Fig 1: Von Neumann architecture",
          link="https://en.wikipedia.org/wiki/Von_Neumann_architecture")
 
 # Remote (cached automatically)
-pn.image("https://.../photo.png", width=200, height=120,
+en.image("https://.../photo.png", width=200, height=120,
          caption="Remote image",
          fallbacks=[
              "https://alternative/mirror.png",
@@ -39,20 +39,20 @@ pn.image("https://.../photo.png", width=200, height=120,
          ])
 ```
 
-If all sources fail, PaperForge renders a styled placeholder instead of crashing.
+If all sources fail, Engrapha renders a styled placeholder instead of crashing.
 
 ## LaTeX formulas
 
 Inline formulas auto-cache PNG images:
 
 ```python
-pn.body(f"The area is A = {pn.formula('\\pi r^2')}.")
+en.body(f"The area is A = {en.formula('\\pi r^2')}.")
 ```
 
 Display math equations:
 
 ```python
-pn.formula_block(r"\int_a^b f(x)\, dx = F(b) - F(a)")
+en.formula_block(r"\int_a^b f(x)\, dx = F(b) - F(a)")
 ```
 
 These use matplotlib's mathtext engine (no LaTeX installation required).
@@ -60,31 +60,31 @@ These use matplotlib's mathtext engine (no LaTeX installation required).
 ## References and index
 
 ```python
-pn.section("Advanced Sorting")
+en.section("Advanced Sorting")
 
-pn.label("sec_adv_sort")
+en.label("sec_adv_sort")
 
-pn.body(
+en.body(
     f"We can use random pivots"
-    f"{pn.footnote('A random pivot yields expected O(N log N) time.')}."
+    f"{en.footnote('A random pivot yields expected O(N log N) time.')}."
 )
 
-pn.index_entry("Randomized Quick Sort")
+en.index_entry("Randomized Quick Sort")
 
-pn.body(
-    f"For details see the section on Page {pn.ref('sec_adv_sort')}."
+en.body(
+    f"For details see the section on Page {en.ref('sec_adv_sort')}."
 )
 
 # Print the index at the end of the document
-pn.print_index()
+en.print_index()
 ```
 
 ## Modular compilation
 
 ```python
-pn.include_chapter("chapter_01.py")       # Run and merge a Python script
-pn.include_markdown("chapter_02.md")      # Parse and merge Markdown
-pn.build_split_doc(                       # Split into chapter PDFs
+en.include_chapter("chapter_01.py")       # Run and merge a Python script
+en.include_markdown("chapter_02.md")      # Parse and merge Markdown
+en.build_split_doc(                       # Split into chapter PDFs
     "output_prefix_",
     split_by="chapter",                   # 'chapter' or integer
 )
@@ -93,17 +93,17 @@ pn.build_split_doc(                       # Split into chapter PDFs
 ## Page numbering resets
 
 ```python
-pn.page_numbering(style="arabic")
+en.page_numbering(style="arabic")
 
 # Per-page header override
-pn.header(
+en.header(
     left="Chapter 1",
     visible=True,
     page_only=True
 )
 
 # Reset counter on a new page
-pn.page_numbering(style="roman", reset_to=1)
+en.page_numbering(style="roman", reset_to=1)
 ```
 
 ## Packet and frame formats
@@ -112,7 +112,7 @@ Draw horizontal hardware frames or RFC-style 32-bit aligned packet grid layouts:
 
 ```python
 # 1. Horizontal frame structure
-pn.frame_format(
+en.frame_format(
     "Ethernet Frame Structure",
     [
         ("PREAMBLE", "7B"),
@@ -126,7 +126,7 @@ pn.frame_format(
 )
 
 # 2. RFC-style 32-bit packet grid
-pn.packet_format(
+en.packet_format(
     "IPv4 Header Format",
     [
         ("Version", 4),
@@ -151,3 +151,4 @@ pn.packet_format(
 
 - [Export formats](export.md)
 - [Templates](templates.md)
+

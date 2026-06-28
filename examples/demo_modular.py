@@ -10,51 +10,51 @@ To test document splitting:
 
 from __future__ import annotations
 import sys
-import paperforge_notes as pn
+import engrapha_notes as en
 
 # Set visual theme
-pn.set_theme(pn.OCEAN_DARK)
+en.set_theme(en.OCEAN_DARK)
 
 # 1. Cover page
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(40)
-pn.cover_card("Modular Notes Compiler", "Feature Showcase")
-# pn.cover_subtitle(
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(40)
+en.cover_card("Modular Notes Compiler", "Feature Showcase")
+# en.cover_subtitle(
 #     "Compiling multiple scripts & markdown documents into one cohesive PDF"
 # )
-pn.br()
+en.br()
 
 # 2. Table of Contents
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # Set footer for the rest of the document
-pn.footer(left="Modular Notes Demo", right="PaperForge Ecosystem", show_page_num=True)
+en.footer(left="Modular Notes Demo", right="engrapha Ecosystem", show_page_num=True)
 
 # 3. Compile modular documents into the story flow
-pn.part_box("Unit I: Root Document Flow")
-pn.chap_box("1. Main Document Section")
-pn.body(
+en.part_box("Unit I: Root Document Flow")
+en.chap_box("1. Main Document Section")
+en.body(
     "This is the root Python file content. Below, we dynamically compile external "
     "files (both Python scripts and Markdown) into this single story sequence."
 )
 
 # Include Python sub-script chapter 1
-pn.include_chapter("temp_chapter.py")
+en.include_chapter("examples/temp_chapter.py")
 
 # Include Markdown sub-chapter
-pn.include_markdown("temp_markdown.md")
+en.include_markdown("examples/temp_markdown.md")
 
 # Include Python sub-script chapter 2 (with diagrams)
-pn.include_chapter("temp_chapter2.py")
+en.include_chapter("examples/temp_chapter2.py")
 
 # 4. Build output PDF
 if "--split" in sys.argv:
     # Build and split document by part boundary
-    pn.build_split_doc("demo_modular.pdf", split_by="part")
+    en.build_split_doc("demo_modular.pdf", split_by="part")
     print("Generated split modular PDFs starting with demo_modular...")
 else:
     # Build standard single cohesive PDF
-    pn.build_doc("demo_modular.pdf")
+    en.build_doc("demo_modular.pdf")
     print("Generated unified: demo_modular.pdf")

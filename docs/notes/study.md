@@ -1,12 +1,12 @@
 # Notes: Study and Revision Helpers
 
-PaperForge ships several blocks specifically for preparation: question, qbox, mcq, revision card, and flashcard.
+Engrapha ships several blocks specifically for preparation: question, qbox, mcq, revision card, and flashcard.
 
 ## Questions and answers
 
 ```python
-pn.question("Why is HashTable O(1) average-case?")
-pn.answer("Hashing distributes keys uniformly across buckets.")
+en.question("Why is HashTable O(1) average-case?")
+en.answer("Hashing distributes keys uniformly across buckets.")
 ```
 
 ## Qbox (boxed question card)
@@ -14,13 +14,13 @@ pn.answer("Hashing distributes keys uniformly across buckets.")
 `qbox` is a fully bordered question card (good for assignments and worksheets):
 
 ```python
-pn.qbox("Explain Dijkstra's algorithm and its complexity.")
+en.qbox("Explain Dijkstra's algorithm and its complexity.")
 ```
 
 ## Multiple Choice Questions (MCQ)
 
 ```python
-pn.mcq(
+en.mcq(
     "Which sort is worst-case O(N log N)?",
     options=["Bubble Sort", "Insertion Sort", "Merge Sort", "Quicksort"],
     correct_index=2,
@@ -32,7 +32,7 @@ The correct answer (Merge Sort, at index 2) is highlighted in green.
 ## Revision cards
 
 ```python
-pn.revision_card(
+en.revision_card(
     title="Key Metrics",
     points=[
         "Average Latency",
@@ -46,7 +46,7 @@ pn.revision_card(
 ## Flashcards (with Anki export)
 
 ```python
-pn.flashcard("Von Neumann Bottleneck",
+en.flashcard("Von Neumann Bottleneck",
              "The throughput limitation between CPU and memory")
 ```
 
@@ -63,7 +63,7 @@ The Anki cards support inline `$$ math $$` and HTML formatting.
 Use the Markdown CLI compiler to build full question banks:
 
 ```bash
-paperforge questions.md --theme light --title "Discrete Math"
+Engrapha questions.md --theme light --title "Discrete Math"
 ```
 
 ## Mix and match
@@ -71,13 +71,14 @@ paperforge questions.md --theme light --title "Discrete Math"
 You can freely interleave callouts, theorems, questions, etc. in the same narrative flow:
 
 ```python
-pn.section("Big-O Cheatsheet")
-pn.theorem("Big-O is defined in the limit, not locally.")
-pn.qbox("Order: O(1) < O(log N) < O(N) < O(N log N) < O(N^2).")
-pn.flashcard("Best Big-O space complexity for QuickSort",
+en.section("Big-O Cheatsheet")
+en.theorem("Big-O is defined in the limit, not locally.")
+en.qbox("Order: O(1) < O(log N) < O(N) < O(N log N) < O(N^2).")
+en.flashcard("Best Big-O space complexity for QuickSort",
              "O(log N) - from recursion stack")
 ```
 
 ## Next
 
 - [Advanced topics](advanced.md)
+

@@ -1,86 +1,87 @@
-![PaperForge](assets/paperforge_logo_black.svg)
-# PaperForge
+![engrapha](assets/engrapha_logo.svg)
+# engrapha
 
 Generate beautiful PDFs, notes, diagrams, slides, and flashcards from Python or Markdown.
 
-PaperForge unifies two packages in a single monorepo:
+engrapha unifies two packages in a single monorepo:
 
-- **`paperforge_notes`**: semantic layout, theming, and typography for ReportLab Platypus.
-- **`paperforge_diagrams`**: vector-native diagram library (flowchart, ER, sequence, network, AWS, …).
+- **`engrapha_notes`**: semantic layout, theming, and typography for ReportLab Platypus.
+- **`engrapha_diagrams`**: vector-native diagram library (flowchart, ER, sequence, network, AWS, …).
 
 ## Repository Layout
 
 ```
-PaperForge
+engrapha
 
-├── paperforge_notes
+├── engrapha_notes
 │   PDF
 │   HTML
 │   PPTX
 │   Flashcards
 
-├── paperforge_diagrams
+├── engrapha_diagrams
 │   Flowcharts
 │   UML
 │   AWS
 │   ER
 │   C4
 
-└── paperforge
+└── engrapha
     Meta package
 ```
 
 ## Installation
 
 ```bash
-# Everything (notes + diagrams + full extras)
-pip install paperforge
+# Everything (notes + diagrams + all extras)
+pip install engrapha
 
 # Or pick what you need
-pip install paperforge_notes
-pip install paperforge_notes[full]
-pip install paperforge_diagrams
+pip install engrapha_notes
+# Or with specific extras: [flashcards], [split], [pptx], [svg], or [all]
+pip install engrapha_notes[all]
+pip install engrapha_diagrams
 ```
 
 For local development:
 
 ```bash
-pip install -e ./paperforge_diagrams -e ./paperforge_notes[dev]
+pip install -e ./packages/engrapha_diagrams -e ./packages/engrapha_notes[dev]
 ```
 
 ## Quick Start
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-pn.set_theme(pn.OCEAN_DARK)
-pn.footer(left="Intro to Algorithms", show_page_num=True)
+en.set_theme(en.OCEAN_DARK)
+en.footer(left="Intro to Algorithms", show_page_num=True)
 
-pn.part_box(
+en.part_box(
     "Unit I: Basic Algorithms",
     subtitle="Big-O analysis and fundamental sorting methods",
     topics=["Complexity & Insertion Sort", "Visual Pipelines"]
 )
-pn.chap_box("1.1 Sorting Fundamentals")
-pn.section("Insertion Sort")
-pn.body("Insertion Sort builds a sorted array one item at a time.")
-pn.tip("Time complexity: O(N^2) worst case, O(N) best case.")
+en.chap_box("1.1 Sorting Fundamentals")
+en.section("Insertion Sort")
+en.body("Insertion Sort builds a sorted array one item at a time.")
+en.tip("Time complexity: O(N^2) worst case, O(N) best case.")
 
-fc = pd.Flowchart(width=pn.CW, height=180, caption="Fig 1: Loop invariant step")
+fc = ed.Flowchart(width=en.CW, height=180, caption="Fig 1: Loop invariant step")
 fc.terminal("start", "START").process("step", "Compare").terminal("end", "END")
 fc.edge("start", "step").edge("step", "end")
 
-pn.add(fc.as_flowable())
-pn.build_doc("quickstart.pdf")
+en.add(fc.as_flowable())
+en.build_doc("quickstart.pdf")
 ```
 
 ## Features
 
 ### Cover Gallery
-PaperForge acts as a true **Publishing Framework**. It ships with screenshot-worthy cover page presets and styles:
+Engrapha acts as a true **Publishing Framework**. It ships with screenshot-worthy cover page presets and styles:
 
-**Built-in Presets** (`pn.cover_preset(name)`):
+**Built-in Presets** (`en.cover_preset(name)`):
 | Preset | Style | Icon | Best For |
 | ------ | ----- | ---- | -------- |
 | `engineering` | `linear` | 💻 | SaaS docs, engineering guides |
@@ -90,7 +91,7 @@ PaperForge acts as a true **Publishing Framework**. It ships with screenshot-wor
 | `database` | `academic_modern` | 🗃️ | Database systems, SQL |
 | `programming` | `linear` | 🐘 | Programming, software engineering |
 
-**Cover Styles** (`pn.cover_card(style=...)`):
+**Cover Styles** (`en.cover_card(style=...)`):
 | Style | Best For |
 | ----- | -------- |
 | `linear` | SaaS docs, engineering guides — huge typography, gradient corner |
@@ -112,29 +113,31 @@ PaperForge acts as a true **Publishing Framework**. It ships with screenshot-wor
 - **Notes**: 15 preset themes, premium cover pages, semantic tags (`tags=["Networking", "Exam Notes"]`), SVG background illustrations, callouts, and LaTeX formulas.
 - **Diagrams**: 13 diagram types, orthogonal routing, matching theme presets.
 - **Export**: PDF, HTML, PPTX, Anki APKG / CSV / JSON — all from one source.
-- **CLI**: `paperforge notes.md --theme catppuccin-mocha` for Markdown users.
+- **CLI**: `Engrapha notes.md --theme catppuccin-mocha` for Markdown users.
 - **Zero dependencies** beyond Python + pip (`svglib` is optionally supported for SVG backgrounds).
 
 ## Documentation
 
 Full documentation, gallery, and API reference:
 
-**[PaperForge Docs](https://bharat940.github.io/paperforge)**
+**[Engrapha Docs](https://bharat940.github.io/Engrapha)**
 
-- [Getting Started](https://bharat940.github.io/paperforge/getting-started)
-- [Notes Guide](https://bharat940.github.io/paperforge/notes/basics)
-- [Diagrams Guide](https://bharat940.github.io/paperforge/diagrams/overview)
-- [Gallery](https://bharat940.github.io/paperforge/gallery/index)
-- [API Reference](https://bharat940.github.io/paperforge/api/notes)
+- [Getting Started](https://bharat940.github.io/Engrapha/getting-started)
+- [Notes Guide](https://bharat940.github.io/Engrapha/notes/basics)
+- [Diagrams Guide](https://bharat940.github.io/Engrapha/diagrams/overview)
+- [Gallery](https://bharat940.github.io/Engrapha/gallery/index)
+- [API Reference](https://bharat940.github.io/Engrapha/api/notes)
 
 ## Markdown Compiler
 
 Compile Markdown directly to themed PDFs. Supports headings, tables, code blocks, alert boxes, and eight diagram block types:
 
 ```bash
-paperforge notes.md --output notes.pdf --theme catppuccin-mocha
+Engrapha notes.md --output notes.pdf --theme catppuccin-mocha
 ```
 
 ## License
 
 MIT License. See [LICENSE](LICENSE).
+
+

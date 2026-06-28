@@ -7,10 +7,10 @@ Three closely related diagram types: `ArchitectureDiagram`, `C4ContainerDiagram`
 Draws 4-tier topology: clients, services, databases, and queues.
 
 ```python
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
-arch = pd.ArchitectureDiagram(
+arch = ed.ArchitectureDiagram(
     width=450, height=220,
     caption="Fig 9: Web App Architecture",
     orientation="horizontal",  # "vertical"
@@ -28,8 +28,8 @@ arch.connect("api",  "db",   "TCP/5432")
 arch.connect("api",  "q",    "AMQP")
 arch.connect("auth", "db",   "TCP/5432")
 
-pn.add(arch.as_flowable())
-pn.build_doc("arch.pdf")
+en.add(arch.as_flowable())
+en.build_doc("arch.pdf")
 ```
 
 ### Orientation
@@ -41,7 +41,7 @@ With `orientation="vertical"` the tiers stack bottom-to-top. Clients at the bott
 System and Container nodes arranged on a grid with relationship lines:
 
 ```python
-c4 = pd.C4ContainerDiagram(
+c4 = ed.C4ContainerDiagram(
     width=420, height=220,
     caption="Fig 10: C4 Container View",
 )
@@ -55,7 +55,7 @@ c4.relate("user", "spa", "Uses")
 c4.relate("spa", "api", "Makes API calls")
 c4.relate("api", "db", "Reads / Writes")
 
-pn.add(c4.as_flowable())
+en.add(c4.as_flowable())
 ```
 
 Systems render in darker surface tones; containers render with lighter backgrounds.
@@ -65,7 +65,7 @@ Systems render in darker surface tones; containers render with lighter backgroun
 AWS-specific vector icons on top of the ArchitectureDiagram layout:
 
 ```python
-aws = pd.AWSDiagram(
+aws = ed.AWSDiagram(
     width=450, height=220,
     caption="Fig 11: AWS Stack",
     orientation="horizontal",
@@ -82,7 +82,7 @@ aws.connect("app", "assets", "Uploads")
 aws.connect("app", "fn",     "Invoke")
 aws.connect("app", "queue",  "Events")
 
-pn.add(aws.as_flowable())
+en.add(aws.as_flowable())
 ```
 
 ### Node types
@@ -103,3 +103,4 @@ All three handle auto-positioning when nodes are added without x, y coordinates.
 
 - [C4 Container](c4.md)
 - [AWS Cloud](cloud.md)
+

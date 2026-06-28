@@ -8,8 +8,8 @@ Output: Java_Unit5_Notes.pdf
 
 from __future__ import annotations
 
-import paperforge_notes as pn
-import paperforge_diagrams as pd
+import engrapha_notes as en
+import engrapha_diagrams as ed
 
 # =============================================================================
 #  THEME & GLOBAL FOOTER SETUP
@@ -17,40 +17,40 @@ import paperforge_diagrams as pd
 #  Distinct from Unit I (Catppuccin Mocha), II (Midnight Dark),
 #  III (Forest Dark), IV (Sunset Dark)
 # =============================================================================
-pn.set_story([])
-pn.set_theme(pn.OCEAN_DARK)
+en.set_story([])
+en.set_theme(en.OCEAN_DARK)
 
-pn.set_global_footer(
+en.set_global_footer(
     left="Java Programming (IT408) -- Unit V",
     right="UIT-RGPV (Autonomous) Bhopal",
     show_page_num=True,
 )
 
-diag_theme = pd.DiagramTheme.from_notes_theme(pn.get_theme())
+diag_theme = ed.DiagramTheme.from_notes_theme(en.get_theme())
 
 # =============================================================================
 #  COVER PAGE
 # =============================================================================
-pn.bookmark("Cover Page")
-pn.suppress_footer(page_only=True)
-pn.sp(26)
+en.bookmark("Cover Page")
+en.suppress_footer(page_only=True)
+en.sp(26)
 
-pn.cover_card(
+en.cover_card(
     "JAVA PROGRAMMING",
     "Unit V -- Event Handling & JDBC Database Connectivity",
 )
-# pn.cover_subtitle(
+# en.cover_subtitle(
 #     [
 #         "Subject Code: IT408  |  UIT-RGPV (Autonomous) Bhopal  |  Semester IV",
 #         "Complete Exam Notes: Delegation Event Model, Event Sources, Listeners,",
 #         "Mouse & Key Events, JDBC Architecture, Drivers, ResultSet, and Remote DB",
 #     ]
 # )
-pn.sp(10)
-pn.rule(pn.get_theme().rl(pn.get_theme().accent), 1.5)
-pn.sp(8)
+en.sp(10)
+en.rule(en.get_theme().rl(en.get_theme().accent), 1.5)
+en.sp(8)
 
-pn.info_table(
+en.info_table(
     ["Section", "Syllabus Topics Covered"],
     [
         [
@@ -116,21 +116,21 @@ pn.info_table(
 # =============================================================================
 #  TABLE OF CONTENTS
 # =============================================================================
-pn.br()
-pn.suppress_footer(page_only=True)
-pn.toc()
+en.br()
+en.suppress_footer(page_only=True)
+en.toc()
 
 # =============================================================================
 #  UNIT DIVIDER
 # =============================================================================
-pn.part_box("UNIT V -- EVENT HANDLING & JDBC DATABASE CONNECTIVITY")
+en.part_box("UNIT V -- EVENT HANDLING & JDBC DATABASE CONNECTIVITY")
 
 # =============================================================================
 #  5.1  EVENT HANDLING OVERVIEW
 # =============================================================================
-pn.chap_box("5.1  Event Handling Overview")
-pn.section("What is Event Handling?")
-pn.definition(
+en.chap_box("5.1  Event Handling Overview")
+en.section("What is Event Handling?")
+en.definition(
     "<b>Event Handling:</b> The mechanism by which a Java program detects and responds "
     "to user actions or system notifications -- such as mouse clicks, key presses, "
     "button activations, window operations, or scrollbar adjustments. "
@@ -139,8 +139,8 @@ pn.definition(
     "driven by events rather than top-to-bottom sequential flow."
 )
 
-pn.section("Two Event Handling Mechanisms in Java")
-pn.info_table(
+en.section("Two Event Handling Mechanisms in Java")
+en.info_table(
     ["Mechanism", "Java Version", "How it Works", "Drawbacks / Why Replaced"],
     [
         [
@@ -158,7 +158,7 @@ pn.info_table(
     ],
 )
 
-pn.code_block(
+en.code_block(
     """
 // OLD Model (Java 1.0) -- DO NOT USE, shown for context only
 // The component itself handled its own events via overriding
@@ -188,14 +188,14 @@ btn.addActionListener(new ActionListener() {    // listener registered with sour
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.2  THE DELEGATION EVENT MODEL
 # =============================================================================
-pn.chap_box("5.2  The Delegation Event Model")
-pn.section("Three Pillars of the Delegation Model")
-pn.definition(
+en.chap_box("5.2  The Delegation Event Model")
+en.section("Three Pillars of the Delegation Model")
+en.definition(
     "<b>Delegation Event Model:</b> The event handling architecture introduced in "
     "Java 1.1 and used in all modern Java GUI toolkits. It is built on three core concepts: "
     "(1) <b>Event Source:</b> The component that generates (fires) an event when the user interacts with it. "
@@ -203,7 +203,7 @@ pn.definition(
     "(3) <b>Event Listener:</b> An object (implementing a listener interface) that is registered with the source and whose callback method is invoked when the event occurs."
 )
 
-pn.info_table(
+en.info_table(
     ["Concept", "Description", "Example"],
     [
         [
@@ -234,8 +234,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Step-by-Step Event Flow")
-pn.bullet(
+en.section("Step-by-Step Event Flow")
+en.bullet(
     [
         "<b>Step 1 (User Action):</b> User clicks a Button. The OS detects the mouse click and sends it to the JVM.",
         "<b>Step 2 (Event Creation):</b> The AWT event thread creates an ActionEvent object containing the source (Button), action command (button label), and timestamp.",
@@ -247,8 +247,8 @@ pn.bullet(
 )
 
 # Sequence diagram of the delegation flow
-seq_del = pd.SequenceDiagram(
-    width=pn.CW,
+seq_del = ed.SequenceDiagram(
+    width=en.CW,
     height=300,
     theme=diag_theme,
     caption="Fig 5.1: Delegation Event Model -- user action to listener callback sequence",
@@ -270,10 +270,10 @@ seq_del.message("listener", "awtthread", "return (done)", arrow="dashed")
 seq_del.deactivate("listener")
 seq_del.divider("end loop")
 seq_del.deactivate("awtthread")
-pn.story.extend(seq_del.as_flowable())
+en.story.extend(seq_del.as_flowable())
 
-pn.section("Complete Delegation Model Example")
-pn.code_block(
+en.section("Complete Delegation Model Example")
+en.code_block(
     """
 // DelegationModelDemo.java -- shows all three roles: source, event, listener
 import java.awt.*;
@@ -333,14 +333,14 @@ public class DelegationModelDemo extends Frame {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.3  EVENTS AND EVENT CLASSES
 # =============================================================================
-pn.chap_box("5.3  Events and Event Classes")
-pn.section("The Event Class Hierarchy")
-pn.body(
+en.chap_box("5.3  Events and Event Classes")
+en.section("The Event Class Hierarchy")
+en.body(
     "All Java event objects inherit from <code>java.util.EventObject</code>, "
     "which stores the event source and provides <code>getSource()</code>. "
     "AWT events further extend <code>java.awt.AWTEvent</code>, "
@@ -348,8 +348,8 @@ pn.body(
 )
 
 # Class diagram showing event hierarchy
-cd_events = pd.ClassDiagram(
-    width=pn.CW,
+cd_events = ed.ClassDiagram(
+    width=en.CW,
     height=270,
     theme=diag_theme,
     caption="Fig 5.2: Java AWT Event class hierarchy -- from EventObject to specific event types",
@@ -417,10 +417,10 @@ cd_events.relate("AdjustEvent", "AWTEvent", kind="inheritance")
 cd_events.relate("InputEvent", "ComponentEvent", kind="inheritance")
 cd_events.relate("MouseEvent", "InputEvent", kind="inheritance")
 cd_events.relate("KeyEvent", "InputEvent", kind="inheritance")
-pn.story.extend(cd_events.as_flowable())
+en.story.extend(cd_events.as_flowable())
 
-pn.section("Key Event Classes and Their Information")
-pn.info_table(
+en.section("Key Event Classes and Their Information")
+en.info_table(
     ["Event Class", "Package", "Generated By", "Key Methods"],
     [
         [
@@ -479,14 +479,14 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.4  EVENT SOURCES
 # =============================================================================
-pn.chap_box("5.4  Event Sources")
-pn.section("What is an Event Source?")
-pn.definition(
+en.chap_box("5.4  Event Sources")
+en.section("What is an Event Source?")
+en.definition(
     "<b>Event Source:</b> Any AWT or Swing component that can generate events. "
     "A source maintains a list of registered listeners and fires event objects "
     "to all registered listeners when the triggering action occurs. "
@@ -494,7 +494,7 @@ pn.definition(
     "methods for each type of event it can fire."
 )
 
-pn.info_table(
+en.info_table(
     ["Event Source", "Events It Generates", "Registration Method"],
     [
         ["Button", "ActionEvent (on click)", "addActionListener(ActionListener l)"],
@@ -543,14 +543,14 @@ pn.info_table(
         ],
     ],
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.5  EVENT LISTENERS AND ADAPTERS
 # =============================================================================
-pn.chap_box("5.5  Event Listeners and Adapter Classes")
-pn.section("Listener Interfaces")
-pn.definition(
+en.chap_box("5.5  Event Listeners and Adapter Classes")
+en.section("Listener Interfaces")
+en.definition(
     "<b>Event Listener:</b> An interface that declares one or more callback methods "
     "that the AWT runtime calls when the corresponding event occurs. "
     "To handle events, a class must implement the listener interface and provide "
@@ -558,7 +558,7 @@ pn.definition(
     "the event source using <code>addXxxListener()</code>."
 )
 
-pn.info_table(
+en.info_table(
     ["Listener Interface", "Methods (callbacks)", "Adapter Class"],
     [
         [
@@ -606,8 +606,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Why Adapter Classes Exist")
-pn.definition(
+en.section("Why Adapter Classes Exist")
+en.definition(
     "<b>Adapter Class:</b> A convenience class that implements a listener interface "
     "with empty (no-op) method bodies for all methods. "
     "When a listener interface has multiple methods but you only need to handle one or two, "
@@ -617,7 +617,7 @@ pn.definition(
     "with empty bodies. You extend it and override only <code>windowClosing()</code>."
 )
 
-pn.code_block(
+en.code_block(
     """
 // PROBLEM: WindowListener requires ALL 7 methods -- tedious when you only need one
 class MyWindowListener implements WindowListener {
@@ -652,14 +652,14 @@ canvas.addMouseListener(new MouseAdapter() {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.6  MOUSE EVENTS
 # =============================================================================
-pn.chap_box("5.6  The Mouse Event Class")
-pn.section("MouseEvent Class -- Complete Reference")
-pn.definition(
+en.chap_box("5.6  The Mouse Event Class")
+en.section("MouseEvent Class -- Complete Reference")
+en.definition(
     "<b>MouseEvent:</b> Represents a mouse action that occurred on a component. "
     "It extends <code>InputEvent</code> and carries the mouse coordinates, "
     "the button that was pressed, and the click count. "
@@ -668,7 +668,7 @@ pn.definition(
     "<code>MouseMotionListener</code> (move, drag)."
 )
 
-pn.info_table(
+en.info_table(
     ["MouseEvent Method", "Return Type", "Description"],
     [
         [
@@ -729,8 +729,8 @@ pn.info_table(
     ],
 )
 
-pn.section("MouseListener Interface -- All Five Methods")
-pn.info_table(
+en.section("MouseListener Interface -- All Five Methods")
+en.info_table(
     ["MouseListener Method", "When Invoked"],
     [
         [
@@ -756,8 +756,8 @@ pn.info_table(
     ],
 )
 
-pn.section("MouseMotionListener Interface -- Two Methods")
-pn.info_table(
+en.section("MouseMotionListener Interface -- Two Methods")
+en.info_table(
     ["MouseMotionListener Method", "When Invoked"],
     [
         [
@@ -771,8 +771,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Complete Mouse Event Demo")
-pn.code_block(
+en.section("Complete Mouse Event Demo")
+en.code_block(
     """
 // MouseEventDemo.java -- All mouse events demonstrated with visual feedback
 import java.awt.*;
@@ -912,14 +912,14 @@ public class MouseEventDemo extends Frame
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.7  KEY EVENTS
 # =============================================================================
-pn.chap_box("5.7  Key Events")
-pn.section("KeyEvent Class -- Complete Reference")
-pn.definition(
+en.chap_box("5.7  Key Events")
+en.section("KeyEvent Class -- Complete Reference")
+en.definition(
     "<b>KeyEvent:</b> Represents a keyboard event generated when the user presses "
     "or releases a key on a keyboard-focused component. "
     "It extends <code>InputEvent</code>. "
@@ -928,7 +928,7 @@ pn.definition(
     "use <code>component.requestFocus()</code> to programmatically give focus."
 )
 
-pn.info_table(
+en.info_table(
     ["KeyListener Method", "When Invoked", "Key Data Available"],
     [
         [
@@ -949,13 +949,13 @@ pn.info_table(
     ],
 )
 
-pn.section("Virtual Key Codes (VK_ Constants)")
-pn.body(
+en.section("Virtual Key Codes (VK_ Constants)")
+en.body(
     "Key codes are integer constants defined in the <code>KeyEvent</code> class. "
     "They identify physical keys regardless of shift/caps state. "
     "Use them in <code>keyPressed()</code> and <code>keyReleased()</code> to detect special keys."
 )
-pn.info_table(
+en.info_table(
     ["Key", "VK Constant", "Key", "VK Constant"],
     [
         ["Enter", "KeyEvent.VK_ENTER", "Escape", "KeyEvent.VK_ESCAPE"],
@@ -975,8 +975,8 @@ pn.info_table(
     ],
 )
 
-pn.section("KeyEvent Demo")
-pn.code_block(
+en.section("KeyEvent Demo")
+en.code_block(
     """
 // KeyEventDemo.java -- demonstrates all three KeyListener methods
 import java.awt.*;
@@ -1075,14 +1075,14 @@ public class KeyEventDemo extends Frame implements KeyListener {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.8  OTHER EVENT CLASSES
 # =============================================================================
-pn.chap_box("5.8  Other AWT Event Classes")
-pn.section("ItemEvent -- Checkbox and Choice Changes")
-pn.code_block(
+en.chap_box("5.8  Other AWT Event Classes")
+en.section("ItemEvent -- Checkbox and Choice Changes")
+en.code_block(
     """
 // ItemEvent fires when Checkbox state changes or Choice/List selection changes
 import java.awt.*;
@@ -1145,8 +1145,8 @@ public class ItemEventDemo extends Frame implements ItemListener {
     lang="java",
 )
 
-pn.section("TextEvent, AdjustmentEvent, FocusEvent")
-pn.code_block(
+en.section("TextEvent, AdjustmentEvent, FocusEvent")
+en.code_block(
     """
 // TextEvent fires on every character change in TextField/TextArea
 textField.addTextListener(new TextListener() {
@@ -1187,15 +1187,15 @@ textField.addFocusListener(new FocusAdapter() {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.9  JDBC INTRODUCTION
 # =============================================================================
-pn.part_box("UNIT V -- JDBC: JAVA DATABASE CONNECTIVITY")
-pn.chap_box("5.9  Introduction to JDBC")
-pn.section("What is JDBC?")
-pn.definition(
+en.part_box("UNIT V -- JDBC: JAVA DATABASE CONNECTIVITY")
+en.chap_box("5.9  Introduction to JDBC")
+en.section("What is JDBC?")
+en.definition(
     "<b>JDBC (Java Database Connectivity):</b> A Java API (Application Programming Interface) "
     "that defines how Java programs communicate with relational databases. "
     "Located in the <code>java.sql</code> package (core) and <code>javax.sql</code> (extensions), "
@@ -1205,8 +1205,8 @@ pn.definition(
     "This database-independence is JDBC's most important feature."
 )
 
-pn.section("Why JDBC? The Database Independence Problem")
-pn.body(
+en.section("Why JDBC? The Database Independence Problem")
+en.body(
     "Every database system (MySQL, Oracle, PostgreSQL) has its own proprietary "
     "network protocol, query format, and communication API. Without JDBC, "
     "a Java program written for MySQL would have to be completely rewritten for Oracle. "
@@ -1215,8 +1215,8 @@ pn.body(
     "Your Java code targets the JDBC interfaces; the driver handles the vendor specifics."
 )
 
-pn.section("JDBC Driver Types")
-pn.info_table(
+en.section("JDBC Driver Types")
+en.info_table(
     ["Type", "Name", "How It Works", "Use Today"],
     [
         [
@@ -1246,27 +1246,27 @@ pn.info_table(
     ],
 )
 
-pn.note(
+en.note(
     "For the IT408 exam: The JDBC-ODBC bridge (Type 1) is mentioned in the syllabus for historical context. "
     "It required <code>Class.forName('sun.jdbc.odbc.JdbcOdbcDriver')</code> and was removed in Java 8. "
     "All modern applications use Type 4 drivers. "
     "The Type 4 driver for MySQL is <code>com.mysql.cj.jdbc.Driver</code> (MySQL Connector/J)."
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.10  JDBC ARCHITECTURE & THE CONNECTIVITY MODEL
 # =============================================================================
-pn.chap_box("5.10  JDBC Architecture & Connectivity Model")
-pn.section("The JDBC Connectivity Model")
-pn.body(
+en.chap_box("5.10  JDBC Architecture & Connectivity Model")
+en.section("The JDBC Connectivity Model")
+en.body(
     "JDBC uses a layered architecture. Your Java application works with the "
     "JDBC API (interfaces in java.sql). The DriverManager selects the appropriate "
     "driver. The driver communicates with the actual database server."
 )
 
 # Network diagram showing JDBC architecture
-net_jdbc = pd.NetworkDiagram(
+net_jdbc = ed.NetworkDiagram(
     width=530,
     height=240,
     theme=diag_theme,
@@ -1284,10 +1284,10 @@ net_jdbc.link("app", "api", label="uses", bidirectional=False)
 net_jdbc.link("api", "dm", label="calls", bidirectional=False)
 net_jdbc.link("dm", "driver", label="loads", bidirectional=False)
 net_jdbc.link("driver", "db", label="TCP/IP\nnative protocol", bidirectional=True)
-pn.story.extend(net_jdbc.as_flowable())
+en.story.extend(net_jdbc.as_flowable())
 
-pn.section("The DriverManager Class")
-pn.definition(
+en.section("The DriverManager Class")
+en.definition(
     "<b>DriverManager (java.sql.DriverManager):</b> The JDBC management layer that "
     "maintains a list of registered database drivers and selects the appropriate one "
     "when a connection is requested. "
@@ -1298,8 +1298,8 @@ pn.definition(
     "<code>jdbc:oracle:thin:@host:port:sid</code> for Oracle."
 )
 
-pn.section("Core JDBC Interfaces in java.sql")
-pn.info_table(
+en.section("Core JDBC Interfaces in java.sql")
+en.info_table(
     ["Interface / Class", "Role", "Key Methods"],
     [
         [
@@ -1340,8 +1340,8 @@ pn.info_table(
     ],
 )
 
-pn.section("The Six Steps of JDBC Programming")
-pn.bullet(
+en.section("The Six Steps of JDBC Programming")
+en.bullet(
     [
         "<b>Step 1 -- Load Driver:</b> Register the JDBC driver class with the JVM. Modern JDBC (4.0+) loads automatically from the JAR using ServiceLoader -- explicit loading is optional but still commonly shown: <code>Class.forName('com.mysql.cj.jdbc.Driver');</code>",
         "<b>Step 2 -- Establish Connection:</b> Call <code>DriverManager.getConnection(url, user, password)</code> to open a Connection to the database.",
@@ -1352,8 +1352,8 @@ pn.bullet(
     ]
 )
 
-pn.section("Complete JDBC Program -- All Six Steps")
-pn.code_block(
+en.section("Complete JDBC Program -- All Six Steps")
+en.code_block(
     """
 // JDBCDemo.java -- Complete JDBC program demonstrating all 6 steps
 // Requires: MySQL Connector/J (mysql-connector-java-x.x.x.jar) in classpath
@@ -1462,14 +1462,14 @@ INSERT INTO students (name, branch, marks) VALUES
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.11  NAVIGATING THE RESULT SET
 # =============================================================================
-pn.chap_box("5.11  Navigating the ResultSet")
-pn.section("ResultSet Cursor Navigation")
-pn.definition(
+en.chap_box("5.11  Navigating the ResultSet")
+en.section("ResultSet Cursor Navigation")
+en.definition(
     "<b>ResultSet:</b> A table of data (rows and columns) returned by executing a SQL SELECT query. "
     "A ResultSet object maintains a <b>cursor</b> pointing to the current row. "
     "Initially the cursor is positioned BEFORE the first row -- calling <code>next()</code> "
@@ -1480,8 +1480,8 @@ pn.definition(
     "or <code>absolute()</code>, the ResultSet must be created as TYPE_SCROLL_INSENSITIVE or TYPE_SCROLL_SENSITIVE."
 )
 
-pn.section("Creating a Scrollable ResultSet")
-pn.code_block(
+en.section("Creating a Scrollable ResultSet")
+en.code_block(
     """
 // Creating a SCROLLABLE ResultSet for bidirectional navigation
 // The Statement must be created with scroll type and concurrency flags
@@ -1501,8 +1501,8 @@ ResultSet rs = stmt.executeQuery("SELECT id, name, marks FROM students");
     lang="java",
 )
 
-pn.section("ResultSet Navigation Methods")
-pn.info_table(
+en.section("ResultSet Navigation Methods")
+en.info_table(
     ["Method", "Return", "Cursor Moves To"],
     [
         [
@@ -1561,8 +1561,8 @@ pn.info_table(
     ],
 )
 
-pn.section("ResultSet Data Retrieval Methods")
-pn.info_table(
+en.section("ResultSet Data Retrieval Methods")
+en.info_table(
     ["Method Group", "Methods", "Description"],
     [
         [
@@ -1608,8 +1608,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Scrollable ResultSet Demo")
-pn.code_block(
+en.section("Scrollable ResultSet Demo")
+en.code_block(
     """
 // ScrollableResultSetDemo.java -- forward, backward, absolute navigation
 import java.sql.*;
@@ -1678,14 +1678,14 @@ public class ScrollableResultSetDemo {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.12  JDBC EXCEPTION CLASSES
 # =============================================================================
-pn.chap_box("5.12  JDBC Exception Classes")
-pn.section("SQLException -- The Primary JDBC Exception")
-pn.definition(
+en.chap_box("5.12  JDBC Exception Classes")
+en.section("SQLException -- The Primary JDBC Exception")
+en.definition(
     "<b>SQLException:</b> The primary exception class for all database errors in JDBC. "
     "It extends <code>Exception</code> (checked exception -- must be caught or declared). "
     "SQLException carries three pieces of database error information: "
@@ -1698,7 +1698,7 @@ pn.definition(
     "linked via <code>getNextException()</code>."
 )
 
-pn.info_table(
+en.info_table(
     ["JDBC Exception Class", "Extends", "Description"],
     [
         [
@@ -1729,8 +1729,8 @@ pn.info_table(
     ],
 )
 
-pn.section("Handling SQLException Properly")
-pn.code_block(
+en.section("Handling SQLException Properly")
+en.code_block(
     """
 // ExceptionHandlingDemo.java -- proper JDBC exception handling
 import java.sql.*;
@@ -1814,14 +1814,14 @@ public class ExceptionHandlingDemo {
 """,
     lang="java",
 )
-pn.br()
+en.br()
 
 # =============================================================================
 #  5.13  CONNECTING TO REMOTE DATABASE / PREPAREDSTATEMENT
 # =============================================================================
-pn.chap_box("5.13  Connecting to Remote Database & PreparedStatement")
-pn.section("Remote Database Connection")
-pn.definition(
+en.chap_box("5.13  Connecting to Remote Database & PreparedStatement")
+en.section("Remote Database Connection")
+en.definition(
     "<b>Remote Database Connection:</b> Connecting to a database server running on "
     "a different machine (not localhost). The JDBC URL changes to include the "
     "remote hostname or IP address. The database server must be configured to "
@@ -1829,7 +1829,7 @@ pn.definition(
     "must allow traffic on the database port (MySQL default: 3306)."
 )
 
-pn.info_table(
+en.info_table(
     ["Database", "Local URL", "Remote URL Format"],
     [
         [
@@ -1865,8 +1865,8 @@ pn.info_table(
     ],
 )
 
-pn.section("PreparedStatement -- Safe Parameterized Queries")
-pn.definition(
+en.section("PreparedStatement -- Safe Parameterized Queries")
+en.definition(
     "<b>PreparedStatement:</b> A pre-compiled SQL statement with placeholder "
     "parameters represented by <code>?</code>. "
     "It is preferred over Statement for four reasons: "
@@ -1879,7 +1879,7 @@ pn.definition(
     "and quoting automatically."
 )
 
-pn.code_block(
+en.code_block(
     """
 // PreparedStatementDemo.java -- demonstrates PreparedStatement and remote DB
 import java.sql.*;
@@ -1979,9 +1979,9 @@ public class PreparedStatementDemo {
     lang="java",
 )
 
-pn.section("JDBC Connection Flow Diagram")
-fc_jdbc = pd.Flowchart(
-    width=pn.CW,
+en.section("JDBC Connection Flow Diagram")
+fc_jdbc = ed.Flowchart(
+    width=en.CW,
     height=420,
     theme=diag_theme,
     caption="Fig 5.4: Complete JDBC Connection and Query Execution Flow",
@@ -2011,18 +2011,18 @@ fc_jdbc.edge("select", "dml", branch="no")
 fc_jdbc.edge("rs", "close")
 fc_jdbc.edge("dml", "close")
 fc_jdbc.edge("close", "end")
-pn.story.extend(fc_jdbc.as_flowable())
-pn.br()
+en.story.extend(fc_jdbc.as_flowable())
+en.br()
 
 # =============================================================================
 #  5.14  EXAM QUESTIONS & ANSWERS
 # =============================================================================
-pn.part_box("UNIT V -- EXAM QUESTIONS & DETAILED ANSWERS")
-pn.chap_box("5.14  Previous-Year Style Exam Questions")
+en.part_box("UNIT V -- EXAM QUESTIONS & DETAILED ANSWERS")
+en.chap_box("5.14  Previous-Year Style Exam Questions")
 
-pn.section("2-Mark Questions (Short Answer)")
+en.section("2-Mark Questions (Short Answer)")
 
-pn.highlight(
+en.highlight(
     "<b>Q1. What is the Delegation Event Model in Java?</b><br/>"
     "A: The Delegation Event Model (introduced in Java 1.1) separates event generation "
     "from event handling. An event source (Button, TextField) generates an event object "
@@ -2032,7 +2032,7 @@ pn.highlight(
     "enables multiple listeners per source, and improves code maintainability."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q2. Differentiate between the old and new event handling mechanisms.</b><br/>"
     "A: Old Model (Java 1.0): Component overrides action() or handleEvent(). "
     "Event source and handler are the same object. All events bubble up regardless of interest. "
@@ -2042,7 +2042,7 @@ pn.highlight(
     "Clean separation. Current standard."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q3. What is an Event Listener? Give two examples.</b><br/>"
     "A: An event listener is a Java interface that defines callback method(s) to be invoked "
     "when a specific type of event occurs. A class implements the listener interface and is "
@@ -2053,7 +2053,7 @@ pn.highlight(
     "mouseEntered, mouseExited, handles all mouse button events."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q4. What is an Adapter class? Why is it used?</b><br/>"
     "A: An Adapter class implements a listener interface with all methods having "
     "empty (no-op) bodies. It is used when you only need to handle one or two "
@@ -2063,7 +2063,7 @@ pn.highlight(
     "6 empty method bodies required if directly implementing WindowListener."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q5. What is JDBC? What is its main advantage?</b><br/>"
     "A: JDBC (Java Database Connectivity) is a Java API in the java.sql package "
     "that provides a standard way for Java programs to connect to and interact with "
@@ -2073,7 +2073,7 @@ pn.highlight(
     "without modifying the application code."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q6. What is the JDBC-ODBC Bridge? Why is it deprecated?</b><br/>"
     "A: The JDBC-ODBC Bridge (Type 1 driver) translated JDBC calls to ODBC calls "
     "which then communicated with the database. It required an ODBC driver to be "
@@ -2082,7 +2082,7 @@ pn.highlight(
     "because Type 4 (pure Java) drivers are faster, portable, and cross-platform."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q7. What is DriverManager in JDBC?</b><br/>"
     "A: DriverManager (java.sql.DriverManager) is the management layer in JDBC that "
     "maintains a list of registered JDBC drivers and selects the appropriate one "
@@ -2092,7 +2092,7 @@ pn.highlight(
     "(e.g., jdbc:mysql:// is handled by the MySQL JDBC driver)."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q8. What is a PreparedStatement? How does it prevent SQL injection?</b><br/>"
     "A: PreparedStatement is a pre-compiled SQL statement with <code>?</code> placeholders. "
     "Created with <code>conn.prepareStatement(sql)</code> and parameters set with "
@@ -2103,7 +2103,7 @@ pn.highlight(
     "value, NOT as SQL syntax -- the query structure cannot be altered."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q9. What is a ResultSet? How do you navigate it?</b><br/>"
     "A: ResultSet is a table of data returned by executeQuery(). "
     "It has a cursor initially positioned before the first row. "
@@ -2114,7 +2114,7 @@ pn.highlight(
     "Always close with rs.close() when done."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q10. What is SQLException? What information does it carry?</b><br/>"
     "A: SQLException is the primary JDBC exception (extends Exception -- checked). "
     "It carries three pieces of database error information: "
@@ -2124,9 +2124,9 @@ pn.highlight(
     "SQLExceptions can be chained (getNextException())."
 )
 
-pn.section("5-Mark Questions (Explain with Code)")
+en.section("5-Mark Questions (Explain with Code)")
 
-pn.highlight(
+en.highlight(
     "<b>Q11. Explain the delegation event model with a complete code example.</b><br/>"
     "A: Three roles -- Source (Button), Event Object (ActionEvent), Listener (ActionListener). "
     "Source generates event when user clicks. AWT creates ActionEvent with source, command, timestamp. "
@@ -2137,7 +2137,7 @@ pn.highlight(
     "See DelegationModelDemo in Section 5.2."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q12. Write a Java program to handle mouse events -- display coordinates on click, "
     "change color on enter/exit.</b><br/>"
     "A: Implement MouseListener on a Frame or Panel. "
@@ -2149,7 +2149,7 @@ pn.highlight(
     "See MouseEventDemo in Section 5.6 for the complete program."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q13. Write a Java program to handle keyboard events -- display each key pressed.</b><br/>"
     "A: Implement KeyListener on a Frame (or any focusable component). "
     "keyPressed(e): e.getKeyCode() for VK constant; KeyEvent.getKeyText(code) for name; "
@@ -2160,7 +2160,7 @@ pn.highlight(
     "See KeyEventDemo in Section 5.7."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q14. Write a JDBC program to connect to MySQL and perform SELECT, INSERT, UPDATE, DELETE.</b><br/>"
     "A: Step 1: Get connection: DriverManager.getConnection(url, user, password). "
     "Step 2: Create Statement: conn.createStatement(). "
@@ -2172,7 +2172,7 @@ pn.highlight(
     "See JDBCDemo in Section 5.10."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q15. Explain ResultSet navigation methods with a scrollable ResultSet example.</b><br/>"
     "A: Standard (forward only): rs.next() moves to next row. "
     "For scrollable: conn.createStatement(TYPE_SCROLL_INSENSITIVE, CONCUR_READ_ONLY). "
@@ -2182,9 +2182,9 @@ pn.highlight(
     "See ScrollableResultSetDemo in Section 5.11."
 )
 
-pn.section("10-Mark Questions (Detailed Programs)")
+en.section("10-Mark Questions (Detailed Programs)")
 
-pn.highlight(
+en.highlight(
     "<b>Q16. Write a complete Java program demonstrating all mouse and keyboard event "
     "listeners. Show: click coordinates, drag path, key names, Ctrl+key combinations.</b><br/>"
     "A: Combine MouseListener + MouseMotionListener + KeyListener on one Frame. "
@@ -2196,7 +2196,7 @@ pn.highlight(
     "See MouseEventDemo (Sec 5.6) and KeyEventDemo (Sec 5.7) and combine them."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q17. Explain the Delegation Event Model in detail. "
     "What are Event Sources, Event Objects, and Listeners? "
     "Explain each with an example and diagram.</b><br/>"
@@ -2209,7 +2209,7 @@ pn.highlight(
     "See Fig 5.1 sequence diagram and DelegationModelDemo code in Sections 5.2-5.4."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q18. Write a complete JDBC application that: connects to MySQL, "
     "creates a table if not exists, inserts 5 records, displays all records, "
     "searches by name using PreparedStatement, and handles all exceptions.</b><br/>"
@@ -2222,7 +2222,7 @@ pn.highlight(
     "(7) Finally block closes all resources. See JDBCDemo and PreparedStatementDemo."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q19. Explain JDBC exception classes. Write code to handle SQLException, "
     "SQLWarning, and BatchUpdateException. Include transaction management.</b><br/>"
     "A: SQLException: catch(SQLException e) { e.getMessage(), getSQLState(), getErrorCode(), for(Throwable t: e) chain. }. "
@@ -2233,7 +2233,7 @@ pn.highlight(
     "See ExceptionHandlingDemo in Section 5.12."
 )
 
-pn.highlight(
+en.highlight(
     "<b>Q20. Compare the four types of JDBC drivers. Which one is preferred and why? "
     "Write a program to connect to a remote MySQL database and perform CRUD operations.</b><br/>"
     "A: Type 1 (JDBC-ODBC Bridge): deprecated, Windows-only, slow. "
@@ -2245,8 +2245,8 @@ pn.highlight(
     "Use PreparedStatement for safety. See PreparedStatementDemo in Section 5.13."
 )
 
-pn.section("Quick Revision Summary Table")
-pn.info_table(
+en.section("Quick Revision Summary Table")
+en.info_table(
     ["Topic", "Key Exam Points"],
     [
         [
@@ -2348,7 +2348,7 @@ pn.info_table(
     ],
 )
 
-pn.tip(
+en.tip(
     "Exam must-know programs: "
     "(1) Complete event demo with Button + MouseListener + KeyListener. "
     "(2) JDBC with all CRUD operations (INSERT, SELECT, UPDATE, DELETE). "
@@ -2361,8 +2361,8 @@ pn.tip(
 # =============================================================================
 #  BUILD DOCUMENT
 # =============================================================================
-pn.build_doc("Java_Unit5_Notes.pdf")
+en.build_doc("Java_Unit5_Notes.pdf")
 print("Generated: Java_Unit5_Notes.pdf")
 
-pn.build_html("java_unit5_html")
+en.build_html("java_unit5_html")
 print("Generated: java_unit5_html")
