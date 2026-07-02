@@ -638,10 +638,10 @@ def main() -> None:
     )
     stack_fc.terminal("s", "Push(10)")
     stack_fc.process("s1", "[10] ← top")
-    stack_fc.process("s2", "[20]\n[10] ← top")
-    stack_fc.process("s3", "[30]\n[20]\n[10] ← top")
-    stack_fc.terminal("pop", "Pop() → 30")
-    stack_fc.terminal("e", "[20]\n[10] ← top")
+    stack_fc.process("s2", "[20] ← top\n[10]")
+    stack_fc.process("s3", "[30] ← top\n[20]\n[10]")
+    stack_fc.process("pop", "Pop() → 30")
+    stack_fc.terminal("e", "[20] ← top\n[10]")
     stack_fc.edge("s", "s1")
     stack_fc.edge("s1", "s2", label="Push(20)")
     stack_fc.edge("s2", "s3", label="Push(30)")
@@ -1249,7 +1249,14 @@ def main() -> None:
             ["Bubble Sort", "O(N)", "O(N²)", "O(N²)", "O(1)", "Yes"],
             ["Selection Sort", "O(N²)", "O(N²)", "O(N²)", "O(1)", "No"],
             ["Insertion Sort", "O(N)", "O(N²)", "O(N²)", "O(1)", "Yes"],
-            ["Shell Sort", "O(N log N)", "O(N^1.25)", "O(N²)", "O(1)", "No"],
+            [
+                "Shell Sort",
+                "O(N log N)",
+                en.formula(r"O(N^{1.25})"),
+                "O(N²)",
+                "O(1)",
+                "No",
+            ],
             ["Merge Sort", "O(N log N)", "O(N log N)", "O(N log N)", "O(N)", "Yes"],
             ["Quick Sort", "O(N log N)", "O(N log N)", "O(N²)", "O(log N)", "No"],
             ["Heap Sort", "O(N log N)", "O(N log N)", "O(N log N)", "O(1)", "No"],
@@ -1283,7 +1290,7 @@ def main() -> None:
             [
                 "Shell Sort",
                 "O(N log N)",
-                "O(N^1.25)",
+                en.formula(r"O(N^{1.25})"),
                 "O(N²)",
                 "O(1)",
                 "Gap-sequence dependent",
