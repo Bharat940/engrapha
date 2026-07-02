@@ -8,6 +8,10 @@ description: Generate beautiful PDFs, notes, diagrams, slides, and flashcards fr
 # <span class="logo-light"><img src="assets/engrapha_logo_black.svg" alt="Engrapha" width="320"/></span><span class="logo-dark"><img src="assets/engrapha_logo.svg" alt="Engrapha" width="320"/></span> Engrapha
 
 ### Beautiful PDFs from Python or Markdown
+
+> **Transparency Notice:** Built to solve my own frustration with inconsistent AI-generated notes. Heavy AI assistance was used for code generation, but the architecture, testing, and curation are mine.
+
+### Project Status: Early alpha — feedback welcome!
 <br>
 
 [Get Started](getting-started.md){ .md-button .md-button--primary }

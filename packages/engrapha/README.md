@@ -1,4 +1,8 @@
+> **Transparency Notice:** Built to solve my own frustration with inconsistent AI-generated notes. Heavy AI assistance was used for code generation, but the architecture, testing, and curation are mine.
+
 # Engrapha
+
+### Project Status: Early alpha — feedback welcome!
 
 Meta package for Engrapha.
 

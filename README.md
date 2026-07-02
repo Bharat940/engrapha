@@ -1,7 +1,11 @@
+> **Transparency Notice:** Built to solve my own frustration with inconsistent AI-generated notes. Heavy AI assistance was used for code generation, but the architecture, testing, and curation are mine.
+
 ![engrapha](assets/engrapha_logo.svg)
 # engrapha
 
 Generate beautiful PDFs, notes, diagrams, slides, and flashcards from Python or Markdown.
+
+### Project Status: Early alpha — feedback welcome!
 
 engrapha unifies two packages in a single monorepo:
 

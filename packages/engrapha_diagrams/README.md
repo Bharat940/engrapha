@@ -1,6 +1,10 @@
 
+> **Transparency Notice:** Built to solve my own frustration with inconsistent AI-generated notes. Heavy AI assistance was used for code generation, but the architecture, testing, and curation are mine.
+
 ![Engrapha](../assets/Engrapha_logo_black.svg)
 # 📊 engrapha_diagrams
+
+### Project Status: Early alpha — feedback welcome!
 
 [![Python Version](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
