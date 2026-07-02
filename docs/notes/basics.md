@@ -173,6 +173,26 @@ en.br()
 
 Built-in presets: `engineering`, `research-paper`, `course-notes`, `networking`, `database`, `programming`.
 
+`cover_card()` accepts optional `logo_svg`, `logo_width`, `banner_svg`, `banner_width`, and `banner_align` parameters for inline SVG branding:
+
+```python
+en.cover_card(
+    title="Data Structures & Algorithms",
+    subtitle="Complete Semester Lecture Notes",
+    cover_theme="academic_modern",
+    author="Bharat Dangi",
+    date="July 2026",
+    tags=["Computer Science", "Algorithms", "Interview Prep"],
+    logo_svg="assets/engrapha_logo_black.svg",
+    logo_width=120.0,
+    banner_svg="asset_images/dsa_cover.svg",
+    banner_width=400.0,
+    banner_align="center",
+)
+```
+
+These require the optional `svglib` package (`pip install engrapha-notes[svg]`).
+
 Add a faint SVG background illustration with `cover_image()`:
 
 ```python

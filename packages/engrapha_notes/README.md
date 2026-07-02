@@ -82,6 +82,11 @@ en.cover_card(
         "Semester IV",
         "Exam Notes"
     ],
+    logo_svg="assets/engrapha_logo_black.svg",
+    logo_width=120.0,
+    banner_svg="asset_images/network_topology.svg",
+    banner_width=400.0,
+    banner_align="center",
 )
 
 # Add a faint SVG background illustration (optional svglib for native vector)
@@ -123,6 +128,17 @@ en.br()
 | `hero` | Massive typography, generous whitespace |
 | `book` | Classic textbook aesthetic with surface color blocks |
 | `diagram` | SVG background illustration with accent text |
+
+**Cover Illustration Parameters** (`en.cover_card(...)`):
+| Parameter | Type | Default | Description |
+| --------- | ---- | ------- | ----------- |
+| `logo_svg` | `str \| None` | `None` | Path to an SVG logo rendered above the cover card |
+| `logo_width` | `float` | `120.0` | Target width in points for the logo SVG |
+| `banner_svg` | `str \| None` | `None` | Path to an SVG banner rendered between subtitle and tags |
+| `banner_width` | `float` | `400.0` | Target width in points for the banner SVG |
+| `banner_align` | `str` | `"left"` | Alignment for the banner: `"left"`, `"center"`, or `"right"` |
+
+> `logo_svg` and `banner_svg` require the optional `svglib` package. Install with `pip install engrapha-notes[svg]`.
 
 ### 2. Basic Note Structuring
 
@@ -247,6 +263,23 @@ en.body(f"For details on advanced sorting, see the section on Page {en.ref('sec_
 
 # Print the generated index table
 en.print_index()
+```
+
+#### Inline math in body paragraphs
+
+`en.body()` and `Paragraph`-based helpers automatically convert `$...$` LaTeX math to inline images:
+
+```python
+en.body("The Master Theorem gives $T(N) = \Theta(N^{\log_b a})$ when $f(N) = \Theta(N^{\log_b a})$.")
+```
+
+#### Custom formula color and size
+
+`formula()`, `formula_block()`, and inline `$...$` math all accept optional `color` and `fontsize` overrides:
+
+```python
+en.formula(r"E = mc^2", color="#fbbf24", fontsize=14.0)
+en.formula_block(r"\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}", color="#38bdf8")
 ```
 
 ### 6. Advanced Styling, Custom Layouts & Overrides

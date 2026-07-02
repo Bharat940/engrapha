@@ -22,6 +22,64 @@ from reportlab.lib.units import cm
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.platypus import BaseDocTemplate, SimpleDocTemplate, Flowable, Paragraph
 
+# Monkey-patch Paragraph.wrap to resolve cross-references dynamically during layout passes
+original_paragraph_wrap = Paragraph.wrap
+
+
+def patched_paragraph_wrap(
+    self: Paragraph, aW: float, aH: float
+) -> tuple[float, float]:
+    if hasattr(self, "text") and isinstance(self.text, str) and "__REF_" in self.text:
+        from .helpers import _labels
+        import re
+
+        def repl(match: re.Match) -> str:
+            ref_id = match.group(1)
+            return str(_labels.get(ref_id, "??"))
+
+        new_text = re.sub(r"__REF_([a-zA-Z0-9_\-]+)__", repl, self.text)
+        if new_text != self.text:
+            self.text = new_text
+            self.__init__(self.text, self.style)
+    return original_paragraph_wrap(self, aW, aH)
+
+
+Paragraph.wrap = patched_paragraph_wrap
+
+# Monkey-patch Paragraph.__init__ to dynamically translate $...$ LaTeX math to inline images
+original_paragraph_init = Paragraph.__init__
+
+
+def patched_paragraph_init(
+    self: Paragraph,
+    text: str,
+    style: Any = None,
+    bulletText: Any = None,
+    frags: Any = None,
+    caseSensitive: int = 1,
+    encoding: str = "utf8",
+) -> None:
+    if isinstance(text, str) and "$" in text:
+        import re
+
+        def repl(match: re.Match) -> str:
+            math_content = match.group(1)
+            try:
+                from .helpers import formula
+
+                return formula(math_content)
+            except Exception:
+                return f"${math_content}$"
+
+        text = re.sub(r"(?<!\\)\$([^\$]+)\$", repl, text)
+        text = text.replace(r"\$", "$")
+    original_paragraph_init(
+        self, text, style, bulletText, frags, caseSensitive, encoding
+    )
+
+
+Paragraph.__init__ = patched_paragraph_init
+
 PAGE_W, PAGE_H = A4
 PM = 1.8 * cm
 CW = PAGE_W - 2 * PM
@@ -188,9 +246,19 @@ class ThemedCanvas(Canvas):  # type: ignore[misc]
 
     def _to_roman(self, val: int) -> str:
         roman_map = [
-            (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
-            (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),
-            (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')
+            (1000, "M"),
+            (900, "CM"),
+            (500, "D"),
+            (400, "CD"),
+            (100, "C"),
+            (90, "XC"),
+            (50, "L"),
+            (40, "XL"),
+            (10, "X"),
+            (9, "IX"),
+            (5, "V"),
+            (4, "IV"),
+            (1, "I"),
         ]
         result = []
         for integer, roman in roman_map:
@@ -210,7 +278,7 @@ class ThemedCanvas(Canvas):  # type: ignore[misc]
             if p == page_num:
                 break
             current_num += 1
-        
+
         if current_format == "roman":
             return self._to_roman(current_num)
         elif current_format == "none":
@@ -235,6 +303,7 @@ class ThemedCanvas(Canvas):  # type: ignore[misc]
             config = getattr(self, "_active_footer", None)
         if config is None:
             from .helpers import global_footer
+
             config = global_footer
 
         # Resolve header configuration
@@ -243,9 +312,8 @@ class ThemedCanvas(Canvas):  # type: ignore[misc]
             header_config = getattr(self, "_active_header", None)
         if header_config is None:
             from .helpers import global_header
+
             header_config = global_header
-
-
 
         is_border_enabled = False
         b_margin: float = float(self._current_theme.page_border_margin)
@@ -271,10 +339,24 @@ class ThemedCanvas(Canvas):  # type: ignore[misc]
             self.setStrokeColor(self._current_theme.rl(b_color))
             self.setLineWidth(0.75)
             # Outer box
-            self.rect(b_margin, b_margin, PAGE_W - 2 * b_margin, PAGE_H - 2 * b_margin, stroke=1, fill=0)
+            self.rect(
+                b_margin,
+                b_margin,
+                PAGE_W - 2 * b_margin,
+                PAGE_H - 2 * b_margin,
+                stroke=1,
+                fill=0,
+            )
             # Inner box
             inner_margin: float = b_margin + b_gap
-            self.rect(inner_margin, inner_margin, PAGE_W - 2 * inner_margin, PAGE_H - 2 * inner_margin, stroke=1, fill=0)
+            self.rect(
+                inner_margin,
+                inner_margin,
+                PAGE_W - 2 * inner_margin,
+                PAGE_H - 2 * inner_margin,
+                stroke=1,
+                fill=0,
+            )
             self.restoreState()
 
         # Look up footer configuration (page-specific first, then active/global)
@@ -283,6 +365,7 @@ class ThemedCanvas(Canvas):  # type: ignore[misc]
             config = getattr(self, "_active_footer", None)
         if config is None:
             from .helpers import global_footer
+
             config = global_footer
 
         left_m = self._current_theme.left_margin
@@ -296,48 +379,67 @@ class ThemedCanvas(Canvas):  # type: ignore[misc]
             header_config = getattr(self, "_active_header", None)
         if header_config is None:
             from .helpers import global_header
+
             header_config = global_header
 
         show_header_line = self._current_theme.show_headers
         if header_config:
             if not header_config.get("visible", True):
                 show_header_line = False
-            elif header_config.get("left") or header_config.get("center") or header_config.get("right"):
+            elif (
+                header_config.get("left")
+                or header_config.get("center")
+                or header_config.get("right")
+            ):
                 show_header_line = True
 
         # Draw header text and line
         if header_config and header_config.get("visible", True):
             self.saveState()
-            h_font_name = header_config.get("font_name") or self._current_theme.body_font
+            h_font_name = (
+                header_config.get("font_name") or self._current_theme.body_font
+            )
             h_font_size = header_config.get("font_size") or 9
-            h_text_color = header_config.get("text_color") or self._current_theme.text_dim
+            h_text_color = (
+                header_config.get("text_color") or self._current_theme.text_dim
+            )
             self.setFillColor(self._current_theme.rl(h_text_color))
             self.setFont(h_font_name, h_font_size)
-            
+
             h_left = header_config.get("left")
             h_center = header_config.get("center")
             h_right = header_config.get("right")
-            
+
             y_mult_val = header_config.get("y_offset")
             y_mult = float(y_mult_val) if y_mult_val is not None else 0.65
             y_header = PAGE_H - top_m * y_mult
-            
+
             if h_left is not None:
                 self.drawString(left_m, y_header, h_left)
             if h_center is not None:
                 self.drawCentredString(PAGE_W / 2, y_header, h_center)
             if h_right is not None:
                 self.drawRightString(PAGE_W - right_m, y_header, h_right)
-                
+
             self.restoreState()
 
         if show_header_line:
             self.saveState()
-            hl_color = header_config.get("line_color") or self._current_theme.accent if header_config else self._current_theme.accent
-            hl_width = header_config.get("line_width") or self._current_theme.divider_thickness if header_config else self._current_theme.divider_thickness
+            hl_color = (
+                header_config.get("line_color") or self._current_theme.accent
+                if header_config
+                else self._current_theme.accent
+            )
+            hl_width = (
+                header_config.get("line_width") or self._current_theme.divider_thickness
+                if header_config
+                else self._current_theme.divider_thickness
+            )
             self.setStrokeColor(self._current_theme.rl(hl_color))
             self.setLineWidth(hl_width)
-            line_y_mult_val = header_config.get("line_y_offset") if header_config else None
+            line_y_mult_val = (
+                header_config.get("line_y_offset") if header_config else None
+            )
             line_y_mult = float(line_y_mult_val) if line_y_mult_val is not None else 0.7
             self.line(
                 left_m,
@@ -346,6 +448,9 @@ class ThemedCanvas(Canvas):  # type: ignore[misc]
                 PAGE_H - top_m * line_y_mult,
             )
             self.restoreState()
+
+        # Determine footnotes presence for footer y-offset adjustment
+        footnotes = getattr(self, "_page_footnotes", {}).get(page_num, [])
 
         if config.get("visible", True):
             f_font_name = config.get("font_name") or self._current_theme.body_font
@@ -360,7 +465,10 @@ class ThemedCanvas(Canvas):  # type: ignore[misc]
             show_page_num = config.get("show_page_num", True)
 
             f_y_mult_val = config.get("y_offset")
-            f_y_mult = float(f_y_mult_val) if f_y_mult_val is not None else 0.5
+            if f_y_mult_val is not None:
+                f_y_mult = float(f_y_mult_val)
+            else:
+                f_y_mult = 0.35 if footnotes else 0.5
             y_footer = bottom_m * f_y_mult
 
             # Left-aligned custom text
@@ -386,19 +494,48 @@ class ThemedCanvas(Canvas):  # type: ignore[misc]
                 self.drawRightString(PAGE_W - right_m, y_footer, right_str)
 
         # Draw accumulated footnotes if any exist
-        footnotes = getattr(self, "_page_footnotes", {}).get(page_num, [])
         if footnotes:
             self.saveState()
+
+            from reportlab.lib.styles import ParagraphStyle
+            from reportlab.platypus import Paragraph
+
+            fn_style = ParagraphStyle(
+                "_footnote_style",
+                fontName=self._current_theme.body_font,
+                fontSize=8,
+                leading=10.5,
+                textColor=self._current_theme.rl(self._current_theme.text),
+            )
+
+            # Compute footer position to start footnote stack above it
+            f_y_mult_val = config.get("y_offset")
+            if f_y_mult_val is not None:
+                f_y_mult = float(f_y_mult_val)
+            else:
+                f_y_mult = 0.35 if footnotes else 0.5
+            y_footer_calc = bottom_m * f_y_mult
+
+            w_avail = PAGE_W - left_m - right_m
+            y = y_footer_calc + 12  # Start 12 pt above the footer
+
+            # Render footnotes in reverse order so footnote 1 is at the top of the stack
+            fn_paras = []
+            for num, text in reversed(footnotes):
+                text = self._resolve_refs(text)
+                p = Paragraph(f"<b>{num}.</b> {text}", fn_style)
+                _, h = p.wrap(w_avail, 1000)
+                fn_paras.append((p, h))
+
+            for p, h in fn_paras:
+                p.drawOn(self, left_m, y)
+                y += h + 4
+
+            # Draw divider line 2 pt above the topmost footnote
+            line_y = y - 4 + 2
             self.setStrokeColor(self._current_theme.rl(self._current_theme.text_dim))
             self.setLineWidth(0.5)
-            self.line(left_m, bottom_m + 5, left_m + 50, bottom_m + 5)
-
-            self.setFillColor(self._current_theme.rl(self._current_theme.text))
-            self.setFont(self._current_theme.body_font, 8)
-            y = bottom_m - 5
-            for num, text in footnotes:
-                self.drawString(left_m, y, f"{num}. {text}")
-                y -= 10
+            self.line(left_m, line_y, left_m + 50, line_y)
             self.restoreState()
 
         self.restoreState()
@@ -429,14 +566,22 @@ class ThemedCanvas(Canvas):  # type: ignore[misc]
         text = self._resolve_refs(text)
         super().drawRightString(x, y, text, *args, **kwargs)
 
+    def drawText(self, textobj: Any, *args: Any, **kwargs: Any) -> None:
+        if hasattr(textobj, "_code"):
+            new_code = []
+            for op in textobj._code:
+                if isinstance(op, str) and "__REF_" in op:
+                    op = self._resolve_refs(op)
+                new_code.append(op)
+            textobj._code = new_code
+        super().drawText(textobj, *args, **kwargs)
+
 
 class NotesDocTemplate(SimpleDocTemplate):  # type: ignore[misc]
     def afterFlowable(self, flowable: Any) -> None:
         def process(f: Any) -> None:
             if f.__class__.__name__ == "Bookmark":
-                self.notify(
-                    "TOCEntry", (f.level, f.title, self.page, f.key)
-                )
+                self.notify("TOCEntry", (f.level, f.title, self.page, f.key))
             elif f.__class__.__name__ == "KeepTogether":
                 for child in getattr(f, "_flowables", []):
                     process(child)
@@ -973,8 +1118,19 @@ def build_pptx(
             elif cls_name == "IndexPrinterFlowable":
                 from reportlab.platypus import Paragraph
                 from reportlab.lib.styles import ParagraphStyle
-                style = ParagraphStyle(name="idx", fontName=t_theme.body_font, fontSize=14, textColor=t_theme.rl(t_theme.text_dim))
-                processed.append(Paragraph("<i>Index mapping is only available in the PDF format.</i>", style))
+
+                style = ParagraphStyle(
+                    name="idx",
+                    fontName=t_theme.body_font,
+                    fontSize=14,
+                    textColor=t_theme.rl(t_theme.text_dim),
+                )
+                processed.append(
+                    Paragraph(
+                        "<i>Index mapping is only available in the PDF format.</i>",
+                        style,
+                    )
+                )
             elif cls_name in ("Table", "CodeBlockTable") and getattr(
                 item, "_is_code_block", False
             ):
@@ -1880,7 +2036,9 @@ def build_html(
             content_html.append(f'<p class="body-paragraph">{p_text}</p>')
 
         elif cls_name == "IndexPrinterFlowable":
-            content_html.append(f'<p class="body-paragraph" style="color: {t_theme.text_dim}; font-style: italic;">Index mapping is only available in the PDF format.</p>')
+            content_html.append(
+                f'<p class="body-paragraph" style="color: {t_theme.text_dim}; font-style: italic;">Index mapping is only available in the PDF format.</p>'
+            )
 
         elif cls_name in ("Table", "CodeBlockTable"):
             is_code = getattr(item, "_is_code_block", False)
@@ -2169,21 +2327,21 @@ def build_html(
             else:
                 w_fallback = getattr(item, "w", 150)
                 h_fallback = getattr(item, "h", 100)
-                
+
                 # Limit length of display URL/path
                 display_src = src
                 if len(display_src) > 50:
                     display_src = display_src[:47] + "..."
-                
+
                 img_html = (
                     f'<div class="image-fallback-box" style="margin: 0 auto; max-width: {w_fallback}px; height: {h_fallback}px; '
-                    f'border: 1px dashed {t_theme.table_bdr}; background: {t_theme.surface}; border-radius: 4px; '
-                    f'display: flex; flex-direction: column; align-items: center; justify-content: center; '
+                    f"border: 1px dashed {t_theme.table_bdr}; background: {t_theme.surface}; border-radius: 4px; "
+                    f"display: flex; flex-direction: column; align-items: center; justify-content: center; "
                     f'color: {t_theme.text_dim}; font-size: 0.9em; padding: 10px; box-sizing: border-box; text-align: center; line-height: 1.2;">'
                     f'<span style="font-size: 1.4em; margin-bottom: 4px;">⚠️</span>'
-                    f'<strong>[Image Not Available]</strong>'
+                    f"<strong>[Image Not Available]</strong>"
                     f'<span style="font-size: 0.75em; margin-top: 4px; word-break: break-all; opacity: 0.85;">{display_src}</span>'
-                    f'</div>'
+                    f"</div>"
                 )
                 if link:
                     img_html = f'<a href="{link}" target="_blank" style="text-decoration: none; display: inline-block;">{img_html}</a>'
@@ -2193,8 +2351,8 @@ def build_html(
 
             content_html.append(
                 f'<div class="image-container" style="text-align: center; margin: 20px 0;">'
-                f'{img_html}'
-                f'</div>'
+                f"{img_html}"
+                f"</div>"
             )
 
         elif cls_name == "LaTeXFlowable":
@@ -2209,7 +2367,11 @@ def build_html(
     extracted_title = None
     if not title:
         for item in flattened_story:
-            if type(item).__name__ == "Table" and hasattr(item, "_cellvalues") and item._cellvalues:
+            if (
+                type(item).__name__ == "Table"
+                and hasattr(item, "_cellvalues")
+                and item._cellvalues
+            ):
                 try:
                     cell = _unwrap_flowable(item._cellvalues[0][0])
                     if isinstance(cell, list):
@@ -2217,7 +2379,9 @@ def build_html(
                     if type(cell).__name__ == "Paragraph":
                         p_style = getattr(cell, "style", None)
                         if p_style:
-                            parent_name = getattr(getattr(p_style, "parent", None), "name", "NO_PARENT")
+                            parent_name = getattr(
+                                getattr(p_style, "parent", None), "name", "NO_PARENT"
+                            )
                             if parent_name in ("Cover_H1", "Chap_H1", "H1"):
                                 raw_text = getattr(cell, "text", "")
                                 clean_title = re.sub(r"<[^>]*>", "", raw_text).strip()
@@ -2506,9 +2670,9 @@ def build_html(
         base_name = base_name[:-5]
     elif base_name.endswith(".html"):
         base_name = base_name[:-5]
-    
+
     html_filename = "index.html"
-    
+
     with open(os.path.join(output_dir, html_filename), "w", encoding="utf-8") as f:
         f.write(html_output)
 

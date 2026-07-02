@@ -642,6 +642,7 @@ def cover_card(
     bg_svg: str | None = None,
     banner_svg: str | None = None,
     banner_width: float = 400.0,
+    banner_align: str = "left",
     logo_svg: str | None = None,
     logo_width: float = 120.0,
 ) -> None:
@@ -886,14 +887,31 @@ def cover_card(
 
     if banner_svg:
         sp(24)
-        from reportlab.platypus import Indenter
-        if base_indent > 0:
-            add(Indenter(left=base_indent))
-        # Add the banner at user-specified width
-        add(InlineSVG(banner_svg, target_width=banner_width))
-        if base_indent > 0:
-            add(Indenter(left=-base_indent))
-        # Estimate height consumption dynamically based on the 1280x640 aspect ratio
+        from reportlab.platypus import Table, TableStyle, Indenter
+
+        svg_flowable = InlineSVG(banner_svg, target_width=banner_width)
+
+        if banner_align == "center":
+            center_table = Table([[svg_flowable]], colWidths=["100%"])
+            center_table.setStyle(
+                TableStyle(
+                    [
+                        ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+                        ("TOPPADDING", (0, 0), (-1, -1), 0),
+                        ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+                        ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+                    ]
+                )
+            )
+            add(center_table)
+        else:
+            if base_indent > 0:
+                add(Indenter(left=base_indent))
+            add(svg_flowable)
+            if base_indent > 0:
+                add(Indenter(left=-base_indent))
+
         consumed += (banner_width * (640.0 / 1280.0)) + 24.0
 
     flexible_spacer(consumed)
@@ -1592,7 +1610,11 @@ def note(text: str) -> None:
     add(t)
 
 
-def formula(latex_str: str) -> str:
+def formula(
+    latex_str: str,
+    color: str | None = None,
+    fontsize: float | None = None,
+) -> str:
     """Inline formula returning markup string using a cached PNG rendering."""
     import os
     import hashlib
@@ -1601,6 +1623,9 @@ def formula(latex_str: str) -> str:
 
     t_theme = get_theme()
     math_str = latex_str if latex_str.startswith("$") else f"${latex_str}$"
+
+    formula_color = color if color is not None else t_theme.text
+    formula_size = fontsize if fontsize is not None else t_theme.size_body
 
     # Ensure cache directory exists in the workspace
     cache_dir = os.path.join(os.getcwd(), ".engrapha_cache")
@@ -1611,9 +1636,11 @@ def formula(latex_str: str) -> str:
             pass
 
     # Unique hash based on text, color, and background to support dark/light modes
-    # Added :trans_v1 to invalidate older cached non-transparent formulas
+    # Added :trans_v3 to invalidate older cached formulas and force redraw with 10pt
     hash_val = hashlib.md5(
-        f"{math_str}:{t_theme.text}:{t_theme.bg}:trans_v1".encode("utf-8")
+        f"{math_str}:{formula_color}:{t_theme.bg}:{formula_size}:trans_v3".encode(
+            "utf-8"
+        )
     ).hexdigest()
     filename = os.path.join(cache_dir, f"math_{hash_val}.png")
 
@@ -1625,11 +1652,11 @@ def formula(latex_str: str) -> str:
             parser_img = MathTextParser("path")
             w_img, h_img, d_img, _, _ = parser_img.parse(math_str, dpi=72)
             fig = figure.Figure(figsize=(w_img / 72.0, h_img / 72.0))
-            fig.text(0, d_img / h_img, math_str, color=t_theme.text)
+            fig.text(0, d_img / h_img, math_str, color=formula_color, fontsize=10)
             fig.savefig(filename, dpi=300, format="png", transparent=True)
         except Exception:
             try:
-                math_to_image(math_str, filename, color=t_theme.text, dpi=300)
+                math_to_image(math_str, filename, color=formula_color, dpi=300)
             except Exception:
                 return f"[Math: {latex_str}]"
 
@@ -1641,7 +1668,7 @@ def formula(latex_str: str) -> str:
         width, height, depth = 50.0, 12.0, 3.0
 
     # Standard scale matching active theme size
-    scale = t_theme.size_body / 10.0
+    scale = formula_size / 10.0
     w_points = width * scale
     h_points = (height + depth) * scale
     valign_offset = -depth * scale
@@ -1655,13 +1682,18 @@ def formula(latex_str: str) -> str:
     return f'<img src="{rl_path}" width="{w_points:.2f}" height="{h_points:.2f}" valign="{valign_offset:.2f}" />'
 
 
-def formula_block(latex_str: str) -> None:
+def formula_block(
+    latex_str: str,
+    color: Any = None,
+    fontsize: float | None = None,
+) -> None:
     """Centred standalone LaTeX math formula block."""
     from .document import LaTeXFlowable
     from .theme import get_theme
 
     t_theme = get_theme()
-    flow = LaTeXFlowable(latex_str, fontsize=t_theme.size_body * 1.2)
+    f_size = fontsize if fontsize is not None else t_theme.size_body
+    flow = LaTeXFlowable(latex_str, fontsize=f_size, color=color)
 
     # Wrap in a Table to center it
     from reportlab.platypus import Table, TableStyle
@@ -3779,6 +3811,13 @@ class IndexPrinterFlowable(Flowable):  # type: ignore[misc]
         self._table = table
         self.width, self.height = table.wrap(aW, aH)
         return self.width, self.height
+
+    def split(self, aW: float, aH: float) -> list[Flowable]:
+        if not self._table:
+            self.wrap(aW, aH)
+        if self._table:
+            return self._table.split(aW, aH)
+        return []
 
     def draw(self) -> None:
         if self._table:

@@ -1,0 +1,51 @@
+<svg width="420" height="160" viewBox="0 0 420 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="nodeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#a1a1aa"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.92">
+    <!-- Linked List on Left -->
+    <circle cx="48" cy="42" r="12" fill="url(#nodeGrad)" stroke="none"/>
+    <text x="48" y="46" text-anchor="middle" fill="#0d0d0f" font-family="Helvetica" font-size="10" font-weight="bold">A</text>
+    <line x1="60" y1="42" x2="82" y2="42"/>
+    <circle cx="92" cy="42" r="12" fill="url(#nodeGrad)" stroke="none"/>
+    <text x="92" y="46" text-anchor="middle" fill="#0d0d0f" font-family="Helvetica" font-size="10" font-weight="bold">B</text>
+    <line x1="104" y1="42" x2="126" y2="42"/>
+    <circle cx="136" cy="42" r="12" fill="url(#nodeGrad)" stroke="none"/>
+    <text x="136" y="46" text-anchor="middle" fill="#0d0d0f" font-family="Helvetica" font-size="10" font-weight="bold">C</text>
+    <line x1="148" y1="42" x2="170" y2="42"/>
+    <circle cx="180" cy="42" r="12" fill="url(#nodeGrad)" stroke="none"/>
+    <text x="180" y="46" text-anchor="middle" fill="#0d0d0f" font-family="Helvetica" font-size="10" font-weight="bold">D</text>
+    <text x="110" y="68" text-anchor="middle" fill="#f4f4f5" font-family="Helvetica" font-size="9">Linked List</text>
+
+    <!-- Stack on Right -->
+    <rect x="290" y="18" width="90" height="24" rx="4" fill="url(#nodeGrad)" stroke="none" opacity="0.9"/>
+    <text x="335" y="34" text-anchor="middle" fill="#0d0d0f" font-family="Helvetica" font-size="10" font-weight="bold">Top</text>
+    <rect x="290" y="46" width="90" height="24" rx="4" fill="url(#nodeGrad)" stroke="none" opacity="0.76"/>
+    <text x="335" y="62" text-anchor="middle" fill="#0d0d0f" font-family="Helvetica" font-size="10" font-weight="bold">Mid</text>
+    <rect x="290" y="74" width="90" height="24" rx="4" fill="url(#nodeGrad)" stroke="none" opacity="0.62"/>
+    <text x="335" y="90" text-anchor="middle" fill="#0d0d0f" font-family="Helvetica" font-size="10" font-weight="bold">Bot</text>
+    <line x1="380" y1="30" x2="395" y2="30"/>
+    <line x1="395" y1="30" x2="395" y2="86"/>
+    <line x1="380" y1="86" x2="395" y2="86"/>
+    <text x="335" y="118" text-anchor="middle" fill="#f4f4f5" font-family="Helvetica" font-size="9">Stack (LIFO)</text>
+
+    <!-- Binary Tree at Bottom Center -->
+    <line x1="210" y1="112" x2="178" y2="132"/>
+    <line x1="210" y1="112" x2="242" y2="132"/>
+    <line x1="178" y1="132" x2="158" y2="148"/>
+    <line x1="178" y1="132" x2="198" y2="148"/>
+    <line x1="242" y1="132" x2="222" y2="148"/>
+    <line x1="242" y1="132" x2="262" y2="148"/>
+    <circle cx="210" cy="100" r="11" fill="url(#nodeGrad)" stroke="none"/>
+    <text x="210" y="104" text-anchor="middle" fill="#0d0d0f" font-family="Helvetica" font-size="9" font-weight="bold">R</text>
+    <circle cx="178" cy="130" r="9" fill="url(#nodeGrad)" stroke="none" opacity="0.88"/>
+    <circle cx="242" cy="130" r="9" fill="url(#nodeGrad)" stroke="none" opacity="0.88"/>
+    <circle cx="158" cy="146" r="7" fill="url(#nodeGrad)" stroke="none" opacity="0.8"/>
+    <circle cx="198" cy="146" r="7" fill="url(#nodeGrad)" stroke="none" opacity="0.8"/>
+    <circle cx="222" cy="146" r="7" fill="url(#nodeGrad)" stroke="none" opacity="0.8"/>
+    <circle cx="262" cy="146" r="7" fill="url(#nodeGrad)" stroke="none" opacity="0.8"/>
+  </g>
+</svg>

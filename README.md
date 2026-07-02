@@ -70,7 +70,7 @@ en.part_box(
 en.chap_box("1.1 Sorting Fundamentals")
 en.section("Insertion Sort")
 en.body("Insertion Sort builds a sorted array one item at a time.")
-en.tip("Time complexity: O(N^2) worst case, O(N) best case.")
+en.tip("Time complexity: O(N²) worst case, O(N) best case.")
 
 fc = ed.Flowchart(width=en.CW, height=180, caption="Fig 1: Loop invariant step")
 fc.terminal("start", "START").process("step", "Compare").terminal("end", "END")
@@ -79,6 +79,8 @@ fc.edge("start", "step").edge("step", "end")
 en.add(fc.as_flowable())
 en.build_doc("quickstart.pdf")
 ```
+
+See `examples/demo_dsa.py` for a comprehensive DSA notes example with cover logos, banner illustrations, per-structure visuals, complexity tables, and interview Q&A.
 
 ## Features
 
@@ -119,6 +121,8 @@ Engrapha acts as a true **Publishing Framework**. It ships with screenshot-worth
 - **Export**: PDF, HTML, PPTX, Anki APKG / CSV / JSON — all from one source.
 - **CLI**: `Engrapha notes.md --theme catppuccin-mocha` for Markdown users.
 - **Zero dependencies** beyond Python + pip (`svglib` is optionally supported for SVG backgrounds).
+
+See `examples/demo_dsa.py` for a comprehensive DSA notes example with cover logos, banner illustrations, per-structure visuals, complexity tables, and interview Q&A.
 
 ## Documentation
 

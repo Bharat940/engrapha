@@ -53,7 +53,7 @@ en.part_box(text, subtitle=None, topics=None)
 en.chap_box(text, bookmark=True)
 en.section(text, bookmark=True, keep_with_next=True)
 en.subsection(text, bookmark=True)
-en.cover_card(title, subtitle=None, width=None, style="standard", author=None, date=None, ornament=None, tags=None, icon=None, cover_theme=None)
+en.cover_card(title, subtitle=None, width=None, style="standard", author=None, date=None, ornament=None, tags=None, icon=None, cover_theme=None, logo_svg=None, logo_width=120.0, banner_svg=None, banner_width=400.0, banner_align="left")
 ```
 
 ## Body and lists
@@ -125,8 +125,8 @@ en.page_numbering(style, reset_to)
 
 ```python
 en.code_block(text, lang=None, theme=None)   # Pygments syntax highlight
-en.formula(latex_str)                          # Inline SVG/PNG formula
-en.formula_block(latex_str)                    # Centered display math
+en.formula(latex_str, color=None, fontsize=None)  # Inline formula with optional color/size
+en.formula_block(latex_str, color=None, fontsize=None)  # Centered display math with optional color/size
 en.image(src, width, height, caption, link, fallbacks)
 en.info_table(headers, rows, col_widths, hdr_color, hdr_text_color)
 en.frame_format(caption, fields)              # Horizontal frame

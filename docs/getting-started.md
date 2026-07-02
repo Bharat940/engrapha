@@ -99,6 +99,43 @@ Run it:
 python quickstart.py
 ```
 
+### Cover Illustrations
+
+`cover_card()` accepts optional `logo_svg`, `banner_svg`, `banner_width`, and `banner_align` parameters for rendering SVG logos and banners above and below the cover metadata:
+
+```python
+en.cover_card(
+    title="Data Structures & Algorithms",
+    subtitle="Complete Semester Lecture Notes",
+    cover_theme="academic_modern",
+    author="Bharat Dangi",
+    date="July 2026",
+    tags=["Computer Science", "Algorithms", "Interview Prep"],
+    logo_svg="assets/engrapha_logo_black.svg",
+    logo_width=120.0,
+    banner_svg="asset_images/dsa_cover.svg",
+    banner_width=400.0,
+    banner_align="center",
+)
+```
+
+These require the optional `svglib` package (`pip install engrapha-notes[svg]`).
+
+### Inline math and formula styling
+
+`en.body()` automatically converts `$...$` LaTeX math to inline images:
+
+```python
+en.body("The Master Theorem gives $T(N) = \Theta(N^{\log_b a})$ when $f(N) = \Theta(N^{\log_b a})$.")
+```
+
+`formula()` and `formula_block()` accept optional `color` and `fontsize` overrides:
+
+```python
+en.formula(r"E = mc^2", color="#fbbf24", fontsize=14.0)
+en.formula_block(r"\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}", color="#38bdf8")
+```
+
 ## What to read next
 
 <div class="grid cards" markdown>
